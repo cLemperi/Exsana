@@ -1,0 +1,22 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello ExanaHomeController!{% endblock %}
+
+{% block body %}
+<div class="container">
+	<div class="raw">
+		<section class="listFormations">
+			<div class="container" name "formationsBody">
+			{% for formation in formations %}
+				<div class="container" name="listFormation">
+					<a class="full-link" href="{{ path('formation', {id: formation.id}) }}">
+					<div class"logoFormation"></div>
+					<div class ="formation--title"><h3>{{ formation.title }}</h3></div>
+					<div class ="formation--duration">DURÉE : {{ formation.durationFormation }}	 jours</div></a>
+					<img src="{{ asset('img/640x480_cabinet-medical-664.jpeg') }}" alt="img-hopital" class="img-fluid" width="10%">
+				</div>
+	{% endfor %}
+</section>
+</div>
+	</div>
+{% endblock	%}

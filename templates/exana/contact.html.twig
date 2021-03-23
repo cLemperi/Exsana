@@ -1,0 +1,30 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello ExanaHomeController!{% endblock %}
+{% form_theme formFormation 'bootstrap_4_layout.html.twig' %}
+
+{% block body %}
+	<h1>Page contacte</h1>
+
+	<div class="container">
+		<div class="row">
+			<div class="col-md-8 obj-formation">
+				<div class="title_formation">
+					<h1>Vous souhaitez plus d'informations ?</h1>
+				</div>
+				<ul>
+					<li>Vous avez une demande particulière ?  }}</li>
+					<li>Merci de remplir le formulaire ci-dessous le plus précisément possible.</li>
+					<li>Notre équipe est à votre disposition du lundi au vendredi de 9h à 18h30</li>
+				</ul>
+			</div>
+		</div>
+	</div>
+
+	{{ form_start(formFormation) }}
+
+
+	{{ form_end(formFormation) }}
+
+
+{% endblock	%}

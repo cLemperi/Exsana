@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="fr">
+    <head>
+        <meta charset="UTF-8">
+        <title>{% block title %}Welcome!{% endblock %}</title>
+        {# Run `composer require symfony/webpack-encore-bundle`
+           and uncomment the following Encore helpers to start using Symfony UX #}
+        {% block stylesheets %}
+           <!-- Latest compiled and minified CSS -->
+            <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+            <link href="{{ asset('css/boostrap.min.css') }}" type="text/css" rel="stylesheet">
+            <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" >
+
+            
+
+<!-- Optional theme -->
+        {% endblock %}
+
+        
+    </head>
+    <body>
+<header class="header">
+    <nav class="navbar navbar-expand-lg fixed-top py-4">
+        <div class="container"><a href="{{ path('exana_home')}}" class="navbar-brand text-uppercase font-weight-bold"><img src="{{ asset('img/640x480_cabinet-medical-664.jpeg') }}" alt="img-linkedin" class="img-fluid" width="10%" id="" alt="Responsive image"></a>
+            <button type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation" class="navbar-toggler navbar-toggler-right"><i class="fa fa-bars"></i></button>
+            
+            <div id="navbarSupportedContent" class="collapse navbar-collapse">
+                <ul class="navbar-nav ml-auto">
+                    <li class="nav-item active"><a href="{{ path('formations') }}" class="nav-link text-uppercase font-weight-bold">FORMATION<span class="sr-only">(current)</span></a></li>
+                    <li class="nav-item"><a href="{{ path('whereweare') }}" class="nav-link text-uppercase font-weight-bold">INFOS PRATIQUES</a></li>
+                    <li class="nav-item"><a href="{{ path('whoweare') }}" class="nav-link text-uppercase font-weight-bold">EXSENA</a></li>
+                    <li class="nav-item"><a href="{{ path('contact') }}" class="nav-link text-uppercase font-weight-bold">Contact</a></li>
+                    
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+</header>
+{% block body %}{% endblock %}</div>
+
+<footer>
+ <div class="container-fluid pb-3 mb-0 justify-content-center text-light">    
+         <div class="row my-5 justify-content-center py-5">
+             <div class="col-11">
+                 <div class="row">
+                     <div class="col-xl-4 col-md-4 col-sm-4 col-12">
+                         <img src="{{ asset('img/LOGOS-EXSANA-3.png')}}" alt="img-linkedin" class="img-fluid" width="50%" id="" alt="Responsive image">
+                     </div>
+                     <div class="col-xl-4 col-md-4 col-sm-4 col-15">
+                         <h6 class="mb-3 mb-lg-4 bold-text"><b>MENU</b></h6>
+                         <ul class="list-unstyled">
+                             <li><a href="{{ path('exana_home') }}">Acceuil</a></li>
+                             <li><a href="{{ path('formations') }}">Formations</a></li>
+                             <li><a href="{{ path('whereweare') }}">info pratique</a></li>
+                             <li><a href="{{ path('whoweare') }}">Exsana</a></li>                             
+                             <li><a href="{{ path('contact') }}">Contact</a></li>
+                         </ul>
+                     </div>
+                     <div class="col-xl-4 col-md-4 col-sm-4 col-12">
+                        <h6 class="mb-3 mb-lg-4 bold-text">SUIVEZ-NOUS</h6>
+                        <ul class="social-network social-circle">
+                            <li><a href="#" class="icoFacebook" title="Facebook"><i class="fa fa-facebook"></i></a></li>
+                            <li><a href="#" class="icoLinkedin" title="Linkedin"><i class="fa fa-linkedin"></i></a></li>
+                            <li><a href="#" class="icoInstagram" title="Instagram"><i class="fa fa-instagram"></i></a></li>
+                        </ul>
+                 <div class="row ">
+                     <div class="col-xl-2 col-md-4 col-sm-4 col-auto order-2 align-self-end mt-3 ">
+                         <h6 class="text-muted bold-text"><b>Marc antoine Baron</b></h6><small><span><i class="fa fa-envelope" aria-hidden="true"></i></span> Marco@gmail.com</small>
+                     </div>
+                 </div>
+             </div>
+         </div>
+    </div>
+</div>
+</div>
+</footer>
+ {% block javascripts %}
+            <!-- Latest compiled and minified JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.bundle.min.js"> </script>
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ho+j7jyWK8fNQe+A12Hb8AhRq26LrZ/JpcUGGOn+Y7RsweNrtN/tE3MoK7ZeZDyx" crossorigin="anonymous"></script>
+    <script>
+    $(document).ready(function() {
+    $('a[href="' + this.location.pathname + '"]').parent().addClass('active');
+    });
+    $(function () {
+    $(window).on('scroll', function () {
+        if ( $(window).scrollTop() > 1 ) {
+            $('.navbar').addClass('active');
+        } else {
+            $('.navbar').removeClass('active');
+        }
+    });
+});
+    </script>
+
+
+        {% endblock %}
+    </body>
+    
+</html>

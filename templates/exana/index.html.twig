@@ -1,0 +1,75 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello ExanaHomeController!{% endblock %}
+
+{% block body %}
+<style>
+    .example-wrapper { margin: 1em auto; max-width: 800px; width: 95%; font: 18px/1.5 sans-serif; }
+    .example-wrapper code { background: #F5F5F5; padding: 2px 6px; }
+</style>
+<caroussel>
+  <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
+    <ol class="carousel-indicators">
+      <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
+      <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
+      <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
+    </ol>
+    <div class="carousel-inner" role="listbox">
+      <!-- Slide One - Set the background image for this slide in the line below -->
+      <div class="carousel-item active" style="background-image: url('https://source.unsplash.com/RCAhiGJsUUE/1920x1080')">
+        <div class="carousel-caption d-none d-md-block">
+          <h3 class="display-4">First Slide</h3>
+          <p class="lead">This is a description for the first slide.</p>
+        </div>
+      </div>
+      <!-- Slide Two - Set the background image for this slide in the line below -->
+      <div class="carousel-item" style="background-image: url('https://source.unsplash.com/wfh8dDlNFOk/1920x1080')">
+        <div class="carousel-caption d-none d-md-block">
+          <h3 class="display-4">Second Slide</h3>
+          <p class="lead">This is a description for the second slide.</p>
+        </div>
+      </div>
+      <!-- Slide Three - Set the background image for this slide in the line below -->
+      <div class="carousel-item" style="background-image: url('https://source.unsplash.com/O7fzqFEfLlo/1920x1080')">
+        <div class="carousel-caption d-none d-md-block">
+          <h3 class="display-4">Third Slide</h3>
+          <p class="lead">This is a description for the third slide.</p>
+        </div>
+      </div>
+    </div>
+    <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
+          <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+          <span class="sr-only">Previous</span>
+        </a>
+    <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
+          <span class="carousel-control-next-icon" aria-hidden="true"></span>
+          <span class="sr-only">Next</span>
+        </a>
+  </div>
+</caroussel>
+<div class="container">
+    <div class="raw">
+	   <div class="homebody">
+    	<h1>Home</h1>
+    	<ul>
+    		<li>
+    			<p>
+Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dolor inventore facilis, et accusamus libero quo veritatis iste dolorem ut, repudiandae ducimus quisquam illo cum adipisci? Eos velit dignissimos explicabo deleniti officiis architecto nihil tenetur dolorum ipsa minima ad quasi, eaque nesciunt id maiores magni quisquam harum blanditiis quis. Cum, deleniti.</p>
+    		</li>
+    		<li>
+    			<p>Perferendis adipisci quibusdam fugiat, molestias eius dolore quod, iure fuga vitae, saepe libero doloribus! Fugiat dolores mollitia ipsam deleniti, necessitatibus, odit magni ipsum nihil tempora est neque, dolor recusandae doloribus placeat veniam consequatur corporis asperiores tempore quae facilis? Ipsa, velit accusantium vero aliquam, quos iusto possimus quasi exercitationem quod tenetur!</p>
+    		</li>
+    		<li>
+    			<p>Blanditiis, obcaecati quia provident, asperiores ipsum voluptatibus sit voluptate fuga totam alias distinctio, autem fugiat at corporis, officia ipsam tempore labore quasi. Natus, asperiores nam et illo, velit, assumenda dolorum exercitationem tempore nisi vel consequatur nemo accusamus? Accusamus, deleniti. Est quisquam consequuntur sapiente a facilis. Porro itaque, aliquam officiis repellendus.</p>
+    		</li>
+    		<li>
+    			<p>Porro minima iste ex voluptatibus dolorum provident laborum architecto quidem deleniti repellat. Minima, tenetur rem beatae dignissimos sint impedit nulla, temporibus cum iste sapiente deleniti modi? Libero neque recusandae sit beatae non nesciunt hic facere quaerat perspiciatis voluptate, suscipit natus corrupti fugit enim nisi soluta ducimus! Quos consequatur ad molestiae.</p>
+    		</li>
+    		<li>
+    			<p>Soluta quo deleniti, consectetur commodi sit. Cumque asperiores, soluta a tenetur sapiente enim tempore non, itaque ducimus inventore sunt quia voluptates deleniti, facere dolorum, maxime accusamus quae eos? Repudiandae, sunt iusto provident consequatur optio excepturi, possimus impedit incidunt tempore ad itaque. Totam, recusandae animi dolor eligendi laboriosam ipsa harum ut.</p>
+    		</li>
+    	</ul>
+	   </div>
+    </div>
+</div>
+{% endblock %}
