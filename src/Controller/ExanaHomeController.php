@@ -27,9 +27,10 @@ class ExanaHomeController extends AbstractController
      * @Route("/exsana/contact", name="contact")
      */
     public function contact(Request $request,EntityManagerInterface $manager): Response {
-        $formcontact = new FormContact();
-        $formcontact->setSex('Write a blog post');
+        $formcontact = new FormContact(); 
         $form = $this->createForm(specifiqueFormContact::class, $formcontact);
+        $form->handleRequest($request);
+        
 
         return $this->render('exana/contact.html.twig', [
                 'formFormation' => $form->createView()

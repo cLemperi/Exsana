@@ -4,7 +4,6 @@
 {% form_theme formFormation 'bootstrap_4_layout.html.twig' %}
 
 {% block body %}
-	<h1>Page contacte</h1>
 
 	<div class="container">
 		<div class="row">
@@ -13,18 +12,56 @@
 					<h1>Vous souhaitez plus d'informations ?</h1>
 				</div>
 				<ul>
-					<li>Vous avez une demande particulière ?  }}</li>
+					<li>Vous avez une demande particulière ?</li>
 					<li>Merci de remplir le formulaire ci-dessous le plus précisément possible.</li>
 					<li>Notre équipe est à votre disposition du lundi au vendredi de 9h à 18h30</li>
 				</ul>
 			</div>
 		</div>
-	</div>
-
 	{{ form_start(formFormation) }}
 
+	{{ form_label(formFormation.sex, ' ') }}
+	{{ form_widget(formFormation.sex) }}
 
+	
+	{{ form_label(formFormation.nickname, ' ') }}
+	{{ form_widget(formFormation.nickname,{'attr' : {'placeholder' : "Prénom"}}) }}
+
+	{{ form_label(formFormation.lastname, ' ') }}
+	{{ form_widget(formFormation.lastname,{'attr' : {'placeholder' : "Nom"}}) }}
+
+	{{ form_label(formFormation.phone, ' ') }}
+	{{ form_widget(formFormation.phone,{'attr' : {'placeholder' : "Téléphone"}}) }}
+
+	{{ form_label(formFormation.email, ' ') }}
+	{{ form_widget(formFormation.email,{'attr' : {'placeholder' : "E-mail"}}) }}
+
+	{{ form_label(formFormation.profession, ' ') }}
+	{{ form_widget(formFormation.profession,{'attr' : {'placeholder' : "Profession"}}) }}
+
+	{{ form_label(formFormation.etablissement, ' ') }}
+	{{ form_widget(formFormation.etablissement,{'attr' : {'placeholder' : "Etablissement"}}) }}
+
+	{{ form_label(formFormation.adresse, ' ') }}
+	{{ form_widget(formFormation.adresse,{'attr' : {'placeholder' : "Adresse"}}) }}
+
+	{{ form_label(formFormation.postalCode, ' ') }}
+	{{ form_widget(formFormation.postalCode,{'attr' : {'placeholder' : "Code Postal"}}) }}
+
+	{{ form_label(formFormation.city, ' ') }}
+	{{ form_widget(formFormation.city,{'attr' : {'placeholder' : "Ville"}}) }}
+
+	{{ form_label(formFormation.request, ' ') }}
+	{{ form_widget(formFormation.request,{'attr' : {'placeholder' : "Requète"}}) }}
+
+	{{ form_label(formFormation.message, ' ') }}
+	{{ form_widget(formFormation.message,{'attr' : {'placeholder' : "Ecrivez nous"}}) }}
+
+	<br>
+
+	<button type="submit" class="btn-primary btn">Envoyer</button>
 	{{ form_end(formFormation) }}
-
+	
+</div>
 
 {% endblock	%}
