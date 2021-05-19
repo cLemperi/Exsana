@@ -19,12 +19,12 @@
         
     </head>
     <body>
+
 <header class="header">
     <nav class="navbar navbar-expand-lg fixed-top py-4">
-        <div class="container">
-        <a href="{{ path('exana_home')}}" class="navbar-brand text-uppercase font-weight-bold"><img src="{{ asset('img/640x480_cabinet-medical-664.jpeg') }}" alt="img-linkedin" class="img-fluid" width="10%" id="" alt="Responsive image"></a>
+        <a href="{{ path('exana_home')}}" class="navbar-brand text-uppercase font-weight-bold"><img src="{{ asset('img/LOGOS-EXSANA-3.png')}}" alt="img-linkedin" class="img-fluid" id="img-header" alt="Responsive image" ></a>
             <button type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation" class="navbar-toggler navbar-toggler-right"><i class="fa fa-bars"></i></button>
-            <div id="navbarSupportedContent" class="collapse navbar-collapse">
+            <div id="navbarSupportedContent" class="collapse navbar-collapse col-md-7">
                 <ul class="navbar-nav ml-auto">
                     <li class="nav-item active"><a href="{{ path('formations') }}" class="nav-link text-uppercase font-weight-bold">FORMATION<span class="sr-only">(current)</span></a></li>
                     <li class="nav-item"><a href="{{ path('whereweare') }}" class="nav-link text-uppercase font-weight-bold">INFOS PRATIQUES</a></li>
@@ -32,19 +32,17 @@
                     <li class="nav-item"><a href="{{ path('contact') }}" class="nav-link text-uppercase font-weight-bold">CONTACT</a></li>
                     <li class="nav-item"><a href="{{ path('login') }}" class="nav-link text-uppercase font-weight-bold">ESPACE PRO</a></li>
                     {% if app.user %}
-                    <li class="nav-item">
-                    <a href="{{ path('logout') }}" class="nav-link nav-link text-uppercase font-weight-bold">Logout</a></li>
-                    <li class="nav-item">
-                    <a href="{{ path('Gestion') }}" class="nav-link nav-link text-uppercase font-weight-bold">Gestion</a></li>
-                {% endif %}
+                    <li class="nav-item"><a href="{{ path('logout') }}" class="nav-link nav-link text-uppercase font-weight-bold">Logout</a></li>
+                    <li class="nav-item"><a href="{{ path('admin_admin_gestion') }}" class="nav-link nav-link text-uppercase font-weight-bold">Gestion</a></li>
+                    {% endif %}
                 </ul>
-                
             </div>
-        </div>
     </nav>
 
 </header>
-{% block body %}{% endblock %}</div>
+    <div class="body">
+{% block body %}{% endblock %}
+    </div>
 
 <footer>
  <div class="container-fluid pb-3 mb-0 justify-content-center text-light">    

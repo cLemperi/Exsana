@@ -1,0 +1,25 @@
+{{ form_start(form) }}
+<div class="row">
+    <div class="col-md-4">{{ form_row(form.title) }}</div>
+    <div class="col-md-4">{{ form_row(form.Date) }}</div>
+    <div class="col-md-4">{{ form_row(form.price) }}</div>
+</div>
+<div class="row">
+    
+    <div class="col-md-6">{{ form_row(form.programmeFormmation) }}</div>
+    <div class="col-md-6">{{ form_row(form.objectifFormation) }}</div>
+    
+</div>
+<div class="row">
+    <div class="col-md-6">{{ form_row(form.duration) }}</div>
+    <div class="col-md-6">{{ form_row(form.forWho) }}</div>
+</div>
+    <div class="row">
+    <div class="col-md-5">{{ form_row(form.prerequisite) }}</div>
+    <div class="col-md-2">{{ form_row(form.dateFormation) }}</div>
+    <div class="col-md-1">{{ form_row(form.durationFormation) }}</div>
+    <div class="col-md-2">{{ form_row(form.location) }}</div>
+</div>
+{{ form_widget(form) }}
+<button class="btn btn-primary">{{ button }}</button>
+{{ form_end(form) }}
