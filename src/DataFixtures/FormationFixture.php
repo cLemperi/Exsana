@@ -18,7 +18,7 @@ class FormationFixture extends Fixture
         $duration = $generator->randomDigitNot(5);
         $shortText = $generator->sentence($nbWords = 8, $variableNbWords = true);
         $city = $generator->city;
-        $date = $generator->dateTime($max = 'now', $timezone = null);
+        $date = $generator->dateTime('+0 days', '+2 years');
 
 
         for($i = 0; $i <= 10;$i++){ 
@@ -26,7 +26,7 @@ class FormationFixture extends Fixture
          $formations->setTitle($shortText)
          			->setDate(new \DateTime())
                     ->setPrice(mt_rand(10, 100))
-                    ->setDuration(5)
+                    ->setDuration(mt_rand(1,30))
                     ->setObjectifFormation($contentFormation)
                     ->setProgrammeFormmation($contentFormation)
                     ->setForWho($shortText)

@@ -67,7 +67,8 @@ class ExanaHomeController extends AbstractController
      * @Route("/exsana/formations", name="formations")
      */
     public function exsenaFormations(FormationsRepository $repo)  {
-    	//Trouve tout les articles
+    	//Trouve toutes les formations
+        // effectuer un système de pagination
     	$listFormation = $repo->findAll();
 
     	return $this->render('exana/formations.html.twig', [
@@ -91,10 +92,4 @@ class ExanaHomeController extends AbstractController
         ]);
     }
 
-    /**
-     * @Route("/exsana/", name="addFormation")
-     */
-    public function create(Request $request,EntityManagerInterface $manager){
-        
-    }
 }

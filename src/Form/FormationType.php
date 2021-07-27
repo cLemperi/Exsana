@@ -13,16 +13,13 @@ class FormationType extends AbstractType
     {
         $builder
             ->add('title')
-            ->add('Date')
+            ->add('Date') //Date de la formation
             ->add('price')
-            ->add('duration')
+            ->add('duration') //Durée
             ->add('objectifFormation')
             ->add('programmeFormmation')
             ->add('forWho')
-            ->add('prerequisite')
-            ->add('dateAdd')
-            ->add('dateFormation')
-            ->add('durationFormation')
+            ->add('prerequisite') //Date d'ajout en base
             ->add('location')
         ;
     }
