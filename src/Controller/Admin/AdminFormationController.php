@@ -4,7 +4,7 @@ namespace App\Controller\Admin;
 use App\Entity\Formations;
 use App\Form\FormationType;
 use App\Repository\FormationsRepository;
-use Doctrine\Common\Persistence\ObjectManager;
+use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -17,9 +17,9 @@ class AdminFormationController extends AbstractController
      */
     private $repository;
     
-    public function __construct(FormationsRepository $repository)
+    public function __construct(FormationsRepository $repository, EntityManagerInterface $em)
     {
-        //$this->em = $em;
+        $this->em = $em;
         $this->repository = $repository;
     }
     
@@ -46,10 +46,10 @@ class AdminFormationController extends AbstractController
 
         if($form->isSubmitted() && $form->isValid())
         {
-            //$this->em->persist($formation);
-            //$this->em->flush();
-            //$this->addFlash('success', 'Bien ajouté avec succès');
-            return $this->redirectToRoute('admin.formation.index');
+            $this->em->persist($formation);
+            $this->em->flush();
+            $this->addFlash('success', 'Bien ajouté avec succès');
+            return $this->redirectToRoute('admin_admin_gestion');
         }
 
         return $this->render('admin/formation/new.html.twig', [
@@ -71,9 +71,9 @@ class AdminFormationController extends AbstractController
 
         if($form->isSubmitted() && $form->isValid())
         {
-            //$this->em->flush();
+            $this->em->flush();
             $this->addFlash('success', 'Bien modifié avec succès');
-            return $this->redirectToRoute('admin.formation.index');
+            return $this->redirectToRoute('admin_admin_gestion');
         }
 
         return $this->render('admin/formation/edit.html.twig', [
@@ -90,8 +90,8 @@ class AdminFormationController extends AbstractController
     public function delete(Formations $formation, Request $request)
     {
         if($this->isCsrfTokenValid('delete' . $formation->getId(), $request->get('_token'))) {
-            //$this->em->remove($formation);
-            //$this->em->flush();
+            $this->em->remove($formation);
+            $this->em->flush();
             $this->addFlash('success', 'Bien supprimé avec succès');
         }
         
