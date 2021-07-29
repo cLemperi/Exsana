@@ -60,6 +60,8 @@ class Formations
     private $prerequisite;
 
     /**
+     * @var \DateTime $dateAdd
+     * 
      * @ORM\Column(type="datetime")
      */
     private $dateAdd;
@@ -78,6 +80,13 @@ class Formations
      * @ORM\Column(type="string", length=255)
      */
     private $location;
+
+    /**
+     * @ORM\ManyToOne(targetEntity=Category::class, inversedBy="Formations")
+     * @ORM\JoinColumn(nullable=false)
+     */
+    private $category;
+
 
     public function getId(): ?int
     {
@@ -227,4 +236,17 @@ class Formations
 
         return $this;
     }
+
+    public function getCategory(): ?Category
+    {
+        return $this->category;
+    }
+
+    public function setCategory(?Category $category): self
+    {
+        $this->category = $category;
+
+        return $this;
+    }
+
 }

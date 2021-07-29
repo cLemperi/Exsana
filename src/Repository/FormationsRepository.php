@@ -19,6 +19,19 @@ class FormationsRepository extends ServiceEntityRepository
         parent::__construct($registry, Formations::class);
     }
 
+ /*
+    public function findLastFormation() : array
+    {
+        $qb = $this->createQueryBuilder('a')
+        ->orderBy('a.created_at', 'DESC');
+
+        $query= $qb->getQuery();
+        return $query->execute();
+    }
+*/
+    
+
+
     // /**
     //  * @return Formations[] Returns an array of Formations objects
     //  */

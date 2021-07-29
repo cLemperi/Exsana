@@ -70,10 +70,12 @@ class ExanaHomeController extends AbstractController
     	//Trouve toutes les formations
         // effectuer un système de pagination
     	$listFormation = $repo->findAll();
+        //$lastFormation = $repo->findBy([],['created_at' => 'desc']);
 
     	return $this->render('exana/formations.html.twig', [
             'controller_name' => 'ExanaHomeController',
             'formations' => $listFormation
+            //'lastformation' =>$lastFormation
         ]);
     }
 
@@ -84,12 +86,14 @@ class ExanaHomeController extends AbstractController
     {
     	$formation = $repo->find($id);
 
-    	
+    	if(!$formation){
+            // Si aucune formation n'est trouvé, nous créons une exception
+            throw $this->createNotFoundException('La formation n\'existe pas');
+        }
 
 		return $this->render('exana/formation.html.twig', [
 			'controller_name' => 'ExanaHomeController',
             'formation' => $formation
         ]);
     }
-
 }

@@ -2,10 +2,12 @@
 <div class="row">
     <div class="col-md-4"><div class="custom_title"><h5>Titre de la formation</h5></div>{{ form_label(form.title, ' ') }}
 	{{ form_widget(form.title,{'attr' : {'placeholder' : "Titre de la formation"}}) }}</div>
-    <div class="col-md-4"><div class="custom_title"><h5>Date de la formation</h5></div>{{ form_label(form.Date, ' ') }}
+    <div class="col-md-3"><div class="custom_title"><h5>Date de la formation</h5></div>{{ form_label(form.Date, ' ') }}
 	{{ form_widget(form.Date,{'attr' : {'placeholder' : " Date formation"}}) }}</div>
-    <div class="col-md-4"><div class="custom_title"><h5>Prix de la formation</h5></div>{{ form_label(form.price, ' ') }}
-	{{ form_widget(form.price,{'attr' : {'placeholder' : "Prix formation"}}) }}</div>
+    <div class="col-md-1"><div class="custom_title"><h5>Prix</h5></div>{{ form_label(form.price, ' ') }}
+	{{ form_widget(form.price)}}</div>
+    <div class="col-md-4"><div class="custom_title"><h5>Catégories</h5></div>{{ form_label(form.category, ' ') }}
+	{{ form_widget(form.category)}}</div>
 </div>
 <hr class="featurette-divider">
 <div class="row">

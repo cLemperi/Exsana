@@ -19,6 +19,7 @@ class AdminFormationController extends AbstractController
     
     public function __construct(FormationsRepository $repository, EntityManagerInterface $em)
     {
+        //em entity manager
         $this->em = $em;
         $this->repository = $repository;
     }

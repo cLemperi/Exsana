@@ -2,10 +2,11 @@
 
 namespace App\DataFixtures;
 
-use Doctrine\Bundle\FixturesBundle\Fixture;
-use Doctrine\Persistence\ObjectManager;
-use App\Entity\Formations;
 use Faker;
+use App\Entity\Category;
+use App\Entity\Formations;
+use Doctrine\Persistence\ObjectManager;
+use Doctrine\Bundle\FixturesBundle\Fixture;
 
 class FormationFixture extends Fixture
 {
@@ -20,8 +21,14 @@ class FormationFixture extends Fixture
         $city = $generator->city;
         $date = $generator->dateTime('+0 days', '+2 years');
 
+        //Créer 3 catégorie
+    for($i = 0; $i <= 4; $i++){
+            $category = new Category();
+            $category->setTitle($generator->sentence())
+                     ->setDescription($generator->paragraph());
+            $manager->persist($category);
 
-        for($i = 0; $i <= 10;$i++){ 
+        for($j = 0; $j <= mt_rand(3, 6);$j++){
          $formations = new Formations($shortText);
          $formations->setTitle($shortText)
          			->setDate(new \DateTime())
@@ -34,12 +41,13 @@ class FormationFixture extends Fixture
                     ->setDateAdd(new \DateTime())
                     ->setDateFormation($date)
                     ->setDurationFormation(mt_rand(1, 31))
-                    ->setLocation($city);
+                    ->setLocation($city)
+                    ->setCategory($category);
 
             $manager->persist($formations);
 
         }
-
+    }
         
         $manager->flush();
     }
