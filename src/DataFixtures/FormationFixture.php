@@ -46,9 +46,8 @@ class FormationFixture extends Fixture
 
             $manager->persist($formations);
 
+            }
         }
-    }
-        
         $manager->flush();
     }
 }

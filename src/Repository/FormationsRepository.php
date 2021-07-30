@@ -19,6 +19,7 @@ class FormationsRepository extends ServiceEntityRepository
         parent::__construct($registry, Formations::class);
     }
 
+
  /*
     public function findLastFormation() : array
     {

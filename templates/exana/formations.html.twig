@@ -9,8 +9,9 @@
 		<div class"col-md-4 order-md-2 mb-4">
 		<h3> Catégories </h3>
 		<ul>
-			<li>catégorie 1</li>
-			<li> catégorie 2</li>
+		{% for categories in category %}
+			<li><a class='full-link'> {{categories.title}}</li>
+		{% endfor %}
 		</ul>
 		</div>
 		<div class="col-md-8 order-md-1">

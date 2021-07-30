@@ -2,6 +2,7 @@
 
 namespace App\Controller;
 
+use App\Entity\Formations;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -10,6 +11,8 @@ use App\Entity\FormContact;
 use Symfony\Component\HttpFoundation\Request;
 use Doctrine\ORM\EntityManagerInterface;
 use App\Form\Type\specifiqueFormContact;
+use App\Repository\CategoryRepository;
+use Knp\Component\Pager\PaginatorInterface;
 
 class ExanaHomeController extends AbstractController
 {
@@ -66,15 +69,23 @@ class ExanaHomeController extends AbstractController
     /**
      * @Route("/exsana/formations", name="formations")
      */
-    public function exsenaFormations(FormationsRepository $repo)  {
+    public function exsenaFormations(CategoryRepository $cate, PaginatorInterface $paginator, Request $request)  {
     	//Trouve toutes les formations
         // effectuer un système de pagination
-    	$listFormation = $repo->findAll();
+    	$listFormation = $this->getDoctrine()->getRepository(Formations::class)->findBy([],['created_at'=>'desc']);
+
+        $formations = $paginator->paginate(
+            $listFormation,
+            $request->query->getInt('page', 1), 12);
+        
+        
+        $listCategory = $cate->findAll();
+
         //$lastFormation = $repo->findBy([],['created_at' => 'desc']);
 
     	return $this->render('exana/formations.html.twig', [
-            'controller_name' => 'ExanaHomeController',
-            'formations' => $listFormation
+            'formations' => $formations,
+            'category' => $listCategory
             //'lastformation' =>$lastFormation
         ]);
     }

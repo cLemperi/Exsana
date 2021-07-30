@@ -3,6 +3,7 @@
 namespace App\Entity;
 
 use App\Repository\FormationsRepository;
+use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 
@@ -60,11 +61,9 @@ class Formations
     private $prerequisite;
 
     /**
-     * @var \DateTime $dateAdd
-     * 
      * @ORM\Column(type="datetime")
      */
-    private $dateAdd;
+    private $created_at;
 
     /**
      * @ORM\Column(type="datetime", nullable=true)
@@ -87,6 +86,15 @@ class Formations
      */
     private $category;
 
+    public function __construct()
+    {
+        $this->created_at = new \DateTime();
+    }
+
+    public function __toString()
+    {
+        return $this->title;
+    }
 
     public function getId(): ?int
     {
@@ -189,14 +197,14 @@ class Formations
         return $this;
     }
 
-    public function getDateAdd(): ?\DateTimeInterface
+    public function getCreated_at(): ?\DateTimeInterface
     {
-        return $this->dateAdd;
+        return $this->created_at;
     }
 
-    public function setDateAdd(\DateTimeInterface $dateAdd): self
+    public function setCreated_at(\DateTimeInterface $created_at): self
     {
-        $this->dateAdd = $dateAdd;
+        $this->created_at = $created_at;
 
         return $this;
     }
