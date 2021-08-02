@@ -7,14 +7,14 @@
 <div class="container">
 	<div class="row">
 		<div class"col-md-4 order-md-2 mb-4">
-		<h3> Catégories </h3>
-		<ul>
-		{% for categories in category %}
-			<li><a class='full-link'> {{categories.title}}</li>
-		{% endfor %}
-		</ul>
+			<h3> Catégories </h3>
+			<ul>
+			{% for categories in category %}
+			<li><a class='full-link'> {{categories.title}}</a></li>
+			{% endfor %}
+			</ul>
 		</div>
-		<div class="col-md-8 order-md-1">
+		<div class="col-md-8 order-md-1 mb-8">
 			<section class="listFormations">
 				{% for formation in formations %}
 				<div class="formation-item col-md-12>">
@@ -27,8 +27,10 @@
 					</a>
 				</div>
 				{% endfor %}
-	
 			</section>
+		<div class="pagination">
+    {{ knp_pagination_render(formations) }}
+		</div>
 	</div>
 </div>
 {% endblock	%}
