@@ -76,7 +76,7 @@ class ExanaHomeController extends AbstractController
 
         $formations = $paginator->paginate(
             $listFormation,
-            $request->query->getInt('page', 1), 12);
+            $request->query->getInt('page', 1), 8);
         
         
         $listCategory = $cate->findAll();
