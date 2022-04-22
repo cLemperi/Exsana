@@ -2,6 +2,7 @@
 
 namespace App\Controller;
 
+use App\Entity\Category;
 use App\Entity\Formations;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
@@ -104,7 +105,28 @@ class ExanaHomeController extends AbstractController
 
 		return $this->render('exana/formation.html.twig', [
 			'controller_name' => 'ExanaHomeController',
-            'formation' => $formation
+            'formation' => $formation,
+        ]);
+    }
+
+    /**
+     * @Route("exsana/formations/category/{title}", name="formationbycat")
+     */
+    public function showFormationbycategory(FormationsRepository $repo, CategoryRepository $reposi,$id): Response
+    {
+    	$formation = $repo->find($id);
+        $category = $reposi->find($id);
+
+
+    	if(!$formation){
+            // Si aucune formation n'est trouvé, nous créons une exception
+            throw $this->createNotFoundException('La formation n\'existe pas');
+        }
+
+		return $this->render('exana/formation.html.twig', [
+			'controller_name' => 'ExanaHomeController',
+            'formation' => $formation,
+            'category' => $category
         ]);
     }
 }

@@ -9,19 +9,18 @@
     <div class="col-md-4"><div class="custom_title"><h5>Catégories</h5></div>{{ form_label(form.category, ' ') }}
 	{{ form_widget(form.category)}}</div>
 </div>
-<hr class="featurette-divider">
-<div class="row">
-    <div class="col-md-6"><div class="custom_title"><h5>Programme de la formation</h5></div>{{ form_label(form.programmeFormmation, ' ') }}
-	{{ form_widget(form.programmeFormmation,{'attr' : {'placeholder' : "Programme formation", 'name' : "title[]",'autocomplete' : "off"}}) }}
-        <div id="newRow"></div>
-        <button id="addRow" type="button" class="btn btn-info"> ajouter une ligne </button>
+<hr class="featurette-divider" >
+    <div class="row">
+        <div class="col-md-6"><div class="custom_title"><h5>Programme de la formation</h5></div>{{ form_label(form.programmeFormmation, ' ') }}
+	    {{ form_widget(form.programmeFormmation,{'attr' : {'placeholder' : "Programme formation", 'name' : "title[]",'autocomplete' : "off"}}) }}
+        <button id="add_item_link" type="button" class="btn btn-info"> ajouter une ligne </button>
+        </div>
+        <div class="col-md-6"><div class="custom_title"><h5>Objectif de la formation</h5></div>{{ form_label(form.objectifFormation, ' ') }}
+	    {{ form_widget(form.objectifFormation,{'attr' : {'placeholder' : "Objectif formation"}}) }}
+
+        <button id="add_item_link" type="button" class="btn btn-info"> ajouter une ligne </button>
+        </div>
     </div>
-    <div class="col-md-6"><div class="custom_title"><h5>Objectif de la formation</h5></div>{{ form_label(form.objectifFormation, ' ') }}
-	{{ form_widget(form.objectifFormation,{'attr' : {'placeholder' : "Objectif formation"}}) }}
-    <div id="newRow"></div>
-    <button id="addRow" type="button" class="btn btn-info"> ajouter une ligne </button>
-    </div>
-</div>
 <hr class="featurette-divider">
 <div class="row">
     <div class="col-md-6"><div class="custom_title"><h5>Durée de la formation</h5></div>{{ form_label(form.duration, ' ') }}
@@ -43,19 +42,29 @@
 
 <script type="text/javascript">
     // add row
-    $("#addRow").click(function () {
-        var html = '';
-        html += '<div id="inputFormRow">';
-        html += '<div class="input-group mb-3">';
-        html += '<input type="text" name="title[]" class="form-control m-input" placeholder="Enter title" autocomplete="off">';
-        html += '<div class="input-group-append">';
-        html += '<button id="removeRow" type="button" class="btn btn-danger">Remove</button>';
-        html += '</div>';
-        html += '</div>';
+    document
+    .querySelectorAll('.add_item_link')
+    .forEach(btn => {
+      btn.addEventListener("click", addFormToCollection)
+  });
 
-        $('#newRow').append(html);
-    });
+  const addFormToCollection = (e) => {
+  const collectionHolder = document.querySelector('.' + e.currentTarget.dataset.collectionHolderClass);
 
+  const item = document.createElement('li');
+
+  item.innerHTML = collectionHolder
+    .dataset
+    .prototype
+    .replace(
+      /__name__/g,
+      collectionHolder.dataset.index
+    );
+
+  collectionHolder.appendChild(item);
+
+  collectionHolder.dataset.index++;
+};
     // remove row
     $(document).on('click', '#removeRow', function () {
         $(this).closest('#inputFormRow').remove();

@@ -17,15 +17,12 @@
 				</div>
 				<div class="custom_title">
 					<h2>Objectifs de la formation</h2>
-				</div>
-				<ul>
-					<li>{{ formation.objectifFormation[0]  }}</li>
-					<li>{{ formation.objectifFormation[1]  }}</li>
-					<li>{{ formation.objectifFormation[2] }}</li>
-					<li>{{ formation.objectifFormation[3] }}</li>
-					<li>{{ formation.objectifFormation[4] }}</li>
-					<li>{{ formation.objectifFormation[5] }}</li>
-					<li>{{ formation.objectifFormation[5] }}</li> 
+				<div id="formation">
+					{% set id = 0 %}
+					<ul>
+					{% for formations in formation.objectifFormation  %}
+						<li> {{ formation.objectifFormation[id] | join(',') }}{% set id = id + 1 %}</li>
+					{%	endfor	%}
 				</ul>
 			</div>  
 		</div>
@@ -37,13 +34,11 @@
 					<h2>Programme pédagogique</h2>
 				</div>
 				<ul id="formation">
-					<li>{{ formation.programmeFormmation[0] }}</li>
-					<li>{{ formation.programmeFormmation[1] }}</li>
-					<li>{{ formation.programmeFormmation[2] }}</li>
-					<li>{{ formation.programmeFormmation[3] }}</li>
-					<li>{{ formation.programmeFormmation[4] }}</li>
-					<li>{{ formation.programmeFormmation[5] }}</li>
-					<li>{{ formation.programmeFormmation[6] }}</li>
+				{% set id = 0 %}
+					<ul>
+					{% for formations in formation.programmeFormmation  %}
+						<li> {{ formation.programmeFormmation[id] | join(',') }}{% set id = id + 1 %}</li>
+					{%	endfor	%}
 				</ul>
 			</div>
 		</div>		

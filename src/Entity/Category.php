@@ -32,7 +32,7 @@ class Category
     /**
      * @ORM\OneToMany(targetEntity=Formations::class, mappedBy="category")
      */
-    private $Formations;
+    private Collection $Formations;
 
     public function __construct()
     {
