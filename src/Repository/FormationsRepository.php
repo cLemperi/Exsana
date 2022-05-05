@@ -2,6 +2,7 @@
 declare(strict_types=1);
 namespace App\Repository;
 
+use App\Data\SearchData;
 use App\Entity\Formations;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Persistence\ManagerRegistry;
@@ -19,46 +20,24 @@ class FormationsRepository extends ServiceEntityRepository
         parent::__construct($registry, Formations::class);
     }
 
+    /**
+     * récupère les formations en lien avec une recherche
+     * @return Formation[]
+     */
+    public function findSearch(SearchData $search): array{
+        $query =$this
+        ->createQueryBuilder('f')
+        ->select('c','f')
+        ->join('f.category','c');
 
- /*
-    public function findLastFormation() : array
-    {
-        $qb = $this->createQueryBuilder('a')
-        ->orderBy('a.created_at', 'DESC');
-
-        $query= $qb->getQuery();
-        return $query->execute();
+        if (!empty($search->q)){
+            $query = $query
+            ->andWhere('f.name LIKE:q')
+            ->setParameter('q', "%{$search->q}%");
+        }
+        return $query->getQuery()->getResult();
+        
     }
-*/
+
     
-
-
-    // /**
-    //  * @return Formations[] Returns an array of Formations objects
-    //  */
-    /*
-    public function findByExampleField($value)
-    {
-        return $this->createQueryBuilder('f')
-            ->andWhere('f.exampleField = :val')
-            ->setParameter('val', $value)
-            ->orderBy('f.id', 'ASC')
-            ->setMaxResults(10)
-            ->getQuery()
-            ->getResult()
-        ;
-    }
-    */
-
-    /*
-    public function findOneBySomeField($value): ?Formations
-    {
-        return $this->createQueryBuilder('f')
-            ->andWhere('f.exampleField = :val')
-            ->setParameter('val', $value)
-            ->getQuery()
-            ->getOneOrNullResult()
-        ;
-    }
-    */
 }

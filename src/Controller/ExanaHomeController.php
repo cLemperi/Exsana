@@ -2,13 +2,14 @@
 
 namespace App\Controller;
 
-use App\Entity\Category;
+use App\Data\SearchData;
 use App\Entity\Formations;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use App\Repository\FormationsRepository;
 use App\Entity\FormContact;
+use App\Form\SearchType;
 use Symfony\Component\HttpFoundation\Request;
 use Doctrine\ORM\EntityManagerInterface;
 use App\Form\Type\specifiqueFormContact;
@@ -17,6 +18,13 @@ use Knp\Component\Pager\PaginatorInterface;
 
 class ExanaHomeController extends AbstractController
 {
+    public function __construct(EntityManagerInterface $em)
+    {
+        //em entity manager
+        $this->em = $em;
+    }
+
+
     /**
      * @Route("/", name="exana_home")
      */
@@ -70,23 +78,28 @@ class ExanaHomeController extends AbstractController
     /**
      * @Route("/exsana/formations", name="formations")
      */
-    public function exsenaFormations(CategoryRepository $cate, PaginatorInterface $paginator, Request $request)  {
+    public function exsenaFormations(CategoryRepository $cate, Request $request, FormationsRepository $repo)  {
     	//Trouve toutes les formations
-        // effectuer un système de pagination
-    	$listFormation = $this->getDoctrine()->getRepository(Formations::class)->findBy([],['created_at'=>'desc']);
-
-        $formations = $paginator->paginate(
-            $listFormation,
-            $request->query->getInt('page', 1), 8);
         
+       //Création du formulaire de recherche
+        $data = new SearchData();
         
+        $form = $this->createForm(SearchType::class, $data);
+        $form->handleRequest($request);
+         // effectuer un système de pagination
+        //$formations = $paginator->paginate(
+           // $listFormation,
+            //$request->query->getInt('page', 1), 8);
+        //dd($formations);
+        $listFormation = $repo->findSearch($data);
         $listCategory = $cate->findAll();
 
         //$lastFormation = $repo->findBy([],['created_at' => 'desc']);
 
     	return $this->render('exana/formations.html.twig', [
-            'formations' => $formations,
-            'category' => $listCategory
+            'formations' => $listFormation,
+            'category' => $listCategory,
+            'form' => $form->createView()
             //'lastformation' =>$lastFormation
         ]);
     }
@@ -106,27 +119,6 @@ class ExanaHomeController extends AbstractController
 		return $this->render('exana/formation.html.twig', [
 			'controller_name' => 'ExanaHomeController',
             'formation' => $formation,
-        ]);
-    }
-
-    /**
-     * @Route("exsana/formations/category/{title}", name="formationbycat")
-     */
-    public function showFormationbycategory(FormationsRepository $repo, CategoryRepository $reposi,$id): Response
-    {
-    	$formation = $repo->find($id);
-        $category = $reposi->find($id);
-
-
-    	if(!$formation){
-            // Si aucune formation n'est trouvé, nous créons une exception
-            throw $this->createNotFoundException('La formation n\'existe pas');
-        }
-
-		return $this->render('exana/formation.html.twig', [
-			'controller_name' => 'ExanaHomeController',
-            'formation' => $formation,
-            'category' => $category
         ]);
     }
 }

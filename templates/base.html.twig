@@ -7,10 +7,12 @@
            and uncomment the following Encore helpers to start using Symfony UX #}
         {% block stylesheets %}
            <!-- Latest compiled and minified CSS -->
+            {# 'app' must match the first argument to addEntry() in webpack.config.js #}
+            
             <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
-            <link href="{{ asset('css/boostrap.min.css') }}" type="text/css" rel="stylesheet">
+            <link href="{{ 'css/boostrap.min.css' }}" type="text/css" rel="stylesheet">
             <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" >
-
+            {{ encore_entry_link_tags('app') }}
             
 
 <!-- Optional theme -->
@@ -22,7 +24,7 @@
 
 <header class="header">
     <nav class="navbar navbar-expand-lg fixed-top py-4">
-        <a href="{{ path('exana_home')}}" class="navbar-brand text-uppercase font-weight-bold"><img src="{{ asset('img/LOGOS-EXSANA-3.png')}}" alt="img-linkedin" class="img-fluid" id="img-header" alt="Responsive image" ></a>
+        <a href="{{ path('exana_home')}}" class="navbar-brand text-uppercase font-weight-bold"><img src="{{ '/img/LOGOS-EXSANA-3.png'}}" alt="img-linkedin" class="img-fluid" id="img-header" alt="Responsive image" ></a>
             <button type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation" class="navbar-toggler navbar-toggler-right"><i class="fa fa-bars"></i></button>
             <div id="navbarSupportedContent" class="collapse navbar-collapse col-md-7">
                 <ul class="navbar-nav ml-auto">
@@ -50,7 +52,7 @@
              <div class="col-11">
                  <div class="row">
                      <div class="col-xl-4 col-md-4 col-sm-4 col-12">
-                         <img src="{{ asset('img/LOGOS-EXSANA-3.png')}}" alt="img-linkedin" class="img-fluid" width="50%" id="" alt="Responsive image">
+                         <img src="{{ '/img/LOGOS-EXSANA-3.png' }}" alt="img-linkedin" class="img-fluid" width="50%" id="" alt="Responsive image">
                      </div>
                      <div class="col-xl-4 col-md-4 col-sm-4 col-15">
                          <ul class="list-footer">
@@ -81,6 +83,7 @@
 </div>
 </footer>
  {% block javascripts %}
+    
             <!-- Latest compiled and minified JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.bundle.min.js"> </script>
@@ -100,6 +103,7 @@
         }
     });
 });
+    {{ encore_entry_script_tags('app') }}
     </script>
 
 

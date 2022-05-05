@@ -5,34 +5,25 @@
 {% block body %}
 
 <div class="container">
-<div class="py-5 text-center">
-        <h2>formations</h2>
-        <p class="lead">Liste de formations proposée par exsana</p>
-</div>
+	<div class="py-5 text-center">
+			<h2>formations</h2>
+			<p class="lead">Liste de formations proposée par exsana</p>
+	</div>
 	<div class="row">
 	<br><br>
-			<div class="col-md-4 order-md-2 mb-4">
+		<div class="col-md-3 order-md-2 mb-4">
 			<h4 class="d-flex justify-content-between align-items-center mb-3">
-				<span class="title-category">Catégories</span>
+				<span class="title-category">Recherche</span>
 			</h4>
-			<ul class="list-group mb-3">
-			{% for categories in category %}
-				<li class="list-group-item d-flex justify-content-between lh-condensed">
-				<a class="full-link" href="{{ path('formationbycat', {title: categories.title})}}">
-					<h6 class="my-0">{{categories.title}}</h6>
-					<!-- <small class="text-muted">Brief description</small> -->
-				</a>
-				</li>
-				{% endfor %}
-			</ul>
+			{% include 'formation/_filter.html.twig' with {form: form} only %}	
         </div>
 	
-		<div class="col-md-8 order-md-1 mb-8">
+		<div class="col-md-9 order-md-1 mb-8">
 			<section class="listFormations">
 				{% for formation in formations %}
 				<div class="formation-item col-md-12>">
 						<div class="img-list-formation">
-							<img src="{{ asset('img/logoFormation.jpg') }}" width="90px" alt="title" class="lazyloaded" data-ll-status="loaded">
+							<img src="{{ '/img/logoFormation.jpg' }}" width="90px" alt="title" class="lazyloaded" data-ll-status="loaded">
 						</div>
 					<a class="full-link" href="{{ path('formation', {id: formation.id}) }}">
 					<div class ="article-extract-title"><h3>{{ formation.title }}</h3></div>
@@ -42,7 +33,6 @@
 				{% endfor %}
 			</section>
 		<div class="pagination">
-    {{ knp_pagination_render(formations) }}
 		</div>
 	</div>
 </div>
