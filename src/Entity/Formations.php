@@ -4,6 +4,7 @@ namespace App\Entity;
 
 use App\Repository\FormationsRepository;
 use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 
@@ -40,15 +41,6 @@ class Formations
      */
     private $duration;
 
-    /**
-     * @ORM\Column(type="simple_array", nullable=true)
-     */
-    private $objectifFormation = [];
-
-    /**
-     * @ORM\Column(type="simple_array")
-     */
-    private $programmeFormmation = [];
 
     /**
      * @ORM\Column(type="string", length=255, nullable=true)
@@ -86,9 +78,21 @@ class Formations
      */
     private $category;
 
+    /**
+     * @ORM\OneToMany(targetEntity=ProgrammeFormation::class, mappedBy="programmes")
+     */
+    private $programmeFormations;
+
+    /**
+     * @ORM\OneToMany(targetEntity=ObjectifFormation::class, mappedBy="objectifs", cascade={"persist"})
+     */
+    private $objectifFormations;
+
     public function __construct()
     {
         $this->created_at = new \DateTime();
+        $this->programmeFormations = new ArrayCollection();
+        $this->objectifFormations = new ArrayCollection();
     }
 
     public function __toString()
@@ -145,18 +149,6 @@ class Formations
     public function setDuration(int $duration): self
     {
         $this->duration = $duration;
-
-        return $this;
-    }
-
-    public function getObjectifFormation(): ?array
-    {
-        return $this->objectifFormation;
-    }
-
-    public function setObjectifFormation(?array $objectifFormation): self
-    {
-        $this->objectifFormation = $objectifFormation;
 
         return $this;
     }
@@ -253,6 +245,66 @@ class Formations
     public function setCategory(?Category $category): self
     {
         $this->category = $category;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, ProgrammeFormation>
+     */
+    public function getProgrammeFormations(): Collection
+    {
+        return $this->programmeFormations;
+    }
+
+    public function addProgrammeFormation(ProgrammeFormation $programmeFormation): self
+    {
+        if (!$this->programmeFormations->contains($programmeFormation)) {
+            $this->programmeFormations[] = $programmeFormation;
+            $programmeFormation->setProgrammes($this);
+        }
+
+        return $this;
+    }
+
+    public function removeProgrammeFormation(ProgrammeFormation $programmeFormation): self
+    {
+        if ($this->programmeFormations->removeElement($programmeFormation)) {
+            // set the owning side to null (unless already changed)
+            if ($programmeFormation->getProgrammes() === $this) {
+                $programmeFormation->setProgrammes(null);
+            }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, ObjectifFormation>
+     */
+    public function getObjectifFormations(): Collection
+    {
+        return $this->objectifFormations;
+    }
+
+    public function addObjectifFormation(ObjectifFormation $objectifFormation): self
+    {
+        if (!$this->objectifFormations->contains($objectifFormation)) {
+            $this->objectifFormations[] = $objectifFormation;
+            $objectifFormation->setObjectifs($this);
+        }
+
+        return $this;
+    }
+
+    public function removeObjectifFormation(ObjectifFormation $objectifFormation): self
+    {
+        if ($this->objectifFormations->removeElement($objectifFormation)) {
+            // set the owning side to null (unless already changed)
+            if ($objectifFormation->getObjectifs() === $this) {
+                $objectifFormation->setObjectifs(null);
+            }
+        }
 
         return $this;
     }
