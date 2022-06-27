@@ -14,7 +14,7 @@ Un site qui propose des formations dans le domaine médical et qui par la suite 
 ## Visualiser le projet
 
 1. Parcourez le projet
-2. Au niveau du login, le mots de passe exemple est "demo" et le mots de passe et "demo"
+2. Le mot de passe exemple est "demo" et le mdp est "demo"
 
 
 **Enjoy!**
