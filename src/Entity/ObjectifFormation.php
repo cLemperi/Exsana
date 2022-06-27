@@ -18,20 +18,21 @@ class ObjectifFormation
     private $id;
 
     /**
-     * @ORM\Column(type="string", length=255)
+     * @ORM\Column(type="string", length=255, nullable=true)
      */
     private $name;
 
     /**
-     * @ORM\Column(type="string", length=255, nullable=true)
-     */
-    private $Description;
-
-    /**
-     * @ORM\ManyToOne(targetEntity=Formations::class, inversedBy="objectifFormations")
+     * @ORM\ManyToOne(targetEntity=Formations::class, inversedBy="objectifs",cascade={"persist"})
      * @ORM\JoinColumn(nullable=false)
+     * @ORM\JoinColumn(onDelete="CASCADE")
      */
-    private $objectifs;
+    protected $objectifs;
+
+    public function __toString()
+    {
+        return $this->name;
+    }
 
     public function getId(): ?int
     {
@@ -46,18 +47,6 @@ class ObjectifFormation
     public function setName(string $name): self
     {
         $this->name = $name;
-
-        return $this;
-    }
-
-    public function getDescription(): ?string
-    {
-        return $this->Description;
-    }
-
-    public function setDescription(?string $Description): self
-    {
-        $this->Description = $Description;
 
         return $this;
     }

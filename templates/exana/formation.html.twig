@@ -2,47 +2,48 @@
 {% block title %}Formations Exsana {% endblock %}
 
 {% block body %}
-
 <!-- formation  -->
 <div class="container">
-		<div class="row">
-			<div class="col-md-8 obj-formation">
-			<br>
-			<br>
-			<div class="categorie_article">
-				Formations de la catégorie {{formation.category.title}}
-			</div>
-				<div class="title_formation">
-					<h1>{{ formation.title}}</h1>
-				</div>
+	<div class="categorie_article">
+		CATEGORIE : {{formation.category.title}}
+	</div>
+	<div class="title_formation">
+		<h1>{{ formation.title}}</h1>
+	</div>
+<!-- début sidebar -->
+<div class="row">
+	<!-- fin sidebar -->
+			<div class="col-md- obj-formation">
 				<div class="custom_title">
 					<h2>Objectifs de la formation</h2>
+				</div>
 				<div id="formation">
 					{% set id = 0 %}
 					<ul>
-					{% for formations in formation.objectifFormation  %}
-						<li> {{ formation.objectifFormation[id] | join(',') }}{% set id = id + 1 %}</li>
+						
+					{% for formations in formation.objectifFormations  %}
+						<li> {{ formation.objectifFormations[id] |e }}{% set id = id + 1 %}</li>
 					{%	endfor	%}
-				</ul>
-			</div>  
-		</div>
-	</div>
-<div class="container programme-formation">
-		<div class="row">
-			<div class="col-md-12 formation-programme" name"programmeBody">
+					</ul>
+				</div>  
+			</div>
+			<div class="col-md-8 formation-programme" name"programmeBody">
 				<div class="custom_title">
 					<h2>Programme pédagogique</h2>
 				</div>
 				<ul id="formation">
 				{% set id = 0 %}
-					<ul>
-					{% for formations in formation.programmeFormmation  %}
-						<li> {{ formation.programmeFormmation[id] | join(',') }}{% set id = id + 1 %}</li>
-					{%	endfor	%}
+						{% for formations in formation.programmeFormations  %}
+						<li> {{ formation.programmeFormations[id]|e }}{% set id = id + 1 %}</li>
+						{%	endfor	%} 		
 				</ul>
 			</div>
-		</div>		
+	</div>
+	</div>
+	
 </div>
+
+
 <div class="container">
 	<div class="row mb-2">
 		<div class="col-md-6">

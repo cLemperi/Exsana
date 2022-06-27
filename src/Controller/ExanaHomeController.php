@@ -110,7 +110,6 @@ class ExanaHomeController extends AbstractController
     public function showFormation(FormationsRepository $repo, $id): Response
     {
     	$formation = $repo->find($id);
-
     	if(!$formation){
             // Si aucune formation n'est trouvé, nous créons une exception
             throw $this->createNotFoundException('La formation n\'existe pas');

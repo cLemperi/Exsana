@@ -17,10 +17,14 @@
 
 <!-- Optional theme -->
         {% endblock %}
+        {% block javascripts %}
 
-        
+        {{ encore_entry_script_tags('app') }}
+        {% endblock %}
+
+
     </head>
-    <body>
+<body>
 
 <header class="header">
     <nav class="navbar navbar-expand-lg fixed-top py-4">
@@ -30,7 +34,7 @@
                 <ul class="navbar-nav ml-auto">
                     <li class="nav-item active"><a href="{{ path('formations') }}" class="nav-link text-uppercase font-weight-bold">FORMATION<span class="sr-only">(current)</span></a></li>
                     <li class="nav-item"><a href="{{ path('whereweare') }}" class="nav-link text-uppercase font-weight-bold">INFOS PRATIQUES</a></li>
-                    <li class="nav-item"><a href="{{ path('whoweare') }}" class="nav-link text-uppercase font-weight-bold">EXSENA</a></li>
+                    <li class="nav-item"><a href="{{ path('whoweare') }}" class="nav-link text-uppercase font-weight-bold">EXSENAS</a></li>
                     <li class="nav-item"><a href="{{ path('contact') }}" class="nav-link text-uppercase font-weight-bold">CONTACT</a></li>
                     <li class="nav-item"><a href="{{ path('login') }}" class="nav-link text-uppercase font-weight-bold">ESPACE PRO</a></li>
                     {% if app.user %}
@@ -39,7 +43,7 @@
                     {% endif %}
                 </ul>
             </div>
-    </nav>
+</nav>
 
 </header>
     <div class="bodyCore">
@@ -82,7 +86,7 @@
 </div>
 </div>
 </footer>
- {% block javascripts %}
+ 
     
             <!-- Latest compiled and minified JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
@@ -103,11 +107,11 @@
         }
     });
 });
-    {{ encore_entry_script_tags('app') }}
+    
     </script>
 
 
-        {% endblock %}
+        
     </body>
     
 </html>

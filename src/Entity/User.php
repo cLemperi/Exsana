@@ -89,6 +89,11 @@ class User implements UserInterface,\Serializable
         ) = unserialize($serialized, ['allowed_classes' => false]); 
     }
 
- 
+    /**
+     * Returns the identifier for this user (e.g. its username or email address).
+     */
+    public function getUserIdentifier(): string {
+        return $this->username;
+    }
     
 }

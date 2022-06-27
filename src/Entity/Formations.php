@@ -7,6 +7,7 @@ use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * @ORM\Entity(repositoryClass=FormationsRepository::class)
@@ -32,12 +33,12 @@ class Formations
     private $Date;
 
     /**
-     * @ORM\Column(type="integer")
+     * @ORM\Column(type="integer", options={"default":"0"})
      */
     private $price;
 
     /**
-     * @ORM\Column(type="integer")
+     * @ORM\Column(type="integer", options={"default":"0"})
      */
     private $duration;
 
@@ -53,7 +54,7 @@ class Formations
     private $prerequisite;
 
     /**
-     * @ORM\Column(type="datetime")
+     * @ORM\Column(type="datetime", nullable=true)
      */
     private $created_at;
 
@@ -68,7 +69,7 @@ class Formations
     private $durationFormation;
 
     /**
-     * @ORM\Column(type="string", length=255)
+     * @ORM\Column(type="string", length=255, nullable=true)
      */
     private $location;
 
@@ -79,14 +80,14 @@ class Formations
     private $category;
 
     /**
-     * @ORM\OneToMany(targetEntity=ProgrammeFormation::class, mappedBy="programmes")
-     */
-    private $programmeFormations;
-
-    /**
      * @ORM\OneToMany(targetEntity=ObjectifFormation::class, mappedBy="objectifs", cascade={"persist"})
      */
-    private $objectifFormations;
+    protected $objectifFormations;
+
+    /**
+     * @ORM\OneToMany(targetEntity=ProgrammeFormation::class, mappedBy="programme", cascade={"persist"})
+     */
+    private $programmeFormations;
 
     public function __construct()
     {
@@ -153,17 +154,6 @@ class Formations
         return $this;
     }
 
-    public function getProgrammeFormmation(): ?array
-    {
-        return $this->programmeFormmation;
-    }
-
-    public function setProgrammeFormmation(array $programmeFormmation): self
-    {
-        $this->programmeFormmation = $programmeFormmation;
-
-        return $this;
-    }
 
     public function getForWho(): ?string
     {
@@ -250,36 +240,6 @@ class Formations
     }
 
     /**
-     * @return Collection<int, ProgrammeFormation>
-     */
-    public function getProgrammeFormations(): Collection
-    {
-        return $this->programmeFormations;
-    }
-
-    public function addProgrammeFormation(ProgrammeFormation $programmeFormation): self
-    {
-        if (!$this->programmeFormations->contains($programmeFormation)) {
-            $this->programmeFormations[] = $programmeFormation;
-            $programmeFormation->setProgrammes($this);
-        }
-
-        return $this;
-    }
-
-    public function removeProgrammeFormation(ProgrammeFormation $programmeFormation): self
-    {
-        if ($this->programmeFormations->removeElement($programmeFormation)) {
-            // set the owning side to null (unless already changed)
-            if ($programmeFormation->getProgrammes() === $this) {
-                $programmeFormation->setProgrammes(null);
-            }
-        }
-
-        return $this;
-    }
-
-    /**
      * @return Collection<int, ObjectifFormation>
      */
     public function getObjectifFormations(): Collection
@@ -303,6 +263,36 @@ class Formations
             // set the owning side to null (unless already changed)
             if ($objectifFormation->getObjectifs() === $this) {
                 $objectifFormation->setObjectifs(null);
+            }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, ProgrammeFormation>
+     */
+    public function getProgrammeFormations(): Collection
+    {
+        return $this->programmeFormations;
+    }
+
+    public function addProgrammeFormation(ProgrammeFormation $programmeFormation): self
+    {
+        if (!$this->programmeFormations->contains($programmeFormation)) {
+            $this->programmeFormations[] = $programmeFormation;
+            $programmeFormation->setProgramme($this);
+        }
+
+        return $this;
+    }
+
+    public function removeProgrammeFormation(ProgrammeFormation $programmeFormation): self
+    {
+        if ($this->programmeFormations->removeElement($programmeFormation)) {
+            // set the owning side to null (unless already changed)
+            if ($programmeFormation->getProgramme() === $this) {
+                $programmeFormation->setProgramme(null);
             }
         }
 

@@ -18,20 +18,21 @@ class ProgrammeFormation
     private $id;
 
     /**
-     * @ORM\Column(type="string", length=255)
+     * @ORM\Column(type="string", length=255, nullable=true)
      */
     private $name;
 
     /**
-     * @ORM\Column(type="string", length=255, nullable=true)
-     */
-    private $description;
-
-    /**
-     * @ORM\ManyToOne(targetEntity=Formations::class, inversedBy="programmeFormations")
+     * @ORM\ManyToOne(targetEntity=Formations::class, inversedBy="programmeFormations", cascade={"persist"})
      * @ORM\JoinColumn(nullable=false)
+     *  * @ORM\JoinColumn(onDelete="CASCADE")
      */
-    private $programmes;
+    private $programme;
+
+    public function __toString()
+    {
+        return $this->name;
+    }
 
     public function getId(): ?int
     {
@@ -43,33 +44,21 @@ class ProgrammeFormation
         return $this->name;
     }
 
-    public function setName(string $name): self
+    public function setName(?string $name): self
     {
         $this->name = $name;
 
         return $this;
     }
 
-    public function getDescription(): ?string
+    public function getProgramme(): ?Formations
     {
-        return $this->description;
+        return $this->programme;
     }
 
-    public function setDescription(?string $description): self
+    public function setProgramme(?Formations $programme): self
     {
-        $this->description = $description;
-
-        return $this;
-    }
-
-    public function getProgrammes(): ?Formations
-    {
-        return $this->programmes;
-    }
-
-    public function setProgrammes(?Formations $programmes): self
-    {
-        $this->programmes = $programmes;
+        $this->programme = $programme;
 
         return $this;
     }

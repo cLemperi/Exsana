@@ -3,12 +3,14 @@
 namespace App\Controller\Admin;
 use App\Entity\Formations;
 use App\Form\FormationType;
+use App\Entity\ObjectifFormation;
 use App\Repository\FormationsRepository;
 use Doctrine\ORM\EntityManagerInterface;
-use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Doctrine\Common\Collections\ArrayCollection;
+use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
 class AdminFormationController extends AbstractController
 {   
@@ -65,20 +67,20 @@ class AdminFormationController extends AbstractController
      * @param Request $request
      * @return \Symfony\Component\HttpFoundation\Response
      */
-    public function edit(Formations $formation, Request $request)
+    public function edit(Formations $formation, Request $request, $id, FormationsRepository $repo,EntityManagerInterface $em)
     {
+       
         $form = $this->createForm(FormationType::class, $formation);
         $form->handleRequest($request);
 
-        if($form->isSubmitted() && $form->isValid())
-        {
-            $this->em->flush();
-            $this->addFlash('success', 'Bien modifié avec succès');
-            return $this->redirectToRoute('admin_admin_gestion');
+        if ($form->isSubmitted() && $form->isValid()) {
+                    $this->em->persist($formation);
+                    $this->em->flush();
+                    $this->addFlash('success', 'Bien modifié avec succès');
+                    return $this->redirectToRoute('admin_admin_gestion');
         }
 
         return $this->render('admin/formation/edit.html.twig', [
-            'formation' => $formation,
             'form' => $form->createView()
         ]);
     }
