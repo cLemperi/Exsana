@@ -23,7 +23,7 @@ class ObjectifFormation
     private $name;
 
     /**
-     * @ORM\ManyToOne(targetEntity=Formations::class, inversedBy="objectifs",cascade={"persist"})
+     * @ORM\ManyToOne(targetEntity=Formations::class, inversedBy="objectifFormations",cascade={"persist"})
      * @ORM\JoinColumn(nullable=false)
      * @ORM\JoinColumn(onDelete="CASCADE")
      */
