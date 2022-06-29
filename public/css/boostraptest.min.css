@@ -44,14 +44,6 @@ nav.navbar.shrink {
     flex: 1;
  }
 
- .container-fluid {
-     overflow: hidden;
-     margin-top: 250px;
-     background: #262626;
-     color: #627482 !important;
-     margin-bottom: 100px;
-     padding-bottom: 100px;
- }
 
  small {
      font-size: calc(12px + (15 - 12) * ((100vw - 360px) / (1600 - 360))) !important
@@ -174,6 +166,15 @@ bottom:0;
 width:100%;
 padding-top:30px;
 height:50px;
+}
+
+#fnewsletter .conteneur {
+  background: #2b7699;
+  border-radius: 20px;
+  margin-bottom: -95px;
+  display: flex;
+  padding: 45px;
+  color: #fff;
 }
 /* header */
 

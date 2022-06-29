@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="fr">
     <head>
         <meta charset="UTF-8">
@@ -8,24 +8,17 @@
         {% block stylesheets %}
            <!-- Latest compiled and minified CSS -->
             {# 'app' must match the first argument to addEntry() in webpack.config.js #}
-            
             <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
             <link href="{{ 'css/boostrap.min.css' }}" type="text/css" rel="stylesheet">
             <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" >
             {{ encore_entry_link_tags('app') }}
-            
-
-<!-- Optional theme -->
         {% endblock %}
+
         {% block javascripts %}
-
-        {{ encore_entry_script_tags('app') }}
+            {{ encore_entry_script_tags('app') }}
         {% endblock %}
-
-
     </head>
 <body>
-
 <header class="header">
     <nav class="navbar navbar-expand-lg fixed-top py-4">
         <a href="{{ path('exana_home')}}" class="navbar-brand text-uppercase font-weight-bold"><img src="{{ '/img/LOGOS-EXSANA-3.png'}}" alt="img-linkedin" class="img-fluid" id="img-header" alt="Responsive image" ></a>
@@ -43,7 +36,7 @@
                     {% endif %}
                 </ul>
             </div>
-</nav>
+    </nav>
 
 </header>
     <div class="bodyCore">
@@ -51,39 +44,76 @@
     </div>
 
 <footer>
- <div class="container-fluid pb-3 mb-0 justify-content-center text-light">    
-         <div class="row my-5 justify-content-center py-5">
-             <div class="col-11">
-                 <div class="row">
-                     <div class="col-xl-4 col-md-4 col-sm-4 col-12">
-                         <img src="{{ '/img/LOGOS-EXSANA-3.png' }}" alt="img-linkedin" class="img-fluid" width="50%" id="" alt="Responsive image">
-                     </div>
-                     <div class="col-xl-4 col-md-4 col-sm-4 col-15">
-                         <ul class="list-footer">
-                            <h6 class="mb-3 mb-lg-4 bold-text"><b>MENU</b></h6>
-                             <li><a href="{{ path('exana_home') }}">Acceuil</a></li>
-                             <li><a href="{{ path('formations') }}">Formations</a></li>
-                             <li><a href="{{ path('whereweare') }}">Infos pratiques</a></li>
-                             <li><a href="{{ path('whoweare') }}">Exsana</a></li>                             
-                             <li><a href="{{ path('contact') }}">Contact</a></li>
-                         </ul>
-                     </div>
-                     <div class="col-xl-4 col-md-4 col-sm-4 col-12">
-                        <h6 class="mb-3 mb-lg-4 bold-text">SUIVEZ-NOUS</h6>
-                        <ul class="social-network social-circle">
-                            <li><a href="#" class="icoFacebook" title="Facebook"><i class="fa fa-facebook"></i></a></li>
-                            <li><a href="#" class="icoLinkedin" title="Linkedin"><i class="fa fa-linkedin"></i></a></li>
-                            <li><a href="#" class="icoInstagram" title="Instagram"><i class="fa fa-instagram"></i></a></li>
-                        </ul>
-                 <div class="row ">
-                     <div class="col-xl-2 col-md-4 col-sm-4 col-auto order-2 align-self-end mt-3 ">
-                         <h6 class="text-muted bold-text"><b>Marc antoine Baron</b></h6><small><span><i class="fa fa-envelope" aria-hidden="true"></i></span> Marco@gmail.com</small>
-                     </div>
-                 </div>
-             </div>
-         </div>
+<div id="fnewsletter">
+    <div class="container">
+        <div class="row">
+            <div class="col-100">
+                <div class="conteneur">
+                    <div class="col-16">
+                        <div><img src="https://www.panacea-conseil.com/wp-content/themes/panacea-conseil/assets/images/picto-newsletter.png" alt=""></div>
+                    </div>
+                    <div class="col-84">
+                        <form id="newsletter-2" class="yikes-easy-mc-form yikes-easy-mc-form-1" method="POST" data-attr-form-id="2">
+                            <div class="conteneur_newsletter">
+                                <div><label for="inscription_newsletter">Restez informés de nos actualités !</label></div>
+                                <div>
+                                    <section id="yikes-mailchimp-container-2" class="yikes-mailchimp-container yikes-mailchimp-container-2 ">
+                                        <label for="yikes-easy-mc-form-2-EMAIL" class="EMAIL-label yikes-mailchimp-field-required ">
+                                                <!-- dictate label visibility -->
+                                            <span class="EMAIL-label">Email Address</span>
+                                            <input id="yikes-easy-mc-form-2-EMAIL" name="EMAIL" placeholder="" class="form-control" required="required" type="email" value="">
+                                        </label>
+                                        <!-- Honeypot Trap -->
+                                        <input type="hidden" name="yikes-mailchimp-honeypot" id="yikes-mailchimp-honeypot-2" value="">
+                                        <!-- List ID -->
+                                        <input type="hidden" name="yikes-mailchimp-associated-list-id" id="yikes-mailchimp-associated-list-id-2" value="925a965b65">
+                                        <!-- The form that is being submitted! Used to display error/success messages above the correct form -->
+                                        <input type="hidden" name="yikes-mailchimp-submitted-form" id="yikes-mailchimp-submitted-form-2" value="2">
+                                        <!-- Submit Button -->
+                                        <button type="submit" class="btn-primary yikes-easy-mc-submit-button  btn-primary  -2 btn btn-primary text-light bg-info"><span class="yikes-mailchimp-submit-button-span-text">Envoyer</span></button>				<!-- Nonce Security Check -->
+                                        <input type="hidden" id="yikes_easy_mc_new_subscriber_2" name="yikes_easy_mc_new_subscriber" value="1706be38c7">
+                                        <input type="hidden" name="_wp_http_referer" value="/formations/formations-demarche-qualite-evaluation/">				
+                                        <!-- Mailchimp Form generated by Easy Forms for Mailchimp v6.8.6 (https://wordpress.org/plugins/yikes-inc-easy-mailchimp-extender/) -->
+                                    </section>
+                                </div>
+                            </div>
+                        <div class="rgpd">
+                            Exsana &amp; Formation Santé collecte vos données personnelles uniquement lorsque vous renseignez de vous-même ces informations lors de la complétion d’un de nos formulaires. Les données personnelles que nous recueillons sont utilisées pour vous contacter au sujet de votre demande de renseignements ou votre pré-inscription à l’une de nos formations.</div>
+                    </form>
+                </div>
+            </div>
+        </div>
     </div>
 </div>
+</div>
+<div id="bottom-footer">
+ <div class="container-fluid pb-3 mb-0 justify-content-center">
+         <div class="row text-center my-5 justify-content-center py-5">
+                <div class="col-xl-4 col-md-4 col-sm-4 col-12">
+                        <img src="{{ '/img/LOGOS-EXSANA-3.png' }}" alt="img-linkedin" class="img-fluid" width="40%" id="" alt="Responsive image"> 
+                </div>
+                <div class="col-xl-4 col-md-4 col-sm-4 ">
+                        <ul class="list-footer">
+                            <li><a href="{{ path('exana_home') }}">Acceuil</a></li>
+                            <li><a href="{{ path('formations') }}">Formations</a></li>
+                            <li><a href="{{ path('whereweare') }}">Infos pratiques</a></li>
+                            <li><a href="{{ path('whoweare') }}">Exsana</a></li>                             
+                            <li><a href="{{ path('contact') }}">Contact</a></li>
+                        </ul>
+                </div>
+                <div class="col-xl-4 col-md-4 col-sm-4 col-12">
+                    <h6 class="mb-3 mb-lg-5 bold-text">SUIVEZ-NOUS</h6>
+                    <ul class="social-network social-circle">
+                        <li><a href="#" class="icoFacebook" title="Facebook"><i class="fa fa-facebook"></i></a></li>
+                        <li><a href="#" class="icoLinkedin" title="Linkedin"><i class="fa fa-linkedin"></i></a></li>
+                        <li><a href="#" class="icoInstagram" title="Instagram"><i class="fa fa-instagram"></i></a></li>
+                    </ul>
+                     <!-- <div class="col-xl-2 col-md-4 col-sm-4 col-auto order-2 align-self-end mt-3 "> -->
+                        <h6 class="text-muted bold-text"><b>Marc antoine Baron</b></h6>
+                        <small><span><i class="fa fa-envelope" aria-hidden="true"></i></span> Marco@gmail.com</small>
+                </div>
+        </div>
+    </div>
 </div>
 </footer>
  
