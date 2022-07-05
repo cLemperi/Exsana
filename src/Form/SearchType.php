@@ -18,9 +18,7 @@ class SearchType extends AbstractType
             ->add('q', TextType::class,[
                 'label' => false,
                 'required' => false,
-                'attr' => [
-                    'placeholder' => 'Rechercher'
-                ]
+                
             ])
             ->add('category',EntityType::class,[
                 'label' => false,
@@ -40,7 +38,7 @@ class SearchType extends AbstractType
         ]);
     }
 
-    function getBlockPrefix()
+    function getBlockPrefix():string
     {
         return '';
     }

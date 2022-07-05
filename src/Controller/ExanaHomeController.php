@@ -30,7 +30,7 @@ class ExanaHomeController extends AbstractController
      */
     public function index(): Response
     {
-        return $this->render('exana/index.html.twig', [
+        return $this->render('exsana/index.html.twig', [
             'controller_name' => 'ExanaHomeController',
         ]);
     }
@@ -44,7 +44,7 @@ class ExanaHomeController extends AbstractController
         $form->handleRequest($request);
         
 
-        return $this->render('exana/contact.html.twig', [
+        return $this->render('exsana/contact.html.twig', [
                 'formFormation' => $form->createView()
             ]);
     }
@@ -53,7 +53,7 @@ class ExanaHomeController extends AbstractController
      * @Route("/exsana/qui-somme-nous", name="whoweare")
      */
     public function whoweare() {
-    	return $this->render('exana/whoweare.html.twig', [
+    	return $this->render('exsana/whoweare.html.twig', [
             'controller_name' => 'ExanaHomeController',
         ]);
     }
@@ -61,7 +61,7 @@ class ExanaHomeController extends AbstractController
      * @Route("/exsana/pratique", name="whereweare")
      */
     public function pratique()  {
-    	return $this->render('exana/pratique.html.twig', [
+    	return $this->render('exsana/pratique.html.twig', [
             'controller_name' => 'ExanaHomeController',
         ]);
     }
@@ -70,7 +70,7 @@ class ExanaHomeController extends AbstractController
      * @Route("/exsana/informations", name="info")
      */
     public function infoexana()  {
-    	return $this->render('exana/information.html.twig', [
+    	return $this->render('exsana/information.html.twig', [
             'controller_name' => 'ExanaHomeController',
         ]);
     }
@@ -96,7 +96,7 @@ class ExanaHomeController extends AbstractController
 
         //$lastFormation = $repo->findBy([],['created_at' => 'desc']);
 
-    	return $this->render('exana/formations.html.twig', [
+    	return $this->render('exsana/formations.html.twig', [
             'formations' => $listFormation,
             'category' => $listCategory,
             'form' => $form->createView()
@@ -115,7 +115,7 @@ class ExanaHomeController extends AbstractController
             throw $this->createNotFoundException('La formation n\'existe pas');
         }
 
-		return $this->render('exana/formation.html.twig', [
+		return $this->render('exsana/formation.html.twig', [
 			'controller_name' => 'ExanaHomeController',
             'formation' => $formation,
         ]);

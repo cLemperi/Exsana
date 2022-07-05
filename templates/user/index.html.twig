@@ -1,0 +1,17 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Mon compte{% endblock %}
+
+{% block body %}
+
+    <div class="container"> 
+        <div class="row"> 
+            <div class="col-md-6"><a href="{{ path('user.register') }}" class=""><h2> Modifier mon compte </h2></a></div>
+            <div class="col-md-6"><a href="{{ path('user.formations') }}" class=""> <h2> Mes formations</h2></div>
+        </div>
+        <div class="row"> 
+            <div class="col-md-12"><a href="{{ path('user.help') }}" class=""> <h2> aide et assistance </h2></div>
+        </div>
+    </div>
+
+{% endblock %}
