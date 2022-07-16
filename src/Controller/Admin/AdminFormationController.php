@@ -67,9 +67,9 @@ class AdminFormationController extends AbstractController
      * @param Request $request
      * @return \Symfony\Component\HttpFoundation\Response
      */
-    public function edit(Formations $formation, Request $request, $id, FormationsRepository $repo,EntityManagerInterface $em)
+    public function edit(Formations $formation, Request $request, FormationsRepository $repo,EntityManagerInterface $em)
     {
-       
+        var_dump($formation);
         $form = $this->createForm(FormationType::class, $formation);
         $form->handleRequest($request);
 

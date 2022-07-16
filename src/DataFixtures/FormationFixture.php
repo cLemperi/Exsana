@@ -19,8 +19,6 @@ class FormationFixture extends Fixture
         $generator = \Faker\Factory::create('fr_FR');
         //contennu formation
         
-        
-
         $categories = $manager->getRepository(Category::class)->findAll();
         //Créer 8 catégorie
         for ($index = 1; $index <= 10; $index++){

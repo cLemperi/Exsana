@@ -3,11 +3,7 @@
 {% block title %}Hello ExanaHomeController!{% endblock %}
 
 {% block body %}
-<style>
-    .example-wrapper { margin: 1em auto; max-width: 800px; width: 95%; font: 18px/1.5 sans-serif; }
-    .example-wrapper code { background: #F5F5F5; padding: 2px 6px; }
-</style>
-<caroussel>
+<div class="caroussel>">
   <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
     <ol class="carousel-indicators">
       <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
@@ -16,21 +12,21 @@
     </ol>
     <div class="carousel-inner" role="listbox">
       <!-- Slide One - Set the background image for this slide in the line below -->
-      <div class="carousel-item active" style="background-image: url('https://source.unsplash.com/RCAhiGJsUUE/1920x1080')">
+      <div class="carousel-item active" style="background-image: url({{ '/img/Slider-HP-1.png'}})">
         <div class="carousel-caption d-none d-md-block">
           <h3 class="display-4">First Slide</h3>
           <p class="lead">This is a description for the first slide.</p>
         </div>
       </div>
       <!-- Slide Two - Set the background image for this slide in the line below -->
-      <div class="carousel-item" style="background-image: url('https://source.unsplash.com/wfh8dDlNFOk/1920x1080')">
+      <div class="carousel-item" style="background-image: url({{ '/img/Slider-HP-3.png'}})">
         <div class="carousel-caption d-none d-md-block">
           <h3 class="display-4">Second Slide</h3>
           <p class="lead">This is a description for the second slide.</p>
         </div>
       </div>
       <!-- Slide Three - Set the background image for this slide in the line below -->
-      <div class="carousel-item" style="background-image: url('https://source.unsplash.com/O7fzqFEfLlo/1920x1080')">
+      <div class="carousel-item" style="background-image: url({{ '/img/visuel-home-profession.jpeg'}})">
         <div class="carousel-caption d-none d-md-block">
           <h3 class="display-4">Third Slide</h3>
           <p class="lead">This is a description for the third slide.</p>
@@ -46,57 +42,63 @@
           <span class="sr-only">Next</span>
         </a>
   </div>
-</caroussel>
-<div class="container">
-    <div class="raw">
-	   <div class="homebody">
-    	<h1>Home</h1>
-    	<ul>
-    		<li>
-    			<p>
-Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dolor inventore facilis, et accusamus libero quo veritatis iste dolorem ut, repudiandae ducimus quisquam illo cum adipisci? Eos velit dignissimos explicabo deleniti officiis architecto nihil tenetur dolorum ipsa minima ad quasi, eaque nesciunt id maiores magni quisquam harum blanditiis quis. Cum, deleniti.</p>
-    		</li>
-    		<li>
-    			<p>Perferendis adipisci quibusdam fugiat, molestias eius dolore quod, iure fuga vitae, saepe libero doloribus! Fugiat dolores mollitia ipsam deleniti, necessitatibus, odit magni ipsum nihil tempora est neque, dolor recusandae doloribus placeat veniam consequatur corporis asperiores tempore quae facilis? Ipsa, velit accusantium vero aliquam, quos iusto possimus quasi exercitationem quod tenetur!</p>
-    		</li>
-    		<li>
-    			<p>Blanditiis, obcaecati quia provident, asperiores ipsum voluptatibus sit voluptate fuga totam alias distinctio, autem fugiat at corporis, officia ipsam tempore labore quasi. Natus, asperiores nam et illo, velit, assumenda dolorum exercitationem tempore nisi vel consequatur nemo accusamus? Accusamus, deleniti. Est quisquam consequuntur sapiente a facilis. Porro itaque, aliquam officiis repellendus.</p>
-    		</li>
-    	</ul>
-	   </div>
+</div>
+<div class="description exsana">
+  <div class="container">
+      <div class="raw">
+       <div class="homebody">
+        <h1>Home</h1>
+        <ul>
+          <li>
+            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dolor inventore facilis, et accusamus libero quo veritatis iste dolorem ut, repudiandae ducimus quisquam illo cum adipisci? Eos velit dignissimos explicabo deleniti officiis architecto nihil tenetur dolorum ipsa minima ad quasi, eaque nesciunt id maiores magni quisquam harum blanditiis quis. Cum, deleniti.</p>
+          </li>
+          <li>
+            <p>Perferendis adipisci quibusdam fugiat, molestias eius dolore quod, iure fuga vitae, saepe libero doloribus! Fugiat dolores mollitia ipsam deleniti, necessitatibus, odit magni ipsum nihil tempora est neque, dolor recusandae doloribus placeat veniam consequatur corporis asperiores tempore quae facilis? Ipsa, velit accusantium vero aliquam, quos iusto possimus quasi exercitationem quod tenetur!</p>
+          </li>
+          <li>
+            <p>Blanditiis, obcaecati quia provident, asperiores ipsum voluptatibus sit voluptate fuga totam alias distinctio, autem fugiat at corporis, officia ipsam tempore labore quasi. Natus, asperiores nam et illo, velit, assumenda dolorum exercitationem tempore nisi vel consequatur nemo accusamus? Accusamus, deleniti. Est quisquam consequuntur sapiente a facilis. Porro itaque, aliquam officiis repellendus.</p>
+          </li>
+        </ul>
+      </div>
     </div>
-
+  </div>
+</div>
     <hr class="featurette-divider">
 
-    <div class="container marketing">
+<!-- DERNIER FORMATIONS -->
 
-        <!-- Three columns of text below the carousel -->
-        <div class="row">
-          <div class="col-lg-4">
-            <img class="rounded-circle" src="data:image/gif;base64,R0lGODlhAQABAIAAAHd3dwAAACH5BAAAAAAALAAAAAABAAEAAAICRAEAOw==" alt="Generic placeholder image" width="140" height="140">
-            <h2>Heading</h2>
-            <p>Donec sed odio dui. Etiam porta sem malesuada magna mollis euismod. Nullam id dolor id nibh ultricies vehicula ut id elit. Morbi leo risus, porta ac consectetur ac, vestibulum at eros. Praesent commodo cursus magna.</p>
-            <p><a class="btn btn-secondary" href="#" role="button">View details »</a></p>
-          </div><!-- /.col-lg-4 -->
-          <div class="col-lg-4">
-            <img class="rounded-circle" src="data:image/gif;base64,R0lGODlhAQABAIAAAHd3dwAAACH5BAAAAAAALAAAAAABAAEAAAICRAEAOw==" alt="Generic placeholder image" width="140" height="140">
-            <h2>Heading</h2>
-            <p>Duis mollis, est non commodo luctus, nisi erat porttitor ligula, eget lacinia odio sem nec elit. Cras mattis consectetur purus sit amet fermentum. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh.</p>
-            <p><a class="btn btn-secondary" href="#" role="button">View details »</a></p>
-          </div><!-- /.col-lg-4 -->
-          <div class="col-lg-4">
-            <img class="rounded-circle" src="data:image/gif;base64,R0lGODlhAQABAIAAAHd3dwAAACH5BAAAAAAALAAAAAABAAEAAAICRAEAOw==" alt="Generic placeholder image" width="140" height="140">
-            <h2>Heading</h2>
-            <p>Donec sed odio dui. Cras justo odio, dapibus ac facilisis in, egestas eget quam. Vestibulum id ligula porta felis euismod semper. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus.</p>
-            <p><a class="btn btn-secondary" href="#" role="button">View details »</a></p>
-          </div><!-- /.col-lg-4 -->
-        </div><!-- /.row -->
+<div class="container-fluid">
+<div class="title-conteneur">
+<h2> Les dernières formations </h2></div>
+  <div class="menu-last-formation">
+      <div class="row">
+        {% for formation in formations %}
+          <div class="col md-4">
+            <div class="last-formation">
+                <div class="p2 d-flex">
+                    <a class="full-link" href="{{ path('formation', {id: formation.id}) }}">
+                    <h2 class="last-formation-title"><b>{{ formation.title }}</b></h2></a>
+                </div>
+                  <div class="d-flex align-item-center card-cara">
+                    <div class=" last-formation-duration"><img src="{{ '/img/svg/icons/stopwatch.svg' }}">DURÉE : {{ formation.durationFormation }} jours</div>
+                    <div class=" last-formation-enseignement">Présentielle</div>
+                  </div>
+                  <div class="p-2 d-flex d-flex align-items-end">
+                    <div class="formation-reference"><svg xmlns="http://www.w3.org/2000/svg" width="25" height="32" fill="currentColor" class="bi bi-chevron-right" viewBox="0 0 16 16"><path fill-rule="evenodd" d="M4.646 1.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1 0 .708l-6 6a.5.5 0 0 1-.708-.708L10.293 8 4.646 2.354a.5.5 0 0 1 0-.708z"/>REF: A0A25<</svg>
+ REF: A0A25</div>
+                  </div>
+                </div>
+          </div>
+						{% endfor %}
+      
+      </div>
+    </div>
+</div>
 
+<!--FIN DERNIER FORMATIONS -->
 
-        <!-- START THE FEATURETTES -->
-
-        <hr class="featurette-divider">
-
+<hr class="featurette-divider">
+<div class="container">
         <div class="row featurette">
             <div class="col-md-7">
               <h2 class="featurette-heading">First featurette heading. <span class="text-muted">It'll blow your mind.</span></h2>
@@ -126,9 +128,10 @@ Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dolor inventore facili
     <h4 class="mb-3 mb-lg-5 bold-text">Nos partenaires</h4>
   </div>
   <div class="row text-center">
-      <div class="col-md-4"><img src="{{ '/img/LOGOS-EXSANA-3.png' }}" alt="img-linkedin" class="img-fluid" width="30%" id="" alt="Responsive image"></div>
-      <div class="col-md-4"><img src="{{ '/img/LOGOS-EXSANA-3.png' }}" alt="img-linkedin" class="img-fluid" width="30%" id="" alt="Responsive image"></div>
-      <div class="col-md-4"><img src="{{ '/img/LOGOS-EXSANA-3.png' }}" alt="img-linkedin" class="img-fluid" width="30%" id="" alt="Responsive image"></div>
+      <div class="col-md-4"><img src="{{ '/img/logo-600x214.png' }}" alt="img-SILVERT-&-associé" class="img-fluid" width="30%" id="" alt="Responsive image"></div>
+      <div class="col-md-4"><img src="{{ '/img/HemoCue_logo_white_greybackground.png' }}" alt="img-HemoCue" class="img-fluid" width="30%" id="" alt="Responsive image"></div>
+      <div class="col-md-4"><img src="{{ '/img/laerdal-logo_en_process-696x365.jpeg' }}" alt="img-laerdal" class="img-fluid" width="30%" id="" alt="Responsive image"></div>
+      
     </div>
 </div>
 

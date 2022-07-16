@@ -9,7 +9,6 @@
            <!-- Latest compiled and minified CSS -->
             {# 'app' must match the first argument to addEntry() in webpack.config.js #}
             <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
-            <link href="{{ 'css/boostrap.min.css' }}" type="text/css" rel="stylesheet">
             <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" >
             {{ encore_entry_link_tags('app') }}
         {% endblock %}
@@ -29,7 +28,7 @@
                     <li class="nav-item"><a href="{{ path('whereweare') }}" class="nav-link text-uppercase font-weight-bold">INFOS PRATIQUES</a></li>
                     <li class="nav-item"><a href="{{ path('whoweare') }}" class="nav-link text-uppercase font-weight-bold">EXSENA</a></li>
                     <li class="nav-item"><a href="{{ path('contact') }}" class="nav-link text-uppercase font-weight-bold">CONTACT</a></li>
-                    {% if not is_granted('ROLE_USER') or not is_granted('ROLE_ADMIN') %}
+                    {% if not is_granted('ROLE_USER') and not is_granted('ROLE_ADMIN') %}
                         <li class="nav-item"><a href="{{ path('login') }}" class="nav-link text-uppercase font-weight-bold">ESPACE PRO</a></li>
                     {% endif %}
                    {% if is_granted("ROLE_ADMIN") %}
@@ -46,13 +45,13 @@
                         </li>
                     {% endif %}
                     {% if is_granted('ROLE_USER') or is_granted('ROLE_ADMIN') %}
-                    <li class="nav-item"><a href="{{ path('logout') }}" class="nav-link nav-link text-uppercase font-weight-bold">Logout</a></li>
+                    <li class="nav-item"><a href="{{ path('logout') }}" class="nav-link nav-link text-uppercase font-weight-bold">DECONNEXION</a></li>
                     {% endif %}
                 </ul>
             </div>
     </nav>
-
 </header>
+
     <div class="bodyCore">
 {% block body %}{% endblock %}
     </div>

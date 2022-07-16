@@ -1,3 +1,14 @@
 {% extends 'base.html.twig' %}
 
 
+{% block body %}
+
+    <div class="container"> 
+        <div class="row"> 
+            <h2> Modifier mon compte </h2>
+            {{ include('user/_form.html.twig', {button: 'Enregistrer les modifications'}) }}
+</div>
+        </div>
+    </div>
+
+{% endblock %}

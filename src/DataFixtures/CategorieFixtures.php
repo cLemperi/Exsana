@@ -11,7 +11,7 @@ class CategorieFixtures extends Fixture
     public function load(ObjectManager $manager): void
     {
         $generator = \Faker\Factory::create('fr_FR');
-        $shortText = $generator->sentence($nbWords = 8, $variableNbWords = true);
+        $shortText = $generator->sentence($nbWords = 1 || 2, $variableNbWords = true);
 
         for ($i = 0; $i <= 7; $i++) {
             $manager->persist( 

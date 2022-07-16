@@ -1,0 +1,73 @@
+{{ form_start(form) }}
+<div class="row">
+    <div class="col-md-6"><div class="custom_title"><h5>sex</h5></div>{{ form_label(form.sex, ' ') }}
+	{{ form_widget(form.sex,{'attr' : {'placeholder' : "Mr ou Mme"}}) }}</div>
+    <div class="col-md-6"><div class="custom_title"><h5>Nom</h5></div>{{ form_label(form.lastName, ' ') }}
+	{{ form_widget(form.lastName)}}</div>
+</div>
+<hr class="featurette-divider" >
+<div class="row">
+    <div class="col-md-6"><div class="custom_title"><h5>Prénom</h5></div>{{ form_label(form.firstName, ' ') }}
+	{{ form_widget(form.firstName,{'attr' : {'placeholder' : "Prénom"}}) }}</div>
+    <div class="col-md-6"><div class="custom_title"><h5>Email</h5></div>{{ form_label(form.email, ' ') }}
+	{{ form_widget(form.email)}}</div>
+</div>
+<hr class="featurette-divider" >
+<div class="row">
+    <div class="col-md-6"><div class="custom_title"><h5>Role</h5></div>{{ form_label(form.roles, ' ') }}
+	{{ form_widget(form.roles,{'attr' : {'placeholder' : "Roles"}}) }}</div>
+    <div class="col-md-6"><div class="custom_title"><h5>job</h5></div>{{ form_label(form.job, ' ') }}
+	{{ form_widget(form.job)}}</div>
+</div>
+<hr class="featurette-divider" >
+<div class="row">
+    <div class="col-md-6"><div class="custom_title"><h5>pseudo</h5></div>{{ form_label(form.username, ' ') }}
+	{{ form_widget(form.username,{'attr' : {'placeholder' : "Pseudo"}}) }}</div>
+    <div class="col-md-6"><div class="custom_title"><h5>prénom</h5></div>{{ form_label(form.category, ' ') }}
+	{{ form_widget(form.category)}}</div>
+</div>
+<hr class="featurette-divider" >
+<div class="row">
+    <div class="col-md-6"><div class="custom_title"><h5>téléphone</h5></div>{{ form_label(form.phone, ' ') }}
+	{{ form_widget(form.phone,{'attr' : {'placeholder' : "Téléphone"}}) }}</div>
+    <div class="col-md-6"><div class="custom_title"><h5>Code postal</h5></div>{{ form_label(form.postalCode, ' ') }}
+	{{ form_widget(form.postalCode)}}</div>
+</div>
+<hr class="featurette-divider" >
+<div class="row">
+    <div class="col-md-6"><div class="custom_title"><h5>Ville</h5></div>{{ form_label(form.city, ' ') }}
+	{{ form_widget(form.city,{'attr' : {'placeholder' : "Ville"}}) }}</div>
+    <div class="col-md-6"><div class="custom_title"><h5>Adresse</h5></div>{{ form_label(form.street, ' ') }}
+	{{ form_widget(form.street)}}</div>
+</div>
+<hr class="featurette-divider" >
+<hr class="featurette-divider" >
+<div class="row">
+    
+    <div class="col-md-6"><div class="custom_title"><h5>Code RPPS</h5></div>{{ form_label(form.rppsCode, ' ') }}
+	{{ form_widget(form.rppsCode)}}</div>
+</div>
+<hr class="featurette-divider" >
+
+
+<div class="row">
+    <div class="col-md-12">
+    {{ form_widget(form) }}
+    <button class="btn btn-primary">{{ button }}</button></div>
+</div>
+{{ form_end(form) }}
+</div>
+
+            ->add('username')
+            ->add('password')
+            ->add('roles')
+            ->add('sex')
+            ->add('firstName')
+            ->add('lastName')
+            ->add('email')
+            ->add('job')
+            ->add('phone')
+            ->add('rppsCode')
+            ->add('postalCode')
+            ->add('city')
+            ->add('profil')

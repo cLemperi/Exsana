@@ -28,9 +28,12 @@ class ExanaHomeController extends AbstractController
     /**
      * @Route("/", name="exana_home")
      */
-    public function index(): Response
+    public function index(FormationsRepository $repo): Response
     {
+        $formations = $repo->findBy(array(),array('id'=>'DESC'),3,1);
+
         return $this->render('exsana/index.html.twig', [
+            'formations' => $formations,
             'controller_name' => 'ExanaHomeController',
         ]);
     }
@@ -78,7 +81,7 @@ class ExanaHomeController extends AbstractController
     /**
      * @Route("/exsana/formations", name="formations")
      */
-    public function exsenaFormations(CategoryRepository $cate, Request $request, FormationsRepository $repo)  {
+    public function exsenaFormations(CategoryRepository $cate, Request $request, FormationsRepository $repo,PaginatorInterface $paginator)  {
     	//Trouve toutes les formations
         
        //Création du formulaire de recherche
@@ -94,10 +97,15 @@ class ExanaHomeController extends AbstractController
         $listFormation = $repo->findSearch($data);
         $listCategory = $cate->findAll();
 
+        $formations = $paginator->paginate(
+             $listFormation,
+             $request->query->getInt('page', 1), 6);
+        ($formations);
+
         //$lastFormation = $repo->findBy([],['created_at' => 'desc']);
 
     	return $this->render('exsana/formations.html.twig', [
-            'formations' => $listFormation,
+            'formations' => $formations,
             'category' => $listCategory,
             'form' => $form->createView()
             //'lastformation' =>$lastFormation

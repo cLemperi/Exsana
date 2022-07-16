@@ -3,27 +3,48 @@
 {% block title %} Se connecter{% endblock %}
 
 {% block body %}
-<div class="custom_login">
-    <div class="container mt-4">
-        
-        {% if error %}
+    <div id="conteneur_bg_gris_left">
+        <div class="breadcrumb">
+                <span class="breadcrumb_last">Inscription / Connexion</span>
+        </div>
+        <div class="row featurette">
+                <div class="col-md-6">
+                    <div class="cadre_acces_compte connexion">
+                        {% if error %}
+                        <div class="alert alert-danger">{{ error.messageKey | trans(error.messagedata, 'security') }}</div>
+                        {% endif %}
+                                <form action="{{ path('login') }}" method="post">
+                                    <div class="form-group">
+                                        <label for="username"> email</label>
+                                        <input type="text" id="username" name="_username" class="form-control" value="{{ last_username }}">
+                                    </div>
 
-        <div class="alert alert-danger">{{ error.messageKey | trans(error.messagedata, 'security') }}</div>
-        {% endif %}
-            <form action="{{ path('login') }}" method="post">
-            <div class="form-group">
-                <label for="username"> Identifiant</label>
-                <input type="text" id="username" name="_username" class="form-control" value="{{ last_username }}">
-            </div>
-
-            <div class="form-group">
-                <label for="password"> Mot de passe</label>
-                <input type="password" id="password" name="_password" class="form-control">
-            </div>
-            <input type="hidden" name="_csrf_token" value="{{ csrf_token('authenticate') }}">
-            <button type="submit" class="btn btn-primary">Se connecter</button>
-            </form>
+                                    <div class="form-group">
+                                        <label for="password"> Mot de passe</label>
+                                        <input type="password" id="password" id="password" name="_password" class="form-control">
+                                    </div>
+                                    <input type="hidden" name="_csrf_token" value="{{ csrf_token('authenticate') }}">
+                                    <button type="submit" class="btn btn-primary">Se connecter</button>
+                                 </form>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="cadre_acces_compte inscription">
+                        <p class="txt"> Vous n'avez pas de compte client ?</p>
+                        <div class="form-group">
+                        <p class="titre">Créez votre compte</p>
+                        <form action="{{ path('app_register' )}}" method:"post">
+                            <input type="email" name="_email" class="form-control" id="email" placeholder="E-mail" tabindex="40">
+                            <input type="hidden" name="_csrf_token" value="{{ csrf_token('authenticate') }}">
+                        </div>
+                            <button type="submit" class="btn btn-primary" value ="Continuer"> valider</button>
+                            
+                        </form>
+                    </div>
+                </div>
+        </div>
     </div>
 </div>
+    
 {% endblock %}
  

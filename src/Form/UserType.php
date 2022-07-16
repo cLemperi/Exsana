@@ -24,6 +24,7 @@ class UserType extends AbstractType
             ->add('rppsCode')
             ->add('postalCode')
             ->add('city')
+            ->add('street')
             ->add('profil')
         ;
     }
