@@ -41,6 +41,7 @@
         "symfony/property-info": "5.4.*",
         "symfony/proxy-manager-bridge": "6.1.*",
         "symfony/rate-limiter": "6.1.*",
+        "symfony/runtime": "6.1.*",
         "symfony/security-bundle": "6.1.*",
         "symfony/serializer": "6.1.*",
         "symfony/string": "6.1.*",
@@ -71,7 +72,8 @@
         },
         "sort-packages": true,
         "allow-plugins": {
-            "composer/package-versions-deprecated": true
+            "composer/package-versions-deprecated": true,
+            "symfony/runtime": true
         }
     },
     "autoload": {
