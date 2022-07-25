@@ -18,6 +18,7 @@ class AdminFormationController extends AbstractController
      * @var FormationsRepository
      */
     private $repository;
+    private $em;
     
     public function __construct(FormationsRepository $repository, EntityManagerInterface $em)
     {
@@ -67,9 +68,9 @@ class AdminFormationController extends AbstractController
      * @param Request $request
      * @return \Symfony\Component\HttpFoundation\Response
      */
-    public function edit(Formations $formation, Request $request, FormationsRepository $repo,EntityManagerInterface $em)
-    {
-        var_dump($formation);
+    public function edit(Formations $formation, Request $request)
+    { 
+
         $form = $this->createForm(FormationType::class, $formation);
         $form->handleRequest($request);
 
@@ -81,7 +82,7 @@ class AdminFormationController extends AbstractController
         }
 
         return $this->render('admin/formation/edit.html.twig', [
-            'form' => $form->createView()
+            'form' => $form->createView(),
         ]);
     }
 

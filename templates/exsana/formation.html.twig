@@ -2,32 +2,36 @@
 {% block title %}Formations Exsana {% endblock %}
 
 {% block body %}
+
 <!-- formation  -->
 <div class="container">
+<div class="page-formation">
+</div>
 	<div class="categorie_article">
 		CATEGORIE : {{formation.category.title}}
 	</div>
 	<div class="title_formation">
 		<h1>{{ formation.title}}</h1>
 	</div>
-<!-- début sidebar -->
-<div class="row">
-	<!-- fin sidebar -->
-			<div class="col-md- obj-formation">
+
+<div class="row core-formation">
+
+	<div class="col-lg-9 formation">
+		<div class="row">
+			<div class="col-md-12 obj-formation">
 				<div class="custom_title">
 					<h2>Objectifs de la formation</h2>
 				</div>
-				<div id="formation">
+				<div id="obj-formation">
 					{% set id = 0 %}
 					<ul>
-						
 					{% for formations in formation.objectifFormations  %}
 						<li> {{ formation.objectifFormations[id] |e }}{% set id = id + 1 %}</li>
 					{%	endfor	%}
 					</ul>
 				</div>  
 			</div>
-			<div class="col-md-8 formation-programme" name"programmeBody">
+			<div class="col-md-12 formation-programme" name"programmeBody">
 				<div class="custom_title">
 					<h2>Programme pédagogique</h2>
 				</div>
@@ -38,11 +42,48 @@
 						{%	endfor	%} 		
 				</ul>
 			</div>
+		</div>
 	</div>
+	<div class="col-lg-3 sidebar">
+	 <div class="sidebar-inscription">
+		<nav class="navbar-expand  flex-md-column flex-row align-items-center sidebar-formation">
+               <div class="title-sidebar-inscription align-items-center"><h2>Inscription</h2></div>
+		<div class="container cara-forma-inscription">
+			<div class="row">
+				<div class="col-md-6">Lieu :</div>
+				<div class="col-md-6 lieu"><select name="lieu"><option value="Paris">Paris</option></select></div>
+			</div>
+		</div>
+		<div class="selection">
+        	<select name="session" required="">
+           		<option value="" disabled="" class="hidden">Session*</option>
+        		<option value="10285" data-lieu="Paris" class="">13 - 14/12/202</option>
+        	</select>
+            <select name="participants" required="">
+            	<option value="">Participants*</option>
+                <option value="1">1 participant</option>
+                <option value="2">2 participants</option>
+                <option value="3">3 participants</option>
+                <option value="4">4 participants</option>
+                <option value="5">5 participants</option>
+                <option value="6">6 participants</option>
+                <option value="7">7 participants</option>
+                <option value="8">8 participants</option>
+                <option value="9">9 participants</option>
+                <option value="10">10 participants</option>
+			</select>
+            <p class="bouton"><input type="hidden" name="formation" value="2760"><input type="submit" value="Je choisis cette formation" class="btn-primary"></p>
+		</div>
+      </nav>
 	</div>
+	<div class="s_cadre_infos s_cta" style="background-image: url(https://www.panacea-conseil.com/wp-content/uploads/sidebar_bg_infos.png)">
+        <div class="txt">Besoin d'informations détaillées  ? Demandez le programme complet</div>
+    	 <p class="bouton"><a href="https://www.panacea-conseil.com/telecharger-le-programme/?f=2918" class="btn-primary">Recevoir le programme </a></p>
+    </div>
+	</div>
+</div>
 	
 </div>
-
 
 <div class="container">
 	<div class="row mb-2">
@@ -90,6 +131,17 @@
 		</div>
 	</div>
 	</div>
+</div>
+<div class="container-fluid">
+  <div class="d-flex justify-content-center">
+    <h4 class="mb-3 mb-lg-5 bold-text">Nos partenaires</h4>
+  </div>
+  <div class="row text-center">
+      <div class="col-md-4"><img src="{{ '/img/logo-600x214.png' }}" alt="img-SILVERT-&-associé" class="img-fluid" width="30%" id="" alt="Responsive image"></div>
+      <div class="col-md-4"><img src="{{ '/img/HemoCue_logo_white_greybackground.png' }}" alt="img-HemoCue" class="img-fluid" width="30%" id="" alt="Responsive image"></div>
+      <div class="col-md-4"><img src="{{ '/img/laerdal-logo_en_process-696x365.jpeg' }}" alt="img-laerdal" class="img-fluid" width="30%" id="" alt="Responsive image"></div>
+      
+  </div>
 </div>
 
 {% endblock %}

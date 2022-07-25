@@ -30,7 +30,7 @@ class FormationsRepository extends ServiceEntityRepository
         ->select('c','f')
         ->join('f.category','c');
 
-        if (!empty($search->q)){
+        if (!empty($search->q) && (isset($search->q))){
             $query = $query
             ->andWhere('f.name LIKE:q')
             ->setParameter('q', "%{$search->q}%");

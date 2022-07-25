@@ -86,14 +86,10 @@ class ExanaHomeController extends AbstractController
         
        //Création du formulaire de recherche
         $data = new SearchData();
-        
+
+       
         $form = $this->createForm(SearchType::class, $data);
         $form->handleRequest($request);
-         // effectuer un système de pagination
-        //$formations = $paginator->paginate(
-           // $listFormation,
-            //$request->query->getInt('page', 1), 8);
-        //dd($formations);
         $listFormation = $repo->findSearch($data);
         $listCategory = $cate->findAll();
 
@@ -107,7 +103,7 @@ class ExanaHomeController extends AbstractController
     	return $this->render('exsana/formations.html.twig', [
             'formations' => $formations,
             'category' => $listCategory,
-            'form' => $form->createView()
+            'form' => $form->createView(),
             //'lastformation' =>$lastFormation
         ]);
     }

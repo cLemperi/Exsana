@@ -29,7 +29,7 @@ class AdminFixtures extends Fixture
                     $user->setCity('Villy-Bocage');
                     $user->setStreet('47 route de bayeux');
                     $user->setProfil('Soignant');
-                    $user->getRoles('ROLE_ADMIN');
+                    $user->setRoles(['ROLE_ADMIN']);
 
         $manager->persist($user);
        

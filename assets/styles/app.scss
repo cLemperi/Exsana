@@ -42,8 +42,8 @@ nav.navbar.shrink {
 }
 .background-formation{
   background: #e9ecef;
-  margin: 0 !important;
- padding:0 !important;
+  margin-top:150px;
+  padding-top:140px;
  }
 
 #img-header{
@@ -118,7 +118,14 @@ span.EMAIL-label {
 
 #fnewsletter .conteneur_newsletter {
   display: flex;
-  align-items: center;
+}
+
+.conteneur_newsletter{
+  display: flex;
+  gap: 60px;
+  font-size: 1.5rem;
+  line-height: 2.5rem;
+  padding-bottom: 2rem;
 }
 
 #fnewsletter .conteneur_newsletter label {
@@ -250,7 +257,7 @@ ul.social-network li {
 
 .navbar {
     transition: all 0.4s;
-    border-bottom: solid 1px #2b7699;
+    border-bottom: solid 1px #FFFF;
     background: #fff;
 }
 
@@ -392,10 +399,13 @@ ul.social-network li {
   margin-top: 30px
 }
 
+.obj-formation{
+  margin-bottom: 40px;
+}
+
 .programme-formation{
   margin-bottom: 40px;
-  margin-top: 10px;
-
+  margin-top: 30px;
 }
 
 .formation-programme{
@@ -407,8 +417,47 @@ ul.social-network li {
   padding-left: 30px;
   margin-left: -15px;
   margin-right: -50px;
+  border-radius: 17px;
 }
 
+.s_cadre_infos {
+  background-position: top center !important;
+  padding-top: 150px! important;
+  background-size: auto;
+}
+
+.s_cta {
+    padding: 5rem 3rem;
+    border-radius: 17px;
+    font-family: 'AvenirHeavy';
+    color: #fff;
+    background-color: #1f3952;
+    margin-bottom: 3rem;
+    text-align: center;
+    background-size: cover;
+    background-position: center;
+}
+
+.s_cta .txt {
+  font-size: 30px;
+  line-height: 30px;
+  padding-bottom: 20px;
+}
+.sidebar_fiche .bouton {
+  text-align: center;
+}
+
+.sidebar_fiche .bouton .btn-primary {
+  width: auto;
+  font-size: 30px;
+  padding-left: 3rem;
+  padding-right: 3rem;
+}
+
+.btn-primary input {
+  background: #ee7619;
+  opacity: 1;
+}
 
 /* Custom Login */
 
@@ -479,6 +528,7 @@ a{
   border-bottom: 1px solid #eceef2;
   padding: 30px 0;
 }
+
 
 
 //INSCRIPTION CONNEXION 
@@ -591,11 +641,13 @@ a{
 
 .card-cara{
   display: flex;
-  flex-wrap: wrap;
+  flex-direction: row;
   font-size: 1.4rem;
   font-family: 'AvenirMedium';
-  padding: 10px 20px 20px;
+  padding-bottom: 10px;
+  padding-top: 10px;
   color :#616161;
+  justify-content: space-between;
 }
 
 .last-formation-enseignement{
@@ -627,6 +679,115 @@ a{
 
 /* FIN PAGINATION */
 
+.choise-exsana-block{
+  background: #2b7699;
+  padding-top: 4rem;
+  padding-bottom:4rem;
+  margin-top: 3rem;
+  margin-bottom: 3rem;
+  color: #FFFF;
+
+}
+
+.chiffres{
+  display:flex;
+  flex-wrap: wrap;
+  max-width: 600px;
+  text-align: center;
+  font-size: 16px;
+}
+
+.chiffre{
+    font-size: 3rem;
+    line-height: 4.5rem;
+    padding-bottom: 2rem;
+}
+
+.item-chiffre{
+    flex: 0 0 50%;
+    text-align: center;
+    font-family: AvenirBlack;
+    font-size: 16px;
+    padding: 30px 10px;
+}
+
+.pourquoi-text h2{
+  font-weight: normal;
+  font-size: 2.5rem;
+  line-height: 4.2rem;
+  margin-bottom: 3.5rem;
+  font-family: 'AvenirBlack';
+}
+
+.pourquoi-text p{
+    font-family: AvenirRoman, Arial, Verdana, sans-serif;
+    font-size: 18px;
+    line-height: 1.3;
+}
+
+.admin-zone{
+  padding-top:100px;
+  margin-top: 100px;
+}
+
+.page-formation{
+  padding-top:300px;
+}
+
+.core-formation{
+  margin-bottom: 50px;
+}
+
+.cara-forma-inscription{
+  display: flex;
+  justify-content: space-around;
+  padding-top:15px;
+  margin-top: 10px;
+  padding-bottom:15px;
+  margin-bottom: 15px;
+  color: #FFFF;
+}
+
+.cara-forma-inscription .selection{
+  max-width: 360px;
+  margin: 0 auto;
+}
+
+.session{
+  margin-bottom: 2rem;
+  font-family: 'AvenirHeavy';
+}
+
+select {
+  cursor: pointer;
+  padding: 1rem 2rem;
+  color: #2c2c2c;
+  border-radius: 20px;
+  vertical-align: middle;
+  background: #f1f1f1;
+  border: 1px solid #f5f8fa;
+  width: 100%;
+}
+
+.sidebar-formation{
+  border-radius: 17px;
+  margin-top: 35px;
+  background-color: #2b7699;
+  justify-content: center;
+  padding-left: 15px;
+  padding-right: 15px;
+}
+
+a {
+  text-decoration: none;
+}
+
+.title-sidebar-inscription{
+  text-align: center;
+  padding-top: 30px;
+  margin-bottom: 30px;
+  color: #FFFF;
+}
 
 
 
