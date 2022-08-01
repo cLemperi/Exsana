@@ -30,6 +30,7 @@ class ExanaHomeController extends AbstractController
      */
     public function index(FormationsRepository $repo): Response
     {
+        
         $formations = $repo->findBy(array(),array('id'=>'DESC'),3,1);
 
         return $this->render('exsana/index.html.twig', [

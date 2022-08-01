@@ -29,21 +29,22 @@
                     <li class="nav-item"><a href="{{ path('whoweare') }}" class="nav-link text-uppercase font-weight-bold">EXSENA</a></li>
                     <li class="nav-item"><a href="{{ path('contact') }}" class="nav-link text-uppercase font-weight-bold">CONTACT</a></li>
                     {% if not is_granted('ROLE_USER') and not is_granted('ROLE_ADMIN') %}
-                        <li class="nav-item"><a href="{{ path('login') }}" class="nav-link text-uppercase font-weight-bold">ESPACE PRO</a></li>
+                        <li class="nav-item"><a href="{{ path('app_login') }}" class="nav-link text-uppercase font-weight-bold">ESPACE PRO</a></li>
                     {% endif %}
                    {% if is_granted("ROLE_ADMIN") %}
-                        <li class="nav-item"><a href="{{ path('admin_admin_gestion') }}" class="nav-link nav-link text-uppercase font-weight-bold">Gestion</a></li>
+                        <li class="nav-item"><a href="{{ path('admin.index') }}" class="nav-link nav-link text-uppercase font-weight-bold">Gestion</a></li>
                     {% endif %}
-                    {% if is_granted("ROLE_USER")%}
+                    {% if is_granted("ROLE_USER") %}
                         <li class="nav-item dropdown"><a class="nav-link nav-link text-uppercase font-weight-bold dropdown-toggle" href="#" id="navBarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" class="">Profils<a/>
                             <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                                <a class="dropdown-item" href="{{ path('user.register') }}" class="nav-link text-uppercase font-weight-bold">Mon comptes </a>
+                                <a class="dropdown-item" href="{{path('user.register') }} " class="nav-link text-uppercase font-weight-bold">Mon comptes </a>
                                 <a class="dropdown-item" href="{{ path('user.formations') }}" class="nav-link text-uppercase font-weight-bold">Mes formations</a>
                                 <div class="dropdown-divider"></div>
                                 <a class="dropdown-item" href="{{ path('user.help') }}" class="nav-link text-uppercase font-weight-bold">Aide et assistance</a>
                             </div>
                         </li>
                     {% endif %}
+
                     {% if is_granted('ROLE_USER') or is_granted('ROLE_ADMIN') %}
                     <li class="nav-item"><a href="{{ path('logout') }}" class="nav-link nav-link text-uppercase font-weight-bold">DECONNEXION</a></li>
                     {% endif %}

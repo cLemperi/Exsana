@@ -1,0 +1,42 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Mon compte{% endblock %}
+
+{% block body %}
+    <div class="admin-zone">
+    </div>
+    
+<div class="container">
+    <div class="custom_title">
+    <h2>Modifier mon compte</h2></div>
+    {{ form_start(profil) }}
+    <div class="row">
+        <div class="col md-2">{{ form_row(profil.sex) }}</div>
+        <div class="col md-5">{{ form_row(profil.firstName) }}</div>
+        <div class="col md-5">{{ form_row(profil.lastName) }}</div>
+    </div>
+    <div class="row">
+        <div class="col md-4">{{ form_row(profil.email) }}</div>
+        <div class="col md-6">{{ form_row(profil.password)}}</div>
+    </div>
+    <div class="row">
+        <div class="col md-6">{{ form_row(profil.job) }}</div>
+        <div class="col md-6">{{ form_row(profil.phone) }}</div>
+    </div>
+    <div class="row">
+        <div class="col md-6">{{ form_row(profil.postalCode) }}</div>
+        <div class="col md-6">{{ form_row(profil.city) }}</div>
+    </div>
+    <div class="row">
+        <div class="col md-8">{{ form_row(profil.street) }}</div>
+        <div class="col md-4">{{ form_row(profil.rppsCode) }}</div>
+    </div>
+    <div class="row">
+        <div class="col md-4">{{ form_row(profil.username) }}</div>
+        <div class="col md-8">{{ form_row(profil.profil) }}</div>
+    </div>
+            <button type="submit" class="btn-info">Modifier mon compte</button>
+</div>
+        
+    {{ form_end(profil) }}
+{% endblock %}

@@ -21,6 +21,8 @@ class RegistrationController extends AbstractController
         $form = $this->createForm(RegistrationFormType::class, $user);
         $form->handleRequest($request);
 
+
+        //je vais devoir faire la verification de mail ici avant l'envoi du formulaire
         if ($form->isSubmitted() && $form->isValid()) {
             // encode the plain password
             $user->setPassword(
@@ -34,7 +36,7 @@ class RegistrationController extends AbstractController
             $entityManager->flush();
             // do anything else you need here, like send an email
 
-            return $this->redirectToRoute('user.index');
+            return $this->redirectToRoute('exana_home');
         }
 
         return $this->render('registration/register.html.twig', [

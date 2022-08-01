@@ -1,44 +1,23 @@
 {% extends 'base.html.twig' %}
 
-{% block title 'Gèrer les formations' %}
+{% block title 'Index Administrateur' %} 
 
 {% block body %}
-<div class="admin-zone">
-</div>
-<div class="container mt-4">
-    <h1>Gèrer les formations</h1>
 
-    {% for message in app.flashes('success') %}
-        <div class="alert alert-success">
-            {{ message }}
-        </div>
-    {% endfor %}
-    <table class="table table-striped">
-        <thead>
-        <tr>
-            <th>Titre</th>
-            <th>Actions</th>
-        </tr>
-        </thead>
-        <tbody>
-        {% for formation in formations %}
-        <tr>
-            <td>{{ formation.title }}</td>
-            <td>
-                <a href="{{ path('admin.formation.edit', {id: formation.id}) }}" class="btn btn-secondary">Éditer</a>
-                <form method="post" action="{{ path('admin.formation.delete', {id: formation.id}) }}" style="display: inline-block;" onsubmit="return confirm('Êtes-vous vraiment sûr ?')">
-                    <input type="hidden" name="_method" value="DELETE">
-                    <input type="hidden" name="_token" value="{{ csrf_token('delete' ~ formation.id) }}">
-                    <button class="btn btn-danger">Supprimer</button>
-                </form>
-            </td>
-        </tr>
-        {% endfor %}
-        </tbody>
-    </table>
+{{ include('admin/formation/template/header.html.twig') }}
 
-    <div class="text-right">
-        <a href="{{ path('admin.formation.new') }}" class="btn btn-primary">Créer une nouvelle formation</a>
+
+<div class="container">
+  <div class="row">
+    <div class='col-md-6'>
+      <p> informations Administrateur <p>
     </div>
+    <div class='col-md-6'>
+      <p> BLABLABLA <p>
+    </div>
+  </div>
 </div>
+<div class="info-admin">
+
+<div>
 {% endblock %}

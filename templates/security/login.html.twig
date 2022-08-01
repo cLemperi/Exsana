@@ -13,7 +13,7 @@
                         {% if error %}
                         <div class="alert alert-danger">{{ error.messageKey | trans(error.messagedata, 'security') }}</div>
                         {% endif %}
-                                <form action="{{ path('login') }}" method="post">
+                                <form action="{{ path('app_login') }}" method="post">
                                     <div class="form-group">
                                         <label for="username"> email</label>
                                         <input type="text" id="username" name="_username" class="form-control" value="{{ last_username }}">
@@ -34,11 +34,10 @@
                         <div class="form-group">
                         <p class="titre">Créez votre compte</p>
                         <form action="{{ path('app_register' )}}" method:"post">
-                            <input type="email" name="_email" class="form-control" id="email" placeholder="E-mail" tabindex="40">
+                            <!-- <input type="email" name="_email" class="form-control" id="email" placeholder="E-mail" tabindex="40"> -->
                             <input type="hidden" name="_csrf_token" value="{{ csrf_token('authenticate') }}">
                         </div>
                             <button type="submit" class="btn btn-primary" value ="Continuer"> valider</button>
-                            
                         </form>
                     </div>
                 </div>

@@ -7,10 +7,9 @@
 <div class="container-fluid background-formation">
 	<div class="formation-core container">
 		<div class="py-5">
-				<h2>formations</h2>
-				<p class="lead">Liste de formations proposée par exsana</p>
+			<div class="title_formation"><h1>Formations Exsana santé<h1></div>
 		</div>
-		<div class="row">
+		<!--
 			<br><br>
 				<div class="col-md-3 order-md-2 mb-4">
 					<h4 class="d-flex justify-content-between align-items-center mb-3">
@@ -20,7 +19,8 @@
 				</div>
 			<div class="count">
 			</div>
-				<div class="col-md-9 order-md-1 mb-8">
+		-->
+				<div class="listFormations">
 					<section class="listFormations">
 						{% for formation in formations %}
 						<div class=" d-flex flex-column formation-item">
@@ -43,7 +43,6 @@
 					</section>
 					<div class="pagination">{{ knp_pagination_render(formations) }}</div>
 				</div>
-		</div>
 	</div>
 </div>
 {% endblock	%}

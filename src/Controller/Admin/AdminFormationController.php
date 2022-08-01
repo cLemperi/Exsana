@@ -26,14 +26,26 @@ class AdminFormationController extends AbstractController
         $this->em = $em;
         $this->repository = $repository;
     }
-    
+
+
     /**
-     * @Route("/admin/gestion", name="admin_admin_gestion")
+     * @Route("/admin/index", name="admin.index")
      */
     public function index(): Response
     {
-        $formations =  $this->repository->findAll();
+
         return $this->render('admin/formation/index.html.twig', [
+            'controller_name' => 'AdminFormationController',
+        ]);
+    }
+    
+    /**
+     * @Route("/admin/formation/gestion", name="admin.formation.index")
+     */
+    public function gestionFormation(): Response
+    {
+        $formations =  $this->repository->findAll();
+        return $this->render('admin/formation/gestion.html.twig', [
             'controller_name' => 'AdminFormationController',
             'formations' => $formations
         ]);

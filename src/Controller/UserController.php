@@ -2,15 +2,25 @@
 
 namespace App\Controller;
 
+
 use App\Entity\User;
+use App\Form\ProfilsType;
 use App\Form\UserType;
 use App\Repository\UserRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Entity;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
+
+
+
+
+#[Route('/user'), IsGranted('ROLE_USER')]
 class UserController extends AbstractController
 {
     /**
@@ -24,81 +34,41 @@ class UserController extends AbstractController
         $this->repository = $repository;
     }
 
-
-
-
-    //menu du profils
-    #[Route('/user/index', name: 'user.index')]
-    public function myAccount(): Response
-    {
-        $this->denyAccessUnlessGranted('IS_AUTHENTICATED_FULLY');
-        return $this->render('user/index.html.twig', [
-            'controller_name' => 'UserController',
-        ]);
-    }
-
-    //modifier son compte
-    /**
-     * @param User $user
-     * @param Request $request
-     * @return \Symfony\Component\HttpFoundation\Response
-     */
-    #[Route('/user/mon_compte', name: 'user.register')]
-    public function userRegister(User $user, Request $request): Response
-    {
-        $form = $this->createForm(UserType::class, $user);
+    
+    #[Route('/mon_compte', name: 'user.register', methods: ['GET|POST'])]
+    public function userRegister(Request $request): Response
+    {   
+        $user = $this->getUser();
+        $form = $this->createForm(ProfilsType::class, $user);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
                     $this->em->persist($user);
                     $this->em->flush();
-                    $this->addFlash('success', 'Bien modifié avec succès');
-                    return $this->redirectToRoute('user/mon_compte');
+                    $this->addFlash('success', 'Profils bien modifié avec succès');
+                    return $this->redirectToRoute('user.register');
         }
+        
 
-        return $this->render('userRegister.html.twig', [
-            'form' => $form->createView()
+        return $this->render('user/userProfils.html.twig', [
+            'profil' => $form->createView(),
         ]);
     }
 
     //les formations utilisisateurs inscrit
-    #[Route('/user/myformations', name: 'user.formations')]
+    #[Route('/myformations', name: 'user.formations', methods: ['GET|POST'])]
     public function userFormation(): Response
     {
+
         return $this->render('user/userFormations.html.twig', [
             'controller_name' => 'UserController',
         ]);
     }
 
     //aide et assistance
-    #[Route('/user/help', name: 'user.help')]
+    #[Route('/help', name: 'user.help')]
     public function userHelp(): Response
     {
-        return $this->render('user/userHelp.html.twig', [
-            'controller_name' => 'UserController',
-        ]);
-    }
-
-    //creation d'un nouvelle utilisateur
-    #[Route('/user/new', name: 'user.new')]
-    public function createNewUser(Request $request): Response
-    {
-        $user = new User;
-        $form = $this->createForm(UserType::class, $user);
-        $form->handleRequest($request);
-
-        if ($form->isSubmitted() && $form->isValid()) {
-                    $this->em->persist($user);
-                    $this->em->flush();
-                    $this->addFlash('success', 'Vous avez créez votre compte ! Félicitation');
-                    return $this->redirectToRoute('/');
-        }
-
-        return $this->render('admin/formation/edit.html.twig', [
-            'form' => $form->createView()
-        ]);
-        
-        
         return $this->render('user/userHelp.html.twig', [
             'controller_name' => 'UserController',
         ]);

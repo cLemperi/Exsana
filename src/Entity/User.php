@@ -11,6 +11,7 @@ use Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface;
 
 /**
  * @ORM\Entity(repositoryClass=UserRepository::class)
+ * @UniqueEntity(fields={"email"}, message="Il y a deja un utilisateur avec cette email")
  */
 class User implements UserInterface, PasswordAuthenticatedUserInterface, Serializable
 {
@@ -278,7 +279,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface, Seriali
      * Returns the identifier for this user (e.g. its username or email address).
      */
     public function getUserIdentifier(): string {
-        return $this->username;
+        return (string) $this->email;
     }
    
 }

@@ -354,8 +354,8 @@ ul.social-network li {
   border-bottom: 1px solid #eceef2;
   padding: 40px;
   background: #FFFF;
-  margin: 10px;
-  border-radius: 30px;
+  margin-bottom: 20px;
+  border-radius: 10px;
  }
 
 .page-formation{
@@ -366,7 +366,7 @@ ul.social-network li {
   font-weight: 400;
   margin-bottom: 40px;
   font-family: 'Poppins', sans-serif;
-  color: #932826!important;
+    color: #2b7699 !important;
 }
 
 .custom_title h5{
@@ -383,20 +383,20 @@ ul.social-network li {
     width: 44px;
     margin-bottom: 15px;
     height: 3px;
-    background-color: #932826;
+    background-color: #2b7699 !important;
 }
 
 .title_formation h1 {
-    color: #932826!important;
+    color: #2b7699 !important; 
     font-size: 40px;
-    font-weight: 300;
+    font-weight: 400;
     font-family: 'Poppins', sans-serif;
     line-height: 1.3em;
     clear: both;
 }
 .title_formation{
-  margin-bottom: 50px;
-  margin-top: 30px
+  margin-bottom: 30px;
+  margin-top: 20px
 }
 
 .obj-formation{
@@ -454,10 +454,6 @@ ul.social-network li {
   padding-right: 3rem;
 }
 
-.btn-primary input {
-  background: #ee7619;
-  opacity: 1;
-}
 
 /* Custom Login */
 
@@ -726,7 +722,7 @@ a{
 }
 
 .admin-zone{
-  padding-top:100px;
+  padding-top:150px;
   margin-top: 100px;
 }
 
@@ -736,6 +732,11 @@ a{
 
 .core-formation{
   margin-bottom: 50px;
+}
+
+.listFormations{
+  max-width: 1000px;
+  margin: 0 auto;
 }
 
 .cara-forma-inscription{
@@ -753,20 +754,37 @@ a{
   margin: 0 auto;
 }
 
-.session{
+.session {
   margin-bottom: 2rem;
   font-family: 'AvenirHeavy';
+  margin-top: 3%;
+  padding-top: 5px;
+}
+
+.participants{
+  margin-bottom: 2rem;
+  font-family: 'AvenirHeavy';
+  margin-top: 3%;
+  padding-top: 5px;
 }
 
 select {
   cursor: pointer;
-  padding: 1rem 2rem;
+  padding: 0.5rem 1rem 1rem 0.5rem;
   color: #2c2c2c;
   border-radius: 20px;
   vertical-align: middle;
   background: #f1f1f1;
   border: 1px solid #f5f8fa;
-  width: 100%;
+}
+.selection{
+  text-align: center;
+  padding: 5px;
+  margin: 5px;
+}
+
+select .session .participants{
+  width: 80%;
 }
 
 .sidebar-formation{
@@ -789,6 +807,11 @@ a {
   color: #FFFF;
 }
 
-
+.btn-primary{
+  border-radius: 30px;
+  margin-bottom: 1rem;
+  margin-left: 1rem;
+  margin-right: 1rem;
+}
 
 
