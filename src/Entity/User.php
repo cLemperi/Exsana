@@ -9,75 +9,56 @@ use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 use Symfony\Component\Security\Core\User\UserInterface;
 use Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface;
 
-/**
- * @ORM\Entity(repositoryClass=UserRepository::class)
- * @UniqueEntity(fields={"email"}, message="Il y a deja un utilisateur avec cette email")
- */
+#[ORM\Entity(repositoryClass: UserRepository::class)]
+#[UniqueEntity(fields: ['email'], message: 'Il y a deja un utilisateur avec cette email')]
 class User implements UserInterface, PasswordAuthenticatedUserInterface, Serializable
 {
-    /**
-     * @ORM\Id
-     * @ORM\GeneratedValue
-     * @ORM\Column(type="integer")
-     */
+    #[ORM\Id]
+    #[ORM\GeneratedValue]
+    #[ORM\Column(type: 'integer')]
     private $id;
-    /**
-     * @ORM\Column(type="string", length=255)
-     */
-    private $username;
-    /**
-     * @ORM\Column(type="string", length=255)
-     */
-    private $password;
-    /**
-     * @ORM\Column(type="json")
-     */
-    private $roles = [];
-    /**
-     * @ORM\Column(type="string", length=255)
-     */
-    private $sex;
-    /**
-     * @ORM\Column(type="string", length=255)
-     */
-    private $firstName;
-    /**
-     * @ORM\Column(type="string", length=255)
-     */
-    private $lastName;
-    /**
-     * @ORM\Column(type="string", length=255, unique=true)
-     */
-    private $email;
-    /**
-     * @ORM\Column(type="string", length=255)
-     */
-    private $job;
-    /**
-     * @ORM\Column(type="string", length=255, nullable=true)
-     */
-    private $phone;
-    /**
-     * @ORM\Column(type="string", length=255, nullable=true)
-     */
-    private $rppsCode;
-    /**
-     * @ORM\Column(type="string", length=255, nullable=true)
-     */
-    private $postalCode;
-    /**
-     * @ORM\Column(type="string", length=255, nullable=true)
-     */
-    private $city;
-    /**
-     * @ORM\Column(type="string", length=255, nullable=true)
-     */
-    private $street;
-    /**
-     * @ORM\Column(type="string", length=255)
-     */
-    private $profil;
 
+    #[ORM\Column(type: 'string', length: 255)]
+    private ?string $username = null;
+
+    #[ORM\Column(type: 'string', length: 255)]
+    private ?string $password = null;
+
+    #[ORM\Column(type: 'json')]
+    private array $roles = [];
+
+    #[ORM\Column(type: 'string', length: 255)]
+    private ?string $sex = null;
+
+    #[ORM\Column(type: 'string', length: 255)]
+    private ?string $firstName = null;
+
+    #[ORM\Column(type: 'string', length: 255)]
+    private ?string $lastName = null;
+
+    #[ORM\Column(type: 'string', length: 255, unique: true)]
+    private ?string $email = null;
+
+    #[ORM\Column(type: 'string', length: 255)]
+    private ?string $job = null;
+
+    #[ORM\Column(type: 'string', length: 255, nullable: true)]
+    private ?string $phone = null;
+
+    #[ORM\Column(type: 'string', length: 255, nullable: true)]
+    private ?string $rppsCode = null;
+
+    #[ORM\Column(type: 'string', length: 255, nullable: true)]
+    private ?string $postalCode = null;
+
+    #[ORM\Column(type: 'string', length: 255, nullable: true)]
+    private ?string $city = null;
+
+    #[ORM\Column(type: 'string', length: 255, nullable: true)]
+    private ?string $street = null;
+
+    #[ORM\Column(type: 'string', length: 255)]
+    private ?string $profil = null;
 
     public function getId(): ?int
     {
@@ -117,7 +98,6 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface, Seriali
         $this->roles = $roles;
         return $this;
     }
-
     public function getSex(): ?string
     {
         return $this->sex;
@@ -228,8 +208,6 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface, Seriali
 
         return $this;
     }
-
-
     public function getSalt(): ?string
     {
         return null;
@@ -245,7 +223,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface, Seriali
      *
      * @return array The properties of the object as an associative array.
      */
-    public function __serialize() {
+    public function __serialize(): array {
         return get_object_vars( $this );
     }
     /**
@@ -261,7 +239,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface, Seriali
           $this->$key = $value;
         }
     }
-    public function serialize() {
+    public function serialize(): string {
         return  serialize([
             $this->id,
             $this->username,
@@ -281,5 +259,4 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface, Seriali
     public function getUserIdentifier(): string {
         return (string) $this->email;
     }
-   
 }

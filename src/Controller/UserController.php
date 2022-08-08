@@ -23,20 +23,14 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 #[Route('/user'), IsGranted('ROLE_USER')]
 class UserController extends AbstractController
 {
-    /**
-     * @var UserRepository
-     */
-    private $repository;
-    public function __construct(UserRepository $repository, EntityManagerInterface $em)
+    public function __construct(private UserRepository $repository,EntityManagerInterface $em)
     {
-        //em entity manager
         $this->em = $em;
-        $this->repository = $repository;
     }
 
     
     #[Route('/mon_compte', name: 'user.register', methods: ['GET|POST'])]
-    public function userRegister(Request $request): Response
+    public function userRegister(Request $request, EntityManagerInterface $em): Response
     {   
         $user = $this->getUser();
         $form = $this->createForm(ProfilsType::class, $user);

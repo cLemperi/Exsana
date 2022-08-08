@@ -11,9 +11,10 @@ class CategorieFixtures extends Fixture
     public function load(ObjectManager $manager): void
     {
         $generator = \Faker\Factory::create('fr_FR');
-        $shortText = $generator->sentence($nbWords = 1 || 2, $variableNbWords = true);
 
         for ($i = 0; $i <= 7; $i++) {
+            $rand_number = rand(1,2);
+            $shortText = $generator->sentence($rand_number, $variableNbWords = true);
             $manager->persist( 
                 (new Category())
                 ->setTitle($shortText)

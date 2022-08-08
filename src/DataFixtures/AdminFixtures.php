@@ -8,16 +8,19 @@ use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
 
 class AdminFixtures extends Fixture
 {
-    public function __construct(UserPasswordHasherInterface $passwordHasher)
+    public function __construct(private UserPasswordHasherInterface $userPasswordHasherInterface)
     {
-        $this->encoder = $passwordHasher;
     }
 
     public function load(ObjectManager $manager)
     {
         $user = new User();
                     $user->setUsername('AdminUser');
-                    $user->setPassword($this->encoder->hashPassword($user,'AdminUser'));
+                    $user->setPassword(
+                        $this->userPasswordHasherInterface->hashPassword(
+                            $user, "AdminUser"
+                        )
+                    );
                     $user->setSex('Mr');
                     $user->setfirstName('PrénomAdmin');
                     $user->setlastName('AdminLastname');

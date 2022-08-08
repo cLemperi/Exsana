@@ -20,11 +20,13 @@ class FormationsRepository extends ServiceEntityRepository
         parent::__construct($registry, Formations::class);
     }
 
+
     /**
      * récupère les formations en lien avec une recherche
      * @return Formation[]
      */
-    public function findSearch(SearchData $search): array{
+
+   /* public function findSearch(SearchData $search): array{
         $query =$this
         ->createQueryBuilder('f')
         ->select('c','f')
@@ -36,8 +38,8 @@ class FormationsRepository extends ServiceEntityRepository
             ->setParameter('q', "%{$search->q}%");
         }
         return $query->getQuery()->getResult();
-        
+
     }
 
-    
+*/
 }

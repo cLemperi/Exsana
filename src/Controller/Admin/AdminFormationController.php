@@ -14,35 +14,21 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
 class AdminFormationController extends AbstractController
 {   
-    /**
-     * @var FormationsRepository
-     */
-    private $repository;
-    private $em;
-    
-    public function __construct(FormationsRepository $repository, EntityManagerInterface $em)
+    public function __construct(private FormationsRepository $repository, private EntityManagerInterface $em)
     {
-        //em entity manager
-        $this->em = $em;
-        $this->repository = $repository;
     }
 
 
-    /**
-     * @Route("/admin/index", name="admin.index")
-     */
-    public function index(): Response
+    #[Route(path: '/admin/index', name: 'admin.index')]
+    public function index() : Response
     {
-
         return $this->render('admin/formation/index.html.twig', [
             'controller_name' => 'AdminFormationController',
         ]);
     }
     
-    /**
-     * @Route("/admin/formation/gestion", name="admin.formation.index")
-     */
-    public function gestionFormation(): Response
+    #[Route(path: '/admin/formation/gestion', name: 'admin.formation.index')]
+    public function gestionFormation() : Response
     {
         $formations =  $this->repository->findAll();
         return $this->render('admin/formation/gestion.html.twig', [
@@ -51,15 +37,12 @@ class AdminFormationController extends AbstractController
         ]);
     }
     
-    /**
-     * @Route("/admin/formation/create", name="admin.formation.new")
-     */
-    public function new(Request $request)
+    #[Route(path: '/admin/formation/create', name: 'admin.formation.new')]
+    public function new(Request $request) : \Symfony\Component\HttpFoundation\Response
     {
         $formation = new Formations();
         $form = $this->createForm(FormationType::class, $formation);
         $form->handleRequest($request);
-
         if($form->isSubmitted() && $form->isValid())
         {
             $this->em->persist($formation);
@@ -67,51 +50,39 @@ class AdminFormationController extends AbstractController
             $this->addFlash('success', 'Bien ajouté avec succès');
             return $this->redirectToRoute('admin_admin_gestion');
         }
-
         return $this->render('admin/formation/new.html.twig', [
             'formation' => $formation,
             'form' => $form->createView()
         ]);
     }
     
-    /**
-     * @Route("/admin/formation/{id}", name="admin.formation.edit", methods="GET|POST")
-     * @param Formations $formation
-     * @param Request $request
-     * @return \Symfony\Component\HttpFoundation\Response
-     */
-    public function edit(Formations $formation, Request $request)
-    { 
 
+    #[Route(path: '/admin/formation/{id}', name: 'admin.formation.edit', methods: 'GET|POST')]
+    public function edit(Formations $formation, Request $request) : \Symfony\Component\HttpFoundation\Response
+    {
         $form = $this->createForm(FormationType::class, $formation);
         $form->handleRequest($request);
-
         if ($form->isSubmitted() && $form->isValid()) {
                     $this->em->persist($formation);
                     $this->em->flush();
                     $this->addFlash('success', 'Bien modifié avec succès');
-                    return $this->redirectToRoute('admin_admin_gestion');
+                    return $this->redirectToRoute('admin.formation.index');
         }
-
         return $this->render('admin/formation/edit.html.twig', [
             'form' => $form->createView(),
         ]);
     }
 
-    /**
-     * @Route("/admin/formation/{id}", name="admin.formation.delete", methods="DELETE")
-     * @param Formations $formation
-     * @return \Symfony\Component\HttpFoundation\RedirectResponse
-     */
-    public function delete(Formations $formation, Request $request)
+    
+    #[Route(path: '/admin/formation/{id}', name: 'admin.formation.delete', methods: 'DELETE')]
+    public function delete(Formations $formation, Request $request) : \Symfony\Component\HttpFoundation\Response
     {
         if($this->isCsrfTokenValid('delete' . $formation->getId(), $request->get('_token'))) {
             $this->em->remove($formation);
             $this->em->flush();
             $this->addFlash('success', 'Bien supprimé avec succès');
         }
-        
-        return $this->redirectToRoute('admin_admin_gestion');
+        return $this->redirectToRoute('admin.formation.index');
     }
 
 }
