@@ -60,6 +60,11 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface, Seriali
     #[ORM\Column(type: 'string', length: 255)]
     private ?string $profil = null;
 
+    public function __toString(): string
+    {
+        return $this->email;
+    }
+
     public function getId(): ?int
     {
         return $this->id;

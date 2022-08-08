@@ -9,6 +9,7 @@ use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\Form\Extension\Core\Type\NumberType;
 use Symfony\Component\Form\Extension\Core\Type\EmailType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
+use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 
 class specifiqueFormContact extends AbstractType
 {
@@ -66,6 +67,6 @@ class specifiqueFormContact extends AbstractType
                     		"Autre demande d\'information" => "Autre demande d'information"
                     	]
                     	])
-                    ->add('message',TextType::class);
+                    ->add('message',TextareaType::class);
     }
 }

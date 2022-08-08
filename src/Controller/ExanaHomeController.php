@@ -10,15 +10,23 @@ use Symfony\Component\Routing\Annotation\Route;
 use App\Repository\FormationsRepository;
 use App\Entity\FormContact;
 use App\Entity\User;
+use App\Entity\UserMessage;
 use App\Form\SearchType;
 use Symfony\Component\HttpFoundation\Request;
 use Doctrine\ORM\EntityManagerInterface;
 use App\Form\Type\specifiqueFormContact;
+use App\Form\UserMessageType;
 use App\Repository\CategoryRepository;
 use Knp\Component\Pager\PaginatorInterface;
 
 class ExanaHomeController extends AbstractController
 {
+    
+    public function __construct(EntityManagerInterface $em)
+    {
+        $this->em = $em;
+    }
+    
     #[Route(path: '/', name: 'exana_home')]
     public function index(FormationsRepository $repo) : Response
     {
@@ -30,21 +38,22 @@ class ExanaHomeController extends AbstractController
     }
 
     #[Route(path: '/exsana/contact', name: 'contact')]
-    public function contact(Request $request, EntityManagerInterface $em) : Response
+    public function contact(Request $request) : Response
     {
-        $formcontact = new FormContact();
+        
         $user = $this->getUser();
-        /*if (isset($user)){
-              $form = $this->createForm(specifiqueFormContact::class, $user);
+        if (isset($user)){
+            $formUserContact = new UserMessage();
+            $form = $this->createForm(UserMessageType::class, $formUserContact);
           }
           else{
-              $form = $this->createForm(specifiqueFormContact::class, $formcontact);
-          }*/
-        $form = $this->createForm(specifiqueFormContact::class, $formcontact);
+            $formcontact = new FormContact();         
+            $form = $this->createForm(specifiqueFormContact::class, $formcontact);
+          }
         $form->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid()) {
-            $this->$em->persist();
-            $this->$em->flush();
+            $this->em->persist();
+            $this->em->flush();
             $this->addFlash('success', 'Votre demande de contact à bien été envoyé à notre équipe');
             return $this->redirectToRoute('contact');
 }
