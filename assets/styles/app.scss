@@ -253,6 +253,7 @@ ul.social-network li {
   display: flex;
   list-style:none;
   margin-bottom:0;
+  text-align: center;
 }
 
 .navbar {
@@ -275,7 +276,7 @@ ul.social-network li {
 }
 
 .navbar .navbar-brand {
-    color: #fff;
+    color: #2b7699;
     margin-left: 100px;
 
 }
@@ -422,7 +423,7 @@ ul.social-network li {
 
 .s_cadre_infos {
   background-position: top center !important;
-  padding-top: 150px! important;
+  padding-top: 100px! important;
   background-size: auto;
 }
 
@@ -431,7 +432,6 @@ ul.social-network li {
     border-radius: 17px;
     font-family: 'AvenirHeavy';
     color: #fff;
-    background-color: #1f3952;
     margin-bottom: 3rem;
     text-align: center;
     background-size: cover;
@@ -814,4 +814,10 @@ a {
   margin-right: 1rem;
 }
 
+
+//formulaire invitation
+
+.form-invite .form-control{
+  border-radius: 60px;
+}
 

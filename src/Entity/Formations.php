@@ -43,7 +43,8 @@ class Formations
     #[ORM\Column(type: 'datetime', nullable: true)]
     private \DateTime|\DateTimeInterface|null $created_at = null;
 
-    #[ORM\Column(type: 'datetime', nullable: true)]
+    #[Assert\Type("\DateTimeInterface")]
+    #[ORM\Column(type: 'datetime' ,nullable: true)]
     private ?\DateTimeInterface $dateFormation = null;
 
     #[ORM\Column(type: 'integer', nullable: true)]
@@ -61,6 +62,9 @@ class Formations
 
     #[ORM\OneToMany(targetEntity: ProgrammeFormation::class, mappedBy: 'programme', cascade: ['persist'])]
     private \Doctrine\Common\Collections\Collection|array $programmeFormations;
+
+    #[ORM\ManyToOne(inversedBy: 'formationregisterid')]
+    private ?User $UserRegisterFormation = null;
     
     
     public function __construct()
@@ -70,7 +74,7 @@ class Formations
         $this->objectifFormations = new ArrayCollection();
     }
     public function __toString(): string
-    {
+    {   
         return $this->title;
     }
     public function getId(): ?int
@@ -248,6 +252,18 @@ class Formations
     public function setCreatedAt(?\DateTimeInterface $created_at): self
     {
         $this->created_at = $created_at;
+
+        return $this;
+    }
+
+    public function getUserRegisterFormation(): ?User
+    {
+        return $this->UserRegisterFormation;
+    }
+
+    public function setUserRegisterFormation(?User $UserRegisterFormation): self
+    {
+        $this->UserRegisterFormation = $UserRegisterFormation;
 
         return $this;
     }

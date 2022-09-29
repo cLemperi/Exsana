@@ -1,0 +1,26 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}{% endblock %}
+
+{% block body %}
+
+<div class="page-formation">
+</div>
+<div class="container">
+    <div class="custom_title">
+    <h2> Liste des CV des utilisateurs </h2>
+    </div>
+    <div class="example-wrapper">
+        <ul>
+        {% for curiculums in curiculum %}
+        {{ curiculum.firstname }}
+        {{ curiculum.lastname }}
+        {{ curiculum.titre }}
+        {{ curiculum.message }}
+        
+        
+        {{curiculum.curiculumFile}}
+        {% endfor %}
+    </div>
+</div>
+{% endblock %}

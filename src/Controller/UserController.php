@@ -2,10 +2,11 @@
 
 namespace App\Controller;
 
-
+use App\Entity\Formations;
 use App\Entity\User;
 use App\Form\ProfilsType;
 use App\Form\UserType;
+use App\Repository\FormationsRepository;
 use App\Repository\UserRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\HttpFoundation\Request;
@@ -51,9 +52,31 @@ class UserController extends AbstractController
 
     //les formations utilisisateurs inscrit
     #[Route('/myformations', name: 'user.formations', methods: ['GET|POST'])]
-    public function userFormation(): Response
-    {
+    public function userFormation(FormationsRepository $repo): Response
+    {   
+        $i=0;
+        $formations = $repo->findAll();
+        foreach ($formations as $formation){
+            $formationIdUser[] = $formation->getUserRegisterFormation();
+        }
+        $test1 = $formationIdUser[1];
+        
+        /**
+            * @var Entity::User
+        */
+        $user = $this->getUser();
+        $userId = $user->getId();
 
+        $userFormation = $user->getFormationregisterid();
+
+        if ($formationIdUser == $userId){
+            echo 'OK';
+        }else{
+            'Nok';
+        }
+
+        //$formationIdUser = $formations->getUserRegisterFormation();
+        //var_dump($formationIdUser);
         return $this->render('user/userFormations.html.twig', [
             'controller_name' => 'UserController',
         ]);

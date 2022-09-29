@@ -4,21 +4,30 @@ namespace App\Form;
 
 use App\Entity\Category;
 use App\Entity\Formations;
-use App\Entity\ProgrammeFormation;
-use Doctrine\DBAL\Types\TextType;
-use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
-use Symfony\Component\Form\Extension\Core\Type\CollectionType;
 use Symfony\Component\Form\FormBuilderInterface;
+use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\OptionsResolver\OptionsResolver;
+use Symfony\Component\Form\Extension\Core\Type\DateType;
+use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
+use Symfony\Component\Form\Extension\Core\Type\CollectionType;
 
 class FormationType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
+
         $builder
             ->add('title')
-            ->add('Date') //Date de la formation
+            ->add('dateFormation',DateType::class, [
+                'label' => 'Date',
+                'widget' => 'single_text',
+                /*'attr'   => [
+                    'min' => (new \DateTime())->format('Y-m-d H:i'),
+                ],*/
+                'model_timezone' => 'Europe/Paris',
+                'view_timezone' => 'Europe/Paris',
+            ])
             ->add('price')
             ->add('category', EntityType::class,[
                 'class' => Category::class,

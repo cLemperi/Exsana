@@ -5,8 +5,10 @@ namespace App\Entity;
 use Serializable;
 use Doctrine\ORM\Mapping as ORM;
 use App\Repository\UserRepository;
-use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
+use Doctrine\Common\Collections\Collection;
+use Doctrine\Common\Collections\ArrayCollection;
 use Symfony\Component\Security\Core\User\UserInterface;
+use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 use Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface;
 
 #[ORM\Entity(repositoryClass: UserRepository::class)]
@@ -60,6 +62,24 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface, Seriali
     #[ORM\Column(type: 'string', length: 255)]
     private ?string $profil = null;
 
+    #[ORM\OneToMany(targetEntity: UserMessage::class, mappedBy: 'UserMessage', cascade: ['persist'])]
+    private \Doctrine\Common\Collections\Collection|array $UserMessages;
+
+    #[ORM\OneToMany(mappedBy: 'UserRegisterFormation', targetEntity: Formations::class)]
+    private Collection $formationregisterid;
+
+    #[ORM\OneToMany(mappedBy: 'UserFrom', targetEntity: UserInvite::class, cascade: ['persist'],orphanRemoval: true)]
+    private Collection $userInvites;
+
+    #[ORM\Column(nullable: true)]
+    private ?int $nbUserInvite = null;
+
+    public function __construct()
+    {
+        $this->UserMessage = new ArrayCollection();
+        $this->formationregisterid = new ArrayCollection();
+        $this->userInvites = new ArrayCollection();
+    }
     public function __toString(): string
     {
         return $this->email;
@@ -213,6 +233,34 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface, Seriali
 
         return $this;
     }
+
+     /**
+     * @return Collection<int, UserMessage>
+     */
+    public function getUserMessage(): Collection
+    {
+        return $this->UserMessages;
+    }
+    public function addUserMessage(UserMessage $UserMessage): self
+    {
+        if (!$this->UserMessages->contains($UserMessage)) {
+            $this->UserMessages[] = $UserMessage;
+            $UserMessage->setUserMessage($this);
+        }
+
+        return $this;
+    }
+    public function removeUserMessage(UserMessage $UserMessage): self
+    {
+        if ($this->UserMessages->removeElement($UserMessage)) {
+            // set the owning side to null (unless already changed)
+            if ($UserMessage->getUserMessage() === $this) {
+                $UserMessage->setUserMessage(null);
+            }
+        }
+
+        return $this;
+    }
     public function getSalt(): ?string
     {
         return null;
@@ -263,5 +311,77 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface, Seriali
      */
     public function getUserIdentifier(): string {
         return (string) $this->email;
+    }
+
+    /**
+     * @return Collection<int, Formations>
+     */
+    public function getFormationregisterid(): Collection
+    {
+        return $this->formationregisterid;
+    }
+
+    public function addFormationregisterid(Formations $formationregisterid): self
+    {
+        if (!$this->formationregisterid->contains($formationregisterid)) {
+            $this->formationregisterid[] = $formationregisterid;
+            $formationregisterid->setUserRegisterFormation($this);
+        }
+
+        return $this;
+    }
+
+    public function removeFormationregisterid(Formations $formationregisterid): self
+    {
+        if ($this->formationregisterid->removeElement($formationregisterid)) {
+            // set the owning side to null (unless already changed)
+            if ($formationregisterid->getUserRegisterFormation() === $this) {
+                $formationregisterid->setUserRegisterFormation(null);
+            }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, UserInvite>
+     */
+    public function getUserInvites(): Collection
+    {
+        return $this->userInvites;
+    }
+
+    public function addUserInvite(UserInvite $userInvite): self
+    {
+        if (!$this->userInvites->contains($userInvite)) {
+            $this->userInvites[] = $userInvite;
+            $userInvite->setUserFrom($this);
+        }
+
+        return $this;
+    }
+
+    public function removeUserInvite(UserInvite $userInvite): self
+    {
+        if ($this->userInvites->removeElement($userInvite)) {
+            // set the owning side to null (unless already changed)
+            if ($userInvite->getUserFrom() === $this) {
+                $userInvite->setUserFrom(null);
+            }
+        }
+
+        return $this;
+    }
+
+    public function getNbUserInvite(): ?int
+    {
+        return $this->nbUserInvite;
+    }
+
+    public function setNbUserInvite(?int $nbUserInvite): self
+    {
+        $this->nbUserInvite = $nbUserInvite;
+
+        return $this;
     }
 }

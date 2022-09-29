@@ -1,0 +1,23 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello RegistrationFormationController!{% endblock %}
+
+{% block body %}
+<div class="page-formation">
+</div>
+<div class="container">
+    <div class="row">
+        <div class ="col-12">
+            {{ form_start(form) }}
+            {{ include("registration_formation/_form.html.twig", {form: form}) }}
+        </div>
+            
+     <div class="row">
+    <div class="col-md-12">
+        <button type="submit" class="btn-primary  -2 btn btn-primary text-light bg-info">Enregistrer les utilisateurs et m'inscrire à la formation</button>
+    </div>
+    {{form_end(form, {render_rest: false}) }}
+    </div>
+</div> 
+
+{% endblock %}

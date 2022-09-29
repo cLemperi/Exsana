@@ -1,0 +1,31 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello AdminMessageController!{% endblock %}
+
+{% block body %}
+<div class="page-formation">
+</div>
+<div class="container">
+    <div class="py-5">
+			<div class="title_formation"><h1>Liste Messages formulaire contact</h1></div>
+    </div>
+</div>
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-12">  
+            {% for message in messages %}
+            <div class="row card-cara">
+                <div class="col-md-2"><a href="{{ path('app_admin_message_id', {id: message.id}) }}">Utilisateur :{{ message.sex }} {{ message.nickname }} {{ message.lastname }}</a></div>
+                <div class="col-md-2">téléphone : {{ message.phone}}</div>
+                <div class="col-md-3">email: {{ message.email }}</div>
+                <div class="col-md-2">Profession: {{ message.profession }}</div>
+            </div>
+            {% endfor %}   
+           </div>
+        </div>
+    </div>
+
+						
+						
+					<!--<div class="pagination"></div>-->
+{% endblock %}

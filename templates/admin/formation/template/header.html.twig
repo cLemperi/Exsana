@@ -27,7 +27,7 @@
         </a>
         <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
           <a class="dropdown-item" href="#">Utilisateur</a>
-          <a class="dropdown-item" href="#">Formulaire de contact</a>
+          <a class="dropdown-item" href=" {{ path('app_admin_message') }}" >Formulaire de contact</a>
         </div>
       </li>
       <li class="nav-item dropdown">
@@ -35,7 +35,7 @@
           Recrutement
         </a>
         <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-          <a class="dropdown-item" href="#">Nouveau CV</a>
+          <a class="dropdown-item" href="{{path ('admin.curiculum.index')}}">Nouveau CV</a>
           <a class="dropdown-item" href="#">CV consulté</a>
         </div>
       </li>

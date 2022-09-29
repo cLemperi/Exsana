@@ -44,36 +44,46 @@
 			</div>
 		</div>
 	</div>
+	
+                    
+    
 	<div class="col-lg-3 sidebar">
 	 <div class="sidebar-inscription">
 		<nav class="navbar-expand  flex-md-column flex-row align-items-center sidebar-formation">
                <div class="title-sidebar-inscription align-items-center"><h2>Inscription</h2></div>
+		{% if is_granted('ROLE_USER') or is_granted('ROLE_ADMIN') %}
 		<div class="container cara-forma-inscription">
 			<div class="row">
-				<div class="col-md-6">Lieu :</div>
-				<div class="col-md-6 lieu"><select name="lieu"><option value="Paris">Paris</option></select></div>
+				<div class="col-md-4">Lieu :</div>
+				<div class="col-md-4"><select name="lieu"><option value="Paris">{{ formation.location }}</option></select></div>
 			</div>
 		</div>
-		<div class="selection">
-        	<select name="session" class="session" required="">
-           		<option value="" disabled="" class="hidden">Session*</option>
-        		<option value="10285" data-lieu="Paris" class="">13 - 14/12/202</option>
-        	</select>
-            <select name="participants" class="participants" required="">
-            	<option value="">Participants*</option>
-                <option value="1">1 participant</option>
-                <option value="2">2 participants</option>
-                <option value="3">3 participants</option>
-                <option value="4">4 participants</option>
-                <option value="5">5 participants</option>
-                <option value="6">6 participants</option>
-                <option value="7">7 participants</option>
-                <option value="8">8 participants</option>
-                <option value="9">9 participants</option>
-                <option value="10">10 participants</option>
-			</select>
-            <button type="submit" class="btn-primary  -2 btn btn-primary text-light bg-info" value="">Je choisis cette formation</button>
+			<div class="row">
+			<div class="col-md-4">Date :</div>
+			<div class="col-md-4"><select name="session" class="session" required=""><option value="" disabled="" class="hidden">Session</option><option value="10285" class="">{{ formation.Date|date('d-m-Y') }}</option>
+        	</select></div>
+
+			<div class="row">
+				{{ form_start(formRegister) }}
+
+				<div class="col-md-12 justify-content-center">
+				<div class="participants ">
+					{{ form_label(formRegister.nbUserInvite, ' ') }}
+					{{ form_widget(formRegister.nbUserInvite,{'attr' : {'placeholder' : "Nombre de participants"}}) }}
+				</div>
+				</div>
+			<button type="submit" class="btn-primary  -2 btn btn-primary text-light bg-info" value="">Je choisis cette formation</button>
+			{{ form_end(formRegister) }}
+            
+			
 		</div>
+		{% endif %}
+		{% if not is_granted('ROLE_USER') and not is_granted('ROLE_ADMIN') %}
+			<div class="s_cadre_infos s_cta">
+				<div class="txt">Connecter vous pour vous inscrire à une session de formation</a></div>
+				<p class="bouton"><a href="{{ path('app_register') }}" class="btn-primary">Inscription </a></p>
+			</div>
+    	{% endif %}
       </nav>
 	</div>
 	<div class="s_cadre_infos s_cta" style="background-image: url(https://www.panacea-conseil.com/wp-content/uploads/sidebar_bg_infos.png)">

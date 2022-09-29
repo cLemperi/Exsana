@@ -1,0 +1,48 @@
+ 
+ {{ form_widget(form._token) }}
+    {{ form_errors(form) }}
+<div id="userInvites" class="row"
+data-prototype="{{ include("registration_formation/_userInvite.html.twig", {form: form.userInvites.vars.prototype})|e("html_attr") }}"
+data-index="{{ form.userInvites|length > 0 ? form.userInvites|last.vars.name + 1 : 0 }}">
+{% for userInvite in form.userInvites %}
+    <div class="col-4">
+        {{ include("registration_formation/_userInvite.html.twig", {form: userInvite}) }}
+    </div>
+{% endfor %}
+</div>
+<button id="add_user_invite" type="button" class="btn-primary  -2 btn btn-primary text-light bg-info btn-new" data-collection="#userInvites"> ajouter un invité </button>
+<div class="form-group">
+    <button type="button" class="btn btn-danger btn-remove">Remove</button>
+</div>
+{{ form_errors(form.userInvites) }}
+
+
+<script type="text/javascript">
+
+const addFormToCollection = (e) => {
+    const collectionHolder = document.querySelector(e.currentTarget.dataset.collection);
+    const item = document.createElement('div');
+    item.classList.add("col-4");
+
+    item.innerHTML = collectionHolder
+        .dataset
+        .prototype
+        .replace(
+            /__name__/g,
+            collectionHolder.dataset.index
+        );
+
+    collectionHolder.appendChild(item);
+
+ collectionHolder.dataset.index++;
+ //addTagFormDeleteLink(item);
+};
+
+ document
+    .querySelectorAll('.btn-new')
+    .forEach(btn => {
+      btn.addEventListener("click", addFormToCollection)
+  });
+
+
+</script>

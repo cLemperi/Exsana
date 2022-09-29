@@ -1,0 +1,31 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+<div class="admin-zone">
+</div>
+    <div class="container">
+        <div class="row">
+            <div class="col-12">
+                <a href=" {{path("registration_add_invite") }}" class="btn btn-primary">Ajouter des participants</a>
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th class="text-center">Nom des participants</th>
+                            <th class="text-center">Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for userInvite in userInvites %}
+                            <tr>
+                                <td class="text-center">{{ userInvite.nickname }} {{ userInvite.lastname }}</td>
+                                <td class="text-center">
+                                    <a href="{{ path("registration_update", {id: userInvite.id}) }}" class="btn btn-sm btn-primary">Update</a>
+                                </td>
+                            </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+{% endblock %}

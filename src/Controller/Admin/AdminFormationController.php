@@ -22,16 +22,16 @@ class AdminFormationController extends AbstractController
     #[Route(path: '/admin/index', name: 'admin.index')]
     public function index() : Response
     {
-        return $this->render('admin/formation/index.html.twig', [
+        return $this->render('admin/formation/formation/index.html.twig', [
             'controller_name' => 'AdminFormationController',
         ]);
     }
     
-    #[Route(path: '/admin/formation/gestion', name: 'admin.formation.index')]
+    #[Route(path: '/admin/formation/formation/gestion', name: 'admin.formation.index')]
     public function gestionFormation() : Response
     {
         $formations =  $this->repository->findAll();
-        return $this->render('admin/formation/gestion.html.twig', [
+        return $this->render('admin/formation/formation/gestion.html.twig', [
             'controller_name' => 'AdminFormationController',
             'formations' => $formations
         ]);
@@ -50,7 +50,7 @@ class AdminFormationController extends AbstractController
             $this->addFlash('success', 'Bien ajouté avec succès');
             return $this->redirectToRoute('admin_admin_gestion');
         }
-        return $this->render('admin/formation/new.html.twig', [
+        return $this->render('admin/formation/formation/new.html.twig', [
             'formation' => $formation,
             'form' => $form->createView()
         ]);
@@ -68,13 +68,13 @@ class AdminFormationController extends AbstractController
                     $this->addFlash('success', 'Bien modifié avec succès');
                     return $this->redirectToRoute('admin.formation.index');
         }
-        return $this->render('admin/formation/edit.html.twig', [
+        return $this->render('admin/formation/formation/edit.html.twig', [
             'form' => $form->createView(),
         ]);
     }
 
     
-    #[Route(path: '/admin/formation/{id}', name: 'admin.formation.delete', methods: 'DELETE')]
+    #[Route(path: '/admin/formation{id}', name: 'admin.formation.delete', methods: 'DELETE')]
     public function delete(Formations $formation, Request $request) : \Symfony\Component\HttpFoundation\Response
     {
         if($this->isCsrfTokenValid('delete' . $formation->getId(), $request->get('_token'))) {
