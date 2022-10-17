@@ -115,7 +115,7 @@ class ExanaHomeController extends AbstractController
            ]);
     }
 
-    #[Route(path: 'exsana/formation{id}', name: 'formation')]
+    #[Route(path: 'exsana/formation/{id}{slug}', name: 'formation')]
     public function showFormation(FormationsRepository $repo, $id, Request $request) : Response
     {
         $formation = $repo->find($id);

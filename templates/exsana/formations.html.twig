@@ -25,7 +25,7 @@
 						{% for formation in formations %}
 						<div class=" d-flex flex-column formation-item">
 							<div class="p2 d-flex">
-								<a class="full-link" href="{{ path('formation', {id: formation.id}) }}">
+								<a class="full-link" href="{{ path('formation',{id: formation.id , slug: formation.slug}) }}">
 								<div class="custom_title">
 								<h2>{{ formation.title }}</h2></div></a>
 							</div>

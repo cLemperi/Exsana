@@ -63,6 +63,9 @@ class Formations
 
     #[ORM\ManyToOne(inversedBy: 'formationregisterid')]
     private ?User $UserRegisterFormation = null;
+
+    #[ORM\Column(length: 255)]
+    private ?string $slug = null;
     
     
     public function __construct()
@@ -252,6 +255,18 @@ class Formations
     public function setUserRegisterFormation(?User $UserRegisterFormation): self
     {
         $this->UserRegisterFormation = $UserRegisterFormation;
+
+        return $this;
+    }
+
+    public function getSlug(): ?string
+    {
+        return $this->slug;
+    }
+
+    public function setSlug(string $slug): self
+    {
+        $this->slug = $slug;
 
         return $this;
     }

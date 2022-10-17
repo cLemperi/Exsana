@@ -29,12 +29,12 @@ class FormationFixture extends Fixture
             $manager->persist(
                 (new Formations())
                     ->setTitle($shortText)
-                    ->setDate(new \DateTime())
                     ->setPrice(mt_rand(10, 100))
                     ->setDuration(mt_rand(1, 30))
                     ->setForWho($shortText)
                     ->setPrerequisite($shortText)
                     ->setDateFormation($date)
+                    ->setSlug($generator->slug(3))
                     ->setDurationFormation(mt_rand(1, 31))
                     ->setLocation($city)
                     ->setCategory($category)
