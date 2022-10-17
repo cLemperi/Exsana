@@ -48,7 +48,7 @@ class AdminFormationController extends AbstractController
             $this->em->persist($formation);
             $this->em->flush();
             $this->addFlash('success', 'Bien ajouté avec succès');
-            return $this->redirectToRoute('admin_admin_gestion');
+            return $this->redirectToRoute('admin.formation.index');
         }
         return $this->render('admin/formation/formation/new.html.twig', [
             'formation' => $formation,

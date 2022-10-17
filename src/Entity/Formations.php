@@ -25,8 +25,6 @@ class Formations
     #[ORM\Column(type: 'string', length: 255)]
     private ?string $title = null;
 
-    #[ORM\Column(type: 'datetime')]
-    private ?\DateTimeInterface $Date = null;
 
     #[ORM\Column(type: 'integer', options: ['default' => 0])]
     private ?int $price = null;
@@ -88,16 +86,6 @@ class Formations
     public function setTitle(string $title): self
     {
         $this->title = $title;
-
-        return $this;
-    }
-    public function getDate(): ?\DateTimeInterface
-    {
-        return $this->Date;
-    }
-    public function setDate(\DateTimeInterface $Date): self
-    {
-        $this->Date = $Date;
 
         return $this;
     }
