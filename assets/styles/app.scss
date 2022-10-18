@@ -8,6 +8,8 @@
 
 /* FIN FONTS */
 
+
+
 nav.navbar.shrink {
 	min-height: 35px;
   .navbar-brand {font-size: 25px;}
@@ -31,6 +33,11 @@ nav.navbar.shrink {
     flex-direction: column;
     min-height: 100vh;
     height: 100 !important;
+ }
+
+ a:link 
+ { 
+  text-decoration:none; 
  }
 
  ul {
@@ -367,8 +374,17 @@ ul.social-network li {
   font-weight: 400;
   margin-bottom: 40px;
   font-family: 'Poppins', sans-serif;
-    color: #2b7699 !important;
+  color: #2b7699 !important;
 }
+
+.custom_title h3{
+  font-size: 15px;
+  font-weight: 400;
+  margin-bottom: 40px;
+  font-family: 'Poppins', sans-serif;
+  color: #2b7699 !important;
+}
+
 
 .custom_title h5{
   font-size: 16px;
@@ -400,6 +416,12 @@ ul.social-network li {
   margin-top: 20px
 }
 
+.param-formation{
+  margin-top: 90px;
+  padding-left: 10px;
+  padding-right: 30px;
+}
+
 .obj-formation{
   margin-bottom: 40px;
 }
@@ -427,19 +449,30 @@ ul.social-network li {
   background-size: auto;
 }
 
+.s_cadre_inscription {
+  background-position: top center !important;
+  padding-top: 40px! important;
+  background-size: auto;
+}
+
 .s_cta {
-    padding: 5rem 3rem;
+    margin-top: 20px;
+    padding: 3rem 2rem;
     border-radius: 17px;
-    font-family: 'AvenirHeavy';
     color: #fff;
     margin-bottom: 3rem;
     text-align: center;
+    justify-content: center;
     background-size: cover;
     background-position: center;
 }
 
+.s_cta a{
+  color: #FFFF;
+}
+
 .s_cta .txt {
-  font-size: 30px;
+  font-size: 24px;
   line-height: 30px;
   padding-bottom: 20px;
 }
@@ -608,13 +641,14 @@ a{
 }
 
 .last-formation{
-  padding-left: 5%;
-  padding-right: 5%;
-  padding-top: 10%;
-  padding-bottom: 10%;
-  margin-left: 25px;
-  margin-right: 25px;
-  width: 550px;
+  margin-left: 15px;
+  margin-right: 15px;
+  margin-top:25px ;
+  margin-bottom:25px;
+  padding-top: 15px;
+  padding-bottom: 15px;
+  padding-left: 20px;
+  padding-right: 20px;
   box-shadow: 0px 0px 10px 0px rgb(191 191 191);
   justify-content: center;
   background: #f5f6f8;
@@ -740,12 +774,15 @@ a{
 }
 
 .cara-forma-inscription{
-  display: flex;
   justify-content: space-around;
   padding-top:15px;
   margin-top: 10px;
   padding-bottom:15px;
   margin-bottom: 15px;
+  color: #FFFF;
+}
+
+.cara-forma-inscription a{
   color: #FFFF;
 }
 
@@ -794,6 +831,9 @@ select .session .participants{
   justify-content: center;
   padding-left: 15px;
   padding-right: 15px;
+  padding-top: 25px;
+  padding-bottom: 25px;
+
 }
 
 a {
@@ -812,7 +852,9 @@ a {
   margin-bottom: 1rem;
   margin-left: 1rem;
   margin-right: 1rem;
+  background-color: none;
 }
+
 
 
 //formulaire invitation

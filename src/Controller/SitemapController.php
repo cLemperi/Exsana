@@ -17,7 +17,6 @@ class SitemapController extends AbstractController
     {
         $hostname = $request->getSchemeAndHttpHost();
         $urls = [];
-
         $urls[] = ['loc' => $this->generateUrl('exana_home')];
         $urls[] = ['loc' => $this->generateUrl('whereweare')];
         $urls[] = ['loc' => $this->generateUrl('info')];

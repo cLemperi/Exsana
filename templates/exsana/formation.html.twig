@@ -1,157 +1,183 @@
 {% extends 'base.html.twig' %}
-{% block title %}Formations Exsana {% endblock %}
+{% block title %}Formations Exsana
+{% endblock %}
 
 {% block body %}
 
-<!-- formation  -->
-<div class="container">
-<div class="page-formation">
-</div>
-	<div class="categorie_article">
-		CATEGORIE : {{formation.category.title}}
-	</div>
-	<div class="title_formation">
-		<h1>{{ formation.title}}</h1>
-	</div>
+  <!-- formation -->
+  <div class="container">
+    <div class="page-formation"></div>
 
-<div class="row core-formation">
+    <div class="row core-formation">
 
-	<div class="col-lg-9 formation">
-		<div class="row">
-			<div class="col-md-12 obj-formation">
-				<div class="custom_title">
-					<h2>Objectifs de la formation</h2>
-				</div>
-				<div id="obj-formation">
-					{% set id = 0 %}
-					<ul>
-					{% for formations in formation.objectifFormations  %}
-						<li> {{ formation.objectifFormations[id] |e }}{% set id = id + 1 %}</li>
-					{%	endfor	%}
-					</ul>
-				</div>  
+      <div class="categorie_article">
+        CATEGORIE :
+        {{formation.category.title}}
+      </div>
+      <div class="title_formation">
+        <h1>{{ formation.title}}</h1>
+      </div>
+      <div class="col-lg-9 formation">
+        <div class="row">
+          <div class="col-md-12 obj-formation">
+            <div class="custom_title">
+              <h2>Objectifs de la formation</h2>
+            </div>
+            <div id="obj-formation">
+              {% set id = 0 %}
+              <ul>
+                {% for formations in formation.objectifFormations %}
+                  <li>
+                    {{ formation.objectifFormations[id] |e }}{% set id = id + 1 %}</li>
+                {% endfor %}
+              </ul>
+            </div>
+          </div>
+          <div class="col-md-12 formation-programme" name"programmebody"="name"programmeBody"">
+            <div class="custom_title">
+              <h2>Programme pédagogique</h2>
+            </div>
+            <ul id="formation">
+              {% set id = 0 %}
+              {% for formations in formation.programmeFormations %}
+                <li>
+                  {{ formation.programmeFormations[id]|e }}{% set id = id + 1 %}</li>
+              {% endfor %}
+            </ul>
+          </div>
+		<div class ="param-formation">
+          <div class="row mb-2">
+            <div class="col-md-6">
+              <div class="card flex-md-row mb-4 box-shadow h-md-250">
+                <div class="card-body d-flex flex-column align-items-start">
+                  <div class="custom_title">
+                    <h5 class="mb-0">PRÉREQUIS</h5>
+                  </div>
+                  <ul>
+                    <li>{{ formation.prerequisite }}</li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-6">
+              <div class="card flex-md-row mb-4 box-shadow h-md-250">
+                <div class="card-body d-flex flex-column align-items-start">
+                  <div class="custom_title">
+                    <h5 class="mb-0">LIEUX</h5>
+                  </div>
+                  <ul>
+                    <li>
+                      {{ formation.location }}</li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-6">
+              <div class="card flex-md-row mb-4 box-shadow h-md-250">
+                <div class="card-body d-flex flex-column align-items-start">
+                  <div class="custom_title">
+                    <h5 class="mb-0">DURÉE</h5>
+                  </div>
+                  <ul>
+                    <li>{{ formation.durationFormation}}
+                      jours</li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-6">
+              <div class="card flex-md-row mb-4 box-shadow h-md-250">
+                <div class="card-body d-flex flex-column align-items-start">
+                  <div class="custom_title">
+                    <h5 class="mb-0">PRIX</h5>
+                  </div>
+                  <ul>
+                    <li>
+                      {{ formation.price}}€</li>
+                  </ul>
+                </div>
+              </div>
+            </div>
 			</div>
-			<div class="col-md-12 formation-programme" name"programmeBody">
-				<div class="custom_title">
-					<h2>Programme pédagogique</h2>
-				</div>
-				<ul id="formation">
-				{% set id = 0 %}
-						{% for formations in formation.programmeFormations  %}
-						<li> {{ formation.programmeFormations[id]|e }}{% set id = id + 1 %}</li>
-						{%	endfor	%} 		
-				</ul>
-			</div>
-		</div>
-	</div>
-	
-                    
-    
-	<div class="col-lg-3 sidebar">
-	 <div class="sidebar-inscription">
-		<nav class="navbar-expand  flex-md-column flex-row align-items-center sidebar-formation">
-               <div class="title-sidebar-inscription align-items-center"><h2>Inscription</h2></div>
-		{% if is_granted('ROLE_USER') or is_granted('ROLE_ADMIN') %}
-		<div class="container cara-forma-inscription">
-			<div class="row">
-				<div class="col-md-4">Lieu :</div>
-				<div class="col-md-4"><select name="lieu"><option value="Paris">{{ formation.location }}</option></select></div>
-			</div>
-		</div>
-			<div class="row">
-			<div class="col-md-4">Date :</div>
-			<div class="col-md-4"><select name="session" class="session" required=""><option value="" disabled="" class="hidden">Session</option><option value="10285" class="">{{ formation.dateFormation|date('d-m-Y') }}</option>
-        	</select></div>
+          </div>
+        </div>
+      </div>
 
-			<div class="row">
-				{{ form_start(formRegister) }}
-
-				<div class="col-md-12 justify-content-center">
-				<div class="participants ">
-					{{ form_label(formRegister.nbUserInvite, ' ') }}
-					{{ form_widget(formRegister.nbUserInvite,{'attr' : {'placeholder' : "Nombre de participants"}}) }}
-				</div>
-				</div>
-			<button type="submit" class="btn-primary  -2 btn btn-primary text-light bg-info" value="">Je choisis cette formation</button>
-			{{ form_end(formRegister) }}
-            
-			
-		</div>
-		{% endif %}
-		{% if not is_granted('ROLE_USER') and not is_granted('ROLE_ADMIN') %}
-			<div class="s_cadre_infos s_cta">
-				<div class="txt">Connecter vous pour vous inscrire à une session de formation</a></div>
-				<p class="bouton"><a href="{{ path('app_register') }}" class="btn-primary">Inscription </a></p>
-			</div>
-    	{% endif %}
-      </nav>
-	</div>
-	<div class="s_cadre_infos s_cta" style="background-image: url(https://www.panacea-conseil.com/wp-content/uploads/sidebar_bg_infos.png)">
-        <div class="txt">Besoin d'informations détaillées  ? Demandez le programme complet</div>
-    	 <p class="bouton"><a href="https://www.panacea-conseil.com/telecharger-le-programme/?f=2918" class="btn-primary">Recevoir le programme </a></p>
+      <div class="col-lg-3 sidebar">
+        <div class="sidebar-inscription">
+          <nav class="navbar-expand  flex-md-column flex-row align-items-center sidebar-formation">
+            <div class="title-sidebar-inscription align-items-center">
+              <h2>Inscription</h2>
+            </div>
+            {% if is_granted('ROLE_USER')or is_granted('ROLE_ADMIN') %}
+              <div class="container cara-forma-inscription">
+                <div class="row">
+                  <div class="col-md-4">Lieu :</div>
+                  <div class="col-md-6">
+                    <select name="lieu">
+                      <option value="Paris">{{ formation.location }}</option>
+                    </select>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-md-4">Date :</div>
+                  <div class="col-md-4">
+                    <select name="session" class="session" required="">
+                      <option value="" disabled="" class="hidden">Session</option>
+                      <option value="10285" class="">{{ formation.dateFormation|date('d-m-Y') }}</option>
+                    </select>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-md-12">
+                    <button type="submit" class="btn-primary  -2 btn btn-primary text-light bg-info" value="">
+                      <a href="{{ path('app_registration_formation') }}">Je choisis cette formation
+                      </a>
+                    </button>
+                  </div>
+                </div>
+              </div>
+            {% endif %}
+            {% if not is_granted('ROLE_USER')and not is_granted('ROLE_ADMIN') %}
+              <div class="container cara-forma-inscription">
+                <div class="s_cadre_inscription s_cta">
+                  <div class="txt">Connecter vous pour vous inscrire à une session de formation</a>
+                </div>
+                <p class="bouton">
+                  <a href="{{ path('app_register') }}" class="btn-primary">Inscription</a>
+                </p>
+              </div>
+            {% endif %}
+          </div>
+        </nav>
+        <div class="s_cadre_infos s_cta" style="background-image: url(https://www.panacea-conseil.com/wp-content/uploads/sidebar_bg_infos.png)">
+          <div class="row">
+            <div class="txt">Besoin d'informations détaillées ? Demandez le programme complet</div>
+            <div class="col-md-12">
+              <bouton class="btn-primary  -2 btn btn-primary text-light bg-info">
+                <a href="https://www.panacea-conseil.com/telecharger-le-programme/?f=2918">Recevoir le programme
+                </a>
+              </bouton>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
-	</div>
-</div>
-	
-</div>
+  </div>
 
-<div class="container">
-	<div class="row mb-2">
-		<div class="col-md-6">
-			<div class="card flex-md-row mb-4 box-shadow h-md-250">
-				<div class="card-body d-flex flex-column align-items-start">
-					<div class="custom_title"><h5 class="mb-0">PRÉREQUIS</h5></div>
-						<ul>
-							<li>{{ formation.prerequisite }}</li>
-						</ul>
-				</div>
-			</div>
-		</div>
-		<div class="col-md-6">
-			<div class="card flex-md-row mb-4 box-shadow h-md-250">
-				<div class="card-body d-flex flex-column align-items-start">
-						<div class="custom_title"><h5 class="mb-0">LIEUX</h5></div>
-					<ul>
-						<li> {{ formation.location }}</li>
-					</ul>
-				</div>
-			</div>
-		</div>
-	</div>
-	<div class="row mb-2">
-		<div class="col-md-6">
-			<div class="card flex-md-row mb-4 box-shadow h-md-250">
-				<div class="card-body d-flex flex-column align-items-start">
-					<div class="custom_title"><h5 class="mb-0">DURÉE</h5></div>
-						<ul>
-							<li>{{ formation.durationFormation}} jours</li>
-						</ul>
-				</div>
-			</div>
-		</div>
-		<div class="col-md-6">
-			<div class="card flex-md-row mb-4 box-shadow h-md-250">
-				<div class="card-body d-flex flex-column align-items-start">
-						<div class="custom_title"><h5 class="mb-0">PRIX</h5></div>
-					<ul>
-						<li> {{ formation.price}}€</li>
-					</ul>
-				</div>
-			</div>
-		</div>
-	</div>
-	</div>
+</div>
+</div>
 </div>
 <div class="container-fluid">
-  <div class="d-flex justify-content-center">
-    <h4 class="mb-3 mb-lg-5 bold-text">Nos partenaires</h4>
-  </div>
-  <div class="row text-center">
-      <div class="col-md-4"><img src="{{ '/img/logo-600x214.png' }}" alt="img-SILVERT-&-associé" class="img-fluid" width="30%" id="" alt="Responsive image"></div>
-      <div class="col-md-4"><img src="{{ '/img/HemoCue_logo_white_greybackground.png' }}" alt="img-HemoCue" class="img-fluid" width="30%" id="" alt="Responsive image"></div>
-      <div class="col-md-4"><img src="{{ '/img/laerdal-logo_en_process-696x365.jpeg' }}" alt="img-laerdal" class="img-fluid" width="30%" id="" alt="Responsive image"></div>
-      
-  </div>
+<div class="d-flex justify-content-center">
+<h4 class="mb-3 mb-lg-5 bold-text">Nos partenaires</h4>
+</div>
+<div class="row text-center">
+<div class="col-md-4"><img src="{{ '/img/logo-600x214.png' }}" alt="Responsive image" class="img-fluid" width="30%" id=""></div>
+<div class="col-md-4"><img src="{{ '/img/HemoCue_logo_white_greybackground.png' }}" alt="Responsive image" class="img-fluid" width="30%" id=""></div>
+<div class="col-md-4"><img src="{{ '/img/laerdal-logo_en_process-696x365.jpeg' }}" alt="Responsive image" class="img-fluid" width="30%" id=""></div>
+
+</div>
 </div>
 
 {% endblock %}
