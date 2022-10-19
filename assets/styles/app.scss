@@ -8,7 +8,16 @@
 
 /* FIN FONTS */
 
+#img-header{
+  width: 40%;
+}
 
+
+@media (max-width: 991.98px) {
+  #img-header {
+      background: #fff;
+  }
+}
 
 nav.navbar.shrink {
 	min-height: 35px;
@@ -52,10 +61,6 @@ nav.navbar.shrink {
   margin-top:150px;
   padding-top:140px;
  }
-
-#img-header{
-  width: 40%;
-}
 
  .homebody {
     flex: 1;
@@ -267,6 +272,7 @@ ul.social-network li {
     transition: all 0.4s;
     border-bottom: solid 1px #FFFF;
     background: #fff;
+    z-index: 15;
 }
 
 .navbar .nav-link {
@@ -278,7 +284,7 @@ ul.social-network li {
 
 .navbar .nav-link:hover,
 .navbar .nav-link:focus {
-    color:#209bd8 ;
+    color:#2b7699;
     text-decoration: none;
 }
 
@@ -288,9 +294,13 @@ ul.social-network li {
 
 }
 
-
-#navbarSupportedContent{
+.navbarSupportedContent{
   padding-right: 150px;
+}
+
+#navbarmenu{
+  padding-right: 150px;
+  margin-right: 150px;
 }
 
 
@@ -298,7 +308,7 @@ ul.social-network li {
 .navbar.active {
     background: #fff;
     box-shadow: 1px 2px 10px rgba(0, 0, 0, 0.1);
-    z-index: 3;
+    z-index: 15;
 }
 
 .navbar.active .nav-link {
@@ -325,16 +335,37 @@ ul.social-network li {
 @media (max-width: 991.98px) {
     .navbar {
         background: #fff;
+        text-align: center;
+        align-items: center;
     }
 
-    .navbar .navbar-brand, .navbar .nav-link {
-        color: #209bd8;
+    #navbarmenu {
+      padding-right: 0px;
+      margin-right: 0px;
+      text-align: center;
     }
 }
+
+@media (min-width: 1080px) and (max-width : 1400px) {
+  .navbar {
+      background: #FFFF;
+      padding-right: 100px;
+  }
+
+  #navbarmenu {
+    text-align: center;
+    justify-content: center;
+    padding-right: 50px;
+    margin-right: 50px;
+  }
+}
+
+
 
 .text-small {
     font-size: 0.9rem !important;
 }
+
 
 #nav-item{
   text-align: center;
@@ -353,7 +384,16 @@ ul.social-network li {
   -o-background-size: cover;
   background-size: cover;
   margin-bottom: 50px;
-  margin-top: 160px;
+  margin-top: 150px;
+}
+
+@media (max-width: 1100px)
+{
+    .carousel-item
+    {   
+      height: 1vh;
+      margin-top: 150px;
+    }
 }
 
  .formation-item{

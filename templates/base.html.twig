@@ -20,9 +20,12 @@
 <body>
 <header class="header">
     <nav class="navbar navbar-expand-lg fixed-top py-4">
-        <a href="{{ path('exana_home')}}" class="navbar-brand text-uppercase font-weight-bold"><img src="{{ '/img/LOGOS-EXSANA-3.png'}}" alt="img-linkedin" class="img-fluid" id="img-header" alt="Responsive image" ></a>
+        <div class="col-lg-5 col-md-12 col-sm-12 d-flex">
+        <a href="{{ path('exana_home')}}" class="navbar-brand text-uppercase font-weight-bold"><img src="{{ '/img/LOGOS-EXSANA-3.png'}}" alt="img-exsana" class="p-2 img-fluid" id="img-header" alt="Responsive image" ></a>
+        </div>
+        <div class="col-lg-7 col-md-12 col-sm-12 d-flex flex-row" id="navbarmenu">
             <button type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation" class="navbar-toggler navbar-toggler-right"><i class="fa fa-bars"></i></button>
-            <div id="navbarSupportedContent" class="collapse navbar-collapse col-md-7">
+            <div id="navbarSupportedContent" class="collapse navbar-collapse col-md-12">
                 <ul class="navbar-nav ml-auto">
                     <li class="nav-item active"><a href="{{ path('formations') }}" class="nav-link text-uppercase font-weight-bold">FORMATION<span class="sr-only">(current)</span></a></li>
                     <li class="nav-item"><a href="{{ path('whereweare') }}" class="nav-link text-uppercase font-weight-bold">INFOS PRATIQUES</a></li>
@@ -50,6 +53,7 @@
                     {% endif %}
                 </ul>
             </div>
+        </div>
     </nav>
 </header>
 
@@ -120,7 +124,7 @@
                     <h6 class="mb-3 mb-lg-5 bold-text">SUIVEZ-NOUS</h6>
                     <ul class="social-network social-circle">
                         <li><a href="#" class="icoFacebook" title="Facebook"><i class="fa fa-facebook"></i></a></li>
-                        <li><a href="#" class="icoLinkedin" title="Linkedin"><i class="fa fa-linkedin"></i></a></li>
+                        <li><a href="https://www.linkedin.com/in/soci%C3%A9t%C3%A9-exsana-8ba285251/" class="icoLinkedin" title="Linkedin"><i class="fa fa-linkedin"></i></a></li>
                         <li><a href="#" class="icoInstagram" title="Instagram"><i class="fa fa-instagram"></i></a></li>
                     </ul>
                      <!-- <div class="col-xl-2 col-md-4 col-sm-4 col-auto order-2 align-self-end mt-3 "> -->
