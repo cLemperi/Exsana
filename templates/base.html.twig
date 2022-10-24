@@ -2,12 +2,9 @@
 <html lang="fr">
     <head>
         <meta charset="UTF-8">
-        <title>{% block title %}Welcome!{% endblock %}</title>
-        {# Run `composer require symfony/webpack-encore-bundle`
-           and uncomment the following Encore helpers to start using Symfony UX #}
+        <title>{% block title %}Exsana santé formation{% endblock %}</title>
+
         {% block stylesheets %}
-           <!-- Latest compiled and minified CSS -->
-            {# 'app' must match the first argument to addEntry() in webpack.config.js #}
             <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
             <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" >
             {{ encore_entry_link_tags('app') }}

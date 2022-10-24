@@ -28,9 +28,9 @@ class FormationInviteType extends AbstractType
             'by_reference' => false,
             'allow_delete' => true,
         ])
-        ->add('formationregistration', EntityType::class,[
-                'class' => Formations::class,
-                'choice_label' => 'id',
+        ->add('formationregisterid', EntityType::class,[
+                'class' => User::class,
+                'choice_label' => 'formationregisterid',
                 'mapped' => false
         ]);
         // $builder

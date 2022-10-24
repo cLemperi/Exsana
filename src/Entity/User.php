@@ -320,7 +320,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface, Seriali
     {
         return $this->formationregisterid;
     }
-
+    
     public function addFormationregisterid(Formations $formationregisterid): self
     {
         if (!$this->formationregisterid->contains($formationregisterid)) {

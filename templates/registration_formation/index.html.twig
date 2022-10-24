@@ -6,7 +6,7 @@
     <div class="container">
         <div class="row">
             <div class="col-12">
-                <a href=" {{path("registration_add_invite") }}" class="btn btn-primary">Ajouter des participants</a>
+                <a href=" {{path("registration_add_invite",{formation: formation.id,id: user.id}) }}" class="btn btn-primary">Ajouter des participants</a>
                 <table class="table">
                     <thead>
                         <tr>
@@ -19,7 +19,7 @@
                             <tr>
                                 <td class="text-center">{{ userInvite.nickname }} {{ userInvite.lastname }}</td>
                                 <td class="text-center">
-                                    <a href="{{ path("registration_update", {id: userInvite.id}) }}" class="btn btn-sm btn-primary">Update</a>
+                                    <a href="{{ path("registration_update", {formation: formation.id, id: userInvite.id}) }}" class="btn btn-sm btn-primary">Update</a>
                                 </td>
                             </tr>
                         {% endfor %}

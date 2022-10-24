@@ -1,5 +1,5 @@
 {% extends 'base.html.twig' %}
-{% block title %}Hello ExanaHomeController!{% endblock %}
+{% block title %}Qui somme-nous{% endblock %}
 
 
 {% block body %}
@@ -7,16 +7,6 @@
 </div>
 <h1>Qui somme-nous !</h1>
 
-<div class="container-fluid">
-  <div class="d-flex justify-content-center">
-    <h4 class="mb-3 mb-lg-5 bold-text">Nos partenaires</h4>
-  </div>
-  <div class="row text-center">
-      <div class="col-md-4"><img src="{{ '/img/logo-600x214.png' }}" alt="img-SILVERT-&-associé" class="img-fluid" width="30%" id="" alt="Responsive image"></div>
-      <div class="col-md-4"><img src="{{ '/img/HemoCue_logo_white_greybackground.png' }}" alt="img-HemoCue" class="img-fluid" width="30%" id="" alt="Responsive image"></div>
-      <div class="col-md-4"><img src="{{ '/img/laerdal-logo_en_process-696x365.jpeg' }}" alt="img-laerdal" class="img-fluid" width="30%" id="" alt="Responsive image"></div>
-      
-  </div>
-</div>
+{{ include('theme/_partenaires.html.twig') }}
 {% endblock	%}
 

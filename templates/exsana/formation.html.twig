@@ -1,6 +1,5 @@
 {% extends 'base.html.twig' %}
-{% block title %}Formations Exsana
-{% endblock %}
+{% block title %}Exsana formation{% endblock %}
 
 {% block body %}
 
@@ -131,7 +130,7 @@
                 <div class="row">
                   <div class="col-md-12">
                     <button type="submit" class="btn-primary  -2 btn btn-primary text-light bg-info" value="">
-                      <a href="{{ path('app_registration_formation') }}">Je choisis cette formation
+                      <a href="{{ path('app_registration_formation',{id: formation.id}) }}">Je choisis cette formation
                       </a>
                     </button>
                   </div>
@@ -168,16 +167,7 @@
 </div>
 </div>
 </div>
-<div class="container-fluid">
-<div class="d-flex justify-content-center">
-<h4 class="mb-3 mb-lg-5 bold-text">Nos partenaires</h4>
-</div>
-<div class="row text-center">
-<div class="col-md-4"><img src="{{ '/img/logo-600x214.png' }}" alt="Responsive image" class="img-fluid" width="30%" id=""></div>
-<div class="col-md-4"><img src="{{ '/img/HemoCue_logo_white_greybackground.png' }}" alt="Responsive image" class="img-fluid" width="30%" id=""></div>
-<div class="col-md-4"><img src="{{ '/img/laerdal-logo_en_process-696x365.jpeg' }}" alt="Responsive image" class="img-fluid" width="30%" id=""></div>
-
-</div>
+  {{ include('theme/_partenaires.html.twig') }}
 </div>
 
 {% endblock %}

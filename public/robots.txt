@@ -1,0 +1,2 @@
+User-agent: *
+Sitemap: https://exsanaformation.fr/sitemap.xml
