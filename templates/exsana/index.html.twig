@@ -48,17 +48,6 @@
       <div class="raw">
        <div class="title_formation">
         <h1> Home</h1></div>
-        <ul>
-          <li>
-            <p>Charles lemperiere. Dolor inventore facilis, et accusamus libero quo veritatis iste dolorem ut, repudiandae ducimus quisquam illo cum adipisci? Eos velit dignissimos explicabo deleniti officiis architecto nihil tenetur dolorum ipsa minima ad quasi, eaque nesciunt id maiores magni quisquam harum blanditiis quis. Cum, deleniti.</p>
-          </li>
-          <li>
-            <p>Perferendis adipisci quibusdam fugiat, molestias eius dolore quod, iure fuga vitae, saepe libero doloribus! Fugiat dolores mollitia ipsam deleniti, necessitatibus, odit magni ipsum nihil tempora est neque, dolor recusandae doloribus placeat veniam consequatur corporis asperiores tempore quae facilis? Ipsa, velit accusantium vero aliquam, quos iusto possimus quasi exercitationem quod tenetur!</p>
-          </li>
-          <li>
-            <p>Blanditiis, obcaecati quia provident, asperiores ipsum voluptatibus sit voluptate fuga totam alias distinctio, autem fugiat at corporis, officia ipsam tempore labore quasi. Natus, asperiores nam et illo, velit, assumenda dolorum exercitationem tempore nisi vel consequatur nemo accusamus? Accusamus, deleniti. Est quisquam consequuntur sapiente a facilis. Porro itaque, aliquam officiis repellendus.</p>
-          </li>
-        </ul>
       </div>
     </div>
   </div>
@@ -72,7 +61,7 @@
   <h1> Les dernières formations </h1></div>
       <div class="row">
       {% for formation in formations %}
-          <div class="col md-3">
+          <div class=" col-xl-6 col-lg-6 col-md-12 col-sm-12 ">
             <div class="last-formation">
                 <div class="p2 d-flex">
                     <a class="full-link" href="{{ path('formation', {id: formation.id, slug: formation.slug}) }}">
@@ -92,14 +81,14 @@
 <!--FIN DERNIER FORMATIONS -->
 <hr class="featurette-divider">
 <!--POURQUOI CHOISIR EXSANA -->
-<div class="container-fluid choise-exsana-block">
+<!-- <div class="container-fluid choise-exsana-block">
   <div class="container">
     <div class="row">
-      <div class="col-md-6">
+      <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12">
         <div class="chiffres">
           <div class="item-chiffre">
             <p class="picto"><img src="https://www.panacea-conseil.com/wp-content/uploads/picto-chiffre-personnes.png" alt=""></p>
-            <p class="chiffre"><span>11 500</span></p>
+            <p class="chiffre"><span>0</span></p>
             <p class="txt">Personnes formées<br>par an</p>
           </div>
           <div class="item-chiffre">
@@ -119,18 +108,19 @@
           </div>
         </div>
       </div>
-      <div class="col-md-6">
+      <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12">
         <div class="pourquoi-text">
           <h2> Pourquoi avoir choisi exsana santé ? </h2>
           <p>Donec ullamcorper nulla non metus auctor fringilla. Vestibulum id ligula porta felis euismod semper. Praesent commodo cursus magna, vel scelerisque nisl consectetur. Fusce dapibus, tellus ac cursus commodo.</p>
           <p>Donec ullamcorper nulla non metus auctor fringilla. Vestibulum id ligula porta felis euismod semper. Praesent commodo cursus magna, vel scelerisque nisl consectetur. Fusce dapibus, tellus ac cursus commodo.</p>
-          <p>Donec ullamcorper nulla non metus auctor fringilla. Vestibulum id ligula porta felis euismod semper. Praesent commodo cursus magna, vel scelerisque nisl consectetur. Fusce dapibus, tellus ac cursus commodo.</p>
         </div>
+        <p><br><a class="btn-primary  -2 btn btn-primary text-light bg-info" href="{{ path('whoweare')}}">Mieux nous connaître</a></p>
       </div>
     </div>
   </div>
 
 </div>
+-->
 <!-- FIN POURQUOI CHOISIR EXSANA -->
 
 <hr class="featurette-divider">

@@ -60,6 +60,13 @@ Encore
     // enables Sass/SCSS support
     .enableSassLoader()
 
+    .configureImageRule({
+        type: 'asset',
+    })
+
+    .configureFontRule({
+        type: 'asset',
+    })
     // uncomment if you use TypeScript
     //.enableTypeScriptLoader()
 
