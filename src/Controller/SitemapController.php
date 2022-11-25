@@ -14,10 +14,10 @@ class SitemapController extends AbstractController
     public function index(Request $request,
     FormationsRepository $formationRepo,
     ): Response
-    {
+    {  
         $hostname = $request->getSchemeAndHttpHost();
         $urls = [];
-        $urls[] = ['loc' => $this->generateUrl('exana_home')];
+        $urls[] = ['loc' => $this->  generateUrl('exana_home')];
         $urls[] = ['loc' => $this->generateUrl('whereweare')];
         $urls[] = ['loc' => $this->generateUrl('info')];
         $urls[] = ['loc' => $this->generateUrl('contact')];
