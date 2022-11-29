@@ -37,12 +37,14 @@
                         <li class="nav-item"><a href="{{ path('admin.index') }}" class="nav-link nav-link font-weight-bold">Gestion</a></li>
                     {% endif %}
                     {% if is_granted("ROLE_USER") %}
-                        <li class="nav-item dropdown"><a class="nav-link nav-link font-weight-bold dropdown-toggle" href="#" id="navBarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" class="">Profils<a/>
-                            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                                <a class="dropdown-item" href="{{path('user.register') }} " class="nav-link font-weight-bold">Mon comptes </a>
-                                <a class="dropdown-item" href="{{ path('user.formations') }}" class="nav-link font-weight-bold">Mes formations</a>
-                                <a class="dropdown-item" href="{{ path('user.help') }}" class="nav-link font-weight-bold">Aide et assistance</a>
-                            </div>
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle font-weight-bold" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                Profils</a>
+                            <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                <li><a class="dropdown-item" href="{{path('user.register') }} " class="nav-link font-weight-bold">Mon comptes </a></li>
+                                <li><a class="dropdown-item" href="{{ path('user.formations') }}" class="nav-link font-weight-bold">Mes formations</a></li>
+                                <li><a class="dropdown-item" href="{{ path('user.help') }}" class="nav-link font-weight-bold">Aide et assistance</a></li>
+                            </ul>
                         </li>
                     {% endif %}
 

@@ -18,7 +18,7 @@ class UserInviteType extends AbstractType
                 'attr' => [
                     'class'=>'form-invite',
                     'label' => false,
-                    'required' => false,
+                    'require' => false,
                 ]
             ])
             ->add('lastname',TypeTextType::class, [
