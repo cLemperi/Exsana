@@ -351,7 +351,9 @@ ul.social-network li {
 
 /* Caroussel*/
 
-
+.carousel-caption h3{
+  color: #000;
+}
 .carousel-item {
   height: 60vh;
   min-height: 350px;
@@ -415,10 +417,10 @@ ul.social-network li {
 
 .title_formation h1 {
     color: #2b7699 !important; 
-    font-size: 35px;
+    font-size: 33px;
     font-weight: 400;
     font-family: 'Avenir-Black', sans-serif;
-    line-height: 1.3em;
+    line-height: 1.1em;
     clear: both;
 }
 .title_formation{
@@ -877,7 +879,7 @@ a {
 
   #img-header {
     background: #fff;
-    width: 40%;
+    width: 80%;
   }
 
   .img-fluid{
@@ -991,11 +993,11 @@ a {
 
   #img-header {
     background: #fff;
-    width: 50%;
+    width: 45%;
   }
 
   .img-fluid{
-    width: 50%;
+    width: 45%;
   }
 }
 //grand écran
@@ -1005,7 +1007,7 @@ a {
   }
 
   .img-fluid{
-    width: 40%;
+    width: 60%;
   }
 }
 
