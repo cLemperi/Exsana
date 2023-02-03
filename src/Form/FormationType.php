@@ -51,6 +51,8 @@ class FormationType extends AbstractType
             ->add('forWho')
             ->add('prerequisite')
             ->add('location')
+            ->add('Evaluation')
+            ->add('publicAndAccessCondition')
         ;
     }
 

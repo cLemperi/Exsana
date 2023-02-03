@@ -52,6 +52,12 @@
 	{{ form_widget(form.location,{'attr' : {'placeholder' : "Ville  formation"}}) }}</h5></div>
 </div>
 <div class="row">
+    <div class="col-md-6"><div class="custom_title"><h5>Evaluation de la formations</h5></div>{{ form_label(form.Evaluation, ' ') }}
+    {{ form_widget(form.Evaluation,{'attr' : {'placeholder' : "texte évaluation"}}) }}</div>
+    <div class="col-md-6"><div class="custom_title"><h5>Accessibilité et CONDITION : </h5></div>{{ form_label(form.publicAndAccessCondition, ' ') }}
+	{{ form_widget(form.location,{'attr' : {'placeholder' : "texte accès et condition"}}) }}</h5></div>
+</div>
+<div class="row">
     <div class="col-md-12">
     {{ form_widget(form) }}
     <button class="btn btn-primary">{{ button }}</button></div>

@@ -25,7 +25,7 @@ class FormationFixture extends Fixture
             $category = $categories[array_rand($categories)];
             $shortText = $generator->sentence($nbWords = 10, $variableNbWords = true ) . $index;
             $city = $generator->city;
-            $date = $generator->dateTime('+0 days', '+2 years');
+            $date = $generator->dateTime();
             $manager->persist(
                 (new Formations())
                     ->setTitle($shortText)
@@ -46,6 +46,8 @@ class FormationFixture extends Fixture
                     ->addProgrammeFormation((new ProgrammeFormation())->setName($shortText))
                     ->addProgrammeFormation((new ProgrammeFormation())->setName($shortText))
                     ->addProgrammeFormation((new ProgrammeFormation())->setName($shortText))
+                    ->setEvaluation($shortText)
+                    ->setPublicAndAccessCondition($shortText)
                 );
         } 
         $manager->flush();

@@ -20,4 +20,3 @@ yarn-error.log
 ###< symfony/webpack-encore-bundle ###
 
 ###config webpack###
-webpack.config.js

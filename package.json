@@ -6,25 +6,29 @@
         "autoprefixer": "^10.4.13",
         "copy-webpack-plugin": "^11.0.0",
         "core-js": "^3.0.0",
+        "css-loader": "^6.7.3",
+        "postcss-loader": "^7.0.2",
         "regenerator-runtime": "^0.13.2",
-        "sass": "^1.56.1",
+        "sass": "^1.58.0",
         "sass-loader": "^13.2.0",
+        "style-loader": "^3.3.1",
         "webpack": "^5.75.0",
         "webpack-notifier": "^1.6.0"
     },
     "license": "UNLICENSED",
     "private": true,
     "scripts": {
+        "start": "webpack serve --mode development",
         "dev-server": "encore dev-server",
         "dev": "encore dev",
         "watch": "encore dev --watch",
         "build": "encore production --progress"
     },
     "dependencies": {
-        "bootstrap": "^5.2.3",
+        "@popperjs/core": "^2.11.6",
+        "bootstrap": "^5.3.0-alpha1",
         "bootstrap-icons": "^1.8.3",
         "jquery": "^3.6.1",
-        "popper.js": "^1.16.1",
-        "postcss-loader": "^7.0.1"
+        "popper.js": "^1.16.1"
     }
 }

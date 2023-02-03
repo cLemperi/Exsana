@@ -66,6 +66,15 @@ class Formations
 
     #[ORM\Column(length: 255)]
     private ?string $slug = null;
+
+    #[ORM\Column(length: 255, nullable: true)]
+    private ?string $intervenant = null;
+
+    #[ORM\Column(length: 255, nullable: true)]
+    private ?string $Evaluation = null;
+
+    #[ORM\Column(type: Types::TEXT, nullable: true)]
+    private ?string $publicAndAccessCondition = null;
     
     
     public function __construct()
@@ -267,6 +276,42 @@ class Formations
     public function setSlug(string $slug): self
     {
         $this->slug = $slug;
+
+        return $this;
+    }
+
+    public function getIntervenant(): ?string
+    {
+        return $this->intervenant;
+    }
+
+    public function setIntervenant(?string $intervenant): self
+    {
+        $this->intervenant = $intervenant;
+
+        return $this;
+    }
+
+    public function getEvaluation(): ?string
+    {
+        return $this->Evaluation;
+    }
+
+    public function setEvaluation(?string $Evaluation): self
+    {
+        $this->Evaluation = $Evaluation;
+
+        return $this;
+    }
+
+    public function getPublicAndAccessCondition(): ?string
+    {
+        return $this->publicAndAccessCondition;
+    }
+
+    public function setPublicAndAccessCondition(?string $publicAndAccessCondition): self
+    {
+        $this->publicAndAccessCondition = $publicAndAccessCondition;
 
         return $this;
     }
