@@ -19,6 +19,9 @@ class ProgrammeFormation
     #[ORM\ManyToOne(targetEntity: Formations::class, inversedBy: 'programmeFormations', cascade: ['persist'])]
     #[ORM\JoinColumn(name: "proForma_id" ,referencedColumnName: "id",nullable: false)]
     private ?\App\Entity\Formations $programme = null;
+
+    #[ORM\Column(length: 255)]
+    private ?string $title = null;
     
     public function __toString(): string
     {
@@ -45,6 +48,18 @@ class ProgrammeFormation
     public function setProgramme(?Formations $programme): self
     {
         $this->programme = $programme;
+
+        return $this;
+    }
+
+    public function getTitle(): ?string
+    {
+        return $this->title;
+    }
+
+    public function setTitle(string $title): self
+    {
+        $this->title = $title;
 
         return $this;
     }

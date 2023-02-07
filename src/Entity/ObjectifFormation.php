@@ -19,6 +19,9 @@ class ObjectifFormation
     #[ORM\ManyToOne(targetEntity: Formations::class, inversedBy: 'objectifFormations', cascade: ['persist'])]
     #[ORM\JoinColumn(name: "objForma_id" ,referencedColumnName: "id" ,nullable: false)]
     private ?\App\Entity\Formations $objectifs = null;
+
+    #[ORM\Column(length: 255)]
+    private ?string $title = null;
     
     public function __toString(): string
     {
@@ -45,6 +48,18 @@ class ObjectifFormation
     public function setObjectifs(?Formations $objectifs): self
     {
         $this->objectifs = $objectifs;
+
+        return $this;
+    }
+
+    public function getTitle(): ?string
+    {
+        return $this->title;
+    }
+
+    public function setTitle(string $title): self
+    {
+        $this->title = $title;
 
         return $this;
     }

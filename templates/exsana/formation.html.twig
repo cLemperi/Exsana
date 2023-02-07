@@ -24,10 +24,11 @@
             </div>
             <div id="obj-formation">
               {% set id = 0 %}
-              <ul>
+                <ul>
                 {% for formations in formation.objectifFormations %}
-                  <li>
-                    {{ formation.objectifFormations[id] |e }}{% set id = id + 1 %}</li>
+                  <div class="sub-title-formation"><h2>{{ formations.title|nl2br}}</h2></div>
+                    <li>{{ formations.name|nl2br}}</li>
+                  <br>
                 {% endfor %}
               </ul>
             </div>
@@ -39,8 +40,9 @@
             <ul id="formation">
               {% set id = 0 %}
               {% for formations in formation.programmeFormations %}
-                <li>
-                  {{ formation.programmeFormations[id]|e }}{% set id = id + 1 %}</li>
+                <div class="sub-title-formation"><h2>{{ formations.title|nl2br}}</h2></div>
+                <li> {{formations.name|nl2br}}</li>
+                <br>
               {% endfor %}
             </ul>
           </div>
@@ -92,7 +94,7 @@
                   </div>
                   <ul>
                     <li>
-                      {{ formation.price}}€</li>
+                      {{ formation.price}}</li>
                   </ul>
                 </div>
               </div>
@@ -175,16 +177,18 @@
             {% endif %}
           </div>
         </nav>
+        <!--
         <div class="s_cadre_infos s_cta" style="background-image: url(https://www.panacea-conseil.com/wp-content/uploads/sidebar_bg_infos.png)">
           <div class="row">
             <div class="txt">Besoin d'informations détaillées ? Demandez le programme complet</div>
             <div class="col-md-12">
               <bouton class="btn-primary  -2 btn btn-primary text-light bg-info">
-                <a href="https://www.panacea-conseil.com/telecharger-le-programme/?f=2918">Recevoir le programme
+                <a href="">Recevoir le programme
                 </a>
               </bouton>
             </div>
           </div>
+        -->
         </div>
       </div>
     </div>

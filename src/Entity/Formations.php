@@ -26,8 +26,8 @@ class Formations
     private ?string $title = null;
 
 
-    #[ORM\Column(type: 'integer', options: ['default' => 0])]
-    private ?int $price = null;
+    #[ORM\Column(type: 'string', length: 255, nullable: true)]
+    private ?string $price = null;
 
     #[ORM\Column(type: 'integer', options: ['default' => 0])]
     private ?int $duration = null;
@@ -101,11 +101,11 @@ class Formations
 
         return $this;
     }
-    public function getPrice(): ?int
+    public function getPrice(): ?string
     {
         return $this->price;
     }
-    public function setPrice(int $price): self
+    public function setPrice(string $price): self
     {
         $this->price = $price;
 
@@ -218,6 +218,7 @@ class Formations
 
         return $this;
     }
+    
     /**
      * @return Collection<int, ProgrammeFormation>
      */

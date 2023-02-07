@@ -23,7 +23,7 @@ class AdminFormationController extends AbstractController
     public function index() : Response
     {
         return $this->render('admin/formation/formation/index.html.twig', [
-            'controller_name' => 'AdminFormationController',
+            'controller_name' => 'AdminFormationController'
         ]);
     }
     
@@ -77,7 +77,7 @@ class AdminFormationController extends AbstractController
     #[Route(path: '/admin/formation{id}', name: 'admin.formation.delete', methods: 'DELETE')]
     public function delete(Formations $formation, Request $request) : \Symfony\Component\HttpFoundation\Response
     {
-        if($this->isCsrfTokenValid('delete' . $formation->getId(), $request->get('_token'))) {
+        if($this->isCsrfTokenValid('delete'.$formation->getId(), $request->get('_token'))) {
             $this->em->remove($formation);
             $this->em->flush();
             $this->addFlash('success', 'Bien supprimé avec succès');

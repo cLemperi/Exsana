@@ -19,7 +19,9 @@
                 data-index="{{form.programmeFormations|length < 0 ? form.programmeFormations|last.vars.name + 1 : 0 }}"
                 data-prototype="{{form_row(form.programmeFormations.vars.prototype) |e('html_attr') }}">
                 {% for programmeFormation in form.programmeFormations %}
+                    <li> {{ form_row(programmeFormation.title) }}</li>
                     <li> {{ form_row(programmeFormation.name) }}</li>
+                    <br><br>
                 {% endfor %}
             </ul>
             <button id="add_formation" type="button" class="btn btn-info" data-collection-holder-class="programmeFormations"> ajouter une ligne </button>
@@ -30,7 +32,9 @@
                 data-index="{{form.objectifFormations|length < 0 ? form.objectifFormations|last.vars.name + 1 : 0 }}"
                 data-prototype="{{ form_widget(form.objectifFormations.vars.prototype) |e('html_attr') }}">
                 {% for objectifFormation in form.objectifFormations %}
+                    <li> {{ form_widget(objectifFormation.title) }}</li>
                     <li> {{ form_widget(objectifFormation.name) }}</li>
+                    <br><br>
                 {% endfor %}
             </ul>
             <button type="button"  id="add_objectif" class="btn btn-info" data-collection-holder-class="objectifFormations"> ajouter un objectif de formation </button>       
@@ -55,7 +59,7 @@
     <div class="col-md-6"><div class="custom_title"><h5>Evaluation de la formations</h5></div>{{ form_label(form.Evaluation, ' ') }}
     {{ form_widget(form.Evaluation,{'attr' : {'placeholder' : "texte évaluation"}}) }}</div>
     <div class="col-md-6"><div class="custom_title"><h5>Accessibilité et CONDITION : </h5></div>{{ form_label(form.publicAndAccessCondition, ' ') }}
-	{{ form_widget(form.location,{'attr' : {'placeholder' : "texte accès et condition"}}) }}</h5></div>
+	{{ form_widget(form.publicAndAccessCondition,{'attr' : {'placeholder' : "texte accès et condition"}}) }}</h5></div>
 </div>
 <div class="row">
     <div class="col-md-12">
