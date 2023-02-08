@@ -25,7 +25,6 @@ class FormationFixture extends Fixture
             $formation = (new Formations())
                 ->setTitle($shortText)
                 ->setPrice("sur devis")
-                ->setDuration(mt_rand(1, 30))
                 ->setForWho($shortText)
                 ->setPrerequisite($shortText)
                 ->setDateFormation($date)

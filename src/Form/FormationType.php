@@ -19,15 +19,7 @@ class FormationType extends AbstractType
 
         $builder
             ->add('title')
-            ->add('dateFormation',DateType::class, [
-                'label' => 'Date',
-                'widget' => 'single_text',
-                /*'attr'   => [
-                    'min' => (new \DateTime())->format('Y-m-d H:i'),
-                ],*/
-                'model_timezone' => 'Europe/Paris',
-                'view_timezone' => 'Europe/Paris',
-            ])
+            ->add('dateFormation')
             ->add('price')
             ->add('category', EntityType::class,[
                 'class' => Category::class,
@@ -47,7 +39,7 @@ class FormationType extends AbstractType
                 'by_reference' => false,
                 'allow_delete' => true, 
             ])
-            ->add('duration') //Durée
+            ->add('durationFormation') //Durée
             ->add('forWho')
             ->add('prerequisite')
             ->add('location')

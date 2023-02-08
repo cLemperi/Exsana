@@ -9,10 +9,11 @@
 
     <div class="row core-formation">
 
-      <div class="categorie_article">
+      <!--<div class="categorie_article">
         CATEGORIE :
         {{formation.category.title}}
       </div>
+      -->
       <div class="title_formation">
         <h1>{{ formation.title}}</h1>
       </div>
@@ -148,10 +149,10 @@
                 </div>
                 <div class="row">
                   <div class="col-md-4">Date :</div>
-                  <div class="col-md-4">
+                  <div class="col-md-6">
                     <select name="session" class="session" required="">
                       <option value="" disabled="" class="hidden">Session</option>
-                      <option value="10285" class="">{{ formation.dateFormation|date('d-m-Y') }}</option>
+                      <option value="10285" class="">{{ formation.dateFormation}}</option>
                     </select>
                   </div>
                 </div>

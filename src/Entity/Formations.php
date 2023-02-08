@@ -29,9 +29,6 @@ class Formations
     #[ORM\Column(type: 'string', length: 255, nullable: true)]
     private ?string $price = null;
 
-    #[ORM\Column(type: 'integer', options: ['default' => 0])]
-    private ?int $duration = null;
-
     #[ORM\Column(type: 'string', length: 255, nullable: true)]
     private ?string $forWho = null;
 
@@ -41,9 +38,8 @@ class Formations
     #[ORM\Column(type: 'datetime', nullable: true)]
     private \DateTime|\DateTimeInterface|null $created_at = null;
 
-    #[Assert\Type("\DateTimeInterface")]
-    #[ORM\Column(type: 'datetime' ,nullable: true)]
-    private ?\DateTimeInterface $dateFormation = null;
+    #[ORM\Column(type: 'string', length: 255, nullable: true)]
+    private ?string $dateFormation = null;
 
     #[ORM\Column(type: 'string', length: 255, nullable: true)]
     private ?string $durationFormation = null;
@@ -111,16 +107,7 @@ class Formations
 
         return $this;
     }
-    public function getDuration(): ?int
-    {
-        return $this->duration;
-    }
-    public function setDuration(int $duration): self
-    {
-        $this->duration = $duration;
 
-        return $this;
-    }
     public function getForWho(): ?string
     {
         return $this->forWho;
@@ -151,11 +138,11 @@ class Formations
 
         return $this;
     }
-    public function getDateFormation(): ?\DateTimeInterface
+    public function getDateFormation(): string
     {
         return $this->dateFormation;
     }
-    public function setDateFormation(?\DateTimeInterface $dateFormation): self
+    public function setDateFormation(?string $dateFormation): self
     {
         $this->dateFormation = $dateFormation;
 
