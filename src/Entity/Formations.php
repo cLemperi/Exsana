@@ -45,8 +45,8 @@ class Formations
     #[ORM\Column(type: 'datetime' ,nullable: true)]
     private ?\DateTimeInterface $dateFormation = null;
 
-    #[ORM\Column(type: 'integer', nullable: true)]
-    private ?int $durationFormation = null;
+    #[ORM\Column(type: 'string', length: 255, nullable: true)]
+    private ?string $durationFormation = null;
 
     #[ORM\Column(type: 'string', length: 255, nullable: true)]
     private ?string $location = null;
@@ -161,11 +161,11 @@ class Formations
 
         return $this;
     }
-    public function getDurationFormation(): ?int
+    public function getDurationFormation(): string
     {
         return $this->durationFormation;
     }
-    public function setDurationFormation(?int $durationFormation): self
+    public function setDurationFormation(?string $durationFormation): self
     {
         $this->durationFormation = $durationFormation;
 

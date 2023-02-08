@@ -62,10 +62,15 @@
 	{{ form_widget(form.publicAndAccessCondition,{'attr' : {'placeholder' : "texte accès et condition"}}) }}</h5></div>
 </div>
 <div class="row">
+    <div class="col-md-12"><div class="custom_title"><h5>Slug personnalisé de la formation</h5>{{ form_label(form.slug, ' ') }}
+    {{ form_widget(form.slug,{'attr' : {'placeholder' : "Slug de la formation"}}) }}</div>
+</div>
+<div class="row">
     <div class="col-md-12">
     {{ form_widget(form) }}
     <button class="btn btn-primary">{{ button }}</button></div>
 </div>
+
 {{ form_end(form) }}
 </div>
 

@@ -30,7 +30,7 @@ class FormationFixture extends Fixture
                 ->setPrerequisite($shortText)
                 ->setDateFormation($date)
                 ->setSlug($generator->slug(3))
-                ->setDurationFormation(mt_rand(1, 31))
+                ->setDurationFormation("24h")
                 ->setLocation($city)
                 ->setCategory($category)
                 ->setEvaluation($shortText)

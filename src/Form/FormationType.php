@@ -53,6 +53,7 @@ class FormationType extends AbstractType
             ->add('location')
             ->add('Evaluation')
             ->add('publicAndAccessCondition')
+            ->add('slug')
         ;
     }
 
