@@ -62,8 +62,10 @@
 	{{ form_widget(form.publicAndAccessCondition,{'attr' : {'placeholder' : "texte accès et condition"}}) }}</h5></div>
 </div>
 <div class="row">
-    <div class="col-md-12"><div class="custom_title"><h5>Slug personnalisé de la formation</h5>{{ form_label(form.slug, ' ') }}
+    <div class="col-md-6"><div class="custom_title"><h5>Slug personnalisé de la formation</h5>{{ form_label(form.slug, ' ') }}
     {{ form_widget(form.slug,{'attr' : {'placeholder' : "Slug de la formation"}}) }}</div>
+    <div class="col-md-6"><div class="custom_title"><h5>Intervenant</h5>{{ form_label(form.intervenant, ' ') }}
+    {{ form_widget(form.intervenant,{'attr' : {'placeholder' : "Intervenant"}}) }}</div>
 </div>
 <div class="row">
     <div class="col-md-12">

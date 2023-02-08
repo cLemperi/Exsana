@@ -27,13 +27,15 @@ class FormationFixture extends Fixture
                 ->setPrice("sur devis")
                 ->setForWho($shortText)
                 ->setPrerequisite($shortText)
-                ->setDateFormation($date)
+                ->setDateFormation("A définir")
                 ->setSlug($generator->slug(3))
                 ->setDurationFormation("24h")
                 ->setLocation($city)
                 ->setCategory($category)
                 ->setEvaluation($shortText)
-                ->setPublicAndAccessCondition($shortText);
+                ->setPublicAndAccessCondition($shortText)
+                ->setIntervenant($shortText)
+                ->setIntervenant($shortText);
             for ($i = 0; $i < 4; $i++){
                 $formation->addObjectifFormation((new ObjectifFormation())->setName($shortText)->setTitle($shortText));
                 $formation->addProgrammeFormation((new ProgrammeFormation())->setName($shortText)->setTitle($shortText));

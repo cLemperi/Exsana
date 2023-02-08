@@ -42,6 +42,7 @@ class FormationType extends AbstractType
             ->add('durationFormation') //Durée
             ->add('forWho')
             ->add('prerequisite')
+            ->add('intervenant')
             ->add('location')
             ->add('Evaluation')
             ->add('publicAndAccessCondition')

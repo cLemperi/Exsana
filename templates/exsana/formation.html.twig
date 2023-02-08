@@ -9,128 +9,130 @@
 
     <div class="row core-formation">
 
-      <!--<div class="categorie_article">
-        CATEGORIE :
-        {{formation.category.title}}
-      </div>
-      -->
+      <!--<div class="categorie_article"> CATEGORIE : {{formation.category.title}} </div> -->
       <div class="title_formation">
         <h1>{{ formation.title}}</h1>
       </div>
       <div class="col-lg-9 col-md-12 col-sm-12 formation">
         <div class="row">
-          <div class="col-md-12 obj-formation">
+          <div class="col-md-12 obj-formation" name"programmebody"="name"programmebody"">
             <div class="custom_title">
-              <h2>Objectifs de la formation</h2>
+              <h2>OBJECTIF GENERAL</h2>
+            </div>
+            <ul id="formation">
+              {% set id = 0 %}
+              {% for formations in formation.programmeFormations %}
+                <div class="sub-title-formation">
+                  <h2>{{ formations.title|nl2br}}</h2>
+                </div>
+                <li>
+                  {{formations.name|nl2br}}</li>
+                <br>
+              {% endfor %}
+            </ul>
+          </div>
+          <div class="col-md-12 formation-programme">
+            <div class="custom_title">
+              <h2>PROGRAMME ET OBJECTIFS SP&EacuteCIFIQUES</h2>
             </div>
             <div id="obj-formation">
               {% set id = 0 %}
-                <ul>
+              <ul>
                 {% for formations in formation.objectifFormations %}
-                  <div class="sub-title-formation"><h2>{{ formations.title|nl2br}}</h2></div>
-                    <li>{{ formations.name|nl2br}}</li>
+                  <div class="sub-title-formation">
+                    <h2>{{ formations.title|nl2br}}</h2>
+                  </div>
+                  <li>{{ formations.name|nl2br}}</li>
                   <br>
                 {% endfor %}
               </ul>
             </div>
           </div>
-          <div class="container formation-programme" name"programmebody">
+          <div class="col-md-12 public-acces-formation">
             <div class="custom_title">
-              <h2>Programme pédagogique</h2>
+              <h2>Public et conditions d'accès</h2>
             </div>
-            <ul id="formation">
-              {% set id = 0 %}
-              {% for formations in formation.programmeFormations %}
-                <div class="sub-title-formation"><h2>{{ formations.title|nl2br}}</h2></div>
-                <li> {{formations.name|nl2br}}</li>
-                <br>
-              {% endfor %}
-            </ul>
+            {{ formation.publicAndAccessCondition|nl2br }}
           </div>
-		<div class ="param-formation">
-          <div class="row mb-2">
-            <div class="col-md-6">
-              <div class="card flex-md-row mb-4 box-shadow h-md-250">
-                <div class="card-body d-flex flex-column align-items-start">
-                  <div class="custom_title">
-                    <h5 class="mb-0">PRÉREQUIS</h5>
+          <div class="param-formation">
+            <div class="row mb-2">
+              <div class="col-md-6">
+                <div class="card flex-md-row mb-4 box-shadow h-md-250">
+                  <div class="card-body d-flex flex-column align-items-start">
+                    <div class="custom_title">
+                      <h5 class="mb-0">PRÉREQUIS</h5>
+                    </div>
+                    <ul>
+                      <li>{{ formation.prerequisite }}</li>
+                    </ul>
                   </div>
-                  <ul>
-                    <li>{{ formation.prerequisite }}</li>
-                  </ul>
+                </div>
+              </div>
+              <div class="col-md-6">
+                <div class="card flex-md-row mb-4 box-shadow h-md-250">
+                  <div class="card-body d-flex flex-column align-items-start">
+                    <div class="custom_title">
+                      <h5 class="mb-0">LIEUX</h5>
+                    </div>
+                    <ul>
+                      <li>{{ formation.location }}</li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+              <div class="col-md-6">
+                <div class="card flex-md-row mb-4 box-shadow h-md-250">
+                  <div class="card-body d-flex flex-column align-items-start">
+                    <div class="custom_title">
+                      <h5 class="mb-0">DURÉE</h5>
+                    </div>
+                    <ul>
+                      <li>{{ formation.durationFormation}}
+                        jours</li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+              <div class="col-md-6">
+                <div class="card flex-md-row mb-4 box-shadow h-md-250">
+                  <div class="card-body d-flex flex-column align-items-start">
+                    <div class="custom_title">
+                      <h5 class="mb-0">PRIX</h5>
+                    </div>
+                    <ul>
+                      <li>{{ formation.price}}</li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+              <div class="col-md-6">
+                <div class="card flex-md-row mb-4 box-shadow h-md-250">
+                  <div class="card-body d-flex flex-column align-items-start">
+                    <div class="custom_title">
+                      <h5 class="mb-0">EVALUATION</h5>
+                    </div>
+                    <ul>
+                      <li>{{ formation.Evaluation}}</li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+              <div class="col-md-6">
+                <div class="card flex-md-row mb-4 box-shadow h-md-250">
+                  <div class="card-body d-flex flex-column align-items-start">
+                    <div class="custom_title">
+                      <h5 class="mb-0">INTERVENANT</h5>
+                    </div>
+                    <ul>
+                      <li>{{ formation.intervenant}}</li>
+                    </ul>
+                  </div>
                 </div>
               </div>
             </div>
-            <div class="col-md-6">
-              <div class="card flex-md-row mb-4 box-shadow h-md-250">
-                <div class="card-body d-flex flex-column align-items-start">
-                  <div class="custom_title">
-                    <h5 class="mb-0">LIEUX</h5>
-                  </div>
-                  <ul>
-                    <li>
-                      {{ formation.location }}</li>
-                  </ul>
-                </div>
-              </div>
-            </div>
-            <div class="col-md-6">
-              <div class="card flex-md-row mb-4 box-shadow h-md-250">
-                <div class="card-body d-flex flex-column align-items-start">
-                  <div class="custom_title">
-                    <h5 class="mb-0">DURÉE</h5>
-                  </div>
-                  <ul>
-                    <li>{{ formation.durationFormation}}
-                      jours</li>
-                  </ul>
-                </div>
-              </div>
-            </div>
-            <div class="col-md-6">
-              <div class="card flex-md-row mb-4 box-shadow h-md-250">
-                <div class="card-body d-flex flex-column align-items-start">
-                  <div class="custom_title">
-                    <h5 class="mb-0">PRIX</h5>
-                  </div>
-                  <ul>
-                    <li>
-                      {{ formation.price}}</li>
-                  </ul>
-                </div>
-              </div>
-            </div>
-            <div class="col-md-6">
-              <div class="card flex-md-row mb-4 box-shadow h-md-250">
-                <div class="card-body d-flex flex-column align-items-start">
-                  <div class="custom_title">
-                    <h5 class="mb-0">EVALUATION</h5>
-                  </div>
-                  <ul>
-                    <li>
-                      {{ formation.Evaluation}}</li>
-                  </ul>
-                </div>
-              </div>
-            </div>
-            <div class="col-md-6">
-              <div class="card flex-md-row mb-4 box-shadow h-md-250">
-                <div class="card-body d-flex flex-column align-items-start">
-                  <div class="custom_title">
-                    <h5 class="mb-0">CONDITION D'ACCÉES</h5>
-                  </div>
-                  <ul>
-                    <li>
-                      {{ formation.publicAndAccessCondition}}</li>
-                  </ul>
-                </div>
-              </div>
-            </div>
-			</div>
           </div>
         </div>
       </div>
-
       <div class="col-lg-3 col-md-12 col-sm-12 sidebar">
         <div class="sidebar-inscription">
           <nav class="navbar-expand  flex-md-column flex-row align-items-center sidebar-formation">
@@ -176,29 +178,12 @@
                 </p>
               </div>
             {% endif %}
-          </div>
-        </nav>
-        <!--
-        <div class="s_cadre_infos s_cta" style="background-image: url(https://www.panacea-conseil.com/wp-content/uploads/sidebar_bg_infos.png)">
-          <div class="row">
-            <div class="txt">Besoin d'informations détaillées ? Demandez le programme complet</div>
-            <div class="col-md-12">
-              <bouton class="btn-primary  -2 btn btn-primary text-light bg-info">
-                <a href="">Recevoir le programme
-                </a>
-              </bouton>
-            </div>
-          </div>
-        -->
+          </nav>
+          <!-- <div class="s_cadre_infos s_cta" style="background-image: url(https://www.panacea-conseil.com/wp-content/uploads/sidebar_bg_infos.png)"> <div class="row"> <div class="txt">Besoin d'informations détaillées ? Demandez le programme complet</div> <div class="col-md-12"> <bouton class="btn-primary -2 btn btn-primary text-light bg-info"> <a href="">Recevoir le programme </a> </bouton> </div> </div> -->
         </div>
       </div>
     </div>
   </div>
 
-</div>
-</div>
-</div>
-  {{ include('theme/_partenaires.html.twig') }}
-</div>
 
 {% endblock %}
