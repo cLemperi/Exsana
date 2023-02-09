@@ -2,6 +2,7 @@
 
 namespace App\Entity;
 
+use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 use App\Repository\ObjectifFormationRepository;
 
@@ -13,7 +14,7 @@ class ObjectifFormation
     #[ORM\Column(type: 'integer')]
     private $id;
 
-    #[ORM\Column(type: 'string', length: 255, nullable: true)]
+    #[ORM\Column(type: Types::TEXT, nullable: true)]
     private ?string $name = null;
 
     #[ORM\ManyToOne(targetEntity: Formations::class, inversedBy: 'objectifFormations', cascade: ['persist'])]

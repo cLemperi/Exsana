@@ -2,8 +2,9 @@
 
 namespace App\Entity;
 
-use App\Repository\ProgrammeFormationRepository;
+use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
+use App\Repository\ProgrammeFormationRepository;
 
 #[ORM\Entity(repositoryClass: ProgrammeFormationRepository::class)]
 class ProgrammeFormation
@@ -13,7 +14,7 @@ class ProgrammeFormation
     #[ORM\Column(type: 'integer')]
     private $id;
 
-    #[ORM\Column(type: 'string', length: 255, nullable: true)]
+    #[ORM\Column(type: Types::TEXT, nullable: true)]
     private ?string $name = null;
 
     #[ORM\ManyToOne(targetEntity: Formations::class, inversedBy: 'programmeFormations', cascade: ['persist'])]

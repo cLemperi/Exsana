@@ -82,13 +82,6 @@ class ExanaHomeController extends AbstractController
            ]);
     }
 
-    #[Route(path: '/exsana/informations', name: 'info')]
-    public function infoexana() : \Symfony\Component\HttpFoundation\Response
-    {
-        return $this->render('exsana/information.html.twig', [
-               'controller_name' => 'ExanaHomeController',
-           ]);
-    }
 
     #[Route(path: '/exsana/formations', name: 'formations')]
     public function exsenaFormations(CategoryRepository $cate, Request $request, FormationsRepository $repo, PaginatorInterface $paginator) : \Symfony\Component\HttpFoundation\Response
