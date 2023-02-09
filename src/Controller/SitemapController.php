@@ -19,7 +19,6 @@ class SitemapController extends AbstractController
         $urls = [];
         $urls[] = ['loc' => $this->  generateUrl('exana_home')];
         $urls[] = ['loc' => $this->generateUrl('whereweare')];
-        $urls[] = ['loc' => $this->generateUrl('info')];
         $urls[] = ['loc' => $this->generateUrl('contact')];
         $urls[] = ['loc' => $this->generateUrl('formations')];
         $urls[] = ['loc' => $this->generateUrl('whoweare')];
