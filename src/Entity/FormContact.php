@@ -28,21 +28,26 @@ class FormContact
     private ?string $lastname = null;
     
     #[ORM\Column(type: 'string', length: 255)]
+    #[Assert\Regex(pattern: "/^(0|\+33)[1-9]([-. ]?[0-9]{2}){4}$/", message: "Veuillez entrer un numéro de téléphone portable ou fixe français valide.")]
     private ?string $phone = null;
+
     
     #[ORM\Column(type: 'string', length: 255)]
     #[Assert\Email(message: "L'email '{{ value }}'n'est pas valide.")]
     private ?string $email = null;
     
-    #[ORM\Column(type: 'string', length: 255)]
+    #[ORM\Column(type: 'string', length: 255,nullable: true)]
     private ?string $profession = null;
+
     #[ORM\Column(type: 'string', length: 255, nullable: true)]
     private ?string $etablissement = null;
     
     #[ORM\Column(type: 'string', length: 255)]
+    #[Assert\Length(max: 100)]
     private ?string $adresse = null;
     
     #[ORM\Column(type: 'string', length: 255)]
+    #[Assert\Length(max: 50)]
     private ?string $city = null;
     
     #[Assert\Regex('/^[0-9]{5}$/')]

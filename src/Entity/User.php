@@ -65,8 +65,6 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface, Seriali
     #[ORM\OneToMany(targetEntity: UserMessage::class, mappedBy: 'UserMessage', cascade: ['persist'])]
     private \Doctrine\Common\Collections\Collection|array $UserMessages;
 
-    #[ORM\OneToMany(mappedBy: 'UserRegisterFormation', targetEntity: Formations::class)]
-    private Collection $formationregisterid;
 
     #[ORM\OneToMany(mappedBy: 'UserFrom', targetEntity: UserInvite::class, cascade: ['persist'],orphanRemoval: true)]
     private Collection $userInvites;
@@ -74,11 +72,15 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface, Seriali
     #[ORM\Column(nullable: true)]
     private ?int $nbUserInvite = null;
 
+    #[ORM\ManyToMany(targetEntity: Formations::class, mappedBy: 'users')]
+    private Collection $formations;
+
     public function __construct()
     {
-        $this->UserMessage = new ArrayCollection();
-        $this->formationregisterid = new ArrayCollection();
+        $this->UserMessages = new ArrayCollection();
+        //$this->formationregisterid = new ArrayCollection();
         $this->userInvites = new ArrayCollection();
+        $this->formations = new ArrayCollection();
     }
     public function __toString(): string
     {
@@ -313,35 +315,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface, Seriali
         return (string) $this->email;
     }
 
-    /**
-     * @return Collection<int, Formations>
-     */
-    public function getFormationregisterid(): Collection
-    {
-        return $this->formationregisterid;
-    }
     
-    public function addFormationregisterid(Formations $formationregisterid): self
-    {
-        if (!$this->formationregisterid->contains($formationregisterid)) {
-            $this->formationregisterid[] = $formationregisterid;
-            $formationregisterid->setUserRegisterFormation($this);
-        }
-
-        return $this;
-    }
-
-    public function removeFormationregisterid(Formations $formationregisterid): self
-    {
-        if ($this->formationregisterid->removeElement($formationregisterid)) {
-            // set the owning side to null (unless already changed)
-            if ($formationregisterid->getUserRegisterFormation() === $this) {
-                $formationregisterid->setUserRegisterFormation(null);
-            }
-        }
-
-        return $this;
-    }
 
     /**
      * @return Collection<int, UserInvite>
@@ -381,6 +355,33 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface, Seriali
     public function setNbUserInvite(?int $nbUserInvite): self
     {
         $this->nbUserInvite = $nbUserInvite;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, Formations>
+     */
+    public function getFormations(): Collection
+    {
+        return $this->formations;
+    }
+
+    public function addFormation(Formations $formation): self
+    {
+        if (!$this->formations->contains($formation)) {
+            $this->formations[] = $formation;
+            $formation->addUser($this);
+        }
+
+        return $this;
+    }
+
+    public function removeFormation(Formations $formation): self
+    {
+        if ($this->formations->removeElement($formation)) {
+            $formation->removeUser($this);
+        }
 
         return $this;
     }

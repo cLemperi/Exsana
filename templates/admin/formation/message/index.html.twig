@@ -1,6 +1,6 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Hello AdminMessageController!{% endblock %}
+{% block title %}Admin Formulaire Contact{% endblock %}
 
 {% block body %}
 <div class="page-formation">
@@ -10,20 +10,43 @@
 			<div class="title_formation"><h1>Liste Messages formulaire contact</h1></div>
     </div>
 </div>
-    <div class="container-fluid">
-        <div class="row">
-            <div class="col-md-12">  
+  <div class="container-fluid">
+    <div class="row">
+        <div class="col-md-6">
+            <h4>Messages des utilisateurs inscrits</h4>
+            <hr>
             {% for message in messages %}
-            <div class="row card-cara">
-                <div class="col-md-2"><a href="{{ path('app_admin_message_id', {id: message.id}) }}">Utilisateur :{{ message.sex }} {{ message.nickname }} {{ message.lastname }}</a></div>
-                <div class="col-md-2">téléphone : {{ message.phone}}</div>
-                <div class="col-md-3">email: {{ message.email }}</div>
-                <div class="col-md-2">Profession: {{ message.profession }}</div>
-            </div>
+                <div class="card-cara">
+                    <p>
+                        <a href="{{ path('app_admin_message_id', {id: message.id}) }}">
+                            Utilisateur : {{ message.sex }} {{ message.nickname }} {{ message.lastname }}
+                        </a>
+                    </p>
+                    <p>Téléphone : {{ message.phone }}</p>
+                    <p>Email : {{ message.email }}</p>
+                    <p>Profession : {{ message.profession }}</p>
+                </div>
             {% endfor %}   
-           </div>
+        </div>
+        <div class="col-md-6">
+            <h4>Messages des utilisateurs inconnus</h4>
+            <hr>
+            {% for message in messagesUnknow %}
+                <div class="card-cara">
+                    <p>
+                        <a href="{{ path('app_admin_message_id', {id: message.id}) }}">
+                            Utilisateur : {{ message.sex }} {{ message.nickname }} {{ message.lastname }}
+                        </a>
+                    </p>
+                    <p>Téléphone : {{ message.phone }}</p>
+                    <p>Email : {{ message.email }}</p>
+                    <p>Profession : {{ message.profession }}</p>
+                </div>
+            {% endfor %}   
         </div>
     </div>
+</div>
+
 
 						
 						

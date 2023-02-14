@@ -1,0 +1,120 @@
+{% extends 'base.html.twig' %}
+{% block title %}Message du formulaire de contact {% endblock %}
+
+{% block body %}
+
+
+<div class="container">
+    <div class="page-formation">
+    </div>
+	    <div class="title_formation">
+		    <h1>{{ message.sex}} {{ message.nickname}} {{ message.lastname}}</h1>
+	    </div>
+
+<div class="row core-formation">
+
+<div class="container">
+	<div class="row mb-2">
+		<div class="col-md-6">
+			<div class="card flex-md-row mb-4 box-shadow h-md-250">
+				<div class="card-body d-flex flex-column align-items-start">
+					<div class="custom_title"><h5 class="mb-0">TELEPHONE</h5></div>
+						<ul>
+							<li>{{ message.phone }}</li>
+						</ul>
+				</div>
+			</div>
+		</div>
+		<div class="col-md-6">
+			<div class="card flex-md-row mb-4 box-shadow h-md-250">
+				<div class="card-body d-flex flex-column align-items-start">
+						<div class="custom_title"><h5 class="mb-0">EMAIL</h5></div>
+					<ul>
+						<li> {{ message.email }}</li>
+					</ul>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="row mb-2">
+		<div class="col-md-6">
+			<div class="card flex-md-row mb-4 box-shadow h-md-250">
+				<div class="card-body d-flex flex-column align-items-start">
+					<div class="custom_title"><h5 class="mb-0">PROFESSION</h5></div>
+						<ul>
+							<li>{{ message.profession }}</li>
+						</ul>
+				</div>
+			</div>
+		</div>
+		<div class="col-md-6">
+			<div class="card flex-md-row mb-4 box-shadow h-md-250">
+				<div class="card-body d-flex flex-column align-items-start">
+						<div class="custom_title"><h5 class="mb-0">ETABLISSEMENT</h5></div>
+					<ul>
+						<li> {{ message.etablissement }}€</li>
+					</ul>
+				</div>
+			</div>
+		</div>
+	</div>
+    <div class="row mb-2">
+		<div class="col-md-6">
+			<div class="card flex-md-row mb-4 box-shadow h-md-250">
+				<div class="card-body d-flex flex-column align-items-start">
+					<div class="custom_title"><h5 class="mb-0">ADRESSE</h5></div>
+						<ul>
+							<li>{{ message.adresse }}</li>
+						</ul>
+				</div>
+			</div>
+		</div>
+		<div class="col-md-6">
+			<div class="card flex-md-row mb-4 box-shadow h-md-250">
+				<div class="card-body d-flex flex-column align-items-start">
+						<div class="custom_title"><h5 class="mb-0">CODE POSTAL</h5></div>
+					<ul>
+						<li> {{ message.postalCode }}</li>
+					</ul>
+				</div>
+			</div>
+		</div>
+	</div>
+    <div class="row mb-2">
+		<div class="col-md-6">
+			<div class="card flex-md-row mb-4 box-shadow h-md-250">
+				<div class="card-body d-flex flex-column align-items-start">
+					<div class="custom_title"><h5 class="mb-0">VILLE</h5></div>
+						<ul>
+							<li>{{ message.city }}</li>
+						</ul>
+				</div>
+			</div>
+		</div>
+		<div class="col-md-6">
+			<div class="card flex-md-row mb-4 box-shadow h-md-250">
+				<div class="card-body d-flex flex-column align-items-start">
+						<div class="custom_title"><h5 class="mb-0">REQUETE</h5></div>
+					<ul>
+						<li> {{ message.request }}</li>
+					</ul>
+				</div>
+			</div>
+		</div>
+	</div>
+    <div class="row mb-2">
+		<div class="col-md-12">
+			<div class="card flex-md-row mb-4 box-shadow h-md-250">
+				<div class="card-body d-flex flex-column align-items-start">
+					<div class="custom_title"><h5 class="mb-0">MESSAGE</h5></div>
+						<ul>
+							<li>{{ message.message }}</li>
+						</ul>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+</div>
+
+{% endblock %}

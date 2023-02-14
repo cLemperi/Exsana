@@ -57,8 +57,6 @@ class Formations
     #[ORM\OneToMany(targetEntity: ProgrammeFormation::class, mappedBy: 'programme', cascade: ['persist'])]
     private \Doctrine\Common\Collections\Collection|array $programmeFormations;
 
-    #[ORM\ManyToOne(inversedBy: 'formationregisterid')]
-    private ?User $UserRegisterFormation = null;
 
     #[ORM\Column(length: 255)]
     private ?string $slug = null;
@@ -71,6 +69,9 @@ class Formations
 
     #[ORM\Column(type: Types::TEXT, nullable: true)]
     private ?string $publicAndAccessCondition = null;
+
+    #[ORM\ManyToMany(targetEntity: User::class, inversedBy: 'formations')]
+    private Collection $users;
     
     
     public function __construct()
@@ -78,6 +79,7 @@ class Formations
         $this->created_at = new \DateTime();
         $this->programmeFormations = new ArrayCollection();
         $this->objectifFormations = new ArrayCollection();
+        $this->users = new ArrayCollection();
     }
     public function __toString(): string
     {   
@@ -178,6 +180,8 @@ class Formations
 
         return $this;
     }
+    
+
     /**
      * @return Collection<int, ObjectifFormation>
      */
@@ -244,17 +248,6 @@ class Formations
         return $this;
     }
 
-    public function getUserRegisterFormation(): ?User
-    {
-        return $this->UserRegisterFormation;
-    }
-
-    public function setUserRegisterFormation(?User $UserRegisterFormation): self
-    {
-        $this->UserRegisterFormation = $UserRegisterFormation;
-
-        return $this;
-    }
 
     public function getSlug(): ?string
     {
@@ -300,6 +293,30 @@ class Formations
     public function setPublicAndAccessCondition(?string $publicAndAccessCondition): self
     {
         $this->publicAndAccessCondition = $publicAndAccessCondition;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, User>
+     */
+    public function getUsers(): Collection
+    {
+        return $this->users;
+    }
+
+    public function addUser(User $user): self
+    {
+        if (!$this->users->contains($user)) {
+            $this->users[] = $user;
+        }
+
+        return $this;
+    }
+
+    public function removeUser(User $user): self
+    {
+        $this->users->removeElement($user);
 
         return $this;
     }

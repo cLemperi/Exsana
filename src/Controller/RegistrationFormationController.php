@@ -32,10 +32,11 @@ class RegistrationFormationController extends AbstractController
     public function index(Formations $formations, Request $request): Response
     {  
         $formation = $formations;
-        /**
-            * @var Entity::User
-        */
-        $user= $this->getUser();
+        $user = $this->getUser();
+        if (!$user) {
+            throw $this->createAccessDeniedException();
+        }
+        
         $userInvite = $user->getUserInvites();
         //$test = var_dump($userInvite);
         return $this->render('registration_formation/index.html.twig', [
@@ -45,29 +46,6 @@ class RegistrationFormationController extends AbstractController
         ]);
     }
 
-    #[Route('/registration/update', name: 'registration_update')]
-    public function readUserInvite(Request $request): Response
-    {   
-        
-        $this->denyAccessUnlessGranted('IS_AUTHENTICATED_FULLY');
-
-        /**
-            * @var Entity::User
-        */
-        $user = $this->getUser();
-       
-        $form = $this->createForm(UserInviteType::class, $user)->handleRequest($request);
-        if ($form->isSubmitted() && $form->isValid()) {
-            $this->em->persist($user);
-            $this->em->flush();
-            return $this->redirectToRoute('formation.inscription');
-        }
-        
-        return $this->render('registration_formation/update.html.twig', [
-            'controller_name' => 'RegistrationFormationController',
-            "form" => $form->createView()
-        ]);
-    }
 
     #[Route('/registration/create', name: 'registration_add_invite')]
     public function addUserInvite(Request $request,): Response
@@ -77,8 +55,7 @@ class RegistrationFormationController extends AbstractController
             * @var Entity::User
         */
         $user = $this->getUser();
-        $userInvite = new UserInvite();
-        //$user->addUserInvite($userInvite);
+        
         $form = $this->createForm(FormationInviteType::class,$user)->handleRequest($request);
             if ($form->isSubmitted() && $form->isValid()) {
                 $this->em->persist($user);

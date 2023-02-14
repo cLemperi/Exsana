@@ -169,7 +169,18 @@
                   </div>
                 </div>
               </div>
-            {% endif %}
+            {% else %}
+          <div class='cadre_acces_compte inscription'>
+              <p class='txt'> Vous souhaitez vous inscrire à une formation</p>
+              <div class='form-group'>
+                <p class='titre'>Créez votre compte</p>
+                <form action='{{ path('app_register' )}}' method:'post'>
+                <input type='hidden' name='_csrf_token' value='{{ csrf_token('authenticate') }}'>
+              </div>
+              <button type='submit' class='btn btn-primary' value ='Continuer'> valider</button>
+            </form>
+          </div>
+          {% endif %}
             {% if not is_granted('ROLE_USER')and not is_granted('ROLE_ADMIN') %}
               <div class="container cara-forma-inscription">
                 <div class="s_cadre_inscription s_cta">

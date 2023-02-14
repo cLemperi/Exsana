@@ -2,9 +2,7 @@
 
 namespace App\Controller;
 
-use App\Entity\Formations;
-use App\Entity\User;
-use App\Entity\UserInvite;
+
 use App\Entity\FormContact;
 use App\Entity\UserMessage;
 use App\Form\UserMessageType;
@@ -40,21 +38,19 @@ class ExanaHomeController extends AbstractController
     #[Route(path: '/exsana/contact', name: 'contact')]
     public function contact(Request $request) : Response
     {
-        
         $user = $this->getUser();
-        
-        if (isset($user)){
-            $user = $this->getUser();
+        $formcontact = null;
+        $form = null;
+
+        if ($user) {
             $formcontact = new UserMessage();
             $formcontact->setUserMessage($user);
-            $form = $this->createForm(UserMessageType::class, $formcontact);
-          }
-        else{
-            $formcontact = new FormContact();         
-            $form = $this->createForm(specifiqueFormContact::class, $formcontact);
+            $form = $this->createForm(UserMessageType::class, $formcontact)->handleRequest($request);
+        } else {
+            $formcontact = new FormContact();
+            $form = $this->createForm(specifiqueFormContact::class, $formcontact)->handleRequest($request);
         }
 
-        $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
             $this->em->persist($formcontact);
@@ -62,10 +58,12 @@ class ExanaHomeController extends AbstractController
             $this->addFlash('success', 'Votre demande de contact à bien été envoyé à notre équipe');
             return $this->redirectToRoute('contact');
         }
+
         return $this->render('exsana/contact.html.twig', [
-                'formFormation' => $form->createView(),
-            ]);
+            'formFormation' => $form->createView(),
+        ]);
     }
+
 
     #[Route(path: '/exsana/qui-somme-nous', name: 'whoweare')]
     public function whoweare() : \Symfony\Component\HttpFoundation\Response
@@ -74,6 +72,7 @@ class ExanaHomeController extends AbstractController
                'controller_name' => 'ExanaHomeController',
            ]);
     }
+    
     #[Route(path: '/exsana/pratique', name: 'whereweare')]
     public function pratique() : \Symfony\Component\HttpFoundation\Response
     {
@@ -81,6 +80,15 @@ class ExanaHomeController extends AbstractController
                'controller_name' => 'ExanaHomeController',
            ]);
     }
+
+    #[Route(path: '/exsana/mentions-legales', name: 'mention')]
+    public function mentionslegales() : \Symfony\Component\HttpFoundation\Response
+    {
+        return $this->render('exsana/mentions-legales.html.twig', [
+               'controller_name' => 'ExanaHomeController',
+           ]);
+    }
+    
 
 
     #[Route(path: '/exsana/formations', name: 'formations')]
@@ -120,42 +128,13 @@ class ExanaHomeController extends AbstractController
         if(isset($user)){
             $currentUser= $user->getId();
         }
-        
         if(!$formation){
                // Si aucune formation n'est trouvé, nous créons une exception
                throw $this->createNotFoundException('La formation n\'existe pas');
            }
-        if(isset($user)){
-            $form = $this->createForm(FormationRegisterType::class,$user);
-            $form->handleRequest($request);
-            if ($form->isSubmitted() && $form->isValid()) {
-                $user->addFormationregisterid($formation);
-                $this->em->persist($user);
-                $this->em->flush();
-                return $this->redirectToRoute('app_registration_formation');
-            }
-            $formCreated= $form->createView();
-        }
-        else {
-            $formCreated = "<div class='cadre_acces_compte inscription'>
-            <p class='txt'> Vous souhaitez vous inscrire à une formation</p>
-            <div class='form-group'>
-            <p class='titre'>Créez votre compte</p>
-            <form action='{{ path('app_register' )}}' method:'post'>
-                <input type='hidden' name='_csrf_token' value='{{ csrf_token('authenticate') }}'>
-            </div>
-                <button type='submit' class='btn btn-primary' value ='Continuer'> valider</button>
-            </form>
-        </div>";
-        }
-        
-            
-
-        
         return $this->render('exsana/formation.html.twig', [
       			'controller_name' => 'ExanaHomeController',
                   'formation' => $formation,
-                  'formRegister'=> $formCreated,
               ]);
     }
 }

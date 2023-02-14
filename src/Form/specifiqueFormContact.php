@@ -1,5 +1,5 @@
 <?php
-namespace App\Form\Type;
+namespace App\Form;
 
 use App\Entity\FormContact;
 use App\Entity\MessageFromContact;
@@ -28,7 +28,7 @@ class specifiqueFormContact extends AbstractType
                    ])
                     ->add('nickname',TextType::class)
                     ->add('lastname',TextType::class)
-                    ->add('phone',NumberType::class)
+                    ->add('phone',TextType::class)
                     ->add('email',EmailType::class)
                     ->add('profession',ChoiceType::class,[
                     	'choices'=> [
@@ -61,7 +61,7 @@ class specifiqueFormContact extends AbstractType
                     ->add('etablissement',TextType::class)
                     ->add('city',TextType::class)
                     ->add('adresse',TextType::class)
-                    ->add('postalCode',NumberType::class)
+                    ->add('postalCode',TextType::class)
                     ->add('request',ChoiceType::class,[
                     	'choices'=> [
                     		'Organiser une formation en intra / sur mesure' => 'Organiser une formation en intra / sur mesure',
