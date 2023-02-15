@@ -169,17 +169,6 @@
                   </div>
                 </div>
               </div>
-            {% else %}
-          <div class='cadre_acces_compte inscription'>
-              <p class='txt'> Vous souhaitez vous inscrire à une formation</p>
-              <div class='form-group'>
-                <p class='titre'>Créez votre compte</p>
-                <form action='{{ path('app_register' )}}' method:'post'>
-                <input type='hidden' name='_csrf_token' value='{{ csrf_token('authenticate') }}'>
-              </div>
-              <button type='submit' class='btn btn-primary' value ='Continuer'> valider</button>
-            </form>
-          </div>
           {% endif %}
             {% if not is_granted('ROLE_USER')and not is_granted('ROLE_ADMIN') %}
               <div class="container cara-forma-inscription">
@@ -192,7 +181,17 @@
               </div>
             {% endif %}
           </nav>
-          <!-- <div class="s_cadre_infos s_cta" style="background-image: url(https://www.panacea-conseil.com/wp-content/uploads/sidebar_bg_infos.png)"> <div class="row"> <div class="txt">Besoin d'informations détaillées ? Demandez le programme complet</div> <div class="col-md-12"> <bouton class="btn-primary -2 btn btn-primary text-light bg-info"> <a href="">Recevoir le programme </a> </bouton> </div> </div> -->
+          <div class="s_cadre_infos s_cta" style="background-image: url(https://www.panacea-conseil.com/wp-content/uploads/sidebar_bg_infos.png)">
+            <div class="row">
+              <div class="txt">Besoin d'informations détaillées ? Demandez le programme complet</div>
+              <div class="col-md-12">
+              {% if programmePedagoFile %}
+                <a href="{{ asset('uploads/pedago/' ~ programmePedagoFile) }}" download>Télécharger le programme</a>
+              {% endif %}
+            </div>
+          </div>
+          </div>
+
         </div>
       </div>
     </div>

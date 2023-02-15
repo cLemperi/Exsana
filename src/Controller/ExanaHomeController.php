@@ -7,8 +7,8 @@ use App\Entity\FormContact;
 use App\Entity\UserMessage;
 use App\Form\UserMessageType;
 use App\Form\FormationRegisterType;
+use App\Form\SpecifiqueFormContact;
 use App\Repository\CategoryRepository;
-use App\Form\Type\specifiqueFormContact;
 use App\Repository\FormationsRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Knp\Component\Pager\PaginatorInterface;
@@ -36,33 +36,33 @@ class ExanaHomeController extends AbstractController
     }
 
     #[Route(path: '/exsana/contact', name: 'contact')]
-    public function contact(Request $request) : Response
+    public function contact(Request $request): Response
     {
         $user = $this->getUser();
-        $formcontact = null;
+        $formContact = null;
         $form = null;
 
         if ($user) {
-            $formcontact = new UserMessage();
-            $formcontact->setUserMessage($user);
-            $form = $this->createForm(UserMessageType::class, $formcontact)->handleRequest($request);
+            $formContact = new UserMessage();
+            $formContact->setUser($user);
+            $form = $this->createForm(UserMessageType::class, $formContact);
         } else {
-            $formcontact = new FormContact();
-            $form = $this->createForm(specifiqueFormContact::class, $formcontact)->handleRequest($request);
+            $formContact = new FormContact();
+            $form = $this->createForm(SpecifiqueFormContact::class, $formContact)->handleRequest($request);
         }
 
-
         if ($form->isSubmitted() && $form->isValid()) {
-            $this->em->persist($formcontact);
+            $this->em->persist($formContact);
             $this->em->flush();
-            $this->addFlash('success', 'Votre demande de contact à bien été envoyé à notre équipe');
+            $this->addFlash('success', 'Votre demande de contact a bien été envoyée à notre équipe.');
             return $this->redirectToRoute('contact');
         }
 
         return $this->render('exsana/contact.html.twig', [
-            'formFormation' => $form->createView(),
+            'formContact' => $form->createView(),
         ]);
     }
+
 
 
     #[Route(path: '/exsana/qui-somme-nous', name: 'whoweare')]
@@ -120,6 +120,7 @@ class ExanaHomeController extends AbstractController
     public function showFormation(FormationsRepository $repo, $id, Request $request) : Response
     {
         $formation = $repo->find($id);
+        $programmePedagoFile = $formation->getProgrammePedagoFile();
         //$formaId = $this->$forma->getId(); 
         /**
             * @var Entity::User
@@ -133,6 +134,7 @@ class ExanaHomeController extends AbstractController
                throw $this->createNotFoundException('La formation n\'existe pas');
            }
         return $this->render('exsana/formation.html.twig', [
+                'programmePedagoFile' => $programmePedagoFile,
       			'controller_name' => 'ExanaHomeController',
                   'formation' => $formation,
               ]);

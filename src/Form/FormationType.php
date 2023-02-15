@@ -7,8 +7,11 @@ use App\Entity\Formations;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
+use Symfony\Component\Validator\Constraints\File;
+use Symfony\Component\Validator\Constraints\NotBlank;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Form\Extension\Core\Type\DateType;
+use Symfony\Component\Form\Extension\Core\Type\FileType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\Extension\Core\Type\CollectionType;
 
@@ -47,6 +50,24 @@ class FormationType extends AbstractType
             ->add('Evaluation')
             ->add('publicAndAccessCondition')
             ->add('slug')
+            ->add('programmePedago', FileType::class, [
+                'label' => 'Programme pédagogique (PDF)',
+                'required' => true,
+                'mapped' => false,
+                'constraints' => [
+                    new NotBlank([
+                        'message' => 'Veuillez télécharger un fichier PDF.',
+                    ]),
+                    new File([
+                        'mimeTypes' => [
+                            'application/pdf',
+                            'application/x-pdf',
+                        ],
+                        'mimeTypesMessage' => 'Veuillez télécharger un fichier PDF valide.',
+                    ]),
+                ],
+                'data_class' => null,
+            ]);
         ;
     }
 

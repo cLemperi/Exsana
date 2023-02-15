@@ -1,3 +1,4 @@
+
 {{ form_start(form) }}
 <div class="row">
     <div class="col-md-6"><div class="custom_title"><h5>Titre de la formation</h5></div>{{ form_label(form.title, ' ') }}
@@ -62,10 +63,12 @@
 	{{ form_widget(form.publicAndAccessCondition,{'attr' : {'placeholder' : "texte accès et condition"}}) }}</h5></div>
 </div>
 <div class="row">
-    <div class="col-md-6"><div class="custom_title"><h5>Slug personnalisé de la formation</h5>{{ form_label(form.slug, ' ') }}
-    {{ form_widget(form.slug,{'attr' : {'placeholder' : "Slug de la formation"}}) }}</div>
-    <div class="col-md-6"><div class="custom_title"><h5>Intervenant</h5>{{ form_label(form.intervenant, ' ') }}
-    {{ form_widget(form.intervenant,{'attr' : {'placeholder' : "Intervenant"}}) }}</div>
+    <div class="col-md-4"><div class="custom_title"><h5>Slug personnalisé de la formation</h5>{{ form_label(form.slug, ' ') }}
+    {{ form_widget(form.slug,{'attr' : {'placeholder' : "Slug de la formation"}}) }}</div></div>
+    <div class="col-md-4"><div class="custom_title"><h5>Intervenant</h5>{{ form_label(form.intervenant, ' ') }}
+    {{ form_widget(form.intervenant,{'attr' : {'placeholder' : "Intervenant"}}) }}</div></div>
+    <div class="col-md-4"><div class="custom_title"><h5>Programme pédago</h5>{{ form_label(form.programmePedago, ' ') }}
+    {{ form_widget(form.programmePedago,{'attr' : {'placeholder' : "Programme pédagogique"}}) }}</div></div>
 </div>
 <div class="row">
     <div class="col-md-12">

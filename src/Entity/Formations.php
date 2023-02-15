@@ -72,6 +72,9 @@ class Formations
 
     #[ORM\ManyToMany(targetEntity: User::class, inversedBy: 'formations')]
     private Collection $users;
+
+    #[ORM\Column(type: 'string', length: 255, nullable: true)]
+    private ?string $programmePedagoFile = null;
     
     
     public function __construct()
@@ -317,6 +320,18 @@ class Formations
     public function removeUser(User $user): self
     {
         $this->users->removeElement($user);
+
+        return $this;
+    }
+
+    public function getProgrammePedagoFile(): ?string
+    {
+        return $this->programmePedagoFile;
+    }
+
+    public function setProgrammePedagoFile(?string $programmePedagoFile): self
+    {
+        $this->programmePedagoFile = $programmePedagoFile;
 
         return $this;
     }
