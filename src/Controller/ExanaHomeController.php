@@ -44,7 +44,7 @@ class ExanaHomeController extends AbstractController
 
         if ($user) {
             $formContact = new UserMessage();
-            $formContact->setUser($user);
+            $formContact->setUserMessage($user);
             $form = $this->createForm(UserMessageType::class, $formContact);
         } else {
             $formContact = new FormContact();
