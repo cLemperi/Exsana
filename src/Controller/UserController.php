@@ -54,30 +54,16 @@ class UserController extends AbstractController
     #[Route('/myformations', name: 'user.formations', methods: ['GET|POST'])]
     public function userFormation(FormationsRepository $repo): Response
     {   
-        $i=0;
-        $formations = $repo->findAll();
-        foreach ($formations as $formation){
-            $formationIdUser[] = $formation->getUserRegisterFormation();
-        }
-        $test1 = $formationIdUser[1];
-        
-        /**
-            * @var Entity::User
-        */
+
         $user = $this->getUser();
-        $userId = $user->getId();
-
-        $userFormation = $user->getFormationregisterid();
-
-        if ($formationIdUser == $userId){
-            echo 'OK';
-        }else{
-            'Nok';
-        }
+        $formations = $repo->findByUser($user);
+        
+        
 
         //$formationIdUser = $formations->getUserRegisterFormation();
         //var_dump($formationIdUser);
         return $this->render('user/userFormations.html.twig', [
+            'formations' => $formations,
             'controller_name' => 'UserController',
         ]);
     }

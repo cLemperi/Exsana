@@ -3,21 +3,21 @@
 {% block title %}Hello RegistrationFormationController!{% endblock %}
 
 {% block body %}
-<div class="page-formation">
-</div>
-<div class="container">
+  <div class="page-formation"></div>
+  <div class="container">
     <div class="row">
-        <div class ="col-12">
-            {{ form_start(form) }}
-            {{ include("registration_formation/_form.html.twig", {form: form}) }}
-        </div>
-            
-     <div class="row">
-    <div class="col-md-12">
-        <button type="submit" class="btn-primary  -2 btn btn-primary text-light bg-info">Enregistrer les utilisateurs et m'inscrire à la formation</button>
+      {{ form_start(form) }}
+      {{ include("registration_formation/_form.html.twig", {form: form}) }}
+    </div>
+    <div class="row">
+      <div class="col-md-12">
+        <button type="submit" class="btn-primary  -2 btn btn-primary text-light bg-info">Enregistrer les utilisateurs</button>
+        <a href="{{ path('add_participant') }}" class="btn btn-secondary">Retourner à l'index</a>
+      </div>
     </div>
     {{form_end(form, {render_rest: false}) }}
-    </div>
-</div> 
+
+  </div>
+</div>
 
 {% endblock %}

@@ -75,6 +75,9 @@ class Formations
 
     #[ORM\Column(type: 'string', length: 255, nullable: true)]
     private ?string $programmePedagoFile = null;
+
+    #[ORM\OneToMany(mappedBy: 'formation', targetEntity: FormationUser::class)]
+    private Collection $formationUsers;
     
     
     public function __construct()
@@ -83,6 +86,7 @@ class Formations
         $this->programmeFormations = new ArrayCollection();
         $this->objectifFormations = new ArrayCollection();
         $this->users = new ArrayCollection();
+        $this->formationUsers = new ArrayCollection();
     }
     public function __toString(): string
     {   
@@ -332,6 +336,36 @@ class Formations
     public function setProgrammePedagoFile(?string $programmePedagoFile): self
     {
         $this->programmePedagoFile = $programmePedagoFile;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, FormationUser>
+     */
+    public function getFormationUsers(): Collection
+    {
+        return $this->formationUsers;
+    }
+
+    public function addFormationUser(FormationUser $formationUser): self
+    {
+        if (!$this->formationUsers->contains($formationUser)) {
+            $this->formationUsers[] = $formationUser;
+            $formationUser->setFormation($this);
+        }
+
+        return $this;
+    }
+
+    public function removeFormationUser(FormationUser $formationUser): self
+    {
+        if ($this->formationUsers->removeElement($formationUser)) {
+            // set the owning side to null (unless already changed)
+            if ($formationUser->getFormation() === $this) {
+                $formationUser->setFormation(null);
+            }
+        }
 
         return $this;
     }

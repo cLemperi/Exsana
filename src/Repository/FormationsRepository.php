@@ -2,10 +2,11 @@
 declare(strict_types=1);
 namespace App\Repository;
 
+use App\Entity\User;
 use App\Data\SearchData;
 use App\Entity\Formations;
-use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Persistence\ManagerRegistry;
+use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 
 /**
  * @method Formations|null find($id, $lockMode = null, $lockVersion = null)
@@ -19,6 +20,17 @@ class FormationsRepository extends ServiceEntityRepository
     {
         parent::__construct($registry, Formations::class);
     }
+
+    public function findByUser(User $user)
+    {
+        return $this->createQueryBuilder('f')
+            ->innerJoin('f.users', 'u')
+            ->where('u.id = :userId')
+            ->setParameter('userId', $user->getId())
+            ->getQuery()
+            ->getResult();
+    }   
+
 
 
     /**

@@ -75,12 +75,20 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface, Seriali
     #[ORM\ManyToMany(targetEntity: Formations::class, mappedBy: 'users')]
     private Collection $formations;
 
+    #[ORM\OneToMany(mappedBy: 'user', targetEntity: FormationUser::class)]
+    private Collection $formationUsers;
+
+    #[ORM\OneToMany(mappedBy: 'relation', targetEntity: Participant::class, cascade:['persist'] )]
+    private Collection $participants;
+
     public function __construct()
     {
         $this->UserMessages = new ArrayCollection();
         //$this->formationregisterid = new ArrayCollection();
         $this->userInvites = new ArrayCollection();
         $this->formations = new ArrayCollection();
+        $this->formationUsers = new ArrayCollection();
+        $this->participants = new ArrayCollection();
     }
     public function __toString(): string
     {
@@ -381,6 +389,66 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface, Seriali
     {
         if ($this->formations->removeElement($formation)) {
             $formation->removeUser($this);
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, FormationUser>
+     */
+    public function getFormationUsers(): Collection
+    {
+        return $this->formationUsers;
+    }
+
+    public function addFormationUser(FormationUser $formationUser): self
+    {
+        if (!$this->formationUsers->contains($formationUser)) {
+            $this->formationUsers[] = $formationUser;
+            $formationUser->setUser($this);
+        }
+
+        return $this;
+    }
+
+    public function removeFormationUser(FormationUser $formationUser): self
+    {
+        if ($this->formationUsers->removeElement($formationUser)) {
+            // set the owning side to null (unless already changed)
+            if ($formationUser->getUser() === $this) {
+                $formationUser->setUser(null);
+            }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, Participant>
+     */
+    public function getParticipants(): Collection
+    {
+        return $this->participants;
+    }
+
+    public function addParticipant(Participant $participant): self
+    {
+        if (!$this->participants->contains($participant)) {
+            $this->participants[] = $participant;
+            $participant->setRelation($this);
+        }
+
+        return $this;
+    }
+
+    public function removeParticipant(Participant $participant): self
+    {
+        if ($this->participants->removeElement($participant)) {
+            // set the owning side to null (unless already changed)
+            if ($participant->getRelation() === $this) {
+                $participant->setRelation(null);
+            }
         }
 
         return $this;

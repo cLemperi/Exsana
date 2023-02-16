@@ -1,20 +1,20 @@
  
  {{ form_widget(form._token) }}
     {{ form_errors(form) }}
-<div id="userInvites" class="row"
-data-prototype="{{ include("registration_formation/_userInvite.html.twig", {form: form.userInvites.vars.prototype})|e("html_attr") }}"
-data-index="{{ form.userInvites|length > 0 ? form.userInvites|last.vars.name + 1 : 0 }}">
-{% for userInvite in form.userInvites %}
+<div id="participants" class="row"
+data-prototype="{{ include("registration_formation/_userInvite.html.twig", {form: form.participants.vars.prototype})|e("html_attr") }}"
+data-index="{{ form.participants|length > 0 ? form.participants|last.vars.name + 1 : 0 }}">
+{% for userInvite in form.participants %}
     <div class="col-4">
         {{ include("registration_formation/_userInvite.html.twig", {form: userInvite}) }}
     </div>
 {% endfor %}
 </div>
-<button id="add_user_invite" type="button" class="btn-primary  -2 btn btn-primary text-light bg-info btn-new" data-collection="#userInvites"> ajouter un invité </button>
+<button id="add_user_invite" type="button" class="btn-primary  -2 btn btn-primary text-light bg-info btn-new" data-collection="#participants"> ajouter un invité </button>
 <div class="form-group">
     <button type="button" class="btn btn-danger btn-remove">Remove</button>
 </div>
-{{ form_errors(form.userInvites) }}
+{{ form_errors(form.participants) }}
 
 
 <script type="text/javascript">
