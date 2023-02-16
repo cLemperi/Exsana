@@ -21,7 +21,7 @@ class ProgrammeFormation
     #[ORM\JoinColumn(name: "proForma_id" ,referencedColumnName: "id",nullable: false)]
     private ?\App\Entity\Formations $programme = null;
 
-    #[ORM\Column(length: 255)]
+    #[ORM\Column(type: Types::TEXT, nullable: true)]
     private ?string $title = null;
     
     public function __toString(): string

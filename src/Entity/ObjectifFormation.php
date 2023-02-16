@@ -21,7 +21,7 @@ class ObjectifFormation
     #[ORM\JoinColumn(name: "objForma_id" ,referencedColumnName: "id" ,nullable: false)]
     private ?\App\Entity\Formations $objectifs = null;
 
-    #[ORM\Column(length: 255)]
+    #[ORM\Column(type: Types::TEXT, nullable: true)]
     private ?string $title = null;
     
     public function __toString(): string
