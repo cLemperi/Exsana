@@ -1,10 +1,14 @@
 parameters:
     pedago_directory: '%kernel.project_dir%/public/uploads/pedago'
+    email.from_address: 'exsanaformation@gmail.com'
+    email.from_name: 'Notification Exsana Formation'
+    email.admin_address: 'exsanaformation@gmail.com'
 
 services:
     _defaults:
         autowire: true
         autoconfigure: true 
+        bind:
 
     App\:
         resource: '../src/*'

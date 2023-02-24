@@ -174,14 +174,18 @@
               <div class="container cara-forma-inscription">
                 <div class="s_cadre_inscription s_cta">
                   <div class="txt">Connecter vous pour vous inscrire à une session de formation</a>
-                </div>
-                <p class="bouton">
-                  <a href="{{ path('app_register') }}" class="btn-primary">Inscription</a>
+                  <p class="bouton">
+                  <br>
+                  <a href="{{ path('app_register') }}" class="btn-primary"><strong>JE M'INSCRIS</strong>
+                    <img src="{{ asset('img/svg/icons/registration.svg') }}" style="width: 70px; height: 70px" alt="M'inscrire à la formation">
+                  </a>
                 </p>
+                </div>
+                
               </div>
             {% endif %}
           </nav>
-          <div class="s_cadre_infos s_cta" style="background-image: url(https://www.panacea-conseil.com/wp-content/uploads/sidebar_bg_infos.png)">
+          <div id="cadre-infos" class="s_cadre_infos s_cta">
             <div class="row">
               <div class="col-md-12">
               {% if programmePedagoFile %}

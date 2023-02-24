@@ -2,11 +2,13 @@
 @import url('https://fonts.googleapis.com/css2?family=Lato:wght@100&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Lato:wght@100&display=swap');
 /* USING BOOTSTRAP 3.0.3 */
-@import "custom";
 @import "~bootstrap/scss/bootstrap";
 
 /* FONTS */
-
+$couleur-vert-logo: #03A696; 
+$couleur-bleu-logo: #0378A6;
+$couleur-bleu-clair-logo:#05C7F2;
+$couleur-texte:#475459;
 
 @font-face {
   font-family: 'Avenir-Roman';
@@ -50,6 +52,7 @@ nav.navbar.shrink {
     min-height: 100vh;
     height: 100 !important;
     font-family: 'Avenir-Roman',sans-serif;
+    color: $couleur-texte;
  }
 
  a:link 
@@ -102,13 +105,13 @@ footer{
 
 #bottom-footer {
   background-color: #262626;
-  color: #262626;
+  color: $couleur-texte;
   padding: 110px 0 35px;
 }
 
   #fnewsletter .conteneur {
 
-    background: #2b7699;
+    background: #00ACA8;
     border-radius: 20px;
     margin-bottom: -95px;
     display: flex;
@@ -188,20 +191,21 @@ ul.social-network li {
   margin: 0 5px;
 }
 
-.social-network a.icoFacebook:hover {
-  background-color: #3B5998;
-}
+
 
 .social-network a.icoLinkedin:hover {
   background-color: #007bb7;
+  font-size: 24px;
 }
 
-.social-network a.icoInstagram:hover {
-  background-color: #927748;
+
+
+.icoLinkedin i {
+  font-size: 24px;
+  color: #0077b5;
 }
 
-.social-network a.icoFacebook:hover i,
-.social-network a.icoLinkedin:hover i,
+
 .social-network a.icoInstagram:hover i {
   color: #fff;
 }
@@ -287,17 +291,17 @@ ul.social-network li {
     color: #fff;
     font-family: 'Avenir-Roman',sans-serif;
     font-size: 20px;
-    color: #252332;
+    color: $couleur-texte;
 }
 
 .navbar .nav-link:hover,
 .navbar .nav-link:focus {
-    color:#2b7699;
+    color:$couleur-bleu-logo;
     text-decoration: none;
 }
 
 .navbar .navbar-brand {
-    color: #2b7699;
+    color: $couleur-bleu-logo;
 }
 
 .navbarSupportedContent{
@@ -317,23 +321,23 @@ ul.social-network li {
 }
 
 .navbar.active .nav-link {
-  color: #252332;
+  color: $couleur-texte;
 }
 
 .list.unstyled:hover,
 .list.unstyled:focus {
-    color: #2b7699;
+    color: $couleur-bleu-logo;
     text-decoration: none;
 }
 
 .navbar.active .nav-link:hover,
 .navbar.active .nav-link:focus {
-    color: #2b7699;
+    color: $couleur-bleu-logo;
     text-decoration: none;
 }
 
 .navbar.active .navbar-brand {
-    color: #2b7699;
+    color: $couleur-bleu-logo;
 }
 
 /* Change navbar styling on small viewports */
@@ -386,7 +390,7 @@ ul.social-network li {
   font-weight: 400;
   margin-bottom: 40px;
   font-family: 'Avenir-Roman',sans-serif;
-  color: #2b7699 !important;
+  color: $couleur-bleu-logo !important;
 }
 
 .custom_title h3{
@@ -394,7 +398,7 @@ ul.social-network li {
   font-weight: 400;
   margin-bottom: 40px;
   font-family: 'Avenir-Roman',sans-serif;
-  color: #2b7699 !important;
+  color: $couleur-bleu-logo !important;
 }
 
 
@@ -412,11 +416,11 @@ ul.social-network li {
     width: 44px;
     margin-bottom: 15px;
     height: 3px;
-    background-color: #2b7699 !important;
+    background-color: $couleur-vert-logo !important;
 }
 
 .title_formation h1 {
-    color: #2b7699 !important; 
+    color: $couleur-bleu-logo !important;
     font-size: 33px;
     font-weight: 400;
     font-family: 'Avenir-Black', sans-serif;
@@ -482,6 +486,7 @@ ul.social-network li {
     justify-content: center;
     background-size: cover;
     background-position: center;
+    background-color: #00ACA8;
 }
 
 .s_cta a{
@@ -523,7 +528,7 @@ ul.social-network li {
 
 .article-tags a {
   text-transform: uppercase;
-  color: #2b7699;
+  color: $couleur-bleu-logo;
   font-family: "Roboto";
   font-size: 14px;
   font-weight: 700;
@@ -534,7 +539,7 @@ a{
 .article-extract-title {
     font-size: 1.5rem;
     line-height: 2.5rem;
-    color: #1f3851;
+    color: $couleur-bleu-logo;
     margin-bottom: 1.3rem;
     margin-left: 1rem;
     padding-right: 50px;
@@ -553,13 +558,12 @@ a{
 }
 
 .formation-duration{
-  color: #252332;
   font-size: 16px;
   padding-right: 10px;
 }
 
 .article-extract-extract {
-  color: #858585;
+  color: $couleur-texte;
   font-size: 16px;
   line-height: 24px;
 }
@@ -622,13 +626,13 @@ a{
 }
 
 .cadre_acces_compte.connexion {
-  background: #2b7699;
+  background: $couleur-vert-logo;
   margin-right: 50px;
 }
 
 .cadre_acces_compte.inscription{
   background: #FFFF;
-  color: #2b7699;
+  color: $couleur-bleu-logo;
   box-shadow: 6px 6px 11px 0px rgb(231 231 231);
   width: auto;
   text-align: center;
@@ -674,7 +678,7 @@ a{
 }
 
 .last-formation-title{
-  color: #1f3851;
+  color: $couleur-bleu-logo;
   font-size: 20px;
   font-weight: 400;
   font-family: 'Avenir-Black';
@@ -727,7 +731,7 @@ a{
 /* FIN PAGINATION */
 
 .choise-exsana-block{
-  background: #2b7699;
+  background: $couleur-bleu-logo;
   padding-top: 4rem;
   padding-bottom:4rem;
   margin-top: 3rem;
@@ -843,13 +847,13 @@ select .session .participants{
 
 .sidebar-formation{
   border-radius: 17px;
-  background-color: #2b7699;
+  background-color: #00ACA8;
   justify-content: center;
   padding-left: 15px;
   padding-right: 15px;
   padding-top: 25px;
   padding-bottom: 25px;
-
+  margin-top: 35px;
 }
 
 a {
@@ -968,9 +972,6 @@ a {
   padding-right: 40px;
  }
 
- .sidebar-formation {
-  margin-top: 35px;
- }
 
   /** FIN  TEXT RESPONSIVE **/
 }
@@ -1018,7 +1019,7 @@ a {
 
 .sub-title-formation h2{
   font-size: 20px;
-  color:#007bb7;
+  color:$couleur-bleu-logo;
   margin-top: 5px;
   margin-bottom: 5px;
 }
