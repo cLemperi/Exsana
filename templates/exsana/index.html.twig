@@ -74,13 +74,16 @@
           <div class="slick-slide">
             <div class="card-formation">
               <h5 class="card-title">{{ formation.title }}</h5>
-              <div class="row card-info">
+              <div class="card-info">
+                <div class="row">
                   <div class="col-md-6">
                     <img src="{{ asset('img/svg/icons/cursor-clock-svgrepo-com.svg') }}" style="width: 30px; height: 30px;" alt="Durée">{{formation.durationFormation}}
                   </div>
                   <div class="col-md-6">
-                    <img src="{{ asset('img/svg/icons/user-multiple-svgrepo-com.svg') }}" style="width: 30px; height: 30px;" alt="Lieux">{{formation.location}}
+                    <img src="{{ asset('img/svg/icons/user-multiple-svgrepo-com.svg') }}" style="width: 30px; height: 30px;" alt="Lieux">
+                    {{formation.location}}
                   </div>
+                </div>
               </div>
               <a href="{{ path('formation', { 'id': formation.id, 'slug': formation.slug }) }}" class="btn btn-primary">Voir la formation</a>
             </div>
