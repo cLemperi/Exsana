@@ -1,36 +1,51 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Inscription à la formation{{ parent() }}{% endblock %}
+{% block title %}Inscription à la formation{{ parent() }}
+{% endblock %}
 
 {% block body %}
-<div class="page-formation">
-</div>
-    <div class="title_formation"><h1>Inscription à la formation</h1></div>
-    <p>Vous êtes sur le point de vous inscrire à la formation {{ formation.title }}</p>
-    <div class="sub-title-formation"><h2>Participants</h2></div>
-    {% if participants|length > 0 %}
-        <ul>
-        {% for participant in participants %}
-            <li>{{ participant.nom }} {{ participant.prenom }}</li>
-        {% endfor %}
-        </ul>
-    {% else %}
-        <p>Aucun participant pour le moment.</p>
-    {% endif %}
+  <div class="page-formation"></div>
+  <div class="container">
+    <div class="title_formation">
+      <h1>Inscription à la formation</h1>
+    </div>
+    <p>Vous êtes sur le point de vous inscrire à la formation
+      {{ formation.title }}</p>
+    <div class="row">
+      <div class="col-md-6">
+        <div class="sub-title-formation">
+          <h2>Ajouter un participant</h2>
+        </div>
+            <div class="title_formation">
+            <a href="{{ path('registration_add_invite', {'id': formation.id}) }}" class="btn btn-primary">
+                Ajouter des participants
+            </a>
+            </div>
+        </div>
+        <div class="col-md-6">
+          <div class="sub-title-formation">
+            <h2> Liste des participants</h2>
+          </div>
+          {% if participants | length > 0 %}
+            <ul>
+              {% for participant in participants %}
+                <li>{{ participant.nom }}
+                  {{ participant.prenom }}</li>
+              {% endfor %}
+            </ul>
+          {% else %}
+            <p>Aucun participant pour le moment.</p>
+          {% endif %}
+        </div>
+      </div>
 
     <hr>
-
-    <div class="title_formation"><h1>Ajouter un participant</h1><div class="title_formation">
-    <a href="{{ path('registration_add_invite', {'id': formation.id}) }}" class="btn btn-primary">
-        Ajouter un invité
-    </a>
-
 
     {{ form_start(form) }}
     {{ form_end(form) }}
 
     <hr>
 
-    
+  </div>
 
 {% endblock %}

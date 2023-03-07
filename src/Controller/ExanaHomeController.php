@@ -26,9 +26,9 @@ class ExanaHomeController extends AbstractController
     }
     
     #[Route(path: '/', name: 'exana_home')]
-    public function index(FormationsRepository $repo) : Response
+    public function index(FormationsRepository $repo, Request $request) : Response
     {
-        $formations = $repo->findBy([],['created_at' => 'desc'],4,1);
+        $formations = $repo->findAll();
         return $this->render('exsana/index.html.twig', [
             'formations' => $formations,
             'controller_name' => 'ExanaHomeController',

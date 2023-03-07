@@ -1,5 +1,14 @@
 {% extends 'base.html.twig' %}
-{% block title %}Exsana formation{% endblock %}
+{% block title %}{{ formation.title}}{% endblock %}
+{% block meta_description %}{{ formation.title}}{% endblock %}
+{% block meta_keywords %}Formation Urgence, Formation santé{% endblock %}
+{% block canonical_url %}
+    {% if app.request.attributes.get('_route') == 'formation' %}
+        <link rel="canonical" href="{{ path('formation', { 'id': formation.id }) }}" />
+    {% else %}
+        <link rel="canonical" href="{{ app.request.uri }}" />
+    {% endif %}
+{% endblock %}
 
 {% block body %}
 
@@ -176,7 +185,7 @@
                   <div class="txt">Connecter vous pour vous inscrire à une session de formation</a>
                   <p class="bouton">
                   <br>
-                  <a href="{{ path('app_register') }}" class="btn-primary"><strong>JE M'INSCRIS</strong>
+                  <a href="{{ path('add_participant',{id: formation.id}) }}"><strong>JE M'INSCRIS</strong>
                     <img src="{{ asset('img/svg/icons/registration.svg') }}" style="width: 70px; height: 70px" alt="M'inscrire à la formation">
                   </a>
                 </p>
@@ -185,16 +194,17 @@
               </div>
             {% endif %}
           </nav>
+          {% if programmePedagoFile %}
           <div id="cadre-infos" class="s_cadre_infos s_cta">
             <div class="row">
               <div class="col-md-12">
-              {% if programmePedagoFile %}
+              
                 <a href="{{ asset('uploads/pedago/' ~ programmePedagoFile) }}" download><div class="txt">Télécharger le programme complet</div>
                   <img src="{{ asset('img/svg/icons/download-svgrepo-com.svg') }}" style="width: 50px; height: 50px" alt="Télécharger le programme">
                 </a>
-              {% endif %}
             </div>
           </div>
+          {% endif %}
           </div>
 
         </div>

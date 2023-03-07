@@ -2,8 +2,6 @@
 <html lang="fr">
     <head>
         <meta charset="UTF-8">
-        <title>{% block title %}Exsana santé formation{% endblock %}</title>
-
         {% if not app.request.attributes.get('_route') starts with 'admin_' %}
             <meta name="title" content="{% block meta_title %}{% endblock %}">
             <meta name="description" content="{% block meta_description %}{% endblock %}">

@@ -2,32 +2,21 @@
 
 namespace App\Controller;
 
-use App\Entity\User;
-use App\Form\UserType;
 use App\Entity\Formations;
-use App\Entity\UserInvite;
-use App\Entity\Participant;
-use App\Form\UserInviteType;
-use App\Entity\FormationUser;
-use App\Form\ParticipantType;
-use Doctrine\ORM\Mapping\Entity;
 use App\Form\FormationInviteType;
-use App\Repository\UserRepository;
 use App\Form\FormationRegistrationType;
-use App\Repository\UserInviteRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
-use phpDocumentor\Reflection\DocBlock\Tags\Formatter;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
-use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
 
 class RegistrationFormationController extends AbstractController
 {
     public function __construct(EntityManagerInterface $em)
     {
         $this->em = $em;
+        
     }
 
     #[Route('/registration/formation/{id}', name: 'add_participant')]
@@ -47,6 +36,7 @@ class RegistrationFormationController extends AbstractController
             $this->em->flush();
 
             $this->addFlash('success', 'Inscription à la formation réussie!');
+            $this->addFlash('formation_id', $formation->getId());
 
             return $this->redirectToRoute('formations');
         }
@@ -58,28 +48,15 @@ class RegistrationFormationController extends AbstractController
     ]);
 }
 
-
-    private function register(Formations $formation, User $user): void
-    {
-        // Créer un enregistrement de FormationUser
-        $formationUser = new FormationUser();
-        $formationUser->setFormation($formation);
-        $formationUser->setUser($user);
-        $this->em->persist($formationUser);
-
-        // Enregistrer les utilisateurs invités
-        foreach ($formation->getUsers() as $userInvite) {
-            $userInvite->setFormation($formation);
-            $this->em->persist($userInvite);
-        }
-
-        $this->em->flush();
-    }
-
-    #[Route('/registration/create', name: 'registration_add_invite')]
-    public function addUserInvite(Request $request,): Response
+    #[Route('/registration/create/{id}', name: 'registration_add_invite')]
+    public function addUserInvite(Request $request,int $id): Response
     {
         $this->denyAccessUnlessGranted('IS_AUTHENTICATED_FULLY');
+        $formation = $this->em->getRepository(Formations::class)->find($id);
+        if (!$formation) {
+            throw $this->createNotFoundException('Formation non trouvée');
+        }
+        
         /**
          * @var Entity::User
          */
@@ -90,10 +67,11 @@ class RegistrationFormationController extends AbstractController
             $this->em->persist($user);
             $this->em->flush();
             $this->addFlash('success', "L'inscrinscription à la formation à bien était validé");
-            return $this->redirectToRoute('registration_add_invite');
+            return $this->redirectToRoute('registration_add_invite', ['id' => $id]);
         }
 
         return $this->render('registration_formation/create.html.twig', [
+            'formation' => $formation,
             'controller_name' => 'RegistrationFormationController',
             'form' => $form->createView(),
         ]);
