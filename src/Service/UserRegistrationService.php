@@ -21,7 +21,10 @@ class UserRegistrationService
             ->to($userEmail)
             ->subject('Inscription à Exsana réussie')
             ->text(
-                'Bonjour, votre inscription sur notre site Exsana Formation a été confirmée.<br> Vous pouvez des à présent vous inscrire à des sessions de formations sur notre site<br><br> A très vite<br> Exsana Formation');
+                'Bonjour, votre inscription sur notre site Exsana Formation a été confirmée.<br> 
+                Vous pouvez des à présent vous inscrire à des sessions de formations sur notre site<br><br> 
+                A très vite<br> Exsana Formation'
+            );
 
         $this->mailer->send($email);
     }
@@ -33,7 +36,10 @@ class UserRegistrationService
             ->to($userEmail)
             ->subject('Confirmation d\'inscription à la formation' . $formationTitle)
             ->text(
-                'Bonjour, votre inscription à la formation' . $formationTitle . ' à bien était effuctué, vous allez être contacter par téléphone par notre équipe.<br> À très vite <br><br> l\'équipe Exsana Formation');
+                'Bonjour, votre inscription à la formation' . $formationTitle . ' à bien était effuctué, 
+                vous allez être contacter par téléphone par notre équipe.<br> 
+                À très vite <br><br> l\'équipe Exsana Formation'
+            );
 
         $this->mailer->send($email);
     }

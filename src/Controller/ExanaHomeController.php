@@ -24,15 +24,9 @@ class ExanaHomeController extends AbstractController
     }
 
     #[Route(path: '/', name: 'exana_home')]
-<<<<<<< HEAD
-    public function index(FormationsRepository $repo, Request $request) : Response
-    {
-        $formations = $repo->findAll();
-=======
     public function index(FormationsRepository $repo): Response
     {
-        $formations = $repo->findBy([], ['created_at' => 'desc'], 4, 1);
->>>>>>> Mailer
+        $formations = $repo->findAll();
         return $this->render('exsana/index.html.twig', [
             'formations' => $formations,
             'controller_name' => 'ExanaHomeController',
@@ -73,32 +67,35 @@ class ExanaHomeController extends AbstractController
     public function whoweare(): \Symfony\Component\HttpFoundation\Response
     {
         return $this->render('exsana/whoweare.html.twig', [
-               'controller_name' => 'ExanaHomeController',
-           ]);
+            'controller_name' => 'ExanaHomeController',
+        ]);
     }
 
     #[Route(path: '/exsana/pratique', name: 'whereweare')]
     public function pratique(): \Symfony\Component\HttpFoundation\Response
     {
         return $this->render('exsana/pratique.html.twig', [
-               'controller_name' => 'ExanaHomeController',
-           ]);
+            'controller_name' => 'ExanaHomeController',
+        ]);
     }
 
     #[Route(path: '/exsana/mentions-legales', name: 'mention')]
     public function mentionslegales(): \Symfony\Component\HttpFoundation\Response
     {
         return $this->render('exsana/mentions-legales.html.twig', [
-               'controller_name' => 'ExanaHomeController',
-           ]);
+            'controller_name' => 'ExanaHomeController',
+        ]);
     }
 
 
 
     #[Route(path: '/exsana/formations', name: 'formations')]
     public function exsenaFormations(
-        CategoryRepository $cate, Request $request, FormationsRepository $repo, PaginatorInterface $paginator): \Symfony\Component\HttpFoundation\Response
-    {
+        CategoryRepository $cate,
+        Request $request,
+        FormationsRepository $repo,
+        PaginatorInterface $paginator
+    ): \Symfony\Component\HttpFoundation\Response {
         //Trouve toutes les formations
         //Création du formulaire de recherche
         //bar de recherche à terminer
@@ -116,11 +113,11 @@ class ExanaHomeController extends AbstractController
         );
         //$lastFormation = $repo->findBy([],['created_at' => 'desc']);
         return $this->render('exsana/formations.html.twig', [
-               'formations' => $formations,
-               'category' => $listCategory,
-               //'form' => $form->createView(),
-               //'lastformation' =>$lastFormation
-           ]);
+            'formations' => $formations,
+            'category' => $listCategory,
+            //'form' => $form->createView(),
+            //'lastformation' =>$lastFormation
+        ]);
     }
 
     #[Route(path: 'exsana/formation/{id}{slug}', name: 'formation')]
@@ -130,20 +127,20 @@ class ExanaHomeController extends AbstractController
         $programmePedagoFile = $formation->getProgrammePedagoFile();
         //$formaId = $this->$forma->getId();
         /**
-            * @var Entity::User
-        */
+         * @var Entity::User
+         */
         $user = $this->getUser();
         if (isset($user)) {
             $currentUser = $user->getId();
         }
         if (!$formation) {
-               // Si aucune formation n'est trouvé, nous créons une exception
-               throw $this->createNotFoundException('La formation n\'existe pas');
+            // Si aucune formation n'est trouvé, nous créons une exception
+            throw $this->createNotFoundException('La formation n\'existe pas');
         }
         return $this->render('exsana/formation.html.twig', [
-                'programmePedagoFile' => $programmePedagoFile,
-                'controller_name' => 'ExanaHomeController',
-                  'formation' => $formation,
-              ]);
+            'programmePedagoFile' => $programmePedagoFile,
+            'controller_name' => 'ExanaHomeController',
+            'formation' => $formation,
+        ]);
     }
 }

@@ -28,8 +28,10 @@ class FormContact
     private ?string $lastname = null;
 
     #[ORM\Column(type: 'string', length: 255)]
-    #[Assert\Regex(pattern: "/^(0|\+33)[1-9]([-. ]?[0-9]{2}){4}$/",
-    message: "Veuillez entrer un numéro de téléphone portable ou fixe français valide.")]
+    #[Assert\Regex(
+        pattern: "/^(0|\+33)[1-9]([-. ]?[0-9]{2}){4}$/",
+        message: "Veuillez entrer un numéro de téléphone portable ou fixe français valide."
+    )]
     private ?string $phone = null;
 
 

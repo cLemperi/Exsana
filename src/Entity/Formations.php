@@ -57,7 +57,6 @@ class Formations
     #[ORM\OneToMany(targetEntity: ProgrammeFormation::class, mappedBy: 'programme', cascade: ['persist'])]
     private \Doctrine\Common\Collections\Collection|array $programmeFormations;
 
-
     #[ORM\Column(length: 255)]
     private ?string $slug = null;
 
@@ -137,16 +136,6 @@ class Formations
 
         return $this;
     }
-    public function getCreated_at(): ?\DateTimeInterface
-    {
-        return $this->created_at;
-    }
-    public function setCreated_at(\DateTimeInterface $created_at): self
-    {
-        $this->created_at = $created_at;
-
-        return $this;
-    }
     public function getDateFormation(): string
     {
         return $this->dateFormation;
@@ -177,10 +166,12 @@ class Formations
 
         return $this;
     }
+
     public function getCategory(): ?Category
     {
         return $this->category;
     }
+
     public function setCategory(?Category $category): self
     {
         $this->category = $category;
@@ -196,6 +187,7 @@ class Formations
     {
         return $this->objectifFormations;
     }
+
     public function addObjectifFormation(ObjectifFormation $objectifFormation): self
     {
         if (!$this->objectifFormations->contains($objectifFormation)) {
@@ -205,6 +197,7 @@ class Formations
 
         return $this;
     }
+
     public function removeObjectifFormation(ObjectifFormation $objectifFormation): self
     {
         if ($this->objectifFormations->removeElement($objectifFormation)) {
@@ -224,6 +217,7 @@ class Formations
     {
         return $this->programmeFormations;
     }
+
     public function addProgrammeFormation(ProgrammeFormation $programmeFormation): self
     {
         if (!$this->programmeFormations->contains($programmeFormation)) {
@@ -233,6 +227,7 @@ class Formations
 
         return $this;
     }
+
     public function removeProgrammeFormation(ProgrammeFormation $programmeFormation): self
     {
         if ($this->programmeFormations->removeElement($programmeFormation)) {
@@ -244,17 +239,18 @@ class Formations
 
         return $this;
     }
+
     public function getCreatedAt(): ?\DateTimeInterface
     {
         return $this->created_at;
     }
+
     public function setCreatedAt(?\DateTimeInterface $created_at): self
     {
         $this->created_at = $created_at;
 
         return $this;
     }
-
 
     public function getSlug(): ?string
     {
@@ -279,7 +275,6 @@ class Formations
 
         return $this;
     }
-
     public function getEvaluation(): ?string
     {
         return $this->Evaluation;

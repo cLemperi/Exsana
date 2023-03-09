@@ -5,12 +5,9 @@ namespace App\Controller;
 use App\Entity\Formations;
 use App\Form\FormationInviteType;
 use App\Form\FormationRegistrationType;
-<<<<<<< HEAD
-=======
 use App\Repository\UserInviteRepository;
 use App\Service\UserRegistrationService;
 use App\Service\UserRegistrationServiceInterface;
->>>>>>> Mailer
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -22,13 +19,14 @@ class RegistrationFormationController extends AbstractController
     public function __construct(EntityManagerInterface $em)
     {
         $this->em = $em;
-        
     }
 
     #[Route('/registration/formation/{id}', name: 'add_participant')]
     public function inscription(
-        Formations $formation, Request $request,UserRegistrationServiceInterface $mail): Response
-    {
+        Formations $formation,
+        Request $request,
+        UserRegistrationServiceInterface $mail
+    ): Response {
         $user = $this->getUser();
         if (!$user) {
             throw $this->createAccessDeniedException();
@@ -45,15 +43,6 @@ class RegistrationFormationController extends AbstractController
 
         if ($form->isSubmitted() && $form->isValid()) {
             $formation->addUser($user);
-<<<<<<< HEAD
-            $this->em->persist($formation);
-            $this->em->flush();
-
-            $this->addFlash('success', 'Inscription à la formation réussie!');
-            $this->addFlash('formation_id', $formation->getId());
-
-            return $this->redirectToRoute('formations');
-=======
             try {
                 $this->em->persist($formation);
                 $this->em->flush();
@@ -66,27 +55,26 @@ class RegistrationFormationController extends AbstractController
                 // Enregistrer l'exception dans les logs pour un débogage ultérieur
                 $this->logger->error('Error during formation registration', ['exception' => $e]);
             }
->>>>>>> Mailer
         }
 
         $mail->sendRegistrationFormationEmail($usermail = $user->getEmail(), $formationTitle = $formation->getTitle());
 
-    return $this->render('registration_formation/index.html.twig', [
-        'participants' => $participants,
-        'formation' => $formation,
-        'form' => $form->createView(),
-    ]);
-}
+        return $this->render('registration_formation/index.html.twig', [
+            'participants' => $participants,
+            'formation' => $formation,
+            'form' => $form->createView(),
+        ]);
+    }
 
     #[Route('/registration/create/{id}', name: 'registration_add_invite')]
-    public function addUserInvite(Request $request,int $id): Response
+    public function addUserInvite(Request $request, int $id): Response
     {
         $this->denyAccessUnlessGranted('IS_AUTHENTICATED_FULLY');
         $formation = $this->em->getRepository(Formations::class)->find($id);
         if (!$formation) {
             throw $this->createNotFoundException('Formation non trouvée');
         }
-        
+
         /**
          * @var Entity::User
          */
