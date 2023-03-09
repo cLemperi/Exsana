@@ -11,10 +11,10 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 class SitemapController extends AbstractController
 {
     #[Route('/sitemap.xml', name: 'app_sitemap', defaults: ['_format' => 'xml'])]
-    public function index(Request $request,
-    FormationsRepository $formationRepo,
-    ): Response
-    {  
+    public function index(
+        Request $request,
+        FormationsRepository $formationRepo,
+    ): Response {
         $hostname = $request->getSchemeAndHttpHost();
         $urls = [];
         $urls[] = ['loc' => $this->  generateUrl('exana_home')];
@@ -23,7 +23,7 @@ class SitemapController extends AbstractController
         $urls[] = ['loc' => $this->generateUrl('formations')];
         $urls[] = ['loc' => $this->generateUrl('whoweare')];
         $urls[] = ['loc' => $this->generateUrl('recrutement')];
-        foreach($formationRepo->findAll() as $formation) {
+        foreach ($formationRepo->findAll() as $formation) {
             $urls[] = [
                 'loc' => $this->generateUrl('formation', ['id' => $formation->getId(),'slug' => $formation->getSlug()]),
                 'lastmod' => $formation ->getCreated_at()->format('Y-m-d')

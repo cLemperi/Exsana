@@ -17,11 +17,12 @@ class UserMessageType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
-        ->add('request',ChoiceType::class,[
+        ->add('request', ChoiceType::class, [
             'mapped' => false,
-            'choices'=> [
+            'choices' => [
                 'Organiser une formation en intra / sur mesure' => 'Organiser une formation en intra / sur mesure',
-                'Obtenir des renseignements sur nos programmes inter' => 'Obtenir des renseignements sur nos programmes inter',
+                'Obtenir des renseignements sur nos programmes inter' =>
+                    'Obtenir des renseignements sur nos programmes inter',
                 'Recrutement' => 'Recrutement',
                 "Autre demande d\'information" => "Autre demande d'information"
             ]

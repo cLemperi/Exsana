@@ -5,6 +5,16 @@ parameters:
     email.admin_address: 'exsanaformation@gmail.com'
 
 services:
+    App\Service\UserRegistrationService:
+        class: App\Service\UserRegistrationService
+        arguments:
+            $mailer: '@Symfony\Component\Mailer\MailerInterface'
+
+    App\Service\ErrorLogger:
+        arguments:
+            $logger: '@logger'
+
+
     _defaults:
         autowire: true
         autoconfigure: true

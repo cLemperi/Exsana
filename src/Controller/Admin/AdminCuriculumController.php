@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Controller\Admin;
+
 use App\Entity\Curiculum;
 use App\Repository\CuriculumRepository;
 use Doctrine\ORM\EntityManagerInterface;
@@ -12,8 +13,6 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
 class AdminCuriculumController extends AbstractController
 {
-
-
     #[Route(path: '/admin/curiculum/index', name: 'admin.curiculum.index')]
     public function curiculums(CuriculumRepository $repo): Response
     {

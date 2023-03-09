@@ -19,8 +19,8 @@ class UserMessage
     #[ORM\Column(length: 255)]
     private ?string $Content = null;
 
-    #[ORM\ManyToOne(targetEntity: User::class, inversedBy: 'UserMessages',cascade: ['persist'])]
-    #[ORM\JoinColumn(name: "user_message_id" ,referencedColumnName: "id")]
+    #[ORM\ManyToOne(targetEntity: User::class, inversedBy: 'UserMessages', cascade: ['persist'])]
+    #[ORM\JoinColumn(name: "user_message_id", referencedColumnName: "id")]
     private ?User $UserMessage = null;
 
     public function getId(): ?int

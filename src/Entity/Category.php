@@ -25,7 +25,7 @@ class Category
 
     #[ORM\OneToMany(targetEntity: Formations::class, mappedBy: 'category', orphanRemoval: true)]
     private \Doctrine\Common\Collections\Collection|array $Formations;
-    
+
     public function __construct()
     {
         $this->Formations = new ArrayCollection();

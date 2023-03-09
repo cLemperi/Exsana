@@ -18,12 +18,12 @@ class ObjectifFormation
     private ?string $name = null;
 
     #[ORM\ManyToOne(targetEntity: Formations::class, inversedBy: 'objectifFormations', cascade: ['persist'])]
-    #[ORM\JoinColumn(name: "objForma_id" ,referencedColumnName: "id" ,nullable: false)]
+    #[ORM\JoinColumn(name: "objForma_id", referencedColumnName: "id", nullable: false)]
     private ?\App\Entity\Formations $objectifs = null;
 
     #[ORM\Column(type: Types::TEXT, nullable: true)]
     private ?string $title = null;
-    
+
     public function __toString(): string
     {
         return $this->name;

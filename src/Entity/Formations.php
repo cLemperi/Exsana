@@ -78,8 +78,8 @@ class Formations
 
     #[ORM\OneToMany(mappedBy: 'formation', targetEntity: FormationUser::class)]
     private Collection $formationUsers;
-    
-    
+
+
     public function __construct()
     {
         $this->created_at = new \DateTime();
@@ -89,7 +89,7 @@ class Formations
         $this->formationUsers = new ArrayCollection();
     }
     public function __toString(): string
-    {   
+    {
         return $this->title;
     }
     public function getId(): ?int
@@ -187,7 +187,7 @@ class Formations
 
         return $this;
     }
-    
+
 
     /**
      * @return Collection<int, ObjectifFormation>
@@ -216,7 +216,7 @@ class Formations
 
         return $this;
     }
-    
+
     /**
      * @return Collection<int, ProgrammeFormation>
      */

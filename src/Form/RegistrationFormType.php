@@ -3,7 +3,6 @@
 namespace App\Form;
 
 use App\Entity\User;
-
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\Validator\Constraints\IsTrue;
@@ -21,9 +20,9 @@ class RegistrationFormType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
-            ->add('username',TextType::class, [
+            ->add('username', TextType::class, [
                 'attr' => [
-                    'class'=>'form-control'
+                    'class' => 'form-control'
                 ],
                 'label' => 'Pseudo'
             ])
@@ -45,68 +44,68 @@ class RegistrationFormType extends AbstractType
                 ],
                 'label' => 'Mot de passe'
             ])
-            ->add('sex',ChoiceType::class, [
+            ->add('sex', ChoiceType::class, [
                 'choices' => [
                     'Mr' => 'Mr',
                     'Mme' => 'Mme',
                 ],
                 'attr' => [
-                    'class'=>'form-control'
+                    'class' => 'form-control'
                 ],
                 'label' => 'Civilité'
             ])
-            ->add('firstName',TextType::class, [
+            ->add('firstName', TextType::class, [
                 'attr' => [
-                    'class'=>'form-control'
+                    'class' => 'form-control'
                 ],
                 'label' => 'Prénom'
             ])
-            ->add('lastName',TextType::class, [
+            ->add('lastName', TextType::class, [
                 'attr' => [
-                    'class'=>'form-control'
+                    'class' => 'form-control'
                 ],
                 'label' => 'Nom'
             ])
             ->add('email', EmailType::class)
-            ->add('job',TextType::class, [
+            ->add('job', TextType::class, [
                 'attr' => [
-                    'class'=>'form-control'
+                    'class' => 'form-control'
                 ],
                 'label' => 'Emploi'
             ])
-            ->add('phone',TextType::class, [
+            ->add('phone', TextType::class, [
                 'attr' => [
-                    'class'=>'form-control'
+                    'class' => 'form-control'
                 ],
                 'label' => 'Téléphone'
             ])
-            ->add('rppsCode',TextType::class, [
+            ->add('rppsCode', TextType::class, [
                 'attr' => [
-                    'class'=>'form-control'
+                    'class' => 'form-control'
                 ],
                 'label' => 'Code RPPS'
             ])
-            ->add('postalCode',TextType::class, [
+            ->add('postalCode', TextType::class, [
                 'attr' => [
-                    'class'=>'form-control'
+                    'class' => 'form-control'
                 ],
                 'label' => 'Code postal'
             ])
-            ->add('city',TextType::class, [
+            ->add('city', TextType::class, [
                 'attr' => [
-                    'class'=>'form-control'
+                    'class' => 'form-control'
                 ],
                 'label' => 'Ville'
             ])
-            ->add('street',TextType::class, [
+            ->add('street', TextType::class, [
                 'attr' => [
-                    'class'=>'form-control'
+                    'class' => 'form-control'
                 ],
                 'label' => 'Rue'
             ])
-            ->add('profil',TextType::class, [
+            ->add('profil', TextType::class, [
                 'attr' => [
-                    'class'=>'form-control'
+                    'class' => 'form-control'
                 ],
                 'label' => 'Profils'
             ])
@@ -118,7 +117,7 @@ class RegistrationFormType extends AbstractType
                     ]),
                 ],
             ])
-            
+
         ;
     }
 

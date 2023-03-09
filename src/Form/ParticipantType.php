@@ -14,24 +14,24 @@ class ParticipantType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
-            ->add('prenom',TypeTextType::class, [
+            ->add('prenom', TypeTextType::class, [
                 'attr' => [
-                    'class'=>'form-invite'
+                    'class' => 'form-invite'
                 ]
             ])
-            ->add('nom',TypeTextType::class, [
+            ->add('nom', TypeTextType::class, [
                 'attr' => [
-                    'class'=>'form-invite'
+                    'class' => 'form-invite'
                 ]
             ])
-            ->add('profession',TypeTextType::class, [
+            ->add('profession', TypeTextType::class, [
                 'attr' => [
-                    'class'=>'form-invite'
+                    'class' => 'form-invite'
                 ]
             ])
-            ->add('email',EmailType::class, [
+            ->add('email', EmailType::class, [
                 'attr' => [
-                    'class'=>'form-invite'
+                    'class' => 'form-invite'
                 ]
             ])
             ->add('relation');

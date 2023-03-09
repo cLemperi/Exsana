@@ -14,24 +14,24 @@ class UserInviteType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
-            ->add('nickname',TypeTextType::class, [
+            ->add('nickname', TypeTextType::class, [
                 'attr' => [
-                    'class'=>'form-invite',
+                    'class' => 'form-invite',
                 ]
             ])
-            ->add('lastname',TypeTextType::class, [
+            ->add('lastname', TypeTextType::class, [
                 'attr' => [
-                    'class'=>'form-invite'
+                    'class' => 'form-invite'
                 ]
             ])
-            ->add('profession',TypeTextType::class, [
+            ->add('profession', TypeTextType::class, [
                 'attr' => [
-                    'class'=>'form-invite'
+                    'class' => 'form-invite'
                 ]
             ])
             ->add('email', EmailType::class, [
                 'attr' => [
-                    'class'=>'form-invite'
+                    'class' => 'form-invite'
                 ]
             ])
         ;

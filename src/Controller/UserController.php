@@ -17,22 +17,18 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
-
-
-
-
 #[Route('/user'), IsGranted('ROLE_USER')]
 class UserController extends AbstractController
 {
-    public function __construct(private UserRepository $repository,EntityManagerInterface $em)
+    public function __construct(private UserRepository $repository, EntityManagerInterface $em)
     {
         $this->em = $em;
     }
 
-    
+
     #[Route('/mon_compte', name: 'user.register', methods: ['GET|POST'])]
     public function userRegister(Request $request, EntityManagerInterface $em): Response
-    {   
+    {
         $user = $this->getUser();
         $form = $this->createForm(ProfilsType::class, $user);
         $form->handleRequest($request);
@@ -43,7 +39,7 @@ class UserController extends AbstractController
                     $this->addFlash('success', 'Profils bien modifié avec succès');
                     return $this->redirectToRoute('user.register');
         }
-        
+
 
         return $this->render('user/userProfils.html.twig', [
             'profil' => $form->createView(),
@@ -53,12 +49,12 @@ class UserController extends AbstractController
     //les formations utilisisateurs inscrit
     #[Route('/myformations', name: 'user.formations', methods: ['GET|POST'])]
     public function userFormation(FormationsRepository $repo): Response
-    {   
+    {
 
         $user = $this->getUser();
         $formations = $repo->findByUser($user);
-        
-        
+
+
 
         //$formationIdUser = $formations->getUserRegisterFormation();
         //var_dump($formationIdUser);

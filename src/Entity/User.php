@@ -66,7 +66,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface, Seriali
     private \Doctrine\Common\Collections\Collection|array $UserMessages;
 
 
-    #[ORM\OneToMany(mappedBy: 'UserFrom', targetEntity: UserInvite::class, cascade: ['persist'],orphanRemoval: true)]
+    #[ORM\OneToMany(mappedBy: 'UserFrom', targetEntity: UserInvite::class, cascade: ['persist'], orphanRemoval: true)]
     private Collection $userInvites;
 
     #[ORM\Column(nullable: true)]
@@ -78,7 +78,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface, Seriali
     #[ORM\OneToMany(mappedBy: 'user', targetEntity: FormationUser::class)]
     private Collection $formationUsers;
 
-    #[ORM\OneToMany(mappedBy: 'relation', targetEntity: Participant::class, cascade:['persist'] )]
+    #[ORM\OneToMany(mappedBy: 'relation', targetEntity: Participant::class, cascade:['persist'])]
     private Collection $participants;
 
     public function __construct()
@@ -277,7 +277,6 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface, Seriali
     }
     public function eraseCredentials()
     {
-
     }
     /**
      * Controls how the object is represented during PHP serialization.
@@ -286,8 +285,9 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface, Seriali
      *
      * @return array The properties of the object as an associative array.
      */
-    public function __serialize(): array {
-        return get_object_vars( $this );
+    public function __serialize(): array
+    {
+        return get_object_vars($this);
     }
     /**
      * Controls how the object is reconstructed from a PHP serialized representation.
@@ -297,33 +297,37 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface, Seriali
      * @param array $data The associative array representation of the object.
      * @return void
      */
-    public function __unserialize( $data ) {
-        foreach ( $data as $key => $value ) {
-          $this->$key = $value;
+    public function __unserialize($data)
+    {
+        foreach ($data as $key => $value) {
+            $this->$key = $value;
         }
     }
-    public function serialize(): string {
+    public function serialize(): string
+    {
         return  serialize([
             $this->id,
             $this->username,
             $this->password
         ]);
     }
-    public function unserialize($serialized) {
+    public function unserialize($serialized)
+    {
         list (
             $this->id,
             $this->username,
             $this->password
-        ) = unserialize($serialized, ['allowed_classes' => false]); 
+        ) = unserialize($serialized, ['allowed_classes' => false]);
     }
     /**
      * Returns the identifier for this user (e.g. its username or email address).
      */
-    public function getUserIdentifier(): string {
+    public function getUserIdentifier(): string
+    {
         return (string) $this->email;
     }
 
-    
+
 
     /**
      * @return Collection<int, UserInvite>

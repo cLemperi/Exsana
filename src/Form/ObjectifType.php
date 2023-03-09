@@ -14,7 +14,7 @@ class ObjectifType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
-            ->add('title',null, array('label' => false))
+            ->add('title', null, array('label' => false))
             ->add('name', TextareaType::class, [
                 'attr' => ['class' => 'tinymce'],
             ]);

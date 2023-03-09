@@ -1,4 +1,5 @@
 <?php
+
 namespace App\DataFixtures;
 
 use App\Entity\User;
@@ -18,7 +19,8 @@ class AdminFixtures extends Fixture
                     $user->setUsername('AdminUser');
                     $user->setPassword(
                         $this->userPasswordHasherInterface->hashPassword(
-                            $user, "AdminUser"
+                            $user,
+                            "AdminUser"
                         )
                     );
                     $user->setSex('Mr');
@@ -35,7 +37,7 @@ class AdminFixtures extends Fixture
                     $user->setRoles(['ROLE_ADMIN']);
 
         $manager->persist($user);
-       
+
         $manager->flush();
     }
 }

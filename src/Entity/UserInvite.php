@@ -21,7 +21,7 @@ class UserInvite
     #[ORM\Column(length: 255)]
     private ?string $lastname = null;
 
-    #[ORM\ManyToOne(targetEntity: User::class,inversedBy: 'userInvites',cascade: ['persist'])]
+    #[ORM\ManyToOne(targetEntity: User::class, inversedBy: 'userInvites', cascade: ['persist'])]
     #[ORM\JoinColumn(nullable: false)]
     private ?User $UserFrom = null;
 

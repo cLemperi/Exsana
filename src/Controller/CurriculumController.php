@@ -43,5 +43,4 @@ class CurriculumController extends AbstractController
             'form' => $form->createView(),
         ]);
     }
-
 }
