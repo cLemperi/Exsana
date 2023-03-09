@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Controller\Admin;
+
 use App\Entity\Formations;
 use App\Form\FormationType;
 use App\Entity\ObjectifFormation;
@@ -15,22 +16,22 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\File\Exception\FileException;
 
 class AdminFormationController extends AbstractController
-{   
+{
     public function __construct(private FormationsRepository $repository, private EntityManagerInterface $em)
     {
     }
 
 
     #[Route(path: '/admin/index', name: 'admin.index')]
-    public function index() : Response
+    public function index(): Response
     {
         return $this->render('admin/formation/formation/index.html.twig', [
             'controller_name' => 'AdminFormationController'
         ]);
     }
-    
+
     #[Route(path: '/admin/formation/formation/gestion', name: 'admin.formation.index')]
-    public function gestionFormation() : Response
+    public function gestionFormation(): Response
     {
         $formations =  $this->repository->findAll();
         return $this->render('admin/formation/formation/gestion.html.twig', [
@@ -38,7 +39,7 @@ class AdminFormationController extends AbstractController
             'formations' => $formations
         ]);
     }
-    
+
     #[Route(path: '/admin/formation/create', name: 'admin.formation.new')]
     public function new(Request $request): Response
     {
@@ -51,14 +52,14 @@ class AdminFormationController extends AbstractController
             $programmePedagoFile = $form->get('programmePedago')->getData();
             if ($programmePedagoFile) {
                 $filename = pathinfo($programmePedagoFile->getClientOriginalName(), PATHINFO_FILENAME);
-                $newFilename = $filename.'-'.uniqid().'.'.$programmePedagoFile->guessExtension();
-        
+                $newFilename = $filename . '-' . uniqid() . '.' . $programmePedagoFile->guessExtension();
+
                 try {
                     $programmePedagoFile->move($this->getParameter('pedago_directory'), $newFilename);
                 } catch (FileException $e) {
                     // ... handle exception if something happens during file upload
                 }
-                
+
                 $formation->setProgrammePedagoFile($newFilename);
                 $this->addFlash('success', 'Le fichier a été téléchargé avec succès.');
             }
@@ -67,62 +68,61 @@ class AdminFormationController extends AbstractController
             $this->addFlash('success', 'Bien ajouté avec succès');
             return $this->redirectToRoute('admin.formation.index');
         }
-        
+
         return $this->render('admin/formation/formation/new.html.twig', [
             'formation' => $formation,
             'form' => $form->createView(),
         ]);
     }
-        
 
-    
+
+
 
     #[Route(path: '/admin/formation/{id}', name: 'admin.formation.edit', methods: 'GET|POST')]
-public function edit(Formations $formation, Request $request): Response
-{
-    $form = $this->createForm(FormationType::class, $formation);
-    $form->handleRequest($request);
+    public function edit(Formations $formation, Request $request): Response
+    {
+        $form = $this->createForm(FormationType::class, $formation);
+        $form->handleRequest($request);
 
-    if ($form->isSubmitted() && $form->isValid()) {
-        /** @var UploadedFile $programmePedagoFile */
-        $programmePedagoFile = $form->get('programmePedago')->getData();
+        if ($form->isSubmitted() && $form->isValid()) {
+            /** @var UploadedFile $programmePedagoFile */
+            $programmePedagoFile = $form->get('programmePedago')->getData();
 
-        if ($programmePedagoFile) {
-            $filename = pathinfo($programmePedagoFile->getClientOriginalName(), PATHINFO_FILENAME);
-            $newFilename = $filename.'-'.uniqid().'.'.$programmePedagoFile->guessExtension();
+            if ($programmePedagoFile) {
+                $filename = pathinfo($programmePedagoFile->getClientOriginalName(), PATHINFO_FILENAME);
+                $newFilename = $filename . '-' . uniqid() . '.' . $programmePedagoFile->guessExtension();
 
-            try {
-                $programmePedagoFile->move($this->getParameter('pedago_directory'), $newFilename);
-            } catch (FileException $e) {
-                // handle exception if something happens during file upload
+                try {
+                    $programmePedagoFile->move($this->getParameter('pedago_directory'), $newFilename);
+                } catch (FileException $e) {
+                    // handle exception if something happens during file upload
+                }
+
+                $formation->setProgrammePedagoFile($newFilename);
+                $this->addFlash('success', 'Le fichier a été téléchargé avec succès.');
             }
 
-            $formation->setProgrammePedagoFile($newFilename);
-            $this->addFlash('success', 'Le fichier a été téléchargé avec succès.');
+            $this->em->flush();
+            $this->addFlash('success', 'Bien modifié avec succès');
+            return $this->redirectToRoute('admin.formation.index');
         }
 
-        $this->em->flush();
-        $this->addFlash('success', 'Bien modifié avec succès');
-        return $this->redirectToRoute('admin.formation.index');
-    }
-
-    return $this->render('admin/formation/formation/edit.html.twig', [
+        return $this->render('admin/formation/formation/edit.html.twig', [
         'formation' => $formation,
         'form' => $form->createView(),
-    ]);
-}
+        ]);
+    }
 
 
-    
+
     #[Route(path: '/admin/formation{id}', name: 'admin.formation.delete', methods: 'DELETE')]
-    public function delete(Formations $formation, Request $request) : \Symfony\Component\HttpFoundation\Response
+    public function delete(Formations $formation, Request $request): \Symfony\Component\HttpFoundation\Response
     {
-        if($this->isCsrfTokenValid('delete'.$formation->getId(), $request->get('_token'))) {
+        if ($this->isCsrfTokenValid('delete' . $formation->getId(), $request->get('_token'))) {
             $this->em->remove($formation);
             $this->em->flush();
             $this->addFlash('success', 'Bien supprimé avec succès');
         }
         return $this->redirectToRoute('admin.formation.index');
     }
-
 }

@@ -12,15 +12,15 @@ use Symfony\Component\OptionsResolver\OptionsResolver;
 
 class SearchType extends AbstractType
 {
-    function buildForm(FormBuilderInterface $builder, array $options)
+    public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('q', TextType::class,[
+            ->add('q', TextType::class, [
                 'label' => false,
                 'required' => false,
-                
+
             ])
-            ->add('category',EntityType::class,[
+            ->add('category', EntityType::class, [
                 'label' => false,
                 'required' => false,
                 'class' => Category::class,
@@ -29,7 +29,7 @@ class SearchType extends AbstractType
             ])
             ;
     }
-    function configureOptions(OptionsResolver $resolver)
+    public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setDefaults([
             'data_class' => SearchData::class,
@@ -38,10 +38,8 @@ class SearchType extends AbstractType
         ]);
     }
 
-    function getBlockPrefix():string
+    public function getBlockPrefix(): string
     {
         return '';
     }
-
-
 }

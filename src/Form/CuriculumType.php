@@ -18,7 +18,7 @@ class CuriculumType extends AbstractType
             ->add('firstname')
             ->add('lastname')
             ->add('message')
-            ->add('curiculumFile',FileType::class, [
+            ->add('curiculumFile', FileType::class, [
                 'label' => 'Brochure (PDF file)',
 
                 // unmapped means that this field is not associated to any entity property

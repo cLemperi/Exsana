@@ -2,6 +2,16 @@ parameters:
     pedago_directory: '%kernel.project_dir%/public/uploads/pedago'
 
 services:
+    App\Service\UserRegistrationService:
+        class: App\Service\UserRegistrationService
+        arguments:
+            $mailer: '@Symfony\Component\Mailer\MailerInterface'
+
+    App\Service\ErrorLogger:
+        arguments:
+            $logger: '@logger'
+
+
     _defaults:
         autowire: true
         autoconfigure: true 

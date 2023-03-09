@@ -24,23 +24,23 @@ class FormationType extends AbstractType
             ->add('title')
             ->add('dateFormation')
             ->add('price')
-            ->add('category', EntityType::class,[
+            ->add('category', EntityType::class, [
                 'class' => Category::class,
                 'choice_label' => 'title'
             ])
-            ->add('programmeFormations', CollectionType::class,[
+            ->add('programmeFormations', CollectionType::class, [
                 'entry_type' => ProgrammeType::class,
-                'entry_options'=> ['label' => false],
+                'entry_options' => ['label' => false],
                 'allow_add' => true,
                 'by_reference' => false,
-                'allow_delete' => true, 
+                'allow_delete' => true,
             ])
-            ->add('objectifFormations', CollectionType::class,[
+            ->add('objectifFormations', CollectionType::class, [
                 'entry_type' => ObjectifType::class,
-                'entry_options'=> ['label' => false],
+                'entry_options' => ['label' => false],
                 'allow_add' => true,
                 'by_reference' => false,
-                'allow_delete' => true, 
+                'allow_delete' => true,
             ])
             ->add('durationFormation') //Durée
             ->add('forWho')

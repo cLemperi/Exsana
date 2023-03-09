@@ -17,9 +17,9 @@ class FormationFixture extends Fixture
         $generator = Factory::create('fr_FR');
 
         $categories = $manager->getRepository(Category::class)->findAll();
-        for ($index = 1; $index <= 10; $index++){
+        for ($index = 1; $index <= 10; $index++) {
             $category = $categories[array_rand($categories)];
-            $shortText = $generator->sentence($nbWords = 10, $variableNbWords = true ) . $index;
+            $shortText = $generator->sentence($nbWords = 10, $variableNbWords = true) . $index;
             $city = $generator->city;
             $date = $generator->dateTime();
             $formation = (new Formations())
@@ -36,9 +36,11 @@ class FormationFixture extends Fixture
                 ->setPublicAndAccessCondition($shortText)
                 ->setIntervenant($shortText)
                 ->setIntervenant($shortText);
-            for ($i = 0; $i < 4; $i++){
-                $formation->addObjectifFormation((new ObjectifFormation())->setName($shortText)->setTitle($shortText));
-                $formation->addProgrammeFormation((new ProgrammeFormation())->setName($shortText)->setTitle($shortText));
+            for ($i = 0; $i < 4; $i++) {
+                $formation->addObjectifFormation((new ObjectifFormation())
+                    ->setName($shortText)->setTitle($shortText));
+                $formation->addProgrammeFormation((new ProgrammeFormation())
+                    ->setName($shortText)->setTitle($shortText));
             }
             $manager->persist($formation);
         }

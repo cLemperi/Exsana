@@ -9,18 +9,18 @@ use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
 
 class UserFixtures extends Fixture
 {
-
     public function __construct(private UserPasswordHasherInterface $userPasswordHasherInterface)
     {
     }
 
     public function load(ObjectManager $manager)
-    {   
+    {
             $user = new User();
                     $user->setUsername('DemoUser');
                     $user->setPassword(
                         $this->userPasswordHasherInterface->hashPassword(
-                            $user, "DemoUser"
+                            $user,
+                            "DemoUser"
                         )
                     );
                     $user->setSex('Mr');
@@ -36,14 +36,10 @@ class UserFixtures extends Fixture
                     $user->setProfil('Soignant');
                     $user->getRoles();
 
-    
+
 
         $manager->persist($user);
-       
+
         $manager->flush();
     }
 }
-       
-
-
-  

@@ -13,9 +13,9 @@ class CategorieFixtures extends Fixture
         $generator = \Faker\Factory::create('fr_FR');
 
         for ($i = 0; $i <= 7; $i++) {
-            $rand_number = rand(1,2);
+            $rand_number = rand(1, 2);
             $shortText = $generator->sentence($rand_number, $variableNbWords = true);
-            $manager->persist( 
+            $manager->persist(
                 (new Category())
                 ->setTitle($shortText)
                 ->setDescription($generator->paragraph())

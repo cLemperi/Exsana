@@ -15,6 +15,8 @@ use App\Form\FormationInviteType;
 use App\Repository\UserRepository;
 use App\Form\FormationRegistrationType;
 use App\Repository\UserInviteRepository;
+use App\Service\UserRegistrationService;
+use App\Service\UserRegistrationServiceInterface;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -31,11 +33,18 @@ class RegistrationFormationController extends AbstractController
     }
 
     #[Route('/registration/formation/{id}', name: 'add_participant')]
-    public function inscription(Formations $formation, Request $request): Response
+    public function inscription(
+        Formations $formation, Request $request,UserRegistrationServiceInterface $mail): Response
     {
         $user = $this->getUser();
         if (!$user) {
             throw $this->createAccessDeniedException();
+        }
+
+        // Vérifier si l'utilisateur a déjà été ajouté à la formation
+        if ($formation->getUsers()->contains($user)) {
+            $this->addFlash('error', 'Vous êtes déjà inscrit à cette formation.');
+            return $this->redirectToRoute('formations');
         }
         $participants = $user->getParticipants();
         $form = $this->createForm(FormationRegistrationType::class, $formation);
@@ -43,13 +52,21 @@ class RegistrationFormationController extends AbstractController
 
         if ($form->isSubmitted() && $form->isValid()) {
             $formation->addUser($user);
-            $this->em->persist($formation);
-            $this->em->flush();
-
-            $this->addFlash('success', 'Inscription à la formation réussie!');
-
-            return $this->redirectToRoute('formations');
+            try {
+                $this->em->persist($formation);
+                $this->em->flush();
+                // Rediriger vers la liste des formations avec un message de confirmation
+                $this->addFlash('success', 'Inscription à la formation réussie!');
+                return $this->redirectToRoute('formations');
+            } catch (\Exception $e) {
+                // Afficher un message d'erreur en cas d'erreur de persistance
+                $this->addFlash('error', 'Une erreur est survenue lors de l\'inscription à la formation.');
+                // Enregistrer l'exception dans les logs pour un débogage ultérieur
+                $this->logger->error('Error during formation registration', ['exception' => $e]);
+            }
         }
+
+        $mail->sendRegistrationFormationEmail($usermail = $user->getEmail(), $formationTitle = $formation->getTitle());
 
     return $this->render('registration_formation/index.html.twig', [
         'participants' => $participants,
