@@ -12,7 +12,7 @@ use Doctrine\Bundle\FixturesBundle\Fixture;
 
 class FormationFixture extends Fixture
 {
-    public function load(ObjectManager $manager)
+    public function load(ObjectManager $manager): void
     {
         $generator = Factory::create('fr_FR');
 

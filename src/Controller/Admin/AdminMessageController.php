@@ -24,9 +24,13 @@ class AdminMessageController extends AbstractController
     }
 
     #[Route('/admin/message/{id}', name: 'app_admin_message_id')]
-    public function messageContact(MessageFromContactRepository $repo, $id, FormContactRepository $formrepo): Response
-    {
-        $message =  $repo->find($id);
+    public function messageContact(
+        MessageFromContactRepository $repo,
+        int $id,
+        FormContactRepository $formrepo
+    ): Response {
+
+            $message =  $repo->find($id);
 
         return $this->render('admin/formation/message/read.html.twig', [
             'message' => $message,
@@ -35,7 +39,7 @@ class AdminMessageController extends AbstractController
     }
 
     #[Route('/admin/messageunk/{id}', name: 'app_admin_message_id')]
-    public function messageContactUnknow(FormContactRepository $repo, $id): Response
+    public function messageContactUnknow(FormContactRepository $repo, int $id): Response
     {
         $message =  $repo->find($id);
 

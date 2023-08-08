@@ -4,6 +4,7 @@ namespace App\Entity;
 
 use App\Repository\UserMessageRepository;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Security\Core\User\UserInterface;
 
 #[ORM\Entity(repositoryClass: UserMessageRepository::class)]
 class UserMessage

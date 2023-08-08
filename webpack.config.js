@@ -68,6 +68,10 @@ Encore
     .configureFontRule({
         type: 'asset',
     })
+
+    //enable vue.js
+    .enableVueLoader(()=> {}, { runtimeCompilerBuild: true })
+    
     // uncomment if you use TypeScript
     //.enableTypeScriptLoader()
 

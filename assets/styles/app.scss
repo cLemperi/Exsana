@@ -888,6 +888,7 @@ a {
   margin-left: 1rem;
   margin-right: 1rem;
   border-color: $couleur-bleu-logo;
+  background-color: $couleur-bleu-logo;
 }
 
 .btn:hover {
@@ -903,13 +904,108 @@ a {
 .form-invite .form-control {
   border-radius: 60px;
 }
+//écran mobile
+@media (max-width: 768px) {
+  #img-header {
+    background: #fff;
+    width: 40%;
+  }
+  .caroussel{
+    display: none;
+  }
 
-//petit écrant
-@media (max-width: 1080px) {
+  .img-fluid {
+    width: 80%;
+  }
+
+  /** NAVBAR RESPONSIVE **/
+  .navbar {
+    background: #fff;
+    text-align: center;
+    align-items: center;
+  }
+
+  #navbarmenu {
+    padding-right: 0px;
+    margin-right: 0px;
+    text-align: center;
+  }
+
+  .navbar .nav-link {
+    font-size: 30px;
+  }
+
+  /** FIN NAVBAR RESPONSIVE **/
+
+  /** DEBUT  CAROUSEL RESPONSIVE **/
+
+  /** FIN CAROUSEL RESPONSIVE **/
+
+  /** DEBUT  TEXT RESPONSIVE **/
+
+  .title_formation h1 {
+    font-size: 50px;
+  }
+
+  .custom_title h2 {
+    font-size: 40px;
+  }
+
+  .custom_title h3 {
+    font-size: 30px;
+    font-family: 'Avenir-Roman', sans-serif;
+  }
+
+  .formation-duration {
+    font-size: 24px;
+  }
+
+  .chiffres {
+    max-width: 1080px;
+    margin-bottom: 50px;
+  }
+
+  .item-chiffre {
+    font-size: 34px;
+  }
+
+  .chiffre {
+    padding-bottom: 1rem;
+  }
+
+  .pourquoi-text h2 {
+    font-size: 3.5rem;
+  }
+
+  .pourquoi-text p {
+    font-size: 30px;
+  }
+
+  .obj-formation {
+    font-size: 24px;
+  }
+
+  .formation-programme li {
+    font-size: 24px;
+  }
+
+  .formation-programme {
+    padding-top: 50px;
+    padding-left: 40px;
+    padding-right: 40px;
+  }
+
+  .title-formation{
+    font-size: 30px;
+  }
+}
+
+//petit écrant tablette
+@media (min-width: 768px) and (max-width:1024px)  {
 
   #img-header {
     background: #fff;
-    width: 80%;
+    width: 40%;
   }
 
   .img-fluid {
@@ -997,12 +1093,11 @@ a {
     padding-right: 40px;
   }
 
-
   /** FIN  TEXT RESPONSIVE **/
 }
 
 //moyen écran
-@media (min-width: 1080px) and (max-width : 1400px) {
+@media (min-width: 1024px) and (max-width : 1440px) {
   .navbar {
     background: #FFFF;
   }
@@ -1025,7 +1120,7 @@ a {
 
   #img-header {
     background: #fff;
-    width: 45%;
+    width: 65%;
   }
 
   .img-fluid {
@@ -1034,7 +1129,7 @@ a {
 }
 
 //grand écran
-@media (min-width : 1400px) {
+@media (min-width : 1440px) {
   .navbar .navbar-brand {
     margin-left: 100px;
   }
@@ -1146,4 +1241,9 @@ a {
 .slick-next:before {
   border-left: 8px solid white;
   margin-left: 5px;
+}
+
+.cara-forma-inscription select {
+  height: 30px;
+  width: 150px;
 }

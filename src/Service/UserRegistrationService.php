@@ -2,23 +2,28 @@
 
 namespace App\Service;
 
-use Symfony\Component\Mailer\MailerInterface;
 use Symfony\Component\Mime\Email;
+use Symfony\Component\Mime\Address;
+use Symfony\Component\Mailer\MailerInterface;
 
-class UserRegistrationService
+class UserRegistrationService implements UserRegistrationServiceInterface
 {
-    private $mailer;
+    private MailerInterface $mailer;
 
     public function __construct(MailerInterface $mailer)
     {
         $this->mailer = $mailer;
     }
 
-    public function sendRegistrationEmail($userEmail)
+    public function sendRegistrationEmail(?string $userEmail): void
     {
+        if ($userEmail === null) {
+            return;
+        }
+
         $email = (new Email())
-            ->from('exsanaformation@exsanaformation.fr')
-            ->to($userEmail)
+            ->from(new Address('exsanaformation@exsanaformation.fr'))
+            ->to(new Address($userEmail))
             ->subject('Inscription à Exsana réussie')
             ->text(
                 'Bonjour, votre inscription sur notre site Exsana Formation a été confirmée.<br> 
@@ -29,11 +34,15 @@ class UserRegistrationService
         $this->mailer->send($email);
     }
 
-    public function sendRegistrationFormationEmail($userEmail, $formationTitle)
+    public function sendRegistrationFormationEmail(?string $userEmail, ?string $formationTitle): void
     {
+        if ($userEmail === null) {
+            return;
+        }
+
         $email = (new Email())
-            ->from('exsanaformation@exsanaformation.fr')
-            ->to($userEmail)
+            ->from(new Address('exsanaformation@exsanaformation.fr'))
+            ->to(new Address($userEmail))
             ->subject('Confirmation d\'inscription à la formation' . $formationTitle)
             ->text(
                 'Bonjour, votre inscription à la formation' . $formationTitle . ' à bien était effuctué, 

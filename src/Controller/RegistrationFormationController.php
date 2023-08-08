@@ -2,20 +2,25 @@
 
 namespace App\Controller;
 
+use App\Entity\User;
 use App\Entity\Formations;
 use App\Form\FormationInviteType;
 use App\Form\FormationRegistrationType;
 use App\Repository\UserInviteRepository;
 use App\Service\UserRegistrationService;
-use App\Service\UserRegistrationServiceInterface;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use App\Service\UserRegistrationServiceInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use App\Service\ErrorLogger;
+
 
 class RegistrationFormationController extends AbstractController
 {
+    private EntityManagerInterface $em;
+
     public function __construct(EntityManagerInterface $em)
     {
         $this->em = $em;
@@ -25,10 +30,11 @@ class RegistrationFormationController extends AbstractController
     public function inscription(
         Formations $formation,
         Request $request,
-        UserRegistrationServiceInterface $mail
+        UserRegistrationServiceInterface $mail,
+        ErrorLogger $logger
     ): Response {
         $user = $this->getUser();
-        if (!$user) {
+        if (!$user instanceof User) {
             throw $this->createAccessDeniedException();
         }
 
@@ -53,11 +59,13 @@ class RegistrationFormationController extends AbstractController
                 // Afficher un message d'erreur en cas d'erreur de persistance
                 $this->addFlash('error', 'Une erreur est survenue lors de l\'inscription à la formation.');
                 // Enregistrer l'exception dans les logs pour un débogage ultérieur
-                $this->logger->error('Error during formation registration', ['exception' => $e]);
+                $this->$logger->error('Error during formation registration', ['exception' => $e]);
             }
         }
 
-        $mail->sendRegistrationFormationEmail($usermail = $user->getEmail(), $formationTitle = $formation->getTitle());
+        $formationTitle = $formation->getTitle() ?? '';
+        $userEmail = $user->getEmail() ?? '';
+        $mail->sendRegistrationFormationEmail($userEmail, $formationTitle);
 
         return $this->render('registration_formation/index.html.twig', [
             'participants' => $participants,
@@ -76,8 +84,8 @@ class RegistrationFormationController extends AbstractController
         }
 
         /**
-         * @var Entity::User
-         */
+        * @var \App\Entity\User
+        */
         $user = $this->getUser();
 
         $form = $this->createForm(FormationInviteType::class, $user)->handleRequest($request);

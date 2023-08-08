@@ -2,14 +2,15 @@
 
 namespace App\Entity;
 
-use App\Repository\FormationsRepository;
-use Doctrine\Common\Collections\ArrayCollection;
-use Doctrine\Common\Collections\Collection;
+use App\Entity\Category;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 use Gedmo\Mapping\Annotation as Gedmo;
-use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
+use App\Repository\FormationsRepository;
+use Doctrine\Common\Collections\Collection;
+use Doctrine\Common\Collections\ArrayCollection;
 use Symfony\Component\Validator\Constraints as Assert;
+use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 
 #[ORM\Entity(repositoryClass: FormationsRepository::class)]
 #[ORM\Table(name: 'formations')]
@@ -20,7 +21,7 @@ class Formations
     #[ORM\Id]
     #[ORM\GeneratedValue]
     #[ORM\Column(type: 'integer')]
-    private $id;
+    private ?int $id;
 
     #[ORM\Column(type: 'string', length: 255)]
     private ?string $title = null;
@@ -47,15 +48,24 @@ class Formations
     #[ORM\Column(type: 'string', length: 255, nullable: true)]
     private ?string $location = null;
 
-    #[ORM\ManyToOne(targetEntity: Category::class, inversedBy: 'Formations')]
-    #[ORM\JoinColumn(nullable: false)]
-    private ?\App\Entity\Category $category = null;
+    
+    #[ORM\ManyToOne(targetEntity: Category::class, inversedBy:'formations')]
+    #[ORM\JoinColumn(nullable: true)]
+    private ?Category $category;
 
+    /**
+     * @var Collection|ObjectifFormation[]
+     * @psalm-var Collection<int, ObjectifFormation>
+     */
     #[ORM\OneToMany(targetEntity: ObjectifFormation::class, mappedBy: 'objectifs', cascade: ['persist'])]
-    private \Doctrine\Common\Collections\Collection|array $objectifFormations;
+    private Collection $objectifFormations;
 
+    /**
+     * @var Collection|ProgrammeFormation[]
+     * @psalm-var Collection<int, ProgrammeFormation>
+     */
     #[ORM\OneToMany(targetEntity: ProgrammeFormation::class, mappedBy: 'programme', cascade: ['persist'])]
-    private \Doctrine\Common\Collections\Collection|array $programmeFormations;
+    private Collection $programmeFormations;
 
     #[ORM\Column(length: 255)]
     private ?string $slug = null;
@@ -69,12 +79,20 @@ class Formations
     #[ORM\Column(type: Types::TEXT, nullable: true)]
     private ?string $publicAndAccessCondition = null;
 
+    /**
+     * @var Collection|User[]
+     * @psalm-var Collection<int, User>
+     */
     #[ORM\ManyToMany(targetEntity: User::class, inversedBy: 'formations')]
     private Collection $users;
 
     #[ORM\Column(type: 'string', length: 255, nullable: true)]
     private ?string $programmePedagoFile = null;
 
+    /**
+     * @var Collection|FormationUser[]
+     * @psalm-var Collection<int,FormationUser >
+     */
     #[ORM\OneToMany(mappedBy: 'formation', targetEntity: FormationUser::class)]
     private Collection $formationUsers;
 
@@ -89,7 +107,7 @@ class Formations
     }
     public function __toString(): string
     {
-        return $this->title;
+        return $this->title ? $this->title : "";
     }
     public function getId(): ?int
     {
@@ -136,7 +154,7 @@ class Formations
 
         return $this;
     }
-    public function getDateFormation(): string
+    public function getDateFormation(): ?string
     {
         return $this->dateFormation;
     }
@@ -146,7 +164,7 @@ class Formations
 
         return $this;
     }
-    public function getDurationFormation(): string
+    public function getDurationFormation(): ?string
     {
         return $this->durationFormation;
     }
@@ -167,6 +185,7 @@ class Formations
         return $this;
     }
 
+    
     public function getCategory(): ?Category
     {
         return $this->category;
@@ -181,7 +200,8 @@ class Formations
 
 
     /**
-     * @return Collection<int, ObjectifFormation>
+     * @return Collection|ObjectifFormation
+     * @psalm-return Collection<int, ObjectifFormation>
      */
     public function getObjectifFormations(): Collection
     {
@@ -201,7 +221,7 @@ class Formations
     public function removeObjectifFormation(ObjectifFormation $objectifFormation): self
     {
         if ($this->objectifFormations->removeElement($objectifFormation)) {
-            // set the owning side to null (unless already changed)
+        // set the owning side to null (unless already changed)
             if ($objectifFormation->getObjectifs() === $this) {
                 $objectifFormation->setObjectifs(null);
             }
@@ -211,7 +231,8 @@ class Formations
     }
 
     /**
-     * @return Collection<int, ProgrammeFormation>
+     * @return Collection|ProgrammeFormation
+     * @psalm-return Collection<int, ProgrammeFormation>
      */
     public function getProgrammeFormations(): Collection
     {
@@ -231,7 +252,7 @@ class Formations
     public function removeProgrammeFormation(ProgrammeFormation $programmeFormation): self
     {
         if ($this->programmeFormations->removeElement($programmeFormation)) {
-            // set the owning side to null (unless already changed)
+        // set the owning side to null (unless already changed)
             if ($programmeFormation->getProgramme() === $this) {
                 $programmeFormation->setProgramme(null);
             }
@@ -239,6 +260,7 @@ class Formations
 
         return $this;
     }
+
 
     public function getCreatedAt(): ?\DateTimeInterface
     {
@@ -300,7 +322,8 @@ class Formations
     }
 
     /**
-     * @return Collection<int, User>
+     * @return Collection|User[]
+     * @psalm-return Collection<int, User>
      */
     public function getUsers(): Collection
     {
@@ -336,7 +359,8 @@ class Formations
     }
 
     /**
-     * @return Collection<int, FormationUser>
+     * @return Collection|FormationUser[]
+     * @psalm-return Collection<int, FormationUser>
      */
     public function getFormationUsers(): Collection
     {

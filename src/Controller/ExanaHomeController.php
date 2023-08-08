@@ -2,6 +2,7 @@
 
 namespace App\Controller;
 
+use App\Entity\User;
 use App\Entity\FormContact;
 use App\Entity\UserMessage;
 use App\Form\UserMessageType;
@@ -15,9 +16,12 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\Security\Core\Exception\AccessDeniedException;
 
 class ExanaHomeController extends AbstractController
 {
+    private EntityManagerInterface $em;
+
     public function __construct(EntityManagerInterface $em)
     {
         $this->em = $em;
@@ -37,10 +41,11 @@ class ExanaHomeController extends AbstractController
     public function contact(Request $request): Response
     {
         $user = $this->getUser();
+
         $formContact = null;
         $form = null;
 
-        if ($user) {
+        if ($this->isGranted('IS_AUTHENTICATED_FULLY')) {
             $formContact = new UserMessage();
             $formContact->setUserMessage($user);
             $form = $this->createForm(UserMessageType::class, $formContact);
@@ -90,7 +95,7 @@ class ExanaHomeController extends AbstractController
 
 
     #[Route(path: '/exsana/formations', name: 'formations')]
-    public function exsenaFormations(
+    public function exsanaFormations(
         CategoryRepository $cate,
         Request $request,
         FormationsRepository $repo,
@@ -123,24 +128,20 @@ class ExanaHomeController extends AbstractController
     #[Route(path: 'exsana/formation/{id}{slug}', name: 'formation')]
     public function showFormation(FormationsRepository $repo, $id, Request $request): Response
     {
-        $formation = $repo->find($id);
-        $programmePedagoFile = $formation->getProgrammePedagoFile();
-        //$formaId = $this->$forma->getId();
-        /**
-         * @var Entity::User
-         */
-        $user = $this->getUser();
-        if (isset($user)) {
-            $currentUser = $user->getId();
+        /*if (!$this->getUser()) {
+            throw new AccessDeniedException('Vous devez être connecté pour accéder à cette page');
         }
+        */
+        $formation = $repo->find($id);
+        $programmePedagoFile = $formation ? $formation->getProgrammePedagoFile() : null;
+
         if (!$formation) {
             // Si aucune formation n'est trouvé, nous créons une exception
             throw $this->createNotFoundException('La formation n\'existe pas');
         }
         return $this->render('exsana/formation.html.twig', [
             'programmePedagoFile' => $programmePedagoFile,
-            'controller_name' => 'ExanaHomeController',
-            'formation' => $formation,
+            'formation' => $formation
         ]);
     }
 }

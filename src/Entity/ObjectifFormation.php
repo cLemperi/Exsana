@@ -12,7 +12,7 @@ class ObjectifFormation
     #[ORM\Id]
     #[ORM\GeneratedValue]
     #[ORM\Column(type: 'integer')]
-    private $id;
+    private ?int $id;
 
     #[ORM\Column(type: Types::TEXT, nullable: true)]
     private ?string $name = null;
@@ -26,7 +26,7 @@ class ObjectifFormation
 
     public function __toString(): string
     {
-        return $this->name;
+        return $this->name ? $this->name : "";
     }
     public function getId(): ?int
     {

@@ -1,0 +1,47 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Exsana produit{% endblock %}
+
+{% block body %}
+
+<div class="container-fluid background-formation">
+	<div class="formation-core container">
+		<div class="py-5">
+			<div class="title_formation"><h1>Matériel Exsana Santé<h1></div>
+		</div>
+		<!--
+			<br><br>
+				<div class="col-md-3 order-md-2 mb-4">
+					<h4 class="d-flex justify-content-between align-items-center mb-3">
+						<span class="title-category">Recherche</span>
+					</h4>
+				{# {% include 'formation/_filter.html.twig' with {form: form} only %}	#}
+				</div>
+			<div class="count"> 
+			</div>
+		-->
+				<div class="listFormations">
+					<section class="listFormations">
+						{% for product in products %}
+						<div class=" d-flex flex-column formation-item">
+							<div class="p2 d-flex">
+								<a class="full-link" href="{{ path('app_product_show',{id: product.id , slug: product.slug}) }}">
+								<div class="custom_title">
+								<h2>{{ product.title }}</h2></div></a>
+							</div>
+							<div class="d-flex align-items-center formation-cara">
+								<div class=" formation-duration">DURÉE : {{ product.img }}</div>
+								<div class=" formation-enseignement">{{ product.price }}</div>
+								<div class=" note-etoile"></div>
+							</div>
+
+							
+						</div>
+						{% endfor %}
+					</section>
+					<div class="pagination">{{ knp_pagination_render(products) }}</div>
+				</div>
+	</div>
+</div>
+{{ include('theme/_partenaires.html.twig') }}
+{% endblock	%}

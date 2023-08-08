@@ -4,6 +4,7 @@ namespace App\Controller;
 
 use App\Entity\Curiculum;
 use App\Form\CuriculumType;
+use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -11,6 +12,13 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
 class CurriculumController extends AbstractController
 {
+    private EntityManagerInterface $em;
+
+    public function __construct(EntityManagerInterface $em)
+    {
+        $this->em = $em;
+    }
+
     #[Route('/curriculum', name: 'app_curriculum')]
     public function index(): Response
     {

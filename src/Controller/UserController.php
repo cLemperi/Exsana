@@ -20,7 +20,9 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 #[Route('/user'), IsGranted('ROLE_USER')]
 class UserController extends AbstractController
 {
-    public function __construct(private UserRepository $repository, EntityManagerInterface $em)
+    private EntityManagerInterface $em;
+
+    public function __construct(EntityManagerInterface $em)
     {
         $this->em = $em;
     }
@@ -30,6 +32,10 @@ class UserController extends AbstractController
     public function userRegister(Request $request, EntityManagerInterface $em): Response
     {
         $user = $this->getUser();
+
+        if (!$user instanceof User) {
+                return $this->redirectToRoute('exana_home');
+            }
         $form = $this->createForm(ProfilsType::class, $user);
         $form->handleRequest($request);
 
@@ -52,6 +58,11 @@ class UserController extends AbstractController
     {
 
         $user = $this->getUser();
+        if (!$user instanceof User) {
+        // Gérer le cas où l'utilisateur n'est pas connecté
+            return $this->redirectToRoute('exana_home');
+        }
+
         $formations = $repo->findByUser($user);
 
 

@@ -5,7 +5,6 @@ namespace App\Entity;
 use App\Repository\CategoryRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
-use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 use phpDocumentor\Reflection\Types\Integer;
 
@@ -15,7 +14,7 @@ class Category
     #[ORM\Id]
     #[ORM\GeneratedValue]
     #[ORM\Column(type: 'integer')]
-    private $id;
+    private ?int $id;
 
     #[ORM\Column(type: 'string', length: 255)]
     private ?string $title = null;
@@ -23,16 +22,20 @@ class Category
     #[ORM\Column(type: 'text')]
     private ?string $description = null;
 
+    /**
+     * @var Collection|Formations[]
+     * @psalm-var Collection<int, Formations>
+     */
     #[ORM\OneToMany(targetEntity: Formations::class, mappedBy: 'category', orphanRemoval: true)]
-    private \Doctrine\Common\Collections\Collection|array $Formations;
+    private Collection $formations;
 
     public function __construct()
     {
-        $this->Formations = new ArrayCollection();
+        $this->formations = new ArrayCollection();
     }
     public function __toString(): string
     {
-        return $this->title;
+        return $this->title ? $this->title : "";
     }
     public function getId(): ?int
     {
@@ -58,17 +61,19 @@ class Category
 
         return $this;
     }
+    
     /**
      * @return Collection|Formations[]
+     * @psalm-return Collection<int, Formations>
      */
     public function getFormations(): Collection
     {
-        return $this->Formations;
+        return $this->formations;
     }
     public function addFormation(Formations $formation): self
     {
-        if (!$this->Formations->contains($formation)) {
-            $this->Formations[] = $formation;
+        if (!$this->formations->contains($formation)) {
+            $this->formations[] = $formation;
             $formation->setCategory($this);
         }
 
@@ -76,7 +81,7 @@ class Category
     }
     public function removeFormation(Formations $formation): self
     {
-        if ($this->Formations->removeElement($formation)) {
+        if ($this->formations->removeElement($formation)) {
             // set the owning side to null (unless already changed)
             if ($formation->getCategory() === $this) {
                 $formation->setCategory(null);

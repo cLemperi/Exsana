@@ -17,6 +17,7 @@ window.jQuery = $;
 import './bootstrap';
 
 //Slick carousel
+import Vue from 'vue';
 
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';

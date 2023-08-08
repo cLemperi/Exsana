@@ -12,7 +12,7 @@ use Symfony\Component\Form\Extension\Core\Type\CollectionType;
 
 class FormationRegistrationType extends AbstractType
 {
-    public function buildForm(FormBuilderInterface $builder, array $options)
+    public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
             ->add('submit', SubmitType::class, [
@@ -20,7 +20,7 @@ class FormationRegistrationType extends AbstractType
             ]);
     }
 
-    public function configureOptions(OptionsResolver $resolver)
+    public function configureOptions(OptionsResolver $resolver): void
     {
         $resolver->setDefaults([
             'data_class' => Formations::class,

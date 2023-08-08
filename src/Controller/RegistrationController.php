@@ -15,6 +15,7 @@ use Symfony\Contracts\Translation\TranslatorInterface;
 
 class RegistrationController extends AbstractController
 {
+
     #[Route('/register', name: 'app_register')]
     public function register(
         Request $request,
@@ -22,24 +23,27 @@ class RegistrationController extends AbstractController
         EntityManagerInterface $entityManager,
         UserRegistrationServiceInterface $mail
     ): Response {
+
         $user = new User();
         $form = $this->createForm(RegistrationFormType::class, $user);
         $form->handleRequest($request);
 
-
-        //je vais devoir faire la verification de mail ici avant l'envoi du formulaire
+        // je vais devoir faire la verification de mail ici avant l'envoi du formulaire
         if ($form->isSubmitted() && $form->isValid()) {
             // encode the plain password
-            $user->setPassword(
-                $userPasswordHasher->hashPassword(
-                    $user,
-                    $form->get('plainPassword')->getData()
-                )
-            );
-            if ($mail) {
-                $mail->sendRegistrationEmail($user->getEmail());
+            $plainPassword = $form->get('plainPassword')->getData();
+            if (is_string($plainPassword)) {
+                $user->setPassword(
+                    $userPasswordHasher->hashPassword(
+                        $user,
+                        $plainPassword
+                    )
+                );
             }
 
+            if ($mail !==  null && is_string($user->getEmail())) {
+                $mail->sendRegistrationEmail($user->getEmail());
+            }
 
             $entityManager->persist($user);
             $entityManager->flush();

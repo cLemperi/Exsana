@@ -9,6 +9,7 @@ use App\Repository\FormationsRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\Security\Csrf\CsrfToken;
 use Symfony\Component\Routing\Annotation\Route;
 use Doctrine\Common\Collections\ArrayCollection;
 use Symfony\Component\HttpFoundation\File\UploadedFile;
@@ -17,8 +18,13 @@ use Symfony\Component\HttpFoundation\File\Exception\FileException;
 
 class AdminFormationController extends AbstractController
 {
-    public function __construct(private FormationsRepository $repository, private EntityManagerInterface $em)
+    private EntityManagerInterface $em;
+    private FormationsRepository $repository;
+
+    public function __construct(EntityManagerInterface $em, FormationsRepository $repository)
     {
+        $this->em = $em;
+        $this->repository = $repository;
     }
 
 
@@ -50,7 +56,7 @@ class AdminFormationController extends AbstractController
         if ($form->isSubmitted() && $form->isValid()) {
             /** @var UploadedFile $programmePedagoFile */
             $programmePedagoFile = $form->get('programmePedago')->getData();
-            if ($programmePedagoFile) {
+            if ($programmePedagoFile instanceof UploadedFile) {
                 $filename = pathinfo($programmePedagoFile->getClientOriginalName(), PATHINFO_FILENAME);
                 $newFilename = $filename . '-' . uniqid() . '.' . $programmePedagoFile->guessExtension();
 
@@ -88,7 +94,7 @@ class AdminFormationController extends AbstractController
             /** @var UploadedFile $programmePedagoFile */
             $programmePedagoFile = $form->get('programmePedago')->getData();
 
-            if ($programmePedagoFile) {
+            if ($programmePedagoFile instanceof UploadedFile) {
                 $filename = pathinfo($programmePedagoFile->getClientOriginalName(), PATHINFO_FILENAME);
                 $newFilename = $filename . '-' . uniqid() . '.' . $programmePedagoFile->guessExtension();
 
@@ -108,20 +114,27 @@ class AdminFormationController extends AbstractController
         }
 
         return $this->render('admin/formation/formation/edit.html.twig', [
-        'formation' => $formation,
-        'form' => $form->createView(),
+            'formation' => $formation,
+            'form' => $form->createView(),
         ]);
     }
 
 
 
     #[Route(path: '/admin/formation{id}', name: 'admin.formation.delete', methods: 'DELETE')]
-    public function delete(Formations $formation, Request $request): \Symfony\Component\HttpFoundation\Response
+    public function delete(Formations $formation, Request $request): \Symfony\Component\HttpFoundation\RedirectResponse
     {
-        if ($this->isCsrfTokenValid('delete' . $formation->getId(), $request->get('_token'))) {
+        $tokenValue = $request->get('_token');
+        if (!is_string($tokenValue)) {
+            throw new \InvalidArgumentException('Invalid CSRF token value');
+        }
+
+        $csrfToken = new CsrfToken('delete' . $formation->getId(), $tokenValue);
+
+        if ($this->isCsrfTokenValid('delete' . $formation->getId(), $csrfToken->getValue())) {
             $this->em->remove($formation);
             $this->em->flush();
-            $this->addFlash('success', 'Bien supprimé avec succès');
+            $this->addFlash('success', 'Bien supprimé avec succés');
         }
         return $this->redirectToRoute('admin.formation.index');
     }

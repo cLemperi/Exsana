@@ -18,7 +18,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface, Seriali
     #[ORM\Id]
     #[ORM\GeneratedValue]
     #[ORM\Column(type: 'integer')]
-    private $id;
+    private ?int $id;
 
     #[ORM\Column(type: 'string', length: 255)]
     private ?string $username = null;
@@ -26,8 +26,12 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface, Seriali
     #[ORM\Column(type: 'string', length: 255)]
     private ?string $password = null;
 
+    /**
+     * @var string[]
+     * @psalm-var list<string>
+     */
     #[ORM\Column(type: 'json')]
-    private array $roles = [];
+    private ?array $roles = [];
 
     #[ORM\Column(type: 'string', length: 255)]
     private ?string $sex = null;
@@ -62,23 +66,42 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface, Seriali
     #[ORM\Column(type: 'string', length: 255)]
     private ?string $profil = null;
 
+    /**
+     * @var Collection|UserMessage[]
+     * @psalm-var Collection<int, UserMessage>
+     */
     #[ORM\OneToMany(targetEntity: UserMessage::class, mappedBy: 'UserMessage', cascade: ['persist'])]
-    private \Doctrine\Common\Collections\Collection|array $UserMessages;
+    private \Doctrine\Common\Collections\Collection $UserMessages;
 
-
+    /**
+     * @var Collection|UserInvite[]
+     * @psalm-var Collection<int, UserInvite>
+     */
     #[ORM\OneToMany(mappedBy: 'UserFrom', targetEntity: UserInvite::class, cascade: ['persist'], orphanRemoval: true)]
     private Collection $userInvites;
 
     #[ORM\Column(nullable: true)]
     private ?int $nbUserInvite = null;
 
+    /**
+     * @var Collection|Formations[]
+     * @psalm-var Collection<int, Formations>
+     */
     #[ORM\ManyToMany(targetEntity: Formations::class, mappedBy: 'users')]
     private Collection $formations;
 
+    /**
+     * @var Collection|FormationUser[]
+     * @psalm-var Collection<int, FormationUser>
+     */
     #[ORM\OneToMany(mappedBy: 'user', targetEntity: FormationUser::class)]
     private Collection $formationUsers;
 
-    #[ORM\OneToMany(mappedBy: 'relation', targetEntity: Participant::class, cascade:['persist'])]
+    /**
+     * @var Collection|Participant[]
+     * @psalm-var Collection<int, Participant>
+     */
+    #[ORM\OneToMany(mappedBy: 'relation', targetEntity: Participant::class, cascade: ['persist'])]
     private Collection $participants;
 
     public function __construct()
@@ -92,7 +115,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface, Seriali
     }
     public function __toString(): string
     {
-        return $this->email;
+        return $this->email ? $this->email : "";
     }
 
     public function getId(): ?int
@@ -122,12 +145,19 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface, Seriali
 
         return $this;
     }
+
+    /**
+     * @return string[]
+     */
     public function getRoles(): array
     {
         $roles = $this->roles;
         $roles[] = 'ROLE_USER';
         return array_unique($roles);
     }
+    /**
+     * @param string[] $roles
+     */
     public function setRoles(array $roles): self
     {
         $this->roles = $roles;
@@ -244,10 +274,11 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface, Seriali
         return $this;
     }
 
-     /**
-     * @return Collection<int, UserMessage>
+    /**
+     * @return Collection|UserMessage
+     * @psalm-return Collection<int, UserMessage>
      */
-    public function getUserMessage(): Collection
+    public function getUserMessage(): \Doctrine\Common\Collections\Collection
     {
         return $this->UserMessages;
     }
@@ -275,7 +306,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface, Seriali
     {
         return null;
     }
-    public function eraseCredentials()
+    public function eraseCredentials(): void
     {
     }
     /**
@@ -283,26 +314,44 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface, Seriali
      *
      * Used by PHP >= 7.4.
      *
-     * @return array The properties of the object as an associative array.
+     * @return array<string, mixed> The properties of the object as an associative array.
      */
     public function __serialize(): array
     {
         return get_object_vars($this);
     }
+
+    /**
+     * @param array<string, mixed> $data
+     */
+    public function setData(array $data): void
+    {
+        if (isset($data['id']) && is_int($data['id'])) {
+            $this->id = $data['id'];
+        }
+        if (isset($data['username']) && is_string($data['username'])) {
+            $this->username = $data['username'];
+        }
+        if (isset($data['password']) && is_string($data['password'])) {
+            $this->password = $data['password'];
+        }
+    }
+
+
     /**
      * Controls how the object is reconstructed from a PHP serialized representation.
      *
      * Used by PHP >= 7.4.
      *
-     * @param array $data The associative array representation of the object.
-     * @return void
+     * @param array <string, mixed> $data The associative array representation of the object.
      */
-    public function __unserialize($data)
+    public function __unserialize(array $data): void
     {
         foreach ($data as $key => $value) {
             $this->$key = $value;
         }
     }
+
     public function serialize(): string
     {
         return  serialize([
@@ -311,14 +360,16 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface, Seriali
             $this->password
         ]);
     }
-    public function unserialize($serialized)
+    public function unserialize($serialized): void
     {
-        list (
-            $this->id,
-            $this->username,
-            $this->password
-        ) = unserialize($serialized, ['allowed_classes' => false]);
+        $data = unserialize($serialized, ['allowed_classes' => false]);
+        if (is_array($data) && count($data) === 3) {
+            $this->id = (int) $data[0];
+            $this->username = (string) $data[1];
+            $this->password = (string) $data[2];
+        }
     }
+
     /**
      * Returns the identifier for this user (e.g. its username or email address).
      */
@@ -330,7 +381,8 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface, Seriali
 
 
     /**
-     * @return Collection<int, UserInvite>
+     * @return Collection|UserInvite
+     * @psalm-return Collection<int, UserInvite>
      */
     public function getUserInvites(): Collection
     {
@@ -372,7 +424,8 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface, Seriali
     }
 
     /**
-     * @return Collection<int, Formations>
+     * @return Collection|Formations
+     * @psalm-return Collection<int, Formations>
      */
     public function getFormations(): Collection
     {
@@ -399,7 +452,8 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface, Seriali
     }
 
     /**
-     * @return Collection<int, FormationUser>
+     * @return Collection|FormationUser
+     * @psalm-return Collection<int, FormationUser>
      */
     public function getFormationUsers(): Collection
     {
@@ -429,7 +483,8 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface, Seriali
     }
 
     /**
-     * @return Collection<int, Participant>
+     * @return Collection|Participant
+     * @psalm-return Collection<int, Participant>
      */
     public function getParticipants(): Collection
     {

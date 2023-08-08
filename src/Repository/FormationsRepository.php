@@ -17,43 +17,24 @@ use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
  * @method Formations[]    findBy(array $criteria, array $orderBy = null, $limit = null, $offset = null)
  */
 class FormationsRepository extends ServiceEntityRepository
-{
+{   
+
     public function __construct(ManagerRegistry $registry)
     {
         parent::__construct($registry, Formations::class);
     }
 
-    public function findByUser(User $user)
+    /**
+     * @return Formations[]
+     */
+    /** @phpstan-ignore-next-line */
+    public function findByUser(User $user): array
     {
-        return $this->createQueryBuilder('f')
+        return $this->createQueryBuilder('f')/* @phpstan-ignore-line */
             ->innerJoin('f.users', 'u')
             ->where('u.id = :userId')
             ->setParameter('userId', $user->getId())
             ->getQuery()
             ->getResult();
     }
-
-
-
-    /**
-     * récupère les formations en lien avec une recherche
-     * @return Formation[]
-     */
-
-   /* public function findSearch(SearchData $search): array{
-        $query =$this
-        ->createQueryBuilder('f')
-        ->select('c','f')
-        ->join('f.category','c');
-
-        if (!empty($search->q) && (isset($search->q))){
-            $query = $query
-            ->andWhere('f.name LIKE:q')
-            ->setParameter('q', "%{$search->q}%");
-        }
-        return $query->getQuery()->getResult();
-
-    }
-
-*/
 }

@@ -47,7 +47,7 @@ class CuriculumType extends AbstractType
     public function configureOptions(OptionsResolver $resolver): void
     {
         $resolver->setDefaults([
-            'data_class' => Curiculum::class,
+            'data_class' => Curriculum::class,
         ]);
     }
 }

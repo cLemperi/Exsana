@@ -32,10 +32,10 @@ class UsersAuthenticator extends AbstractLoginFormAuthenticator
         $request->getSession()->set(Security::LAST_USERNAME, $email);
 
         return new Passport(
-            new UserBadge($email),
-            new PasswordCredentials($request->request->get('password', '')),
+            new UserBadge(strval($email)),
+            new PasswordCredentials(strval($request->request->get('password', ''))),
             [
-                new CsrfTokenBadge('authenticate', $request->request->get('_csrf_token')),
+                new CsrfTokenBadge('authenticate', strval($request->request->get('_csrf_token', ''))),
             ]
         );
     }

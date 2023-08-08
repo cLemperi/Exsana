@@ -30,12 +30,12 @@
             </div>
             <ul id="formation">
               {% set id = 0 %}
-              {% for formations in formation.objectifFormations %}
+              {% for objectifFormation in formation.objectifFormations %}
                 <div class="sub-title-formation">
-                  <h2>{{ formations.title|nl2br}}</h2>
+                  <h2>{{ objectifFormation.title|nl2br}}</h2>
                 </div>
                 <li>
-                  {{formations.name|nl2br}}</li>
+                  {{ objectifFormation.name|nl2br}}</li>
                 <br>
               {% endfor %}
             </ul>
@@ -171,7 +171,7 @@
                 </div>
                 <div class="row">
                   <div class="col-md-12">
-                    <button type="submit" class="btn-primary  -2 btn btn-primary text-light bg-info" value="">
+                    <button type="submit" class="btn-primary  -2 btn btn-primary" value="">
                       <a href="{{ path('add_participant',{id: formation.id}) }}">Je choisis cette formation
                       </a>
                     </button>

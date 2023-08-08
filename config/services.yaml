@@ -5,6 +5,9 @@ parameters:
     email.admin_address: 'exsanaformation@gmail.com'
 
 services:
+    App\Service\UserRegistrationServiceInterface:
+        class: App\Service\UserRegistrationService
+
     App\Service\UserRegistrationService:
         class: App\Service\UserRegistrationService
         arguments:

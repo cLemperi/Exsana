@@ -15,6 +15,7 @@ use Rector\TypeDeclaration\Rector\ClassMethod\ReturnTypeFromStrictNewArrayRector
 use Rector\TypeDeclaration\Rector\ClassMethod\ReturnTypeFromStrictNativeCallRector;
 use Rector\TypeDeclaration\Rector\ClassMethod\AddMethodCallBasedStrictParamTypeRector;
 use Rector\TypeDeclaration\Rector\ClassMethod\AddReturnTypeDeclarationBasedOnParentClassMethodRector;
+use Rector\TypeDeclaration\Rector\FunctionLike\ReturnTypeDeclarationRector;
 
 return static function (RectorConfig $rectorConfig): void {
     //$rectorConfig->phpstanConfig(__DIR__ . '/phpstan.neon');
@@ -34,6 +35,7 @@ return static function (RectorConfig $rectorConfig): void {
   $rectorConfig->rule(ClassPropertyAssignToConstructorPromotionRector::class);
   $rectorConfig->rule(UnionTypesRector::class);
   $rectorConfig->rule(CountOnNullRector::class);
+  $rectorConfig->rule(ReturnTypeDeclarationRector::class);
 
   
   
