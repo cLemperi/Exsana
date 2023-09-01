@@ -17,14 +17,17 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Security\Core\Exception\AccessDeniedException;
+use App\Service\AlerteAdminServiceInterface;
 
 class ExanaHomeController extends AbstractController
 {
     private EntityManagerInterface $em;
+    private $alerteService;
 
-    public function __construct(EntityManagerInterface $em)
+    public function __construct(EntityManagerInterface $em, AlerteAdminServiceInterface $alerteService)
     {
         $this->em = $em;
+        $this->alerteService = $alerteService;
     }
 
     #[Route(path: '/', name: 'exana_home')]
@@ -52,11 +55,15 @@ class ExanaHomeController extends AbstractController
         } else {
             $formContact = new FormContact();
             $form = $this->createForm(SpecifiqueFormContact::class, $formContact)->handleRequest($request);
+            $clientEmail = $formContact->getEmail();
         }
 
         if ($form->isSubmitted() && $form->isValid()) {
             $this->em->persist($formContact);
             $this->em->flush();
+
+            
+            //$this->alerteService->sendMailToAdminFromContact($clientEmail);
             $this->addFlash('success', 'Votre demande de contact a bien été envoyée à notre équipe.');
             return $this->redirectToRoute('contact');
         }

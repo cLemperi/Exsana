@@ -2,14 +2,25 @@
 
 namespace App\Controller\Admin;
 
+use App\Entity\MessageFromContact;
+use Doctrine\ORM\EntityManagerInterface;
 use App\Repository\FormContactRepository;
+use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\Security\Csrf\CsrfToken;
+use Symfony\Component\Routing\Annotation\Route;
 use App\Repository\MessageFromContactRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
-use Symfony\Component\HttpFoundation\Response;
-use Symfony\Component\Routing\Annotation\Route;
 
 class AdminMessageController extends AbstractController
 {
+    private EntityManagerInterface $em;
+    
+    public function __construct(EntityManagerInterface $em)
+    {
+        $this->em = $em;
+    }
+
     #[Route('/admin/message', name: 'app_admin_message')]
     public function index(MessageFromContactRepository $repo, FormContactRepository $formrepo): Response
     {
@@ -47,5 +58,23 @@ class AdminMessageController extends AbstractController
             'message' => $message,
             'controller_name' => 'AdminMessageController',
         ]);
+    }
+
+    #[Route(path: '/admin/message{id}', name: 'admin.message.delete', methods: 'DELETE')]
+    public function delete(MessageFromContact $message, Request $request): \Symfony\Component\HttpFoundation\RedirectResponse
+    {
+        $tokenValue = $request->get('_token');
+        if (!is_string($tokenValue)) {
+            throw new \InvalidArgumentException('Invalid CSRF token value');
+        }
+
+        $csrfToken = new CsrfToken('delete' . $message->getId(), $tokenValue);
+
+        if ($this->isCsrfTokenValid('delete' . $message->getId(), $csrfToken->getValue())) {
+            $this->em->remove($message);
+            $this->em->flush();
+            $this->addFlash('success', 'Bien supprimé avec succés');
+        }
+        return $this->redirectToRoute('admin.message.index');
     }
 }
