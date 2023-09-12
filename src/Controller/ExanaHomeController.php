@@ -63,7 +63,7 @@ class ExanaHomeController extends AbstractController
             $this->em->flush();
 
             
-            //$this->alerteService->sendMailToAdminFromContact($clientEmail);
+            $this->alerteService->sendMailToAdminFromContact($clientEmail);
             $this->addFlash('success', 'Votre demande de contact a bien été envoyée à notre équipe.');
             return $this->redirectToRoute('contact');
         }
