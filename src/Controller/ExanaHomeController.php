@@ -52,18 +52,27 @@ class ExanaHomeController extends AbstractController
             $formContact = new UserMessage();
             $formContact->setUserMessage($user);
             $form = $this->createForm(UserMessageType::class, $formContact);
+            
+            $clientEmail = $this->$user->getEmail();
+            $firstname = $this->$user->getNickname();
+            $name = $this->$user->getLastname();
+            $message = $this->$formContact->getMessage();
+
         } else {
             $formContact = new FormContact();
             $form = $this->createForm(SpecifiqueFormContact::class, $formContact)->handleRequest($request);
-            $clientEmail = $formContact->getEmail();
+            
+            $userEmail = $formContact->getEmail();
+            $firstname = $formContact->getNickname();
+            $name = $formContact->getLastname();
+            $message = $formContact->getMessage();
         }
 
         if ($form->isSubmitted() && $form->isValid()) {
             $this->em->persist($formContact);
             $this->em->flush();
 
-            
-            $this->alerteService->sendMailToAdminFromContact($clientEmail);
+            $this->alerteService->sendMailToAdminFromContact($userEmail,$firstname, $name, $message);
             $this->addFlash('success', 'Votre demande de contact a bien été envoyée à notre équipe.');
             return $this->redirectToRoute('contact');
         }
