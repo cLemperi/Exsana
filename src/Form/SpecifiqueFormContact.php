@@ -5,6 +5,7 @@ namespace App\Form;
 use App\Entity\FormContact;
 use App\Entity\MessageFromContact;
 use Symfony\Component\Form\AbstractType;
+use Karser\Recaptcha3Bundle\Form\Recaptcha3Type;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Form\Extension\Core\Type\DateType;
@@ -14,6 +15,7 @@ use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\Extension\Core\Type\NumberType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\Extension\Core\Type\TextareaType;
+use Karser\Recaptcha3Bundle\Validator\Constraints\Recaptcha3;
 
 class SpecifiqueFormContact extends AbstractType
 {
@@ -77,7 +79,12 @@ class SpecifiqueFormContact extends AbstractType
                                 "Autre demande d'information"
                         ]
                         ])
-                    ->add('message', TextareaType::class);
+                    ->add('message', TextareaType::class)
+                    ->add('captcha', Recaptcha3Type::class, [
+                        'constraints' => new Recaptcha3(),
+                        'action_name' => 'homepage',
+                        'locale' => 'fr',
+                    ]);
     }
 
 

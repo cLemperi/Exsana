@@ -106,6 +106,10 @@
 
 			{{ form_label(formContact.message, ' ') }}
 			{{ form_widget(formContact.message,{'attr' : {'placeholder' : "Ecrivez nous"}}) }}
+
+			{{ form_label(formContact.captcha, ' ') }}
+			{{ form_widget(formContact.captcha) }}
+			
 			{{ form_widget(formContact._token) }}
 	{% endif %}
 	
