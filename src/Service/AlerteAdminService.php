@@ -23,7 +23,7 @@ class AlerteAdminService implements AlerteAdminServiceInterface
 
         $email = (new Email())
             ->from(new Address('adminexsanabot@exsanaformation.fr'))
-            ->to(new Address('lemperiere.charles@gmail.com'))
+            ->to(new Address('exsanaformation@gmail.com'))
             ->subject('Le client '.$firstname.' '.$name.' vous à envoyer un message via le formulaire de contact')
             ->html(
                 'Bonjour Admin,<br><br>'.$firstname.' '.$name.'vous à envoyer un message via le formulaire de contact,<br><br>

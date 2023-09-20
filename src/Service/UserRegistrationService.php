@@ -25,8 +25,8 @@ class UserRegistrationService implements UserRegistrationServiceInterface
             ->from(new Address('exsanaformation@exsanaformation.fr'))
             ->to(new Address($userEmail))
             ->subject('Inscription à Exsana réussie')
-            ->text(
-                'Bonjour, votre inscription sur notre site Exsana Formation a été confirmée.<br> 
+            ->html(
+                'Bonjour,<br><br> votre inscription sur notre site Exsana Formation a été confirmée.<br> 
                 Vous pouvez des à présent vous inscrire à des sessions de formations sur notre site<br><br> 
                 A très vite<br> Exsana Formation'
             );
@@ -41,12 +41,12 @@ class UserRegistrationService implements UserRegistrationServiceInterface
         }
 
         $email = (new Email())
-            ->from(new Address('exsanaformation@exsanaformation.fr'))
+            ->from(new Address('adminexsanabot@exsanaformation.fr'))
             ->to(new Address($userEmail))
             ->subject('Confirmation d\'inscription à la formation' . $formationTitle)
-            ->text(
-                'Bonjour, votre inscription à la formation' . $formationTitle . ' à bien était effuctué, 
-                vous allez être contacter par téléphone par notre équipe.<br> 
+            ->html(
+                'Bonjour,<br><br>Votre inscription à la formation' . $formationTitle . ' à bien était effuctué, 
+                vous allez être contacter par téléphone par notre équipe.<br><br>
                 À très vite <br><br> l\'équipe Exsana Formation'
             );
 
