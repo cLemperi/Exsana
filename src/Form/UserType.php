@@ -5,9 +5,11 @@ namespace App\Form;
 use App\Entity\User;
 use App\Form\UserInviteType;
 use Symfony\Component\Form\AbstractType;
+use Karser\Recaptcha3Bundle\Form\Recaptcha3Type;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Form\Extension\Core\Type\EmailType;
+use Karser\Recaptcha3Bundle\Validator\Constraints\Recaptcha3;
 use Symfony\Component\Form\Extension\Core\Type\CollectionType;
 
 class UserType extends AbstractType
@@ -29,7 +31,11 @@ class UserType extends AbstractType
             ->add('city')
             ->add('street')
             ->add('profil')
-        ;
+            ->add('captcha', Recaptcha3Type::class, [
+                'constraints' => new Recaptcha3(),
+                'action_name' => 'user',
+                'locale' => 'fr',
+            ]);
     }
 
     public function configureOptions(OptionsResolver $resolver): void

@@ -11,30 +11,40 @@
     <h2>Créer mon compte</h2></div>
     {{ form_start(registrationForm) }}
     <div class="row">
-        <div class="col md-2">{{ form_row(registrationForm.sex) }}</div>
-        <div class="col md-5">{{ form_row(registrationForm.firstName) }}</div>
-        <div class="col md-5">{{ form_row(registrationForm.lastName) }}</div>
+        <div class="col-md-2">{{ form_row(registrationForm.sex) }}</div>
+        <div class="col-md-5">{{ form_row(registrationForm.firstName) }}</div>
+        <div class="col-md-5">{{ form_row(registrationForm.lastName) }}</div>
     </div>
     <div class="row">
-        <div class="col md-4">{{ form_row(registrationForm.email) }}</div>
-        <div class="col md-6">{{ form_row(registrationForm.plainPassword)}}</div>
+        <div class="col-md-4">{{ form_row(registrationForm.email) }}</div>
+        <div class="col-md-5">
+            <div id="password-check">
+                <password-check-component></password-check-component>
+            </div>
+        </div>
+    </div>
+    <div style="display: none;">
+            <div class="col-md-5">{{ form_row(registrationForm.plainPassword.first)}}</div>
+            <div class="col-md-5">{{ form_row(registrationForm.plainPassword.second) }}</div>
     </div>
     <div class="row">
-        <div class="col md-6">{{ form_row(registrationForm.job) }}</div>
-        <div class="col md-6">{{ form_row(registrationForm.phone) }}</div>
+        <div class="col-md-6">{{ form_row(registrationForm.job) }}</div>
+        <div class="col-md-6">{{ form_row(registrationForm.phone) }}</div>
     </div>
     <div class="row">
-        <div class="col md-6">{{ form_row(registrationForm.postalCode) }}</div>
-        <div class="col md-6">{{ form_row(registrationForm.city) }}</div>
+        <div class="col-md-6">{{ form_row(registrationForm.postalCode) }}</div>
+        <div class="col-md-6">{{ form_row(registrationForm.city) }}</div>
     </div>
     <div class="row">
-        <div class="col md-8">{{ form_row(registrationForm.street) }}</div>
-        <div class="col md-4">{{ form_row(registrationForm.rppsCode) }}</div>
+        <div class="col-md-8">{{ form_row(registrationForm.street) }}</div>
+        <div class="col-md-4">{{ form_row(registrationForm.rppsCode) }}</div>
     </div>
     <div class="row">
-        <div class="col md-4">{{ form_row(registrationForm.username) }}</div>
-        <div class="col md-8">{{ form_row(registrationForm.profil) }}</div>
+        <div class="col-md-4">{{ form_row(registrationForm.username) }}</div>
+        <div class="col-md-8">{{ form_row(registrationForm.profil) }}</div>
     </div>
+            {{ form_label(registrationForm.captcha, ' ') }}
+			{{ form_widget(registrationForm.captcha) }}
 
     <div class="rgpd">
         <p>En vous inscrivant sur notre site, vous nous fournissez certaines informations personnelles telles que votre nom, adresse e-mail, etc. Nous utilisons ces informations pour vous fournir un accès à nos services et pour vous envoyer des notifications par e-mail.</p>

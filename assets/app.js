@@ -22,6 +22,15 @@ import './bootstrap';
 
 //Slick carousel
 import Vue from 'vue';
+import PasswordCheckComponent from './PasswordCheckComponent.vue';
+
+new Vue({
+  el: '#password-check',
+  components: {
+    PasswordCheckComponent
+  }
+});
+
 
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
