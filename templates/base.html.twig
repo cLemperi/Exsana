@@ -1,182 +1,218 @@
 <!doctype html>
 <html lang="fr">
-    <head>
-        <meta charset="UTF-8">
-        {% if not app.request.attributes.get('_route') starts with 'admin_' %}
-            <meta name="title" content="{% block meta_title %}{% endblock %}">
-            <meta name="description" content="{% block meta_description %}{% endblock %}">
-            <meta name="keywords" content="{% block meta_keywords %}{% endblock %}">
-            <meta name="viewport" content="width=device-width, initial-scale=1">
-            <link rel="canonical" href="{% block canonical_url %}{% endblock %}">
-        {% endif %}
+  <head>
+    <meta charset="UTF-8">
+    <title>
+      {% block title %}Titre par défaut{% endblock %}
+    </title>
+    {% set current_route = app.request.pathinfo %}
+    {% if '/admin/' not in current_route %}
+      <meta name="title" content="{% block meta_title %}{% endblock %}">
+      <meta name="description" content="{% block meta_description %}{% endblock %}">
+      <meta name="keywords" content="{% block meta_keywords %}{% endblock %}">
+      <meta name="viewport" content="width=device-width, initial-scale=1">
+      <link rel="canonical" href="{% block canonical_url %}{{ app.request.uri }}{% endblock %}">
+    {% endif %}
 
-        
+    {% block stylesheets %}
+      <!-- <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous"> <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" > -->
+      {{ encore_entry_link_tags('app') }}
+    {% endblock %}
 
-        {% block stylesheets %}
-            <!-- <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
-            <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" > -->
-            {{ encore_entry_link_tags('app') }}
-        {% endblock %}
-
-        {% block javascripts %}
-            {{ encore_entry_script_tags('app') }}
-            <script src="https://kit.fontawesome.com/8ddab2bf4e.js" crossorigin="anonymous"></script>
-        {% endblock %}
-    </head>
-<body>
-<header class="header">
-    <nav class="navbar navbar-expand-lg fixed-top py-4">
+    {% block javascripts %}
+      {{ encore_entry_script_tags('app') }}
+      <script src="https://kit.fontawesome.com/8ddab2bf4e.js" crossorigin="anonymous"></script>
+    {% endblock %}
+  </head>
+  <body>
+    <header class="header">
+      <nav class="navbar navbar-expand-lg fixed-top py-4">
         <div class="col-lg-5 col-md-12 col-sm-12 d-flex">
-        <a href="{{ path('exana_home')}}" class="navbar-brand text-uppercase font-weight-bold"><img src="{{ '/img/1629204273362.jpg'}}" alt="img-exsana" class="p-2 img-fluid" id="img-header" ></a>
+          <a href="{{ path('exana_home')}}" class="navbar-brand text-uppercase font-weight-bold"><img src="{{ '/img/1629204273362.jpg'}}" alt="img-exsana" class="p-2 img-fluid" id="img-header"></a>
         </div>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
+          <span class="navbar-toggler-icon"></span>
         </button>
-         <div class="col-lg-7 col-md-12 col-sm-12" id="navbarmenu">
-            <div class="collapse navbar-collapse" id="navbarSupportedContent" data-toggle="collapse" data-target=".navbar-collapse">
-                <ul class="navbar-nav mr-auto">
-                    <li class="nav-item active"><a href="{{ path('formations') }}" class="nav-link font-weight-bold">Nos formations</a></li>
-                    <li class="nav-item"><a href="{{ path('app_product_list') }}" class="nav-link font-weight-bold">Matériel Urgence</a></li>
-                    <!-- <li class="nav-item"><a href="{{ path('whereweare') }}" class="nav-link font-weight-bold">Infos pratiques</a></li> -->
-                    <!-- <li class="nav-item"><a href="{{ path('whoweare') }}" class="nav-link font-weight-bold">Exsana</a></li> -->
-                    <li class="nav-item"><a href="{{ path('contact') }}" class="nav-link font-weight-bold">Contact</a></li>
-                    {% if not is_granted('ROLE_USER') and not is_granted('ROLE_ADMIN') %}
-                        <li class="nav-item"><a href="{{ path('app_login') }}" class="nav-link font-weight-bold">Espace membre</a></li>
-                    {% endif %}
-                   {% if is_granted("ROLE_ADMIN") %}
-                        <li class="nav-item"><a href="{{ path('admin.index') }}" class="nav-link nav-link font-weight-bold">Gestion</a></li>
-                    {% endif %}
-                    {% if is_granted("ROLE_USER") %}
-                        <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle font-weight-bold" id="navbarDropdown" role="button"  aria-haspopup="true" data-bs-toggle="dropdown" aria-expanded="false">
-                                Profils</a>
-                            <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                                <li><a class="dropdown-item" href="{{path('user.register') }} " class="nav-link font-weight-bold">Mon comptes </a></li>
-                                <li><a class="dropdown-item" href="{{ path('user.formations') }}" class="nav-link font-weight-bold">Mes formations</a></li>
-                                <li><a class="dropdown-item" href="{{ path('user.help') }}" class="nav-link font-weight-bold">Aide et assistance</a></li>
-                            </ul>
-                        </li>
-                    {% endif %}
+        <div class="col-lg-7 col-md-12 col-sm-12" id="navbarmenu">
+          <div class="collapse navbar-collapse" id="navbarSupportedContent" data-toggle="collapse" data-target=".navbar-collapse">
+            <ul class="navbar-nav mr-auto">
+              <li class="nav-item active">
+                <a href="{{ path('formations') }}" class="nav-link font-weight-bold">Nos formations</a>
+              </li>
+              <li class="nav-item">
+                <a href="{{ path('app_product_list') }}" class="nav-link font-weight-bold">Matériel Urgence</a>
+              </li>
+              <!-- <li class="nav-item"><a href="{{ path('whereweare') }}" class="nav-link font-weight-bold">Infos pratiques</a></li> -->
+              <!-- <li class="nav-item"><a href="{{ path('whoweare') }}" class="nav-link font-weight-bold">Exsana</a></li> -->
+              <li class="nav-item">
+                <a href="{{ path('contact') }}" class="nav-link font-weight-bold">Contact</a>
+              </li>
+              {% if not is_granted('ROLE_USER')and not is_granted('ROLE_ADMIN') %}
+                <li class="nav-item">
+                  <a href="{{ path('app_login') }}" class="nav-link font-weight-bold">Espace membre</a>
+                </li>
+              {% endif %}
+              {% if is_granted("ROLE_ADMIN") %}
+                <li class="nav-item">
+                  <a href="{{ path('admin.index') }}" class="nav-link nav-link font-weight-bold">Gestion</a>
+                </li>
+              {% endif %}
+              {% if is_granted("ROLE_USER") %}
+                <li class="nav-item dropdown">
+                  <a class="nav-link dropdown-toggle font-weight-bold" id="navbarDropdown" role="button" aria-haspopup="true" data-bs-toggle="dropdown" aria-expanded="false">
+                    Profils</a>
+                  <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                    <li>
+                      <a class="nav-link font-weight-bold" href="{{path('user.register') }} ">Mon comptes
+                      </a>
+                    </li>
+                    <li>
+                      <a class="nav-link font-weight-bold" href="{{ path('user.formations') }}">Mes formations</a>
+                    </li>
+                    <li>
+                      <a class="nav-link font-weight-bold" href="{{ path('user.help') }}">Aide et assistance</a>
+                    </li>
+                  </ul>
+                </li>
+              {% endif %}
 
-                    {% if is_granted('ROLE_USER') or is_granted('ROLE_ADMIN') %}
-                    <li class="nav-item"><a href="{{ path('logout') }}" class="nav-link nav-link font-weight-bold">Deconnextion</a></li>
-                    {% endif %}
-                </ul>
-                
-            </div>
+              {% if is_granted('ROLE_USER')or is_granted('ROLE_ADMIN') %}
+                <li class="nav-item">
+                  <a href="{{ path('logout') }}" class="nav-link nav-link font-weight-bold">Deconnextion</a>
+                </li>
+              {% endif %}
+            </ul>
+
+          </div>
         </div>
-    </nav>
-</header>
+      </nav>
+    </header>
 
     <div class="bodyCore">
-{% block body %}{% endblock %}
+      {% block body %}{% endblock %}
     </div>
 
-<footer>
-<div id="fnewsletter">
-    <div class="container">
-        <div class="row">
+    <footer>
+      <div id="fnewsletter">
+        <div class="container">
+          <div class="row">
             <div class="col-100">
-                <div class="conteneur">
-                    <div class="col-16">
-                        <div><img src="{{ asset('img/svg/icons/at-svgrepo-com.svg') }}" style="width: 70px; height: 70px;" alt=""></div>
+              <div class="conteneur">
+                <div class="col-16">
+                  <div><img src="{{ asset('img/svg/icons/at-svgrepo-com.svg') }}" style="width: 70px; height: 70px;" alt=""></div>
+                </div>
+                <div class="col-84">
+                  <form id="newsletter-2" class="yikes-easy-mc-form yikes-easy-mc-form-1" method="POST" data-attr-form-id="2">
+                    <div class="conteneur_newsletter">
+                      <div>
+                        <label for="inscription_newsletter">Restez informés de nos actualités !</label>
+                      </div>
+                      <div>
+                        <section id="yikes-mailchimp-container-2" class="yikes-mailchimp-container yikes-mailchimp-container-2 ">
+                          <label for="yikes-easy-mc-form-2-EMAIL" class="EMAIL-label yikes-mailchimp-field-required ">
+                            <!-- dictate label visibility -->
+                            <span class="EMAIL-label">Email Address</span>
+                            <input id="yikes-easy-mc-form-2-EMAIL" name="EMAIL" placeholder="" class="form-control" required="required" type="email" value="">
+                          </label>
+                          <!-- Honeypot Trap -->
+                          <input type="hidden" name="yikes-mailchimp-honeypot" id="yikes-mailchimp-honeypot-2" value="">
+                          <!-- List ID -->
+                          <input type="hidden" name="yikes-mailchimp-associated-list-id" id="yikes-mailchimp-associated-list-id-2" value="925a965b65">
+                          <!-- The form that is being submitted! Used to display error/success messages above the correct form -->
+                          <input type="hidden" name="yikes-mailchimp-submitted-form" id="yikes-mailchimp-submitted-form-2" value="2">
+                          <!-- Submit Button -->
+                          <button type="submit" class="btn-primary  -2 btn btn-primary">Envoyer</button>
+                          <!-- Nonce Security Check -->
+                          <input type="hidden" id="yikes_easy_mc_new_subscriber_2" name="yikes_easy_mc_new_subscriber" value="1706be38c7">
+                          <input type="hidden" name="_wp_http_referer" value="/formations/formations-demarche-qualite-evaluation/">
+                          <!-- Mailchimp Form generated by Easy Forms for Mailchimp v6.8.6 (https://wordpress.org/plugins/yikes-inc-easy-mailchimp-extender/) -->
+                        </section>
+                      </div>
                     </div>
-                    <div class="col-84">
-                        <form id="newsletter-2" class="yikes-easy-mc-form yikes-easy-mc-form-1" method="POST" data-attr-form-id="2">
-                            <div class="conteneur_newsletter">
-                                <div><label for="inscription_newsletter">Restez informés de nos actualités !</label></div>
-                                <div>
-                                    <section id="yikes-mailchimp-container-2" class="yikes-mailchimp-container yikes-mailchimp-container-2 ">
-                                        <label for="yikes-easy-mc-form-2-EMAIL" class="EMAIL-label yikes-mailchimp-field-required ">
-                                                <!-- dictate label visibility -->
-                                            <span class="EMAIL-label">Email Address</span>
-                                            <input id="yikes-easy-mc-form-2-EMAIL" name="EMAIL" placeholder="" class="form-control" required="required" type="email" value="">
-                                        </label>
-                                        <!-- Honeypot Trap -->
-                                        <input type="hidden" name="yikes-mailchimp-honeypot" id="yikes-mailchimp-honeypot-2" value="">
-                                        <!-- List ID -->
-                                        <input type="hidden" name="yikes-mailchimp-associated-list-id" id="yikes-mailchimp-associated-list-id-2" value="925a965b65">
-                                        <!-- The form that is being submitted! Used to display error/success messages above the correct form -->
-                                        <input type="hidden" name="yikes-mailchimp-submitted-form" id="yikes-mailchimp-submitted-form-2" value="2">
-                                        <!-- Submit Button -->
-                                        <button type="submit" class="btn-primary  -2 btn btn-primary">Envoyer</button>	<!-- Nonce Security Check -->
-                                        <input type="hidden" id="yikes_easy_mc_new_subscriber_2" name="yikes_easy_mc_new_subscriber" value="1706be38c7">
-                                        <input type="hidden" name="_wp_http_referer" value="/formations/formations-demarche-qualite-evaluation/">				
-                                        <!-- Mailchimp Form generated by Easy Forms for Mailchimp v6.8.6 (https://wordpress.org/plugins/yikes-inc-easy-mailchimp-extender/) -->
-                                    </section>
-                                </div>
-                            </div>
-                        <div class="rgpd">
-                            Exsana collecte vos données personnelles uniquement lorsque vous renseignez de vous-même ces informations lors de la complétion d’un de nos formulaires. Les données personnelles que nous recueillons sont utilisées pour vous contacter au sujet de votre demande de renseignements ou votre pré-inscription à l’une de nos formations.</div>
-                    </form>
+                    <div class="rgpd">
+                      Exsana collecte vos données personnelles uniquement lorsque vous renseignez de vous-même ces informations lors de la complétion d’un de nos formulaires. Les données personnelles que nous recueillons sont utilisées pour vous contacter au sujet de votre demande de renseignements ou votre pré-inscription à l’une de nos formations.</div>
+                  </form>
                 </div>
+              </div>
             </div>
+          </div>
         </div>
-    </div>
-</div>
-</div>
-<div id="bottom-footer">
- <div class="container-fluid pb-3 mb-0 justify-content-center">
-         <div class="row text-center my-5 justify-content-center py-5">
-                <div class="col-xl-4 col-md-4 col-sm-4 col-12">
-                        <img src="{{ '/img/1629204273362.jpg'}}" alt="img-linkedin" class="img-fluid" width="40%" id="" alt="Responsive image"> 
-                </div>
-                <div class="col-xl-4 col-md-4 col-sm-4 ">
-                        <ul class="list-footer">
-                            <li><a href="{{ path('exana_home') }}">Accueil</a></li>
-                            <li><a href="{{ path('formations') }}">Formations</a></li>
-                            <!-- <li><a href="{{ path('whereweare') }}">Infos pratiques</a></li> -->
-                            <li><a href="{{ path('app_product_list') }}">Matériels</a></li>
-                            <!-- <li><a href="{{ path('whoweare') }}">Exsana</a></li> -->                         
-                            <li><a href="{{ path('contact') }}">Contact</a></li>
-                            <li><a href="{{path('recrutement') }}">Recrutement</a></li>
-                            <li><a href="{{path('mention') }}">Mentions légales </a></li>
-                        </ul>
-                </div>
-                <div class="col-xl-4 col-md-4  col-sm-4 col-12">
-                    <h6 class="mb-3 mb-lg-5 bold-text">SUIVEZ-NOUS</h6>
-                    <ul class="social-network social-circle">
-                        <!--<li><a href="#" class="icoFacebook" title="Facebook"><i class="fa fa-facebook"></i></a></li> -->
-                       <li>
-                            <a href="https://www.linkedin.com/in/soci%C3%A9t%C3%A9-exsana-8ba285251/" class="icoLinkedin" title="Linkedin">
-                                <i class="fab fa-linkedin"></i>
-                            </a>
-                        </li>
-                        <!-- <li><a href="#" class="icoInstagram" title="Instagram"><i class="fa fa-instagram"></i></a></li> -->
-                    </ul>
-                    
-                     <!-- <div class="col-xl-2 col-md-4 col-sm-4 col-auto order-2 align-self-end mt-3 "> -->
-                        <h6 class="text-muted bold-text"><b></b></h6>
-                        <small><span><i class="fa fa-envelope" aria-hidden="true"></i></span></small>
-                </div>
+      </div>
+      <div id="bottom-footer">
+        <div class="container-fluid pb-3 mb-0 justify-content-center">
+          <div class="row text-center my-5 justify-content-center py-5">
+            <div class="col-xl-4 col-md-4 col-sm-4 col-12">
+              <img src="{{ '/img/1629204273362.jpg'}}" alt="Responsive image" class="img-fluid" width="40%" id="">
+            </div>
+            <div class="col-xl-4 col-md-4 col-sm-4 ">
+              <ul class="list-footer">
+                <li>
+                  <a href="{{ path('exana_home') }}">Accueil</a>
+                </li>
+                <li>
+                  <a href="{{ path('formations') }}">Formations</a>
+                </li>
+                <!-- <li><a href="{{ path('whereweare') }}">Infos pratiques</a></li> -->
+                <li>
+                  <a href="{{ path('app_product_list') }}">Matériels</a>
+                </li>
+                <!-- <li><a href="{{ path('whoweare') }}">Exsana</a></li> -->
+                <li>
+                  <a href="{{ path('contact') }}">Contact</a>
+                </li>
+                <li>
+                  <a href="{{path('recrutement') }}">Recrutement</a>
+                </li>
+                <li>
+                  <a href="{{path('mention') }}">Mentions légales
+                  </a>
+                </li>
+              </ul>
+            </div>
+            <div class="col-xl-4 col-md-4  col-sm-4 col-12">
+              <h6 class="mb-3 mb-lg-5 bold-text">SUIVEZ-NOUS</h6>
+              <ul class="social-network social-circle">
+                <!--<li><a href="#" class="icoFacebook" title="Facebook"><i class="fa fa-facebook"></i></a></li> -->
+                <li>
+                  <a href="https://www.linkedin.com/in/soci%C3%A9t%C3%A9-exsana-8ba285251/" class="icoLinkedin" title="Linkedin">
+                    <i class="fab fa-linkedin"></i>
+                  </a>
+                </li>
+                <!-- <li><a href="#" class="icoInstagram" title="Instagram"><i class="fa fa-instagram"></i></a></li> -->
+              </ul>
+
+              <!-- <div class="col-xl-2 col-md-4 col-sm-4 col-auto order-2 align-self-end mt-3 "> -->
+              <h6 class="text-muted bold-text">
+                <b></b>
+              </h6>
+              <small>
+                <span>
+                  <i class="fa fa-envelope" aria-hidden="true"></i></span></small>
+            </div>
+          </div>
         </div>
-    </div>
-</div>
-</footer>
- 
-    
-            <!-- Latest compiled and minified JavaScript -->
+      </div>
+    </footer>
+
+    <!-- Latest compiled and minified JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
     <!-- <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js" integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN" crossorigin="anonymous"></script> -->
     <script>
-    $(document).ready(function() {
-    $('a[href="' + this.location.pathname + '"]').parent().addClass('active');
-    });
-    $(function () {
-    $(window).on('scroll', function () {
-        if ( $(window).scrollTop() > 1 ) {
+      $(document).ready(function () {
+        $('a[href="' + this.location.pathname + '"]').parent().addClass('active');
+      });
+      $(function () {
+        $(window).on('scroll', function () {
+          if ($(window).scrollTop() > 1) {
             $('.navbar').addClass('active');
-        } else {
+          } else {
             $('.navbar').removeClass('active');
-        }
-    });
-});
-    
+          }
+        });
+      });
     </script>
 
+  </body>
 
-        
-    </body>
-    
 </html>

@@ -1,3 +1,12 @@
+{% extends 'base.html.twig' %}
+{% block title %}Mentions légales d'Exsana - Expertise en santé et audit{% endblock %}
+{% block meta_description %}Consultez les mentions légales d'Exsana, votre expert en formations spécialisées dans le domaine de la santé, audit et consulting médical.{% endblock %}
+{% block meta_keywords %}mentions légales, Exsana, santé, formation médicale, expertise en santé, audit médical{% endblock %}
+{% block canonical_url %}{{ app.request.uri }}{% endblock %}
+
+{% block body %}
+<div class="admin-zone">
+</div>
 <div class="container">
             <div class="row">
                     <div class="col">
@@ -31,3 +40,11 @@
                     </div>
             </div>
         </div>
+
+
+<hr class="featurette-divider">
+
+{{ include('theme/_partenaires.html.twig') }}
+<!-- /END THE FEATURETTES -->
+
+{% endblock %}

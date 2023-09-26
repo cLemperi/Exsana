@@ -29,10 +29,18 @@ class SpecifiqueFormContact extends AbstractType
                         'Madame' => 'Mme'
                     ]
                    ])
-                    ->add('nickname', TextType::class)
-                    ->add('lastname', TextType::class)
-                    ->add('phone', TextType::class)
-                    ->add('email', EmailType::class)
+                    ->add('nickname', TextType::class, [
+                        'attr' => ['autocomplete' => 'nickname']
+                    ])
+                    ->add('lastname', TextType::class, [
+                        'attr' => ['autocomplete' => 'family-name']
+                    ])
+                    ->add('phone', TextType::class, [
+                        'attr' => ['autocomplete' => 'tel']
+                    ])
+                    ->add('email', EmailType::class, [
+                        'attr' => ['autocomplete' => 'email']
+                    ])
                     ->add('profession', ChoiceType::class, [
                         'choices' => [
                             'Profession' => null,
@@ -63,10 +71,18 @@ class SpecifiqueFormContact extends AbstractType
                             'Technicien de laboratoire' => 'Technicien de laboratoire'
                         ]
                         ])
-                    ->add('etablissement', TextType::class)
-                    ->add('city', TextType::class)
-                    ->add('adresse', TextType::class)
-                    ->add('postalCode', TextType::class)
+                    ->add('etablissement', TextType::class, [
+                        'attr' => ['autocomplete' => 'organization']
+                    ])
+                    ->add('city', TextType::class, [
+                        'attr' => ['autocomplete' => 'address-level2']
+                    ])
+                    ->add('adresse', TextType::class, [
+                        'attr' => ['autocomplete' => 'street-address']
+                    ])
+                    ->add('postalCode', TextType::class, [
+                        'attr' => ['autocomplete' => 'postal-code']
+                    ])
                     ->add('request', ChoiceType::class, [
                         'choices' => [
                             'Organiser une formation en intra / sur mesure' =>
@@ -87,7 +103,6 @@ class SpecifiqueFormContact extends AbstractType
                     ]);
     }
 
-
     public function configureOptions(OptionsResolver $resolver): void
     {
         $resolver->setDefaults([
@@ -95,3 +110,9 @@ class SpecifiqueFormContact extends AbstractType
         ]);
     }
 }
+
+
+
+
+
+    

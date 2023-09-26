@@ -63,17 +63,21 @@ class RegistrationFormType extends AbstractType
             ])
             ->add('firstName', TextType::class, [
                 'attr' => [
-                    'class' => 'form-control'
+                    'class' => 'form-control',
+                    'autocomplete' => 'given-name'   // Add this line for first name autocomplete
                 ],
                 'label' => 'Prénom'
             ])
             ->add('lastName', TextType::class, [
                 'attr' => [
-                    'class' => 'form-control'
+                    'class' => 'form-control',
+                    'autocomplete' => 'family-name'   // Add this line for last name autocomplete
                 ],
                 'label' => 'Nom'
             ])
-            ->add('email', EmailType::class)
+            ->add('email', EmailType::class, [
+                'attr' => ['autocomplete' => 'email']
+            ])
             ->add('job', TextType::class, [
                 'attr' => [
                     'class' => 'form-control'
@@ -82,7 +86,8 @@ class RegistrationFormType extends AbstractType
             ])
             ->add('phone', TextType::class, [
                 'attr' => [
-                    'class' => 'form-control'
+                    'class' => 'form-control',
+                    'autocomplete' => 'tel'   // Add this line for phone autocomplete
                 ],
                 'label' => 'Téléphone'
             ])
@@ -94,22 +99,26 @@ class RegistrationFormType extends AbstractType
             ])
             ->add('postalCode', TextType::class, [
                 'attr' => [
-                    'class' => 'form-control'
+                    'class' => 'form-control',
+                    'autocomplete' => 'postal-code'   // Add this line for postal code autocomplete
                 ],
                 'label' => 'Code postal'
             ])
             ->add('city', TextType::class, [
                 'attr' => [
-                    'class' => 'form-control'
+                    'class' => 'form-control',
+                    'autocomplete' => 'address-level2'   // Add this line for city autocomplete
                 ],
                 'label' => 'Ville'
             ])
             ->add('street', TextType::class, [
                 'attr' => [
-                    'class' => 'form-control'
+                    'class' => 'form-control',
+                    'autocomplete' => 'address-line1'   // Add this line for street address autocomplete
                 ],
                 'label' => 'Rue'
             ])
+    
             ->add('profil', TextType::class, [
                 'attr' => [
                     'class' => 'form-control'

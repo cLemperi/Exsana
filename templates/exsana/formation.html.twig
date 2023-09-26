@@ -2,13 +2,16 @@
 {% block title %}{{ formation.title}}{% endblock %}
 {% block meta_description %}{{ formation.title}}{% endblock %}
 {% block meta_keywords %}Formation Urgence, Formation santé{% endblock %}
-{% block canonical_url %}
-    {% if app.request.attributes.get('_route') == 'formation' %}
-        <link rel="canonical" href="{{ path('formation', { 'id': formation.id }) }}" />
-    {% else %}
-        <link rel="canonical" href="{{ app.request.uri }}" />
-    {% endif %}
-{% endblock %}
+{%- block canonical_url -%}
+    {%- if app.request.attributes.get('_route') == 'formation' -%}
+        {{- url('formation', {id: formation.id , slug: formation.slug}) -}}
+    {%- else -%}
+        {{- app.request.uri -}}
+    {%- endif -%}
+{%- endblock -%}
+
+
+
 
 {% block body %}
 

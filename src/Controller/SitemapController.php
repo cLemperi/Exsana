@@ -24,6 +24,7 @@ class SitemapController extends AbstractController
         //$urls[] = ['loc' => $this->generateUrl('whoweare')];
         $urls[] = ['loc' => $this->generateUrl('recrutement')];
         $urls[] = ['loc' => $this->generateUrl('app_login')];
+        $urls[] = ['loc' => $this->generateUrl('mention')];
 
         foreach ($formationRepo->findAll() as $formation) {
             $lastmod = $formation->getCreatedAt() ? $formation->getCreatedAt()->format('Y-m-d') : '';
