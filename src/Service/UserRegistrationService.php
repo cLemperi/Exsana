@@ -45,7 +45,7 @@ class UserRegistrationService implements UserRegistrationServiceInterface
             ->to(new Address($userEmail))
             ->subject('Confirmation d\'inscription à la formation' . $formationTitle)
             ->html(
-                'Bonjour,<br><br>Votre inscription à la formation' . $formationTitle . ' à bien était effuctué, 
+                'Bonjour,<br><br>Votre inscription à la formation' . $formationTitle . ' à bien était effectué, 
                 vous allez être contacter par téléphone par notre équipe.<br><br>
                 À très vite <br><br> l\'équipe Exsana Formation'
             );

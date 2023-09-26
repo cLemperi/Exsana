@@ -26,3 +26,10 @@ services:
         resource: '../src/*'
         exclude:
             - '../src/{DependencyInjection,Entity,Kernel.php}'
+
+    App\Command\MakeServiceCommand:
+        arguments:
+            $environment: '%kernel.environment%'
+            $filesystem: '@filesystem'
+    filesystem:
+        class: Symfony\Component\Filesystem\Filesystem
