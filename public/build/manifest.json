@@ -1,8 +1,7 @@
 {
-  "build/app.css": "/build/app.css",
-  "build/app.js": "/build/app.js",
-  "build/vendors-node_modules_symfony_stimulus-bridge_dist_index_js-node_modules_bootstrap_dist_js_boo-4d23cf.css": "/build/vendors-node_modules_symfony_stimulus-bridge_dist_index_js-node_modules_bootstrap_dist_js_boo-4d23cf.css",
-  "build/vendors-node_modules_symfony_stimulus-bridge_dist_index_js-node_modules_bootstrap_dist_js_boo-4d23cf.js": "/build/vendors-node_modules_symfony_stimulus-bridge_dist_index_js-node_modules_bootstrap_dist_js_boo-4d23cf.js",
+  "build/app.css": "/build/app.b3f813db.css",
+  "build/app.js": "/build/app.ed623967.js",
+  "build/736.45a9a108.css": "/build/736.45a9a108.css",
   "build/fonts/Avenir-Black.ttf": "/build/fonts/Avenir-Black.33c64a66.ttf",
   "build/fonts/Avenir-Roman.woff2": "/build/fonts/Avenir-Roman.7c94a37f.woff2"
 }

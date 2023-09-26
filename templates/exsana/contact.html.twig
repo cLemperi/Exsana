@@ -29,7 +29,6 @@
 	
 	{% if is_granted('ROLE_USER') or is_granted('ROLE_ADMIN') %}
 			{{ form_start(formContact) }}
-
 			{{ form_label(formContact.title, ' ') }}
 			{{ form_widget(formContact.title,{'attr' : {'placeholder' : "Objet du message"}}) }}
 			{% if formContact.title.vars.errors|length %}
@@ -37,7 +36,6 @@
               		<div class="alert alert-danger">{{ error.message }}</div>
           		{% endfor %}
       		{% endif %}
-
 			{{ form_label(formContact.Content, ' ') }}
 			{{ form_widget(formContact.Content,{'attr' : {'placeholder' : "Message"}}) }}
 			{% if formContact.Content.vars.errors|length %}
@@ -45,6 +43,7 @@
               		<div class="alert alert-danger">{{ error.message }}</div>
           		{% endfor %}
       		{% endif %}
+		{{ form_widget(formContact._token) }}
 		{% else %}
 			{{ form_start(formContact) }}
 

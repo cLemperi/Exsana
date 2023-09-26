@@ -24,6 +24,9 @@ class UserMessage
     #[ORM\JoinColumn(name: "user_message_id", referencedColumnName: "id")]
     private ?User $UserMessage = null;
 
+    #[ORM\Column]
+    private ?bool $isArchived = false;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -61,6 +64,18 @@ class UserMessage
     public function setUserMessage(?User $UserMessage): self
     {
         $this->UserMessage = $UserMessage;
+
+        return $this;
+    }
+
+    public function isIsArchived(): ?bool
+    {
+        return $this->isArchived;
+    }
+
+    public function setIsArchived(bool $isArchived): self
+    {
+        $this->isArchived = $isArchived;
 
         return $this;
     }

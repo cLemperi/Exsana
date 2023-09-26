@@ -18,11 +18,13 @@ class SitemapController extends AbstractController
         $hostname = $request->getSchemeAndHttpHost();
         $urls = [];
         $urls[] = ['loc' => $this->  generateUrl('exana_home')];
-        $urls[] = ['loc' => $this->generateUrl('whereweare')];
+        //$urls[] = ['loc' => $this->generateUrl('whereweare')];
         $urls[] = ['loc' => $this->generateUrl('contact')];
         $urls[] = ['loc' => $this->generateUrl('formations')];
-        $urls[] = ['loc' => $this->generateUrl('whoweare')];
+        //$urls[] = ['loc' => $this->generateUrl('whoweare')];
         $urls[] = ['loc' => $this->generateUrl('recrutement')];
+        $urls[] = ['loc' => $this->generateUrl('app_login')];
+
         foreach ($formationRepo->findAll() as $formation) {
             $lastmod = $formation->getCreatedAt() ? $formation->getCreatedAt()->format('Y-m-d') : '';
             $urls[] = [

@@ -8,7 +8,7 @@
     <div class="page-formation">
     </div>
 	    <div class="title_formation">
-		    <h1>{{ message.sex}} {{ message.nickname}} {{ message.lastname}}</h1>
+		    <h1>{{ message.UserMessage.sex}} {{ message.UserMessage.firstName}} {{ message.UserMessage.lastName}}</h1>
 	    </div>
 
 <div class="row core-formation">
@@ -20,7 +20,7 @@
 				<div class="card-body d-flex flex-column align-items-start">
 					<div class="custom_title"><h5 class="mb-0">TELEPHONE</h5></div>
 						<ul>
-							<li>{{ message.phone }}</li>
+							<li>{{ message.UserMessage.phone }}</li>
 						</ul>
 				</div>
 			</div>
@@ -30,7 +30,7 @@
 				<div class="card-body d-flex flex-column align-items-start">
 						<div class="custom_title"><h5 class="mb-0">EMAIL</h5></div>
 					<ul>
-						<li> {{ message.email }}</li>
+						<li> {{ message.UserMessage.email }}</li>
 					</ul>
 				</div>
 			</div>
@@ -42,7 +42,7 @@
 				<div class="card-body d-flex flex-column align-items-start">
 					<div class="custom_title"><h5 class="mb-0">PROFESSION</h5></div>
 						<ul>
-							<li>{{ message.profession }}</li>
+							<li>{{ message.UserMessage.job }}</li>
 						</ul>
 				</div>
 			</div>
@@ -52,7 +52,7 @@
 				<div class="card-body d-flex flex-column align-items-start">
 						<div class="custom_title"><h5 class="mb-0">ETABLISSEMENT</h5></div>
 					<ul>
-						<li> {{ message.etablissement }}€</li>
+						<!-- <li> </li>message.etablissement  -->
 					</ul>
 				</div>
 			</div>
@@ -64,7 +64,7 @@
 				<div class="card-body d-flex flex-column align-items-start">
 					<div class="custom_title"><h5 class="mb-0">ADRESSE</h5></div>
 						<ul>
-							<li>{{ message.adresse }}</li>
+							<li>{{ message.UserMessage.street }}</li>
 						</ul>
 				</div>
 			</div>
@@ -74,7 +74,7 @@
 				<div class="card-body d-flex flex-column align-items-start">
 						<div class="custom_title"><h5 class="mb-0">CODE POSTAL</h5></div>
 					<ul>
-						<li> {{ message.postalCode }}</li>
+						<li> {{ message.UserMessage.postalCode }}</li>
 					</ul>
 				</div>
 			</div>
@@ -86,7 +86,7 @@
 				<div class="card-body d-flex flex-column align-items-start">
 					<div class="custom_title"><h5 class="mb-0">VILLE</h5></div>
 						<ul>
-							<li>{{ message.city }}</li>
+							<li>{{ message.UserMessage.city }}</li>
 						</ul>
 				</div>
 			</div>
@@ -96,7 +96,7 @@
 				<div class="card-body d-flex flex-column align-items-start">
 						<div class="custom_title"><h5 class="mb-0">REQUETE</h5></div>
 					<ul>
-						<li> {{ message.request }}</li>
+						<li> {{ message.title }}</li>
 					</ul>
 				</div>
 			</div>
@@ -108,7 +108,7 @@
 				<div class="card-body d-flex flex-column align-items-start">
 					<div class="custom_title"><h5 class="mb-0">MESSAGE</h5></div>
 						<ul>
-							<li>{{ message.message }}</li>
+							<li>{{ message.content }}</li>
 						</ul>
 				</div>
 			</div>

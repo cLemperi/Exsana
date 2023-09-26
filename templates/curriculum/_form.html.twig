@@ -3,7 +3,10 @@
 {{ form_row(form.lastname) }}
 {{ form_row(form.titre) }}
 {{ form_row(form.message) }}
- {{ form_row(form.curiculumFile) }}
- {{ form_label(form.captcha, ' ') }}
+{{ form_row(form.curiculumFile) }}
+ {% if button is defined %}
+    <button type="submit" class="btn btn-primary">{{ button }}</button>
+{% endif %}
+{{ form_label(form.captcha, ' ') }}
 {{ form_widget(form.captcha) }}
 {{ form_end(form,{render_rest: false}) }}

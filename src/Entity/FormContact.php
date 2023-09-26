@@ -63,6 +63,9 @@ class FormContact
     #[ORM\Column(type: 'text', nullable: true)]
     private ?string $message = null;
 
+    #[ORM\Column]
+    private ?bool $isArchived = false;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -184,6 +187,18 @@ class FormContact
     public function setMessage(?string $message): self
     {
         $this->message = $message;
+
+        return $this;
+    }
+
+    public function isIsArchived(): ?bool
+    {
+        return $this->isArchived;
+    }
+
+    public function setIsArchived(bool $isArchived): self
+    {
+        $this->isArchived = $isArchived;
 
         return $this;
     }

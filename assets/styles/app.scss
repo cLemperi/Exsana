@@ -1247,3 +1247,53 @@ a {
   height: 30px;
   width: 150px;
 }
+
+//Page admin message
+
+.title_formation h1 {
+  font-size: 24px;
+  color: #000;
+  margin-bottom: 1rem;
+}
+
+h4 {
+  font-size: 20px;
+  color: #0378A6;
+  margin-bottom: 1rem;
+}
+
+hr {
+  margin-bottom: 2rem;
+}
+
+.message-card {
+  background-color: #f7f7f7;
+  padding: 1rem;
+  margin-bottom: 1rem;
+  border-radius: 5px;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+  border-bottom: 1px solid #e0e0e0; // une bordure subtile
+
+    &:last-child {
+        border-bottom: none; // pour supprimer la bordure du dernier élément
+    }
+}
+
+.message-card p {
+  font-size: 16px;
+  margin-bottom: 0.5rem;
+}
+
+.message-card p strong {
+  color: #0378A6;
+}
+
+.message-card a {
+  color: #0378A6;
+  text-decoration: none;
+}
+
+.message-card a:hover {
+  text-decoration: underline;
+}
+

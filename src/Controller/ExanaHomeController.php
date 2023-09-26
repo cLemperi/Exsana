@@ -18,6 +18,7 @@ use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Security\Core\Exception\AccessDeniedException;
 use App\Service\AlerteAdminServiceInterface;
+use Symfony\Component\Security\Core\User\UserInterface;
 
 class ExanaHomeController extends AbstractController
 {
@@ -44,7 +45,6 @@ class ExanaHomeController extends AbstractController
     public function contact(Request $request): Response
     {
         $user = $this->getUser();
-
         $formContact = null;
         $form = null;
 
@@ -52,27 +52,31 @@ class ExanaHomeController extends AbstractController
             $formContact = new UserMessage();
             $formContact->setUserMessage($user);
             $form = $this->createForm(UserMessageType::class, $formContact);
-            
-            $clientEmail = $this->$user->getEmail();
-            $firstname = $this->$user->getNickname();
-            $name = $this->$user->getLastname();
-            $message = $this->$formContact->getMessage();
-
         } else {
             $formContact = new FormContact();
-            $form = $this->createForm(SpecifiqueFormContact::class, $formContact)->handleRequest($request);
-            
-            $userEmail = $formContact->getEmail();
-            $firstname = $formContact->getNickname();
-            $name = $formContact->getLastname();
-            $message = $formContact->getMessage();
+            $form = $this->createForm(SpecifiqueFormContact::class, $formContact);
         }
 
+        $form->handleRequest($request);
+
         if ($form->isSubmitted() && $form->isValid()) {
+
+            if ($this->isGranted('IS_AUTHENTICATED_FULLY')) {
+                $message = $formContact->getContent();
+                $userEmail = $user->getEmail();
+                $firstname = $user->getFirstName();
+                $name = $user->getLastName();
+            } else {
+                $userEmail = $formContact->getEmail();
+                $firstname = $formContact->getNickname();
+                $name = $formContact->getLastname();
+                $message = $formContact->getMessage();
+            }
+
             $this->em->persist($formContact);
             $this->em->flush();
 
-            $this->alerteService->sendMailToAdminFromContact($userEmail,$firstname, $name, $message);
+            //$this->alerteService->sendMailToAdminFromContact($userEmail, $firstname, $name, $message);
             $this->addFlash('success', 'Votre demande de contact a bien été envoyée à notre équipe.');
             return $this->redirectToRoute('contact');
         }
@@ -81,6 +85,7 @@ class ExanaHomeController extends AbstractController
             'formContact' => $form->createView(),
         ]);
     }
+
 
 
 

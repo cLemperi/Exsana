@@ -20,4 +20,13 @@ class FormContactRepository extends ServiceEntityRepository
     {
         parent::__construct($registry, FormContact::class);
     }
+
+    public function findNotArchived()
+    {
+        return $this->createQueryBuilder('m') // "m" est un alias pour "message"
+            ->where('m.isArchived IS NULL OR m.isArchived = :isArchived')
+            ->setParameter('isArchived', false)
+            ->getQuery()
+            ->getResult();
+    }
 }

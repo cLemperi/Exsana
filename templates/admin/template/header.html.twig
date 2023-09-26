@@ -1,5 +1,5 @@
 
-{% block title %}Header Administrateur{% endblock %}
+{% block title %}{% endblock %}
 
 <div class="admin-zone">
 </div>
@@ -26,8 +26,8 @@
           Messages
         </a>
         <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-          <a class="dropdown-item" href="#">Utilisateur</a>
-          <a class="dropdown-item" href=" {{ path('app_admin_message') }}" >Formulaire de contact</a>
+          <a class="dropdown-item" href=" {{ path('app_admin_message') }}" >Messages des utilisateurs</a>
+          <a class="dropdown-item" href="{{ path('app_admin_archive') }}">Messages archivées</a>
         </div>
       </li>
       <li class="nav-item dropdown">

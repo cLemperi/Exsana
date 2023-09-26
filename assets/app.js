@@ -20,16 +20,43 @@ import { Tooltip, Toast, Popover } from 'bootstrap';
 // start the Stimulus application
 import './bootstrap';
 
-//Slick carousel
 import Vue from 'vue';
-import PasswordCheckComponent from './PasswordCheckComponent.vue';
+import PasswordCheckComponent from './components/PasswordCheckComponent.vue';
+//import DeleteMessage from './components/DeleteMessage.vue';
 
-new Vue({
-  el: '#password-check',
-  components: {
-    PasswordCheckComponent
-  }
-});
+
+
+if(document.querySelector('#password-check')){
+    new Vue({
+        el: '#password-check',
+        components: {
+          PasswordCheckComponent
+        }
+      });
+}
+/*
+
+// Enregistrement global du composant (s'il doit être disponible pour toutes les instances)
+Vue.component('delete-message', DeleteMessage);
+if(document.querySelector('#app')){
+    new Vue({
+        el: '#app',
+        data: {
+            messages: window.messages || [],
+            messagesUnknow: window.messagesUnknow || []
+        },
+        components: {
+            'delete-message': DeleteMessage
+        },
+        methods: {
+            handleMessageDeleted(messageId) {
+                // Supprimez le message de l'affichage ou rechargez la page
+            }
+        },
+    });
+}
+*/
+
 
 
 import 'slick-carousel/slick/slick.css';

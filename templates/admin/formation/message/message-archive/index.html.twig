@@ -17,7 +17,7 @@
     <div id="app">
       <div class="row">
         <div class="col-md-5">
-          <h4>Messages des utilisateurs inscrits</h4>
+          <h4>Messages archivées des users inscrits</h4>
           <hr>
           {% for message in messages %}
             <div class="message-card">
@@ -38,20 +38,17 @@
               <p>
                 <strong>Profession :</strong>
                 {{ message.UserMessage.job }}</p>
-                <a href="{{ path('app_admin_message_id', {id: message.id}) }}" class="btn btn-info">Consulter</a>
-              <form method="post" action="{{ path('admin.message.delete', {id: message.id}) }}" style="display: inline-block;" onsubmit="return confirm('Êtes-vous vraiment sûr ?')">
+                <a class="btn btn-info" href="{{ path('app_admin_message_id', {id: message.id}) }}" role="button">Consulter</a>
+              <form method="post" action="{{ path('admin.message.delete.archive', {id: message.id}) }}" style="display: inline-block;" onsubmit="return confirm('Êtes-vous vraiment sûr ?')">
                 <input type="hidden" name="_token" value="{{ csrf_token('delete' ~ message.id) }}">
                 <button class="btn btn-danger">Supprimer</button>
-            </form>
-                <form method="post" action="{{ path('admin.message.archive', {id: message.id}) }}" style="display: inline-block;" onsubmit="return confirm('Êtes-vous sûr de vouloir archiver ce message ?')">
-                  <input type="hidden" name="_token" value="{{ csrf_token('archive' ~ message.id) }}">
-                  <button class="btn btn-warning">Archiver</button>
-                </form>
+              </form>
             </div>
+
           {% endfor %}
         </div>
         <div class="col-md-5 offset-md-2">
-          <h4>Messages des utilisateurs inconnus</h4>
+          <h4>Messages archivées des users inconnus</h4>
           <hr>
           {% for message in messagesUnknow %}
             <div class="message-card">
@@ -72,14 +69,11 @@
               <p>
                 <strong>Profession :</strong>
                 {{ message.profession }}</p>
-                <a href="{{ path('app_admin_message_unk_id', {id: message.id}) }}" class="btn btn-info">Consulter</a>
-              <form method="post" action="{{ path('admin.messageUnk.delete', {id: message.id}) }}" style="display: inline-block;" onsubmit="return confirm('Êtes-vous vraiment sûr ?')">
+                
+              <a class="btn btn-info" href="{{ path('app_admin_message_unk_id', {id: message.id}) }}" role="button">Consulter</a>
+              <form method="post" action="{{ path('admin.messageUnk.delete.archive', {id: message.id}) }}" style="display: inline-block;" onsubmit="return confirm('Êtes-vous vraiment sûr ?')">
                 <input type="hidden" name="_token" value="{{ csrf_token('delete' ~ message.id) }}">
                 <button class="btn btn-danger">Supprimer</button>
-              </form>
-              <form method="post" action="{{ path('admin.messageUnk.archive', {id: message.id}) }}" style="display: inline-block;" onsubmit="return confirm('Êtes-vous sûr de vouloir archiver ce message ?')">
-                <input type="hidden" name="_token" value="{{ csrf_token('archive' ~ message.id) }}">
-                <button class="btn btn-warning">Archiver</button>
               </form>
             </div>
 
