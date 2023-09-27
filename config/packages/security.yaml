@@ -1,7 +1,5 @@
 security:
-    
-    enable_authenticator_manager: true
-    
+
     password_hashers:
         # auto hasher with default options for the User class (and children)
         App\Entity\User: 'auto'

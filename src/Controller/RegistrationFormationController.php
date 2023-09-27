@@ -6,8 +6,6 @@ use App\Entity\User;
 use App\Entity\Formations;
 use App\Form\FormationInviteType;
 use App\Form\FormationRegistrationType;
-use App\Repository\UserInviteRepository;
-use App\Service\UserRegistrationService;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;

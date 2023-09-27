@@ -2,7 +2,6 @@
 
 namespace App\Form;
 
-use Doctrine\DBAL\Types\TextType;
 use App\Entity\ProgrammeFormation;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;

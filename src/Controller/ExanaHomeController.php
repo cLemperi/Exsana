@@ -2,11 +2,9 @@
 
 namespace App\Controller;
 
-use App\Entity\User;
 use App\Entity\FormContact;
 use App\Entity\UserMessage;
 use App\Form\UserMessageType;
-use App\Form\FormationRegisterType;
 use App\Form\SpecifiqueFormContact;
 use App\Repository\CategoryRepository;
 use App\Repository\FormationsRepository;
@@ -16,9 +14,7 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
-use Symfony\Component\Security\Core\Exception\AccessDeniedException;
 use App\Service\AlerteAdminServiceInterface;
-use Symfony\Component\Security\Core\User\UserInterface;
 
 class ExanaHomeController extends AbstractController
 {
@@ -76,7 +72,7 @@ class ExanaHomeController extends AbstractController
             $this->em->persist($formContact);
             $this->em->flush();
 
-            //$this->alerteService->sendMailToAdminFromContact($userEmail, $firstname, $name, $message);
+            $this->alerteService->sendMailToAdminFromContact($userEmail, $firstname, $name, $message);
             $this->addFlash('success', 'Votre demande de contact a bien été envoyée à notre équipe.');
             return $this->redirectToRoute('contact');
         }

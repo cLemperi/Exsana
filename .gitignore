@@ -38,3 +38,8 @@ composer.phar
 ###> Fichier PDF formation ###
 public/uploads/pedago/*.pdf
 ###< Fichier PDF formation ###
+
+###> phpunit/phpunit ###
+/phpunit.xml
+.phpunit.result.cache
+###< phpunit/phpunit ###
