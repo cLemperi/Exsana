@@ -86,7 +86,8 @@
         "allow-plugins": {
             "composer/package-versions-deprecated": true,
             "symfony/runtime": true,
-            "phpstan/extension-installer": true
+            "phpstan/extension-installer": true,
+            "symfony/flex": true
         }
     },
     "autoload": {
