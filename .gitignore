@@ -29,3 +29,12 @@ yarn-error.log
 ###> phpstan/phpstan ###
 phpstan.neon
 ###< phpstan/phpstan ###
+
+
+###> composer.phar ###
+composer.phar
+###< composer.phar ###
+
+###> Fichier PDF formation ###
+public/uploads/pedago/*.pdf
+###< Fichier PDF formation ###
