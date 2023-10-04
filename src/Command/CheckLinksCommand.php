@@ -112,5 +112,4 @@ class CheckLinksCommand extends Command
 
         return Command::SUCCESS;
     }
-
 }

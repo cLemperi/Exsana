@@ -104,7 +104,7 @@ class AdminMessageController extends AbstractController
         }
         return $this->redirectToRoute('app_admin_message');
     }
-    
+
     //index archive
     #[Route('/admin/archive', name: 'app_admin_archive')]
     public function indexArchive(UserMessageRepository $repo, FormContactRepository $formrepo): Response
@@ -118,7 +118,7 @@ class AdminMessageController extends AbstractController
             'controller_name' => 'AdminMessageController',
         ]);
     }
-    
+
     #[Route(path: '/admin/message/{id}/archive', name: 'admin.message.archive', methods: 'POST')]
     public function archive(UserMessage $message, Request $request): Response
     {

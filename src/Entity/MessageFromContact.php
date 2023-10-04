@@ -5,6 +5,7 @@ namespace App\Entity;
 use App\Repository\MessageFromContactRepository;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 
 #[ORM\Entity(repositoryClass: MessageFromContactRepository::class)]
 class MessageFromContact
@@ -15,18 +16,36 @@ class MessageFromContact
     private ?int $id = null;
 
     #[ORM\Column(length: 255)]
+    #[Assert\NotBlank]
+    #[Assert\Choice(choices: ['Mr', 'Mme', 'Monsieur', 'Madame'], message: 'Veuillez choisir un sexe valide.')]
     private ?string $sex = null;
 
     #[ORM\Column(length: 255)]
+    #[Assert\NotBlank]
+    #[Assert\Regex(
+        pattern: "/^[a-zA-Z\s'-]+$/",
+        message: "Le surnom ne doit contenir que des lettres, des espaces, des apostrophes ou des tirets."
+    )]
     private ?string $nickname = null;
 
+    #[Assert\NotBlank]
+    #[Assert\Regex(
+        pattern: "/^[a-zA-Z\s'-]+$/",
+        message: "Le nom ne doit contenir que des lettres, des espaces, des apostrophes ou des tirets."
+    )]
     #[ORM\Column(length: 255)]
     private ?string $lastname = null;
 
     #[ORM\Column(length: 255, nullable: true)]
+    #[Assert\Regex(
+        pattern: "/^(\+?\d{1,3})?[-.\s]?\(?\d{1,4}\)?[-.\s]?\d{1,4}[-.\s]?\d{1,4}[-.\s]?\d{1,9}$/",
+        message: "Le format du numéro de téléphone n'est pas valide."
+    )]
     private ?string $phone = null;
 
     #[ORM\Column(length: 255)]
+    #[Assert\NotBlank]
+    #[Assert\Email(message: "Le format de l'email n'est pas valide.")]
     private ?string $email = null;
 
     #[ORM\Column(length: 255, nullable: true)]
@@ -36,18 +55,26 @@ class MessageFromContact
     private ?string $etablissement = null;
 
     #[ORM\Column(length: 255)]
+    #[Assert\NotBlank]
     private ?string $adresse = null;
 
     #[ORM\Column(length: 255)]
+    #[Assert\NotBlank]
+    #[Assert\Regex(
+        pattern: "/^[0-9]{4,5}$/",
+        message: "Le code postal doit être composé de 4 à 5 chiffres." // Ajustez en fonction de votre pays
+    )]
     private ?string $postalCode = null;
 
     #[ORM\Column(length: 255)]
+    #[Assert\NotBlank]
     private ?string $city = null;
 
     #[ORM\Column(length: 255, nullable: true)]
     private ?string $request = null;
 
     #[ORM\Column(type: Types::TEXT, nullable: true)]
+    #[Assert\NotBlank]
     private ?string $message = null;
 
     public function getId(): ?int

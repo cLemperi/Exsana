@@ -16,8 +16,7 @@ use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
  * @method Formations[]    findBy(array $criteria, array $orderBy = null, $limit = null, $offset = null)
  */
 class FormationsRepository extends ServiceEntityRepository
-{   
-
+{
     public function __construct(ManagerRegistry $registry)
     {
         parent::__construct($registry, Formations::class);

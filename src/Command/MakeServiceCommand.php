@@ -65,7 +65,8 @@ class MakeServiceCommand extends Command
         }
 
         // Demander les dépendances du service interactivement
-        $dependenciesString = $io->ask('Listez les dépendances du service (séparez les noms par un espace). Si aucune dépendance, appuyez simplement sur Entrée.', '');
+        $dependenciesString = $io->ask('Listez les dépendances du service 
+        (séparez les noms par un espace). Si aucune dépendance, appuyez simplement sur Entrée.', '');
         $dependencies = $dependenciesString ? explode(' ', $dependenciesString) : [];
 
         // Génération du contenu du fichier service en fonction des dépendances.
@@ -74,9 +75,20 @@ class MakeServiceCommand extends Command
         foreach ($dependencies as $dependency) {
             $useStatements .= sprintf("use %s;\n", $dependency);
             $dependencyClass = substr($dependency, strrpos($dependency, '\\') + 1);
-            $constructorContent .= sprintf("private $%s;\n\n", lcfirst($dependencyClass));
-            $constructorContent .= sprintf("public function __construct(%s $%s)\n", $dependencyClass, lcfirst($dependencyClass));
-            $constructorContent .= sprintf("{\n    $this->%s = $%s;\n}\n", lcfirst($dependencyClass), lcfirst($dependencyClass));
+            $constructorContent .= sprintf(
+                "private $%s;\n\n",
+                lcfirst($dependencyClass)
+            );
+            $constructorContent .= sprintf(
+                "public function __construct(%s $%s)\n",
+                $dependencyClass,
+                lcfirst($dependencyClass)
+            );
+            $constructorContent .= sprintf(
+                "{\n    $this->%s = $%s;\n}\n",
+                lcfirst($dependencyClass),
+                lcfirst($dependencyClass)
+            );
         }
 
         $serviceTemplate = <<<EOD

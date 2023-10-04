@@ -36,7 +36,12 @@ class FormContact
 
 
     #[ORM\Column(type: 'string', length: 255)]
-    #[Assert\Email(message: "L'email '{{ value }}'n'est pas valide.")]
+    #[Assert\NotBlank(message: "L'email ne peut pas être vide.")]
+    #[Assert\Length(
+        max: 255,
+        maxMessage: "L'email ne peut pas contenir plus de {{ limit }} caractères."
+    )]
+    #[Assert\Email(message: "Le format de l'email n'est pas valide.")]
     private ?string $email = null;
 
     #[ORM\Column(type: 'string', length: 255, nullable: true)]

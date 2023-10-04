@@ -4,6 +4,7 @@ namespace App\Entity;
 
 use App\Repository\UserMessageRepository;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 
 #[ORM\Entity(repositoryClass: UserMessageRepository::class)]
 class UserMessage
@@ -13,10 +14,12 @@ class UserMessage
     #[ORM\Column()]
     private ?int $id = null;
 
+    #[Assert\NotBlank(message: "Le titre ne peut pas être vide.")]
     #[ORM\Column(length: 255)]
     private ?string $title = null;
 
-    #[ORM\Column(length: 255)]
+    #[Assert\NotBlank(message: "Le message ne peut pas être vide.")]
+    #[ORM\Column(length: 500)]
     private ?string $Content = null;
 
     #[ORM\ManyToOne(targetEntity: User::class, inversedBy: 'UserMessages', cascade: ['persist'])]

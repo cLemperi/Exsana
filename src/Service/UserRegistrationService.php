@@ -52,5 +52,4 @@ class UserRegistrationService implements UserRegistrationServiceInterface
 
         $this->mailer->send($email);
     }
-
 }

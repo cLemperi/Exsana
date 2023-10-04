@@ -4,6 +4,7 @@ namespace App\Entity;
 
 use App\Repository\ParticipantRepository;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 
 #[ORM\Entity(repositoryClass: ParticipantRepository::class)]
 class Participant
@@ -13,15 +14,40 @@ class Participant
     #[ORM\Column()]
     private ?int $id = null;
 
+    #[Assert\NotBlank(message: "Le prénom ne peut pas être vide.")]
+    #[Assert\Length(
+        min: 2,
+        max: 255,
+        minMessage: "Le prénom doit contenir au moins {{ limit }} caractères.",
+        maxMessage: "Le prénom ne peut pas contenir plus de {{ limit }} caractères."
+    )]
     #[ORM\Column(length: 255, nullable: true)]
     private ?string $Prenom = null;
 
+    #[Assert\NotBlank(message: "Le prénom ne peut pas être vide.")]
+    #[Assert\Length(
+        min: 2,
+        max: 255,
+        minMessage: "Le nom doit contenir au moins {{ limit }} caractères.",
+        maxMessage: "Le nom ne peut pas contenir plus de {{ limit }} caractères."
+    )]
     #[ORM\Column(length: 255, nullable: true)]
     private ?string $Nom = null;
 
+    #[Assert\Length(
+        max: 255,
+        maxMessage: "La profession ne peut pas contenir plus de {{ limit }} caractères."
+    )]
     #[ORM\Column(length: 255, nullable: true)]
     private ?string $Profession = null;
 
+    #[Assert\Email(
+        message: "L'email '{{ value }}' n'est pas un email valide."
+    )]
+    #[Assert\Length(
+        max: 255,
+        maxMessage: "L'email ne peut pas contenir plus de {{ limit }} caractères."
+    )]
     #[ORM\Column(length: 255, nullable: true)]
     private ?string $email = null;
 

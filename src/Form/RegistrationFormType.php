@@ -118,7 +118,7 @@ class RegistrationFormType extends AbstractType
                 ],
                 'label' => 'Rue'
             ])
-    
+
             ->add('profil', TextType::class, [
                 'attr' => [
                     'class' => 'form-control'

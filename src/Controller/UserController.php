@@ -29,16 +29,16 @@ class UserController extends AbstractController
         $user = $this->getUser();
 
         if (!$user instanceof User) {
-                return $this->redirectToRoute('exana_home');
-            }
+            return $this->redirectToRoute('exana_home');
+        }
         $form = $this->createForm(ProfilsType::class, $user);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-                    $this->em->persist($user);
-                    $this->em->flush();
-                    $this->addFlash('success', 'Profils bien modifié avec succès');
-                    return $this->redirectToRoute('user.register');
+            $this->em->persist($user);
+            $this->em->flush();
+            $this->addFlash('success', 'Profils bien modifié avec succès');
+            return $this->redirectToRoute('user.register');
         }
 
 
@@ -54,7 +54,7 @@ class UserController extends AbstractController
 
         $user = $this->getUser();
         if (!$user instanceof User) {
-        // Gérer le cas où l'utilisateur n'est pas connecté
+            // Gérer le cas où l'utilisateur n'est pas connecté
             return $this->redirectToRoute('exana_home');
         }
 

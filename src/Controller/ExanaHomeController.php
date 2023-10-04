@@ -56,7 +56,6 @@ class ExanaHomeController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-
             if ($this->isGranted('IS_AUTHENTICATED_FULLY')) {
                 $message = $formContact->getContent();
                 $userEmail = $user->getEmail();

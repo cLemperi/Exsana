@@ -14,7 +14,6 @@ use App\Service\UserRegistrationServiceInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use App\Service\ErrorLogger;
 
-
 class RegistrationFormationController extends AbstractController
 {
     private EntityManagerInterface $em;

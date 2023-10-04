@@ -61,7 +61,7 @@ class Category
 
         return $this;
     }
-    
+
     /**
      * @return Collection|Formations[]
      * @psalm-return Collection<int, Formations>

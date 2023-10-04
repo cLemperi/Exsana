@@ -10,6 +10,7 @@ use Doctrine\Common\Collections\ArrayCollection;
 use Symfony\Component\Security\Core\User\UserInterface;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 use Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface;
+use Symfony\Component\Validator\Constraints as Assert;
 
 #[ORM\Entity(repositoryClass: UserRepository::class)]
 #[UniqueEntity(fields: ['email'], message: 'Il y a deja un utilisateur avec cette email')]
@@ -20,9 +21,11 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface, Seriali
     #[ORM\Column(type: 'integer')]
     private ?int $id;
 
+    #[Assert\NotBlank]
     #[ORM\Column(type: 'string', length: 255)]
     private ?string $username = null;
 
+    #[Assert\NotBlank]
     #[ORM\Column(type: 'string', length: 255)]
     private ?string $password = null;
 
@@ -33,29 +36,69 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface, Seriali
     #[ORM\Column(type: 'json')]
     private ?array $roles = [];
 
+    #[Assert\NotBlank]
     #[ORM\Column(type: 'string', length: 255)]
     private ?string $sex = null;
 
+    #[Assert\NotBlank(message: "Le prénom ne peut pas être vide.")]
+    #[Assert\Length(
+        min: 2,
+        max: 255,
+        minMessage: "Le prénom doit contenir au moins {{ limit }} caractères.",
+        maxMessage: "Le prénom ne peut pas contenir plus de {{ limit }} caractères."
+    )]
+    #[Assert\Regex(
+        pattern: "/^[a-zA-Zàáâäçèéêëìíîïòóôöùúûüýÿ\s-]*$/",
+        message: "Le prénom ne doit contenir que des lettres, des espaces et des tirets."
+    )]
     #[ORM\Column(type: 'string', length: 255)]
     private ?string $firstName = null;
 
+    #[Assert\NotBlank(message: "Le nom ne peut pas être vide.")]
+    #[Assert\Length(
+        min: 2,
+        max: 255,
+        minMessage: "Le nom doit contenir au moins {{ limit }} caractères.",
+        maxMessage: "Le nom ne peut pas contenir plus de {{ limit }} caractères."
+    )]
+    #[Assert\Regex(
+        pattern: "/^[a-zA-Zàáâäçèéêëìíîïòóôöùúûüýÿ\s-]*$/",
+        message: "Le nom ne doit contenir que des lettres, des espaces et des tirets."
+    )]
     #[ORM\Column(type: 'string', length: 255)]
     private ?string $lastName = null;
 
+
+    #[Assert\NotBlank(message: "L'email ne peut pas être vide.")]
+    #[Assert\Email(
+        message: "L'email '{{ value }}' n'est pas un email valide."
+    )]
+    #[Assert\Length(
+        max: 255,
+        maxMessage: "L'email ne peut pas contenir plus de {{ limit }} caractères."
+    )]
     #[ORM\Column(type: 'string', length: 255, unique: true)]
     private ?string $email = null;
 
+    #[Assert\NotBlank]
     #[ORM\Column(type: 'string', length: 255)]
     private ?string $job = null;
 
+    #[Assert\Regex(pattern: "/^[0-9]+$/", message: "Le téléphone doit être un numéro valide")]
     #[ORM\Column(type: 'string', length: 255, nullable: true)]
     private ?string $phone = null;
+
 
     #[ORM\Column(type: 'string', length: 255, nullable: true)]
     private ?string $rppsCode = null;
 
+    #[Assert\Regex(
+        pattern: "/^[0-9]{4,5}$/",
+        message: "Le code postal doit être composé de 4 à 5 chiffres." // Ajustez en fonction de votre pays
+    )]
     #[ORM\Column(type: 'string', length: 255, nullable: true)]
     private ?string $postalCode = null;
+
 
     #[ORM\Column(type: 'string', length: 255, nullable: true)]
     private ?string $city = null;

@@ -21,15 +21,21 @@ RUN curl -sL https://deb.nodesource.com/setup_18.x | bash \
 
 # Installation de Symfony CLI (version globale)
 RUN curl -sS https://get.symfony.com/cli/installer | bash \
-    && mv /root/.symfony/bin/symfony /usr/local/bin
+    && mv /root/.symfony5/bin/symfony /usr/local/bin/symfony
 
 # Configuration et installation des extensions PHP nécessaires
 RUN docker-php-ext-configure intl \
     && docker-php-ext-install pdo pdo_mysql opcache intl zip calendar dom mbstring gd xsl \
     && pecl install apcu && docker-php-ext-enable apcu
 
+#install yarn
+RUN npm install --global yarn
+
+# Activer mod_rewrite pour Apache
+RUN a2enmod rewrite
+
 # Répertoire de travail
-WORKDIR /var/www/
+WORKDIR /var/www/html
 
 # Copie des fichiers du projet
 COPY . .

@@ -13,8 +13,11 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 class ProductController extends AbstractController
 {
     #[Route('/exsana/produits', name: 'app_product_list', methods: ['GET'])]
-    public function index(ProductRepository $productRepository,PaginatorInterface $paginator,Request $request): \Symfony\Component\HttpFoundation\Response
-    {
+    public function index(
+        ProductRepository $productRepository,
+        PaginatorInterface $paginator,
+        Request $request
+    ): \Symfony\Component\HttpFoundation\Response {
         $listProducts = $productRepository->findAll();
 
         $products = $paginator->paginate(
@@ -42,5 +45,3 @@ class ProductController extends AbstractController
         ]);
     }
 }
-    
-

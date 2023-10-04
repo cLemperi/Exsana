@@ -48,7 +48,7 @@ class Formations
     #[ORM\Column(type: 'string', length: 255, nullable: true)]
     private ?string $location = null;
 
-    
+
     #[ORM\ManyToOne(targetEntity: Category::class, inversedBy:'formations')]
     #[ORM\JoinColumn(nullable: true)]
     private ?Category $category;
@@ -185,7 +185,7 @@ class Formations
         return $this;
     }
 
-    
+
     public function getCategory(): ?Category
     {
         return $this->category;

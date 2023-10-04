@@ -1,3 +1,4 @@
-RewriteEngine on
-RewriteCond %{REQUEST_URI} !^public
+# Si la requête ne commence pas par 'public/'
+RewriteCond %{REQUEST_URI} !^/public/
+# Alors, redirigez vers le répertoire 'public/'
 RewriteRule ^(.*)$ public/$1 [L]
