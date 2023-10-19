@@ -35,7 +35,6 @@ class FormContactTest extends TestCase
             $this->assertEquals('Information request', $FormContact->getRequest());
             $this->assertEquals('Hello!', $FormContact->getMessage());
             $this->assertEquals(false, $FormContact->isIsArchived());
-
     }
 
     public function testNotValid(): void
@@ -55,20 +54,21 @@ class FormContactTest extends TestCase
             ->setIsArchived(true);
 
             $this->assertFalse($FormContact->getSex() === 'Monsieur');
-            $this->assertFalse($FormContact->getNickname() ==='Nicolas');
-            $this->assertFalse($FormContact->getLastname() ==='Dupont');
-            $this->assertFalse($FormContact->getPhone() ==='0332123456');
-            $this->assertFalse($FormContact->getEmail() ==='nicolas@example.com');
-            $this->assertFalse($FormContact->getAdresse() ==='123 Rue de Paris');
-            $this->assertFalse($FormContact->getCity() ==='Paris');
-            $this->assertFalse($FormContact->getPostalCode() ==='75001');
-            $this->assertFalse($FormContact->getRequest() ==='Information request');
-            $this->assertFalse($FormContact->getMessage() ==='Hello!');
-            $this->assertFalse($FormContact->isIsArchived() ==='false');
+            $this->assertFalse($FormContact->getNickname() === 'Nicolas');
+            $this->assertFalse($FormContact->getLastname() === 'Dupont');
+            $this->assertFalse($FormContact->getPhone() === '0332123456');
+            $this->assertFalse($FormContact->getEmail() === 'nicolas@example.com');
+            $this->assertFalse($FormContact->getAdresse() === '123 Rue de Paris');
+            $this->assertFalse($FormContact->getCity() === 'Paris');
+            $this->assertFalse($FormContact->getPostalCode() === '75001');
+            $this->assertFalse($FormContact->getRequest() === 'Information request');
+            $this->assertFalse($FormContact->getMessage() === 'Hello!');
+            $this->assertFalse($FormContact->isIsArchived() === 'false');
     }
 
-    public function testIsEmpty(): void {
-            
+    public function testIsEmpty(): void
+    {
+
         $FormContact = new FormContact();
 
             $this->assertEmpty($FormContact->getSex());

@@ -23,7 +23,6 @@ class CuriculumTest extends TestCase
         $this->assertTrue($curiculum->getFirstname() === 'John');
         $this->assertTrue($curiculum->getLastname() === 'Doe');
         $this->assertTrue($curiculum->getMessage() === 'Test curiculum');
-
     }
 
     public function testNotValid(): void
@@ -43,7 +42,8 @@ class CuriculumTest extends TestCase
             $this->assertFalse($curiculum->getMessage() === 'Test curiculum');
     }
 
-    public function testIsEmpty(): void {
+    public function testIsEmpty(): void
+    {
         $curiculum = new Curiculum();
 
             $this->assertEmpty($curiculum->getTitre());

@@ -122,9 +122,9 @@ class FormationsTest extends TestCase
 
     public function testCanAddUserToFormation(): void
     {
-        
-        $formation = new Formations;
-        $user = new User;
+
+        $formation = new Formations();
+        $user = new User();
         $user->setUsername('TestNickname');
         $user->setPassword('testPassword');
         $user->setRoles(['ROLE_USER']);
@@ -140,13 +140,12 @@ class FormationsTest extends TestCase
         $user->setStreet('rue du test')
             ->setProfil('test');
 
-        
-        
+
+
 
         $formation->addUser($user);
         $this->assertTrue($formation->getUsers()->contains($user), "User was not added to the formation.");
         $this->assertCount(1, $formation->getUsers(), "Number of users in formation is not as expected.");
         $this->assertSame($user, $formation->getUsers()[0]);
-
     }
 }

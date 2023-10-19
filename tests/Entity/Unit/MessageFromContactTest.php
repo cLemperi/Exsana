@@ -37,7 +37,6 @@ class MessageFromContactTest extends TestCase
         $this->assertTrue($message->getCity() === 'Villy-Bocage');
         $this->assertTrue($message->getRequest() === 'Test unitaire');
         $this->assertTrue($message->getMessage() === 'Mise en place de test unitaire');
-
     }
 
     public function testNotValid(): void
@@ -71,7 +70,8 @@ class MessageFromContactTest extends TestCase
             $this->assertFalse($message->getMessage() === 'Mise en place de test unitaire');
     }
 
-    public function testIsEmpty(): void {
+    public function testIsEmpty(): void
+    {
         $message = new MessageFromContact();
 
             $this->assertEmpty($message->getSex());

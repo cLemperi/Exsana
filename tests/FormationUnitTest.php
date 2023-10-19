@@ -1,4 +1,5 @@
 <?php
+
 /*
 namespace App\Tests;
 
@@ -16,7 +17,7 @@ class FormationUnitTest extends KernelTestCase
 {
     /**
      * @var \Symfony\Component\DependencyInjection\ContainerInterface
-     
+
     protected $container;
 
     public function setUp(): void

@@ -38,8 +38,6 @@ class SitemapController extends AbstractController
                 'lastmod' => $lastmod,  // ou définissez une autre date pertinente pour 'lastmod', si nécessaire
             ];
         }
-        
-        
 
         $response = new Response(
             $this->renderView('sitemap/index.html.twig', [
