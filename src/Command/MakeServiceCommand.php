@@ -17,8 +17,8 @@ use Symfony\Component\Filesystem\Filesystem;
 class MakeServiceCommand extends Command
 {
     // Propriétés pour stocker l'environnement et le service de manipulation des fichiers.
-    private $environment;
-    private $filesystem;
+    private string $environment;
+    private Filesystem $filesystem;
 
     // Constructeur avec les dépendances injectées.
     public function __construct(string $environment, Filesystem $filesystem)
@@ -85,7 +85,7 @@ class MakeServiceCommand extends Command
                 lcfirst($dependencyClass)
             );
             $constructorContent .= sprintf(
-                "{\n    $this->%s = $%s;\n}\n",
+                "{\n    \$this->%s = \$%s;\n}\n",
                 lcfirst($dependencyClass),
                 lcfirst($dependencyClass)
             );
@@ -112,6 +112,6 @@ EOD;
 
     private function getProjectDir(): string
     {
-        return __DIR__ . '/../../';
+        return dirname(__DIR__, 2);
     }
 }

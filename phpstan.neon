@@ -6,6 +6,7 @@ parameters:
 		container_xml_path: var/cache/dev/App_KernelDevDebugContainer.xml
 
 	checkGenericClassInNonGenericObjectType: false
+	treatPhpDocTypesAsCertain: false
 	ignoreErrors:
 		-
 			message: '#Property [a-zA-Z0-9\\_]+::\$id is never written, only read.#'

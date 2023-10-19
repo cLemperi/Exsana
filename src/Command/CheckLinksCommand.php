@@ -17,7 +17,7 @@ use Symfony\Contracts\HttpClient\HttpClientInterface;
 )]
 class CheckLinksCommand extends Command
 {
-    private $httpClient;
+    private  HttpClientInterface $httpClient;
 
     public function __construct(HttpClientInterface $httpClient)
     {
@@ -37,6 +37,10 @@ class CheckLinksCommand extends Command
         $deadLinks = [];
 
         $baseDomain = parse_url('http://127.0.0.1:8000/', PHP_URL_HOST); // Ajouté pour obtenir le domaine de base
+        if ($baseDomain === false) {
+            // Handle error
+            return Command::FAILURE;
+        }
 
         $totalLinksDetected = 1;
         $totalLinksScanned = 0;
@@ -60,8 +64,11 @@ class CheckLinksCommand extends Command
                 foreach ($linksOnPage as $link) {
                     $linkUrl = $link->getUri();
                     $parsedUrl = parse_url($linkUrl);
+                    if ($parsedUrl === false || !isset($parsedUrl['scheme'], $parsedUrl['host'], $parsedUrl['path'])) {
+                        // Handle error
+                        continue;
+                    }
                     $cleanUrl = $parsedUrl['scheme'] . '://' . $parsedUrl['host'] . $parsedUrl['path'];
-
                     // Ignorer les URLs externes
                     if ($parsedUrl['host'] !== $baseDomain) {
                         continue;

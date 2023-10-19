@@ -2,6 +2,7 @@
 
 namespace App\Controller;
 
+use App\Entity\User;
 use App\Entity\FormContact;
 use App\Entity\UserMessage;
 use App\Form\UserMessageType;
@@ -10,16 +11,17 @@ use App\Repository\CategoryRepository;
 use App\Repository\FormationsRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Knp\Component\Pager\PaginatorInterface;
+use App\Service\AlerteAdminServiceInterface;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\Security\Core\User\UserInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
-use App\Service\AlerteAdminServiceInterface;
 
 class ExanaHomeController extends AbstractController
 {
     private EntityManagerInterface $em;
-    private $alerteService;
+    private AlerteAdminServiceInterface $alerteService;
 
     public function __construct(EntityManagerInterface $em, AlerteAdminServiceInterface $alerteService)
     {
@@ -57,10 +59,12 @@ class ExanaHomeController extends AbstractController
 
         if ($form->isSubmitted() && $form->isValid()) {
             if ($this->isGranted('IS_AUTHENTICATED_FULLY')) {
+               if($user instanceof User ){
                 $message = $formContact->getContent();
                 $userEmail = $user->getEmail();
                 $firstname = $user->getFirstName();
                 $name = $user->getLastName();
+               }
             } else {
                 $userEmail = $formContact->getEmail();
                 $firstname = $formContact->getNickname();
@@ -142,7 +146,7 @@ class ExanaHomeController extends AbstractController
     }
 
     #[Route(path: 'exsana/formation/{id}{slug}', name: 'formation')]
-    public function showFormation(FormationsRepository $repo, $id, Request $request): Response
+    public function showFormation(FormationsRepository $repo, int $id, Request $request): Response
     {
         /*if (!$this->getUser()) {
             throw new AccessDeniedException('Vous devez être connecté pour accéder à cette page');

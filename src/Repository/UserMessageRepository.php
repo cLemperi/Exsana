@@ -39,7 +39,7 @@ class UserMessageRepository extends ServiceEntityRepository
         }
     }
 
-    public function findNotArchived()
+    public function findNotArchived(): array
     {
         return $this->createQueryBuilder('m') // "m" est un alias pour "message"
             ->where('m.isArchived IS NULL OR m.isArchived = :isArchived')

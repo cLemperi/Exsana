@@ -32,7 +32,7 @@ class ProductController extends AbstractController
     }
 
     #[Route('exsana/produit/{id}{slug}', name: 'app_product_show', methods: ['GET'])]
-    public function listProduct(ProductRepository $productRepository, $id): Response
+    public function listProduct(ProductRepository $productRepository, int $id): Response
     {
         $products = $productRepository->find($id);
         if (!$products) {
