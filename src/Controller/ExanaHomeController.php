@@ -59,12 +59,12 @@ class ExanaHomeController extends AbstractController
 
         if ($form->isSubmitted() && $form->isValid()) {
             if ($this->isGranted('IS_AUTHENTICATED_FULLY')) {
-               if($user instanceof User ){
-                $message = $formContact->getContent();
-                $userEmail = $user->getEmail();
-                $firstname = $user->getFirstName();
-                $name = $user->getLastName();
-               }
+                if ($user instanceof User) {
+                    $message = $formContact->getContent();
+                    $userEmail = $user->getEmail();
+                    $firstname = $user->getFirstName();
+                    $name = $user->getLastName();
+                }
             } else {
                 $userEmail = $formContact->getEmail();
                 $firstname = $formContact->getNickname();
