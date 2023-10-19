@@ -56,18 +56,18 @@ class MakeServiceCommand extends Command
         });
 
         // Chemin complet vers le fichier service.
-        $servicePath = sprintf('%s/src/Service/%s.php', $this->getProjectDir(), $serviceName);
+        $servicePath = sprintf('%s/src/Service/%s.php', $this->getProjectDir(), (string)$serviceName);
 
         // Vérification si le service existe déjà.
         if ($this->filesystem->exists($servicePath)) {
-            $io->error(sprintf('Le service "%s" existe déjà.', $serviceName));
+            $io->error(sprintf('Le service "%s" existe déjà.', (string)$serviceName));
             return Command::FAILURE;
         }
 
         // Demander les dépendances du service interactivement
         $dependenciesString = $io->ask('Listez les dépendances du service 
         (séparez les noms par un espace). Si aucune dépendance, appuyez simplement sur Entrée.', '');
-        $dependencies = $dependenciesString ? explode(' ', $dependenciesString) : [];
+        $dependencies = $dependenciesString ? explode(' ', (string)$dependenciesString) : [];
 
         // Génération du contenu du fichier service en fonction des dépendances.
         $constructorContent = '';
@@ -105,7 +105,7 @@ $constructorContent
 EOD;
 
         $this->filesystem->dumpFile($servicePath, $serviceTemplate);
-        $io->success(sprintf('Le service "%s" a été créé avec succès.', $serviceName));
+        $io->success(sprintf('Le service "%s" a été créé avec succès.', (string)$serviceName));
 
         return Command::SUCCESS;
     }

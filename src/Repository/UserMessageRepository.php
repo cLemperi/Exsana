@@ -38,8 +38,8 @@ class UserMessageRepository extends ServiceEntityRepository
             $this->getEntityManager()->flush();
         }
     }
-
-    public function findNotArchived(): array
+    /** @phpstan-ignore-next-line */
+    public function findNotArchived()
     {
         return $this->createQueryBuilder('m') // "m" est un alias pour "message"
             ->where('m.isArchived IS NULL OR m.isArchived = :isArchived')

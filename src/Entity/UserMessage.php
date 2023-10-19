@@ -2,9 +2,10 @@
 
 namespace App\Entity;
 
-use App\Repository\UserMessageRepository;
 use Doctrine\ORM\Mapping as ORM;
+use App\Repository\UserMessageRepository;
 use Symfony\Component\Validator\Constraints as Assert;
+use Symfony\Component\Security\Core\User\UserInterface;
 
 #[ORM\Entity(repositoryClass: UserMessageRepository::class)]
 class UserMessage
@@ -24,7 +25,7 @@ class UserMessage
 
     #[ORM\ManyToOne(targetEntity: User::class, inversedBy: 'UserMessages', cascade: ['persist'])]
     #[ORM\JoinColumn(name: "user_message_id", referencedColumnName: "id")]
-    private ?User $UserMessage = null;
+    private ?UserInterface $UserMessage = null;
 
     #[ORM\Column]
     private ?bool $isArchived = false;
@@ -58,12 +59,12 @@ class UserMessage
         return $this;
     }
 
-    public function getUserMessage(): ?User
+    public function getUserMessage(): ?UserInterface
     {
         return $this->UserMessage;
     }
 
-    public function setUserMessage(?User $UserMessage): self
+    public function setUserMessage(?UserInterface $UserMessage): self
     {
         $this->UserMessage = $UserMessage;
 
