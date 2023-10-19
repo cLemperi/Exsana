@@ -1,13 +1,13 @@
 #!/bin/bash
 
 # Aller à la racine du projet
-cd /chemin/absolu/vers/votre/projet
+# cd /chemin/absolu/vers/votre/projet
 
 # Effectuer un git pull pour récupérer les dernières modifications
 git pull origin master
 
 # Installer/mettre à jour les dépendances via composer
-composer install --no-dev --optimize-autoloader
+php composer.phar install --no-dev --optimize-autoloader
 
 # Supprimer le répertoire des tests
 rm -rf tests/

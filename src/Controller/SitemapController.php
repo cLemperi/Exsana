@@ -32,7 +32,14 @@ class SitemapController extends AbstractController
                 'loc' => $this->generateUrl('formation', ['id' => $formation->getId(),'slug' => $formation->getSlug()]),
                 'lastmod' => $lastmod,
             ];
+
+            $urls[] = [
+                'loc' => $this->generateUrl('add_participant', ['id' => $formation->getId()]),
+                'lastmod' => $lastmod,  // ou définissez une autre date pertinente pour 'lastmod', si nécessaire
+            ];
         }
+        
+        
 
         $response = new Response(
             $this->renderView('sitemap/index.html.twig', [
