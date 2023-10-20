@@ -98,7 +98,7 @@ namespace App\Service;
 
 $useStatements
 
-class $serviceName
+class {$serviceName}
 {
 $constructorContent
 }

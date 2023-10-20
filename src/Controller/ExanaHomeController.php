@@ -46,6 +46,12 @@ class ExanaHomeController extends AbstractController
         $formContact = null;
         $form = null;
 
+        // Initialisation des variables
+        $userEmail = '';
+        $firstname = '';
+        $name = '';
+        $message = '';
+
         if ($this->isGranted('IS_AUTHENTICATED_FULLY')) {
             $formContact = new UserMessage();
             $formContact->setUserMessage($user);
