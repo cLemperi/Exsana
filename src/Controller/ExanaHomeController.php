@@ -81,8 +81,12 @@ class ExanaHomeController extends AbstractController
             $this->em->persist($formContact);
             $this->em->flush();
 
-            $this->alerteService->sendMailToAdminFromContact($userEmail, $firstname, $name, $message);
-            $this->addFlash('success', 'Votre demande de contact a bien été envoyée à notre équipe.');
+            if (!empty($userEmail) && !empty($firstname) && !empty($name) && !empty($message)) {
+                $this->alerteService->sendMailToAdminFromContact($userEmail, $firstname, $name, $message);
+                $this->addFlash('success', 'Votre demande de contact a bien été envoyée à notre équipe.');
+            } else {
+                $this->addFlash('error', 'Veuillez remplir tous les champs requis.');
+            }
             return $this->redirectToRoute('contact');
         }
 
