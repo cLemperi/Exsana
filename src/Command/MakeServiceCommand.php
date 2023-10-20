@@ -48,7 +48,7 @@ class MakeServiceCommand extends Command
         $io = new SymfonyStyle($input, $output);
 
         // Demander le nom du service interactivement.
-        $serviceName = $io->ask('Quel est le nom de votre service? ex: NameYourService', null, function ($name) {
+        $serviceName = (string)$io->ask('Quel est le nom de votre service? ex: NameYourService', null, function ($name) {
             if (empty($name)) {
                 throw new \RuntimeException('Le nom du service ne peut pas être vide.');
             }
@@ -65,7 +65,7 @@ class MakeServiceCommand extends Command
         }
 
         // Demander les dépendances du service interactivement
-        $dependenciesString = $io->ask('Listez les dépendances du service 
+        $dependenciesString = (string)$io->ask('Listez les dépendances du service 
         (séparez les noms par un espace). Si aucune dépendance, appuyez simplement sur Entrée.', '');
         $dependencies = $dependenciesString ? explode(' ', (string)$dependenciesString) : [];
 
