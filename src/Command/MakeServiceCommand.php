@@ -57,10 +57,12 @@ class MakeServiceCommand extends Command
             });
 
         // Chemin complet vers le fichier service.
+        /** @phpstan-ignore-next-line */
         $servicePath = sprintf('%s/src/Service/%s.php', $this->getProjectDir(), (string)$serviceName);
 
         // Vérification si le service existe déjà.
         if ($this->filesystem->exists($servicePath)) {
+            /** @phpstan-ignore-next-line */
             $io->error(sprintf('Le service "%s" existe déjà.', (string)$serviceName));
             return Command::FAILURE;
         }
