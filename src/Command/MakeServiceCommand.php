@@ -48,12 +48,13 @@ class MakeServiceCommand extends Command
         $io = new SymfonyStyle($input, $output);
 
         // Demander le nom du service interactivement.
-        $serviceName = (string)$io->ask('Quel est le nom de votre service? ex: NameYourService', null, function ($name) {
-            if (empty($name)) {
-                throw new \RuntimeException('Le nom du service ne peut pas être vide.');
-            }
-            return ucfirst($name);
-        });
+        $serviceName =
+            (string)$io->ask('Quel est le nom de votre service? ex: NameYourService', null, function ($name) {
+                if (empty($name)) {
+                    throw new \RuntimeException('Le nom du service ne peut pas être vide.');
+                }
+                return ucfirst((string)$name);
+            });
 
         // Chemin complet vers le fichier service.
         $servicePath = sprintf('%s/src/Service/%s.php', $this->getProjectDir(), (string)$serviceName);
