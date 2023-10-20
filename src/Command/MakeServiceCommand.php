@@ -49,6 +49,7 @@ class MakeServiceCommand extends Command
 
         // Demander le nom du service interactivement.
         $serviceName =
+        /** @phpstan-ignore-next-line */
             (string)$io->ask('Quel est le nom de votre service? ex: NameYourService', null, function ($name) {
                 if (empty($name)) {
                     throw new \RuntimeException('Le nom du service ne peut pas être vide.');
@@ -57,17 +58,16 @@ class MakeServiceCommand extends Command
             });
 
         // Chemin complet vers le fichier service.
-        /** @phpstan-ignore-next-line */
         $servicePath = sprintf('%s/src/Service/%s.php', $this->getProjectDir(), (string)$serviceName);
 
         // Vérification si le service existe déjà.
         if ($this->filesystem->exists($servicePath)) {
-            /** @phpstan-ignore-next-line */
             $io->error(sprintf('Le service "%s" existe déjà.', (string)$serviceName));
             return Command::FAILURE;
         }
 
         // Demander les dépendances du service interactivement
+        /** @phpstan-ignore-next-line */
         $dependenciesString = (string)$io->ask('Listez les dépendances du service 
         (séparez les noms par un espace). Si aucune dépendance, appuyez simplement sur Entrée.', '');
         $dependencies = $dependenciesString ? explode(' ', (string)$dependenciesString) : [];
