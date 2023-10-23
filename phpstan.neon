@@ -9,8 +9,8 @@ parameters:
 	treatPhpDocTypesAsCertain: false
 	ignoreErrors:
 		-
-			message: '#Property [a-zA-Z0-9\\_]+::\$id is never written, only read.#'
-			path: src/Entity/*
+			# message: '#Property [a-zA-Z0-9\\_]+::\$id is never written, only read.#'
+			# path: src/Entity/*
 
 	parallel:
 		maximumNumberOfProcesses: 1
