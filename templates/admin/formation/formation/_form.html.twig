@@ -1,140 +1,243 @@
-
 {{ form_start(form) }}
+
 <div class="row">
-    <div class="col-md-6"><div class="custom_title"><h5>Titre de la formation</h5></div>{{ form_label(form.title, ' ') }}
-	{{ form_widget(form.title,{'attr' : {'placeholder' : "Titre de la formation"}}) }}</div>
-    <div class="col-md-6"><div class="custom_title"><h5>Catégories</h5></div>{{ form_label(form.category, ' ') }}
-	{{ form_widget(form.category)}}</div>
+  <div class="col-md-6">
+    <div class="custom_title">
+      <h5>Titre de la formation</h5>
+    </div>
+    {{ form_label(form.title, ' ') }}
+    {{ form_widget(form.title, {'attr': {'placeholder': "Titre de la formation"}}) }}
+  </div>
+  <div class="col-md-6">
+    <div class="custom_title">
+      <h5>Catégories</h5>
+    </div>
+    {{ form_label(form.category, ' ') }}
+    {{ form_widget(form.category) }}
+  </div>
 </div>
-<hr class="featurette-divider" >
+
+<hr class="featurette-divider">
+
 <div class="row">
-    <div class="col-md-6"><div class="custom_title"><h5>Date</h5></div>{{ form_label(form.dateFormation, ' ') }}
-	{{ form_widget(form.dateFormation,{'attr' : {'placeholder' : " Date formation"}}) }}</div>
-    <div class="col-md-6"><div class="custom_title"><h5>Prix</h5></div>{{ form_label(form.price, ' ') }}
-	{{ form_widget(form.price)}}</div>
+  <div class="col-md-6">
+    <div class="custom_title">
+      <h5>Date</h5>
+    </div>
+    {{ form_label(form.dateFormation, ' ') }}
+    {{ form_widget(form.dateFormation, {'attr': {'placeholder': "Date formation"}}) }}
+  </div>
+  <div class="col-md-6">
+    <div class="custom_title">
+      <h5>Prix</h5>
+    </div>
+    {{ form_label(form.price, ' ') }}
+    {{ form_widget(form.price) }}
+  </div>
 </div>
-<hr class="featurette-divider" >
-    <div class="row">
-        <div class="col-md-6"><div class="custom_title"><h5>Programme de la formation</h5></div>
-            <ul class="programmeFormations"
-                data-index="{{form.programmeFormations|length < 0 ? form.programmeFormations|last.vars.name + 1 : 0 }}"
-                data-prototype="{{form_row(form.programmeFormations.vars.prototype) |e('html_attr') }}">
-                {% for programmeFormation in form.programmeFormations %}
-                    <li> {{ form_row(programmeFormation.title) }}</li>
-                    <li> {{ form_row(programmeFormation.name) }}</li>
-                    <br><br>
-                {% endfor %}
-            </ul>
-            <button id="add_formation" type="button" class="btn btn-info" data-collection-holder-class="programmeFormations"> ajouter une ligne </button>
-        </div>
-        <div class="col-md-6">
-            <div class="custom_title"><h5>Objectif de la formation</h5></div>
-            <ul class="objectifFormations"
-                data-index="{{form.objectifFormations|length < 0 ? form.objectifFormations|last.vars.name + 1 : 0 }}"
-                data-prototype="{{ form_widget(form.objectifFormations.vars.prototype) |e('html_attr') }}">
-                {% for objectifFormation in form.objectifFormations %}
-                    <li> {{ form_widget(objectifFormation.title) }}</li>
-                    <li> {{ form_widget(objectifFormation.name) }}</li>
-                    <br><br>
-                {% endfor %}
-            </ul>
-            <button type="button"  id="add_objectif" class="btn btn-info" data-collection-holder-class="objectifFormations"> ajouter un objectif de formation </button>       
-        </div>
+
+<hr class="featurette-divider">
+
+<div class="row">
+  <!-- Programme de la formation -->
+  <div class="col-md-6">
+    <div class="custom_title">
+      <h5>Programme de la formation</h5>
     </div>
 
-<hr class="featurette-divider">
-<div class="row">
-    <div class="col-md-6"><div class="custom_title"><h5>Durée de la formation</h5></div>{{ form_label(form.durationFormation, ' ') }}
-	{{ form_widget(form.durationFormation,{'attr' : {'placeholder' : "Durée formation"}}) }}</div>
-    <div class="col-md-6"><div class="custom_title"><h5>La formation s'adresse à :</h5></div>{{ form_label(form.forWho, ' ') }}
-	{{ form_widget(form.forWho,{'attr' : {'placeholder' : "Pour qui s'adresse la formation"}}) }}</div>
-</div>
-<hr class="featurette-divider">
-<div class="row">
-    <div class="col-md-6"><div class="custom_title"><h5>Prérequis de la formation</h5></div>{{ form_label(form.prerequisite, ' ') }}
-    {{ form_widget(form.prerequisite,{'attr' : {'placeholder' : "Prérequie"}}) }}</div>
-    <div class="col-md-6"><div class="custom_title"><h5>Lieux : </h5></div>{{ form_label(form.location, ' ') }}
-	{{ form_widget(form.location,{'attr' : {'placeholder' : "Ville  formation"}}) }}</h5></div>
-</div>
-<div class="row">
-    <div class="col-md-6"><div class="custom_title"><h5>Evaluation de la formations</h5></div>{{ form_label(form.Evaluation, ' ') }}
-    {{ form_widget(form.Evaluation,{'attr' : {'placeholder' : "texte évaluation"}}) }}</div>
-    <div class="col-md-6"><div class="custom_title"><h5>Accessibilité et CONDITION : </h5></div>{{ form_label(form.publicAndAccessCondition, ' ') }}
-	{{ form_widget(form.publicAndAccessCondition,{'attr' : {'placeholder' : "texte accès et condition"}}) }}</h5></div>
-</div>
-<div class="row">
-    <div class="col-md-4"><div class="custom_title"><h5>Slug personnalisé de la formation</h5>{{ form_label(form.slug, ' ') }}
-    {{ form_widget(form.slug,{'attr' : {'placeholder' : "Slug de la formation"}}) }}</div></div>
-    <div class="col-md-4"><div class="custom_title"><h5>Intervenant</h5>{{ form_label(form.intervenant, ' ') }}
-    {{ form_widget(form.intervenant,{'attr' : {'placeholder' : "Intervenant"}}) }}</div></div>
-    <div class="col-md-4"><div class="custom_title"><h5>Programme pédago</h5>{{ form_label(form.programmePedago, ' ') }}
-    {{ form_widget(form.programmePedago,{'attr' : {'placeholder' : "Programme pédagogique"}}) }}</div></div>
-</div>
-<div class="row">
-    <div class="col-md-12">
-    {{ form_widget(form) }}
-    <button class="btn btn-primary">{{ button }}</button></div>
+    <ul class="programmeFormations" data-index="{{ form.programmeFormations|length }}" data-prototype="{{ form_widget(form.programmeFormations.vars.prototype)|e('html_attr') }}">
+      {% for programmeFormation in form.programmeFormations %}
+        <li>{{ form_widget(programmeFormation) }}</li>
+      {% endfor %}
+    </ul>
+    <button type="button" id="add_formation" class="btn btn-info" data-collection-holder-class="programmeFormations">
+      Ajouter une ligne
+    </button>
+  </div>
+
+  <!-- Objectif de la formation -->
+  <div class="col-md-6">
+    <div class="custom_title">
+      <h5>Objectif de la formation</h5>
+    </div>
+
+    <ul class="objectifFormations" data-index="{{ form.objectifFormations|length }}" data-prototype="{{ form_widget(form.objectifFormations.vars.prototype)|e('html_attr') }}">
+      {% for objectifFormation in form.objectifFormations %}
+        <li>
+          {{ form_row(objectifFormation.title) }}
+          {{ form_row(objectifFormation.name) }}
+        </li>
+      {% endfor %}
+    </ul>
+
+    <button type="button" id="add_objectif" class="btn btn-info" data-collection-holder-class="objectifFormations">
+      Ajouter un objectif de formation
+    </button>
+  </div>
 </div>
 
-{{ form_end(form) }}
+<hr class="featurette-divider">
+
+<div class="row">
+  <div class="col-md-6">
+    <div class="custom_title">
+      <h5>Durée de la formation</h5>
+    </div>
+    {{ form_label(form.durationFormation, ' ') }}
+    {{ form_widget(form.durationFormation, {'attr': {'placeholder': "Durée formation"}}) }}
+  </div>
+  <div class="col-md-6">
+    <div class="custom_title">
+      <h5>La formation s'adresse à :</h5>
+    </div>
+    {{ form_label(form.forWho, ' ') }}
+    {{ form_widget(form.forWho, {'attr': {'placeholder': "Pour qui s'adresse la formation"}}) }}
+  </div>
 </div>
 
+<hr class="featurette-divider">
+
+<div class="row">
+  <div class="col-md-6">
+    <div class="custom_title">
+      <h5>Prérequis de la formation</h5>
+    </div>
+    {{ form_label(form.prerequisite, ' ') }}
+    {{ form_widget(form.prerequisite, {'attr': {'placeholder': "Pré-requis"}}) }}
+  </div>
+  <div class="col-md-6">
+    <div class="custom_title">
+      <h5>Lieux :</h5>
+    </div>
+    {{ form_label(form.location, ' ') }}
+    {{ form_widget(form.location, {'attr': {'placeholder': "Ville formation"}}) }}
+  </div>
+</div>
+
+<div class="row">
+  <div class="col-md-6">
+    <div class="custom_title">
+      <h5>Évaluation de la formation</h5>
+    </div>
+    {{ form_label(form.Evaluation, ' ') }}
+    {{ form_widget(form.Evaluation, {'attr': {'placeholder': "Texte évaluation"}}) }}
+  </div>
+  <div class="col-md-6">
+    <div class="custom_title">
+      <h5>Accessibilité et conditions :</h5>
+    </div>
+    {{ form_label(form.publicAndAccessCondition, ' ') }}
+    {{ form_widget(form.publicAndAccessCondition, {'attr': {'placeholder': "Texte accès et condition"}}) }}
+  </div>
+</div>
+
+<div class="row">
+  <div class="col-md-4">
+    <div class="custom_title">
+      <h5>Slug personnalisé de la formation</h5>
+    </div>
+    {{ form_label(form.slug, ' ') }}
+    {{ form_widget(form.slug, {'attr': {'placeholder': "Slug de la formation"}}) }}
+  </div>
+  <div class="col-md-4">
+    <div class="custom_title">
+      <h5>Intervenant</h5>
+    </div>
+    {{ form_label(form.intervenant, ' ') }}
+    {{ form_widget(form.intervenant, {'attr': {'placeholder': "Intervenant"}}) }}
+  </div>
+  <div class="col-md-4">
+    <div class="custom_title">
+      <h5>Programme pédagogique</h5>
+    </div>
+    {{ form_label(form.programmePedago, ' ') }}
+    {{ form_widget(form.programmePedago, {'attr': {'placeholder': "Programme pédagogique"}}) }}
+  </div>
+</div>
+<hr class="featurette-divider">
+
+<div class="row">
+  <div class="col-md-6">
+    <div class="custom_title">
+      <h5>Taux de validation (%)</h5>
+    </div>
+    {{ form_label(form.tauxValidation, ' ') }}
+    {{ form_widget(form.tauxValidation, {'attr': {'placeholder': "Ex : 95", 'min': 0, 'max': 100, 'step': 0.1}}) }}
+  </div>
+
+  <div class="col-md-6">
+    <div class="custom_title">
+      <h5>Taux de satisfaction (%)</h5>
+    </div>
+    {{ form_label(form.tauxSatisfaction, ' ') }}
+    {{ form_widget(form.tauxSatisfaction, {'attr': {'placeholder': "Ex : 92", 'min': 0, 'max': 100, 'step': 0.1}}) }}
+  </div>
+</div>
+
+
+<div class="row">
+  <div class="col-md-12">
+    <button class="btn btn-primary">{{ button }}</button>
+  </div>
+</div>
+
+{{ form_end(form, {'render_rest': false}) }}
+
+{# --- Prototype Twig pour JS --- #}
+{#
+{% set programmePrototype %}
+{{ form_widget(form.programmeFormations.vars.prototype.title)|e('html_attr') }}
+{{ form_widget(form.programmeFormations.vars.prototype.name)|e('html_attr') }}
+{% endset %}
+
+{% set objectifPrototype %}
+{{ form_widget(form.objectifFormations.vars.prototype.title)|e('html_attr') }}
+{{ form_widget(form.objectifFormations.vars.prototype.name)|e('html_attr') }}
+{% endset %} #}
 
 <script type="text/javascript">
-
-
-const addFormToCollection = (e) => {
+  const addFormToCollection = (e, prototype) => {
     const collectionHolder = document.querySelector('.' + e.currentTarget.dataset.collectionHolderClass);
-    
+    const index = collectionHolder.dataset.index;
     const item = document.createElement('li');
 
-    item.innerHTML = collectionHolder
-        .dataset
-        .prototype
-        .replace(
-            /__name__/g,
-            collectionHolder.dataset.index
-        );
-
+    item.innerHTML = prototype.replace(/__name__/g, index);
     collectionHolder.appendChild(item);
+    collectionHolder.dataset.index++;
 
- collectionHolder.dataset.index++;
- addTagFormDeleteLink(item);
-};
+    addTagFormDeleteLink(item);
+  };
 
-const addTagFormDeleteLink =(item) => {
+  const addTagFormDeleteLink = (item) => {
     const removeFormButton = document.createElement('button');
     removeFormButton.classList.add("btn", "btn-danger");
-     removeFormButton.innerText = "Supprimé";
-     item.append(removeFormButton);
+    removeFormButton.innerText = "Supprimé";
+    item.append(removeFormButton);
 
-     removeFormButton.addEventListener('click', (e) => {
-        e.preventDefault();
-        // remove the li for the tag form
-        item.remove();
+    removeFormButton.addEventListener('click', (e) => {
+      e.preventDefault();
+      item.remove();
     });
-}
+  };
 
-
-document
-    .querySelectorAll('ul.programmeFormations li')
-    .forEach((tag) => {
-        addTagFormDeleteLink(tag)
-    })
-    
-    // add row
-    document
-    .querySelectorAll('#add_formation')
-    .forEach(btn => {
-      btn.addEventListener("click", addFormToCollection)
+  // Ajout des boutons supprimer existants
+  document.querySelectorAll('ul.programmeFormations li, ul.objectifFormations li').forEach((tag) => {
+    addTagFormDeleteLink(tag);
   });
 
-      document
-    .querySelectorAll('#add_objectif')
-    .forEach(btn => {
-      btn.addEventListener("click", addFormToCollection)
+  // Ajouter un programme
+  document.querySelectorAll('#add_formation').forEach(btn => {
+    btn.addEventListener("click", (e) => {
+      const collectionHolder = document.querySelector('.programmeFormations');
+      addFormToCollection(e, collectionHolder.dataset.prototype);
+    });
   });
-    // remove row
-  
-    
+
+  // Ajouter un objectif
+  document.querySelectorAll('#add_objectif').forEach(btn => {
+    btn.addEventListener("click", (e) => {
+      const collectionHolder = document.querySelector('.objectifFormations');
+      addFormToCollection(e, collectionHolder.dataset.prototype);
+    });
+  });
 </script>

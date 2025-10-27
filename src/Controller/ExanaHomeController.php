@@ -122,6 +122,14 @@ class ExanaHomeController extends AbstractController
         ]);
     }
 
+    #[Route(path: '/exsana/politique-confidetiel', name: 'politique')]
+    public function politiqueconfidentiel(): \Symfony\Component\HttpFoundation\Response
+    {
+        return $this->render('exsana/politique-confidentiel.html.twig', [
+            'controller_name' => 'ExanaHomeController',
+        ]);
+    }
+
 
 
     #[Route(path: '/exsana/formations', name: 'formations')]
@@ -156,7 +164,7 @@ class ExanaHomeController extends AbstractController
     }
 
     #[Route(path: 'exsana/formation/{id}{slug}', name: 'formation')]
-    public function showFormation(FormationsRepository $repo, int $id, Request $request): Response
+    public function showFormation(FormationsRepository $repo, $id, Request $request): Response
     {
         /*if (!$this->getUser()) {
             throw new AccessDeniedException('Vous devez être connecté pour accéder à cette page');

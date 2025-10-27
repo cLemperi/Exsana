@@ -79,6 +79,12 @@ class Formations
     #[ORM\Column(type: Types::TEXT, nullable: true)]
     private ?string $publicAndAccessCondition = null;
 
+    #[ORM\Column(type: 'float', nullable: true)]
+    private ?float $tauxValidation = null;
+
+    #[ORM\Column(type: 'float', nullable: true)]
+    private ?float $tauxSatisfaction = null;
+
     /**
      * @var Collection|User[]
      * @psalm-var Collection<int, User>
@@ -354,6 +360,30 @@ class Formations
     public function setProgrammePedagoFile(?string $programmePedagoFile): self
     {
         $this->programmePedagoFile = $programmePedagoFile;
+
+        return $this;
+    }
+
+    public function getTauxValidation(): ?float
+    {
+        return $this->tauxValidation;
+    }
+
+    public function setTauxValidation(?float $tauxValidation): self
+    {
+        $this->tauxValidation = $tauxValidation;
+
+        return $this;
+    }
+
+    public function getTauxSatisfaction(): ?float
+    {
+        return $this->tauxSatisfaction;
+    }
+
+    public function setTauxSatisfaction(?float $tauxSatisfaction): self
+    {
+        $this->tauxSatisfaction = $tauxSatisfaction;
 
         return $this;
     }

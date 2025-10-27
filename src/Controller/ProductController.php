@@ -31,8 +31,8 @@ class ProductController extends AbstractController
         ]);
     }
 
-    #[Route('exsana/produit/{id}{slug}', name: 'app_product_show', methods: ['GET'])]
-    public function listProduct(ProductRepository $productRepository, int $id): Response
+    #[Route('exsana/produit/{id}', name: 'app_product_show', methods: ['GET'])]
+    public function listProduct(ProductRepository $productRepository, $id): Response
     {
         $products = $productRepository->find($id);
         if (!$products) {
@@ -40,7 +40,7 @@ class ProductController extends AbstractController
             throw $this->createNotFoundException('Le produit n\'existe pas');
         }
 
-        return $this->render('product/index.html.twig', [
+        return $this->render('product/show.html.twig', [
             'products' => $products
         ]);
     }

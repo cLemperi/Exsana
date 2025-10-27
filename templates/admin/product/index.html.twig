@@ -28,6 +28,7 @@
                 <td>{{ product.img }}</td>
                 <td>{{ product.brand }}</td>
                 <td>{{ product.ProductCategory }}</td>
+                <td>{{ product.slug }}</td>
                 <td>
                     <a href="{{ path('app_product_show', {'id': product.id}) }}">show</a>
                     <a href="{{ path('app_product_edit', {'id': product.id}) }}">edit</a>

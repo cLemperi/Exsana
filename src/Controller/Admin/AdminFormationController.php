@@ -119,7 +119,7 @@ class AdminFormationController extends AbstractController
 
 
 
-    #[Route(path: '/admin/formation{id}', name: 'admin.formation.delete', methods: 'DELETE')]
+    #[Route(path: '/admin/formation/{id}', name: 'admin.formation.delete', methods: 'DELETE')]
     public function delete(Formations $formation, Request $request): \Symfony\Component\HttpFoundation\RedirectResponse
     {
         $tokenValue = $request->get('_token');

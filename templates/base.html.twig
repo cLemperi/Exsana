@@ -5,6 +5,10 @@
     <title>
       {% block title %}Titre par défaut{% endblock %}
     </title>
+
+    <!-- Ajout du favicon -->
+    <link rel="icon" type="image/x-icon" href="{{ asset('img/favicon/exsana_favicon.ico') }}">
+    
     {% set current_route = app.request.pathinfo %}
     {% if '/admin/' not in current_route %}
       <meta name="title" content="{% block meta_title %}{% endblock %}">
@@ -165,6 +169,10 @@
                 </li>
                 <li>
                   <a href="{{path('mention') }}">Mentions légales
+                  </a>
+                </li>
+                <li>
+                  <a href="{{path('politique') }}">Politique de confidentialité
                   </a>
                 </li>
               </ul>

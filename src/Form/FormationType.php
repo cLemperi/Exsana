@@ -11,6 +11,7 @@ use Symfony\Component\Validator\Constraints\File;
 use Symfony\Component\Validator\Constraints\NotBlank;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Form\Extension\Core\Type\FileType;
+use Symfony\Component\Form\Extension\Core\Type\NumberType;
 use Symfony\Component\Form\Extension\Core\Type\CollectionType;
 
 class FormationType extends AbstractType
@@ -48,6 +49,26 @@ class FormationType extends AbstractType
             ->add('Evaluation')
             ->add('publicAndAccessCondition')
             ->add('slug')
+            ->add('tauxValidation', NumberType::class, [
+                'label' => 'Taux de validation (%)',
+                'required' => false,
+                'scale' => 2,
+                'attr' => [
+                    'min' => 0,
+                    'max' => 100,
+                    'step' => 0.1,
+                ],
+            ])
+            ->add('tauxSatisfaction', NumberType::class, [
+                'label' => 'Taux de satisfaction (%)',
+                'required' => false,
+                'scale' => 2,
+                'attr' => [
+                    'min' => 0,
+                    'max' => 100,
+                    'step' => 0.1,
+                ],
+            ])
             ->add('programmePedago', FileType::class, [
                 'label' => 'Programme pédagogique (PDF)',
                 'required' => true,
