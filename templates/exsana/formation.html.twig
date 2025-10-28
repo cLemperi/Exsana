@@ -1,17 +1,16 @@
 {% extends 'base.html.twig' %}
-{% block title %}{{ formation.title}}{% endblock %}
-{% block meta_description %}{{ formation.title}}{% endblock %}
+{% block title %}{{ formation.title}}
+{% endblock %}
+{% block meta_description %}{{ formation.title}}
+{% endblock %}
 {% block meta_keywords %}Formation Urgence, Formation santé{% endblock %}
 {%- block canonical_url -%}
-    {%- if app.request.attributes.get('_route') == 'formation' -%}
-        {{- url('formation', {id: formation.id , slug: formation.slug}) -}}
-    {%- else -%}
-        {{- app.request.uri -}}
-    {%- endif -%}
+  {%- if app.request.attributes.get('_route') == 'formation' -%}
+    {{- url('formation', {id: formation.id , slug: formation.slug}) -}}
+  {%- else -%}
+    {{- app.request.uri -}}
+  {%- endif -%}
 {%- endblock -%}
-
-
-
 
 {% block body %}
 
@@ -27,7 +26,7 @@
       </div>
       <div class="col-lg-9 col-md-12 col-sm-12 formation">
         <div class="row">
-          <div class="col-md-12 obj-formation" name"programmebody"="name"programmebody"">
+          <div class="col-md-12 obj-formation" name"programmebody"="name" programmebody""="programmebody" "">
             <div class="custom_title">
               <h2>OBJECTIF GENERAL</h2>
             </div>
@@ -144,42 +143,53 @@
                 </div>
               </div>
               <div class="col-md-6">
-  <div class="card flex-md-row mb-4 box-shadow h-md-250">
-    <div class="card-body d-flex flex-column align-items-start">
-      <div class="custom_title">
-        <h5 class="mb-0">TAUX DE VALIDATION</h5>
-      </div>
-      <ul>
-        <li>
-          {% if formation.tauxValidation is not null %}
-            {{ formation.tauxValidation }} %
-          {% else %}
-            Non renseigné
-          {% endif %}
-        </li>
-      </ul>
-    </div>
-  </div>
-</div>
+                <div class="card flex-md-row mb-4 box-shadow h-md-250">
+                  <div class="card-body d-flex flex-column align-items-start">
+                    <div class="custom_title">
+                      <h5 class="mb-0">TAUX DE VALIDATION DES FORMATIONS EN 2025</h5>
+                    </div>
+                    <ul>
+                      <li>
+                        {% if formation.tauxValidation is not null %}
+                          {{ formation.tauxValidation }}
+                          %
+                        {% else %}
+                          Non renseigné
+                        {% endif %}
+                      </li>
+                    </ul>
+                    <small class="text-muted mt-2">
+                      🔄 Mis à jour le
+                      {{ "now"|date("d/m/Y") }}
+                    </small>
+                  </div>
+                </div>
+              </div>
 
-<div class="col-md-6">
-  <div class="card flex-md-row mb-4 box-shadow h-md-250">
-    <div class="card-body d-flex flex-column align-items-start">
-      <div class="custom_title">
-        <h5 class="mb-0">TAUX DE SATISFACTION</h5>
-      </div>
-      <ul>
-        <li>
-          {% if formation.tauxSatisfaction is not null %}
-            {{ formation.tauxSatisfaction }} %
-          {% else %}
-            Non renseigné
-          {% endif %}
-        </li>
-      </ul>
-    </div>
-  </div>
-</div>
+              <div class="col-md-6">
+                <div class="card flex-md-row mb-4 box-shadow h-md-250">
+                  <div class="card-body d-flex flex-column align-items-start">
+                    <div class="custom_title">
+                      <h5 class="mb-0">TAUX DE SATISFACTION DES FORMATIONS EN 2025</h5>
+                    </div>
+                    <ul>
+                      <li>
+                        {% if formation.tauxSatisfaction is not null %}
+                          {{ formation.tauxSatisfaction }}
+                          %
+                        {% else %}
+                          Non renseigné
+                        {% endif %}
+                      </li>
+                    </ul>
+                    {# Note de mise à jour #}
+                    <small class="text-muted mt-2">
+                      🔄 Mis à jour le
+                      {{ "now"|date("d/m/Y") }}
+                    </small>
+                  </div>
+                </div>
+              </div>
 
             </div>
           </div>
@@ -219,39 +229,40 @@
                   </div>
                 </div>
               </div>
-          {% endif %}
+            {% endif %}
             {% if not is_granted('ROLE_USER')and not is_granted('ROLE_ADMIN') %}
               <div class="container cara-forma-inscription">
                 <div class="s_cadre_inscription s_cta">
                   <div class="txt">Connecter vous pour vous inscrire à une session de formation</a>
                   <p class="bouton">
-                  <br>
-                  <a href="{{ path('add_participant',{id: formation.id}) }}"><strong>JE M'INSCRIS</strong>
-                    <img src="{{ asset('img/svg/icons/registration.svg') }}" style="width: 70px; height: 70px" alt="M'inscrire à la formation">
-                  </a>
-                </p>
+                    <br>
+                    <a href="{{ path('add_participant',{id: formation.id}) }}">
+                      <strong>JE M'INSCRIS</strong>
+                      <img src="{{ asset('img/svg/icons/registration.svg') }}" style="width: 70px; height: 70px" alt="M'inscrire à la formation">
+                    </a>
+                  </p>
                 </div>
-                
+
               </div>
             {% endif %}
           </nav>
           {% if programmePedagoFile %}
-          <div id="cadre-infos" class="s_cadre_infos s_cta">
-            <div class="row">
-              <div class="col-md-12">
-              
-                <a href="{{ asset('uploads/pedago/' ~ programmePedagoFile) }}" download><div class="txt">Télécharger le programme complet</div>
-                  <img src="{{ asset('img/svg/icons/download-svgrepo-com.svg') }}" style="width: 50px; height: 50px" alt="Télécharger le programme">
-                </a>
-            </div>
-          </div>
-          {% endif %}
+            <div id="cadre-infos" class="s_cadre_infos s_cta">
+              <div class="row">
+                <div class="col-md-12">
+
+                  <a href="{{ asset('uploads/pedago/' ~ programmePedagoFile) }}" download="download">
+                    <div class="txt">Télécharger le programme complet</div>
+                    <img src="{{ asset('img/svg/icons/download-svgrepo-com.svg') }}" style="width: 50px; height: 50px" alt="Télécharger le programme">
+                  </a>
+                </div>
+              </div>
+            {% endif %}
           </div>
 
         </div>
       </div>
     </div>
   </div>
-
 
 {% endblock %}
