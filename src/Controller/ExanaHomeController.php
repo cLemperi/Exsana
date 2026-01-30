@@ -182,4 +182,18 @@ class ExanaHomeController extends AbstractController
             'formation' => $formation
         ]);
     }
+
+    #[Route(path: '/exsana/partenaires', name: 'partenaires')]
+    public function partenaires(): \Symfony\Component\HttpFoundation\Response
+    {
+        return $this->render('exsana/partenaires.html.twig', [
+            'controller_name' => 'ExanaHomeController',
+        ]);
+    }
+
+    #[Route('/certification-qualiopi', name: 'certification_qualiopi')]
+    public function qualiopi(): Response 
+    {
+        return $this->render('exsana/qualiopi.html.twig');
+    }
 }

@@ -13,8 +13,7 @@ class SitemapController extends AbstractController
     #[Route('/sitemap.xml', name: 'app_sitemap', defaults: ['_format' => 'xml'])]
     public function index(
         Request $request,
-        FormationsRepository $formationRepo,
-    ): Response {
+        FormationsRepository $formationRepo): Response {
         $hostname = $request->getSchemeAndHttpHost();
         $urls = [];
         $urls[] = ['loc' => $this->  generateUrl('exana_home')];
