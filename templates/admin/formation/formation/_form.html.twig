@@ -157,7 +157,7 @@
 <hr class="featurette-divider">
 
 <div class="row">
-  <div class="col-md-6">
+  <div class="col-md-4">
     <div class="custom_title">
       <h5>Taux de validation (%)</h5>
     </div>
@@ -165,12 +165,21 @@
     {{ form_widget(form.tauxValidation, {'attr': {'placeholder': "Ex : 95", 'min': 0, 'max': 100, 'step': 0.1}}) }}
   </div>
 
-  <div class="col-md-6">
+  <div class="col-md-4">
     <div class="custom_title">
       <h5>Taux de satisfaction (%)</h5>
     </div>
     {{ form_label(form.tauxSatisfaction, ' ') }}
     {{ form_widget(form.tauxSatisfaction, {'attr': {'placeholder': "Ex : 92", 'min': 0, 'max': 100, 'step': 0.1}}) }}
+  </div>
+</div>
+
+<div class="col-md-4">
+    <div class="custom_title">
+      <h5>Lien externe vers le catalogue (%)</h5>
+    </div>
+    {{ form_label(form.externalLink, ' ') }}
+    {{ form_widget(form.externalLink, {'attr': {'placeholder': "Ex : https://www.exsana.com"}}) }}
   </div>
 </div>
 
@@ -181,7 +190,9 @@
   </div>
 </div>
 
+{{ form_rest(form) }}
 {{ form_end(form, {'render_rest': false}) }}
+
 
 {# --- Prototype Twig pour JS --- #}
 {#

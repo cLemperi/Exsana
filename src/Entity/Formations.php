@@ -85,6 +85,9 @@ class Formations
     #[ORM\Column(type: 'float', nullable: true)]
     private ?float $tauxSatisfaction = null;
 
+    #[ORM\Column(length: 500, nullable: true)]
+    private ?string $externalLink = null;
+
     /**
      * @var Collection|User[]
      * @psalm-var Collection<int, User>
@@ -416,6 +419,17 @@ class Formations
             }
         }
 
+        return $this;
+    }
+
+    public function getExternalLink(): ?string
+    {
+        return $this->externalLink;
+    }
+
+    public function setExternalLink(?string $externalLink): self
+    {
+        $this->externalLink = $externalLink;
         return $this;
     }
 }

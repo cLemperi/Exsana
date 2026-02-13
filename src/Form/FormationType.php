@@ -10,6 +10,7 @@ use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Validator\Constraints\File;
 use Symfony\Component\Validator\Constraints\NotBlank;
 use Symfony\Component\OptionsResolver\OptionsResolver;
+use Symfony\Component\Form\Extension\Core\Type\UrlType;
 use Symfony\Component\Form\Extension\Core\Type\FileType;
 use Symfony\Component\Form\Extension\Core\Type\NumberType;
 use Symfony\Component\Form\Extension\Core\Type\CollectionType;
@@ -69,6 +70,13 @@ class FormationType extends AbstractType
                     'step' => 0.1,
                 ],
             ])
+            ->add('externalLink', UrlType::class, [
+                'required' => false,
+                'label' => 'Lien externe',
+                'attr' => [
+                    'placeholder' => 'https://exemple.com/formation'
+                ]
+            ])
             ->add('programmePedago', FileType::class, [
                 'label' => 'Programme pédagogique (PDF)',
                 'required' => true,
@@ -86,8 +94,7 @@ class FormationType extends AbstractType
                     ]),
                 ],
                 'data_class' => null,
-            ]);
-        ;
+            ]);;
     }
 
     public function configureOptions(OptionsResolver $resolver): void
