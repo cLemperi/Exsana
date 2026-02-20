@@ -67,7 +67,7 @@ class Formations
     #[ORM\OneToMany(targetEntity: ProgrammeFormation::class, mappedBy: 'programme', cascade: ['persist'])]
     private Collection $programmeFormations;
 
-    #[ORM\Column(length: 255)]
+    #[ORM\Column(length: 255, nullable: true)]
     private ?string $slug = null;
 
     #[ORM\Column(length: 255, nullable: true)]
