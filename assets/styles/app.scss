@@ -1163,14 +1163,6 @@ a {
   margin: 0 auto;
 }
 
-.slick-slider .slick-slide {
-  margin: 0 30px;
-  background-color: #FFFF;
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: space-between;
-}
-
 .card-formation{
   flex: 1 1 20%;
   background-color: $couleur-vert-logo;
@@ -1184,6 +1176,7 @@ a {
   flex-direction: column;
   justify-content: center;
   align-items: center;
+}
 
   .btn-primary{
     background-color: $couleur-bleu-logo;
@@ -1201,7 +1194,6 @@ a {
     margin-left: 10px;
     margin-bottom: 10px;
   }
-}
 
 .card-title{
   font-size: 18px;

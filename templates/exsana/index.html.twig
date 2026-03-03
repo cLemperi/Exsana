@@ -1,10 +1,10 @@
 {% extends 'base.html.twig' %}
 
 {% block title %}Formations santé, audit - Exsana{% endblock %}
-{% block meta_description %}EXSANA est un organisme de formation dans le domaine de la santé et des soins d'urgence. 
-Pédagogie et expérience permettent à nos formateurs d'accompagner les apprenants vers les objectifs de formation, en partant de leurs acquis.{% endblock %}
+{% block meta_description %}EXSANA est un organisme de formation dans le domaine de la santé et des soins d'urgence. Pédagogie et expérience permettent à nos formateurs d'accompagner les apprenants vers les objectifs de formation, en partant de leurs acquis.{% endblock %}
 {% block meta_keywords %}formations santé, audit santé, Exsana, formation urgence médicale, expertise en santé{% endblock %}
-{% block canonical_url %}{{ app.request.uri }}{% endblock %}
+{% block canonical_url %}{{ app.request.uri }}
+{% endblock %}
 {% block body %}
   <div class="caroussel">
     <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
@@ -69,7 +69,6 @@ Pédagogie et expérience permettent à nos formateurs d'accompagner les apprena
 
   <hr class="featurette-divider">
 
-
   <div class="carousel-formation">
     <div class="slick-slider">
       {% if formations | length >= 4 %}
@@ -90,18 +89,19 @@ Pédagogie et expérience permettent à nos formateurs d'accompagner les apprena
                   </div>
                 </div>
               </div>
-              <a href="{{ path('formation', { 'id': formation.id, 'slug': formation.slug }) }}" class="btn btn-primary">Voir la formation</a>
+              {% if formation.programmePedagoFile %}
+                <a href="{{ asset('uploads/pedago/' ~ formation.programmePedagoFile) }}" download="download" class="btn-primary -2 btn btn-primary">
+                  Télécharger le programme de formation
+                </a>
+              {% endif %}
             </div>
           </div>
+
           {% set active = false %}
         {% endfor %}
       {% endif %}
     </div>
   </div>
-
- 
-
-</div>
 
 <hr class="featurette-divider">
 
