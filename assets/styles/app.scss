@@ -83,7 +83,6 @@ footer {
 #bottom-footer {
   background-color: #262626;
   color: $couleur-texte;
-  padding: 110px 0 35px;
 }
 
 /* NEWSLETTER */
@@ -1327,5 +1326,143 @@ hr { margin-bottom: 2rem; }
     height: 40px;
     padding: 0 10px;
     font-size: 0.95rem;
+  }
+}
+// Bannière cookies
+.cookie-banner {
+  position: fixed;
+  left: 16px;
+  right: 16px;
+  bottom: 16px;
+  z-index: 2000;
+  display: flex;
+  justify-content: center;
+  pointer-events: none;
+}
+
+.cookie-banner__inner {
+  width: 100%;
+  max-width: 980px;
+  background: #fff;
+  border: 1px solid #e8ecef;
+  border-radius: 20px;
+  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.14);
+  padding: 20px 24px;
+  pointer-events: auto;
+}
+
+.cookie-banner__text {
+  margin: 0 0 16px;
+  color: $couleur-texte;
+  font-family: 'Avenir-Roman', sans-serif;
+  font-size: 1rem;
+  line-height: 1.5;
+}
+
+.cookie-banner__actions {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 12px;
+}
+
+.cookie-banner__btn {
+  margin: 0 !important;
+  min-height: 48px;
+  padding: 0 20px;
+  border-radius: 14px !important;
+  font-size: 1rem;
+  font-weight: 600;
+}
+
+.cookie-banner__link {
+  background: transparent;
+  border: 0;
+  padding: 0;
+  margin: 0;
+  color: $couleur-bleu-logo;
+  font-size: 1rem;
+  font-weight: 600;
+  text-decoration: underline;
+  cursor: pointer;
+}
+
+/* Tablette */
+@media (max-width: 991.98px) {
+  .cookie-banner {
+    left: 12px;
+    right: 12px;
+    bottom: 12px;
+  }
+
+  .cookie-banner__inner {
+    padding: 18px 20px;
+    border-radius: 18px;
+  }
+
+  .cookie-banner__text {
+    font-size: 0.98rem;
+  }
+}
+
+/* Mobile */
+@media (max-width: 767.98px) {
+  .cookie-banner {
+    left: 10px;
+    right: 10px;
+    bottom: 10px;
+  }
+
+  .cookie-banner__inner {
+    padding: 16px;
+    border-radius: 16px;
+  }
+
+  .cookie-banner__text {
+    margin-bottom: 14px;
+    font-size: 0.95rem;
+    line-height: 1.45;
+  }
+
+  .cookie-banner__actions {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 10px;
+  }
+
+  .cookie-banner__btn {
+    width: 100%;
+    min-height: 46px;
+    font-size: 0.98rem;
+  }
+
+  .cookie-banner__link {
+    width: 100%;
+    text-align: center;
+    font-size: 0.95rem;
+  }
+}
+
+/* Très petits écrans */
+@media (max-width: 420px) {
+  .cookie-banner {
+    left: 8px;
+    right: 8px;
+    bottom: 8px;
+  }
+
+  .cookie-banner__inner {
+    padding: 14px;
+    border-radius: 14px;
+  }
+
+  .cookie-banner__text {
+    font-size: 0.92rem;
+  }
+
+  .cookie-banner__btn {
+    min-height: 44px;
+    font-size: 0.95rem;
+    padding: 0 14px;
   }
 }

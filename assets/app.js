@@ -81,3 +81,33 @@ $(function () {
     ]
   });
 });
+
+//cookies
+document.addEventListener('DOMContentLoaded', () => {
+  const banner = document.getElementById('cookie-banner');
+  const acceptBtn = document.getElementById('cookie-accept-all');
+  const rejectBtn = document.getElementById('cookie-reject-all');
+  const customizeBtn = document.getElementById('cookie-customize');
+
+  if (!banner) return;
+
+  const setConsentCookie = (value) => {
+    document.cookie = `cookie_consent=${value}; path=/; max-age=${60 * 60 * 24 * 180}; SameSite=Lax`;
+  };
+
+  acceptBtn?.addEventListener('click', () => {
+    setConsentCookie('accepted');
+    banner.remove();
+    window.location.reload();
+  });
+
+  rejectBtn?.addEventListener('click', () => {
+    setConsentCookie('rejected');
+    banner.remove();
+    window.location.reload();
+  });
+
+  customizeBtn?.addEventListener('click', () => {
+    alert('La personnalisation des cookies sera bientôt disponible.');
+  });
+});

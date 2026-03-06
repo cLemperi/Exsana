@@ -1,0 +1,23 @@
+{% if app.request.cookies.get('cookie_consent') is empty %}
+  <div id="cookie-banner" class="cookie-banner">
+    <div class="cookie-banner__inner">
+      <p class="cookie-banner__text">
+        Nous utilisons des cookies pour améliorer votre expérience et mesurer l’audience du site.
+      </p>
+
+      <div class="cookie-banner__actions">
+        <button type="button" id="cookie-accept-all" class="btn btn-primary cookie-banner__btn">
+          Tout accepter
+        </button>
+
+        <button type="button" id="cookie-reject-all" class="btn btn-outline-secondary cookie-banner__btn">
+          Tout refuser
+        </button>
+
+        <button type="button" id="cookie-customize" class="cookie-banner__link">
+          Personnaliser
+        </button>
+      </div>
+    </div>
+  </div>
+{% endif %}
