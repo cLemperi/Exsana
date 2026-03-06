@@ -30,69 +30,55 @@
     {% endblock %}
   </head>
   <body>
-    <header class="header">
-      <nav class="navbar navbar-expand-lg fixed-top py-4">
-        <div class="col-lg-5 col-md-12 col-sm-12 d-flex">
-          <a href="{{ path('exana_home')}}" class="navbar-brand text-uppercase font-weight-bold"><img src="{{ '/img/1629204273362.jpg'}}" alt="img-exsana" class="p-2 img-fluid" id="img-header"></a>
-        </div>
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-          <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="col-lg-7 col-md-12 col-sm-12" id="navbarmenu">
-          <div class="collapse navbar-collapse" id="navbarSupportedContent" data-toggle="collapse" data-target=".navbar-collapse">
-            <ul class="navbar-nav mr-auto">
-              <li class="nav-item active">
-                <a href="{{ path('formations') }}" class="nav-link font-weight-bold">Nos formations</a>
-              </li>
-              <!-- <li class="nav-item"> <a href="{{ path('app_product_list') }}" class="nav-link font-weight-bold">Matériel Urgence</a> </li> -->
-              <!-- <li class="nav-item"><a href="{{ path('whereweare') }}" class="nav-link font-weight-bold">Infos pratiques</a></li> -->
-              <!-- <li class="nav-item"><a href="{{ path('whoweare') }}" class="nav-link font-weight-bold">Exsana</a></li> -->
-              <li class="nav-item">
-                <a href="{{ path('contact') }}" class="nav-link font-weight-bold">Contact</a>
-              </li>
-              <li class="nav-item">
-                <a href="{{ path('partenaires') }}" class="nav-link font-weight-bold">Partenaires</a>
-              </li>
-              {% if not is_granted('ROLE_USER')and not is_granted('ROLE_ADMIN') %}
-                <li class="nav-item">
-                  <a href="{{ path('app_login') }}" class="nav-link font-weight-bold">Espace membre</a>
-                </li>
-              {% endif %}
-              {% if is_granted("ROLE_ADMIN") %}
-                <li class="nav-item">
-                  <a href="{{ path('admin.index') }}" class="nav-link nav-link font-weight-bold">Gestion</a>
-                </li>
-              {% endif %}
-              {% if is_granted("ROLE_USER") %}
-                <li class="nav-item dropdown">
-                  <a class="nav-link dropdown-toggle font-weight-bold" id="navbarDropdown" role="button" aria-haspopup="true" data-bs-toggle="dropdown" aria-expanded="false">
-                    Profils</a>
-                  <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                    <li>
-                      <a class="nav-link font-weight-bold" href="{{path('user.register') }} ">Mon comptes
-                      </a>
-                    </li>
-                    <li>
-                      <a class="nav-link font-weight-bold" href="{{ path('user.formations') }}">Mes formations</a>
-                    </li>
-                    <li>
-                      <a class="nav-link font-weight-bold" href="{{ path('user.help') }}">Aide et assistance</a>
-                    </li>
-                  </ul>
-                </li>
-              {% endif %}
+    <header class="site-header">
+  <nav class="navbar navbar-expand-lg sticky-top site-navbar">
+    <div class="container header__container">
 
-              {% if is_granted('ROLE_USER')or is_granted('ROLE_ADMIN') %}
-                <li class="nav-item">
-                  <a href="{{ path('logout') }}" class="nav-link nav-link font-weight-bold">Deconnextion</a>
-                </li>
-              {% endif %}
-            </ul>
+      <a href="{{ path('exana_home') }}" class="navbar-brand header__brand">
+        <img src="{{ asset('img/1629204273362.jpg') }}" alt="Exsana" class="header__logo">
+      </a>
 
-          </div>
-        </div>
-      </nav>
-    </header>
+      <button class="navbar-toggler header__toggler" type="button"
+              data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
+              aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+
+      <div class="collapse navbar-collapse header__collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav ms-auto text-center header__nav">
+          <li class="nav-item"><a href="{{ path('formations') }}" class="nav-link fw-bold">Nos formations</a></li>
+          <li class="nav-item"><a href="{{ path('contact') }}" class="nav-link fw-bold">Contact</a></li>
+          <li class="nav-item"><a href="{{ path('partenaires') }}" class="nav-link fw-bold">Partenaires</a></li>
+
+          {% if not is_granted('ROLE_USER') and not is_granted('ROLE_ADMIN') %}
+            <li class="nav-item"><a href="{{ path('app_login') }}" class="nav-link fw-bold">Espace membre</a></li>
+          {% endif %}
+
+          {% if is_granted("ROLE_ADMIN") %}
+            <li class="nav-item"><a href="{{ path('admin.index') }}" class="nav-link fw-bold">Gestion</a></li>
+          {% endif %}
+
+          {% if is_granted("ROLE_USER") %}
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle fw-bold" id="navbarDropdown" role="button"
+                 data-bs-toggle="dropdown" aria-expanded="false">Profils</a>
+              <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                <li><a class="dropdown-item" href="{{ path('user.register') }}">Mon compte</a></li>
+                <li><a class="dropdown-item" href="{{ path('user.formations') }}">Mes formations</a></li>
+                <li><a class="dropdown-item" href="{{ path('user.help') }}">Aide et assistance</a></li>
+              </ul>
+            </li>
+          {% endif %}
+
+          {% if is_granted('ROLE_USER') or is_granted('ROLE_ADMIN') %}
+            <li class="nav-item"><a href="{{ path('logout') }}" class="nav-link fw-bold">Déconnexion</a></li>
+          {% endif %}
+        </ul>
+      </div>
+
+    </div>
+  </nav>
+</header>
 
     <div class="bodyCore">
       {% block body %}{% endblock %}
@@ -104,10 +90,10 @@
           <div class="row">
             <div class="col-100">
               <div class="conteneur">
-                <div class="col-16">
+                <div class="col-12 col-md-2">
                   <div><img src="{{ asset('img/svg/icons/at-svgrepo-com.svg') }}" style="width: 70px; height: 70px;" alt=""></div>
                 </div>
-                <div class="col-84">
+                <div class="col-12 col-md-10">
                   <form id="newsletter-2" class="yikes-easy-mc-form yikes-easy-mc-form-1" method="POST" data-attr-form-id="2">
                     <div class="conteneur_newsletter">
                       <div>

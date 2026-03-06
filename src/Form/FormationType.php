@@ -79,13 +79,15 @@ class FormationType extends AbstractType
             ])
             ->add('programmePedago', FileType::class, [
                 'label' => 'Programme pédagogique (PDF)',
-                'required' => true,
+                'required' => false,
                 'mapped' => false,
                 'constraints' => [
                     new NotBlank([
                         'message' => 'Veuillez télécharger un fichier PDF.',
+                        'groups' => ['create'],
                     ]),
                     new File([
+                        'maxSize' => '10M',
                         'mimeTypes' => [
                             'application/pdf',
                             'application/x-pdf',
@@ -94,13 +96,21 @@ class FormationType extends AbstractType
                     ]),
                 ],
                 'data_class' => null,
-            ]);;
+            ]);
     }
 
     public function configureOptions(OptionsResolver $resolver): void
+
     {
         $resolver->setDefaults([
             'data_class' => Formations::class,
+            'validation_groups' => function ($form) {
+                /** @var Formations $formation */
+                $formation = $form->getData();
+                return $formation && null === $formation->getId()
+                    ? ['Default', 'create']
+                    : ['Default', 'edit'];
+            },
         ]);
     }
 }

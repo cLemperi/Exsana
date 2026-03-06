@@ -71,41 +71,39 @@
 
   <div class="carousel-formation">
     <div class="slick-slider">
-      {% if formations | length >= 4 %}
-        {% set active = true %}
-        {% for formation in formations %}
-          <div class="slick-slide">
-            <div class="card-formation">
-              <h5 class="card-title">{{ formation.title }}</h5>
-              <div class="card-info">
-                <div class="row">
-                  <div class="col-md-6">
-                    <img src="{{ asset('img/svg/icons/cursor-clock-svgrepo-com.svg') }}" style="width: 30px; height: 30px;" alt="Durée">
-                    {{formation.durationFormation}}
-                  </div>
-                  <div class="col-md-6">
-                    <img src="{{ asset('img/svg/icons/user-multiple-svgrepo-com.svg') }}" style="width: 30px; height: 30px;" alt="Lieux">
-                    {{formation.location}}
-                  </div>
+      {% set active = true %}
+      {% for formation in formations %}
+        <div>
+          <div class="card-formation">
+            <h5 class="card-title">{{ formation.title }}</h5>
+            <div class="card-info">
+              <div class="row card-meta">
+                <div class="col-12 col-sm-6 meta-item">
+                  <img src="{{ asset('img/svg/icons/cursor-clock-svgrepo-com.svg') }}" class="meta-icon" alt="Durée">
+                  <span>{{ formation.durationFormation }}</span>
+                </div>
+                <div class="col-12 col-sm-6 meta-item">
+                  <img src="{{ asset('img/svg/icons/user-multiple-svgrepo-com.svg') }}" class="meta-icon" alt="Lieux">
+                  <span>{{ formation.location }}</span>
                 </div>
               </div>
-              {% if formation.programmePedagoFile %}
-                <a href="{{ asset('uploads/pedago/' ~ formation.programmePedagoFile) }}" download="download" class="btn-primary -2 btn btn-primary">
-                  Télécharger le programme de formation
-                </a>
-              {% endif %}
             </div>
+            {% if formation.programmePedagoFile %}
+              <a href="{{ asset('uploads/pedago/' ~ formation.programmePedagoFile) }}" download="download" class="btn-primary -2 btn btn-primary">
+                Télécharger le programme de formation
+              </a>
+            {% endif %}
           </div>
+        </div>
 
-          {% set active = false %}
-        {% endfor %}
-      {% endif %}
+        {% set active = false %}
+      {% endfor %}
     </div>
   </div>
 
-<hr class="featurette-divider">
+  <hr class="featurette-divider">
 
-<!-- {{ include('theme/_partenaires.html.twig') }} -->
-<!-- /END THE FEATURETTES -->
+  <!-- {{ include('theme/_partenaires.html.twig') }} -->
+  <!-- /END THE FEATURETTES -->
 
 {% endblock %}
